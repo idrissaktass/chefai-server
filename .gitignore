@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+log.txt
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output (React Native veya başka client projeleri varsa)
+dist/
+build/
+.cache/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE folders
+.vscode/
+.idea/
+
+# Vercel config - Render'da kullanılmaz
+.vercel/
+
+# Expo / RN caches (varsa)
+.expo/
+.expo-shared/
+
+# NPM lock backup
+package-lock.json.orig
