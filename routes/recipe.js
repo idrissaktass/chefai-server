@@ -219,6 +219,8 @@ Task:
     });
   }
 });
-
+router.get("/test", (req, res) => {
+  res.json({ ok: true, message: "Auth route çalışıyor" });
+});
 
 export const recipeRoute = router;

@@ -102,6 +102,8 @@ router.delete("/delete-recipe/:id", verifyToken, async (req, res) => {
   res.json({ message: "Tarif silindi" });
 });
 
-
+router.get("/test", (req, res) => {
+  res.json({ ok: true, message: "Auth route çalışıyor" });
+});
 
 export const savedRecipeRoute = router;
