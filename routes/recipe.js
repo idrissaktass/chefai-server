@@ -219,7 +219,7 @@ Task:
     });
   }
 });
-router.get("/test", (req, res) => {
+router.get("/recipe/test", (req, res) => {
   res.json({ ok: true, message: "Auth route çalışıyor" });
 });
 

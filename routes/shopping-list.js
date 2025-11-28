@@ -109,7 +109,7 @@ router.post("/shopping-list/remove", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Silme işlemi başarısız" });
   }
 });
-router.get("/test", (req, res) => {
+router.get("/list/test", (req, res) => {
   res.json({ ok: true, message: "Auth route çalışıyor" });
 });
 export const shoppingListRoute = router;

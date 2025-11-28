@@ -340,7 +340,7 @@ Sadece JSON:
     res.status(500).json({ error: "Gün düzenlenemedi" });
   }
 });
-router.get("/test", (req, res) => {
+router.get("/plan/test", (req, res) => {
   res.json({ ok: true, message: "Auth route çalışıyor" });
 });
 export const weeklyPlanRoute = router;
