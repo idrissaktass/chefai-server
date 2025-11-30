@@ -124,6 +124,7 @@ Snacks: ${day.snacks}
 Türk mutfağı ağırlıklı bir 7 günlük yemek planı oluştur.
 Yasaklı besinler: ${forbiddenFoods || "yok"}
 Her öğün TEK YEMEK OLMAMALI.
+Yemekleri tam adıyla yaz.
 Her öğün mutlaka en az 2–3 bileşenden oluşmalıdır. Örnek format:
 - "Tavuk sote + pirinç pilavı + yoğurt"
 - "Mercimek çorbası + zeytinyağlı fasulye + tam buğday ekmeği"
@@ -167,6 +168,7 @@ ${previousMealsText}
     const promptEN = `
 Create a 7-day weekly meal plan.
 Forbidden foods: ${forbiddenFoods || "none"}
+Write the dishes with their full names.
 Each meal MUST contain multiple components (NOT a single dish).
 Meals should look like:
 - "Chicken sauté + rice pilaf + yogurt"

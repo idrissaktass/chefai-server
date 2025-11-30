@@ -6,6 +6,7 @@ const weeklyPlanSchema = new mongoose.Schema({
   plan: Array,
   shoppingList: Array, // Alışveriş listesi,
   createdAt: { type: Date, default: Date.now },
+  date: String
 });
 
 export const WeeklyPlanModel = mongoose.model("WeeklyPlan", weeklyPlanSchema);
