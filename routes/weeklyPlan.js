@@ -30,6 +30,16 @@ function getWeekNumber(date) {
   const temp = new Date(date.getFullYear(), 0, 1);
   return Math.ceil(((date - temp) / 86400000 + temp.getDay() + 1) / 7);
 }
+function getWeekDates(startDate) {
+  const dates = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + i);
+    dates.push(d.toISOString());
+  }
+  return dates;
+}
+
 // ====================== WEEKLY PLAN CREATE ===========================
 // ====================== WEEKLY PLAN CREATE ===========================
 router.post("/weekly-plan", authMiddleware, async (req, res) => {
@@ -120,22 +130,37 @@ Snacks: ${day.snacks}
     }
 
     // ---------------- PROMPT (TR & EN) ----------------
-    const promptTR = `
+const promptTR = `
 Türk mutfağı ağırlıklı bir 7 günlük yemek planı oluştur.
 Yasaklı besinler: ${forbiddenFoods || "yok"}
-Her öğün TEK YEMEK OLMAMALI.
-Yemekleri tam adıyla yaz.
-Her öğün mutlaka en az 2–3 bileşenden oluşmalıdır. Örnek format:
-- "Tavuk sote + pirinç pilavı + yoğurt"
-- "Mercimek çorbası + zeytinyağlı fasulye + tam buğday ekmeği"
-- "Sebzeli omlet + beyaz peynir + domates"
-Aynı yemekleri tekrar etme.
-Et/tavuk/balık haftada maksimum 3 gün olabilir.
-Gerçekçi kaloriler ve makrolar ekle.
+
+‼ KRİTİK ZORUNLU KURALLAR ‼
+- Her öğün EN AZ 2–3 bileşenden oluşmalıdır.
+- TEK KELİMELİ yemek adı YASAKTIR (ör: sadece "kinoa", "pilav", "makarna" OLAMAZ).
+  *Her bileşen en az 2 KELİME olmalıdır.* 
+  Örneğin:
+    - "Kinoa salatası"
+    - "Tavuk sote"
+    - "Sebzeli bulgur pilavı"
+    - "Yoğurtlu nohut"
+- Öğünler şu formatta olmalıdır:
+  "Tavuk sote + pirinç pilavı + yoğurt"
+  "Mercimek çorbası + zeytinyağlı fasulye + tam buğday ekmeği"
+  "Sebzeli omlet + beyaz peynir + domates"
+- Aynı yemekleri tekrar etme.
+- Et/tavuk/balık haftada en fazla 3 gün olabilir.
+- Gerçekçi kaloriler ve makrolar ekle.
+
+‼ ÇIKTI KURALLARI ‼
 - Sadece ham JSON döndür.
 - Kod bloğu kullanma.
 - Markdown kullanma.
-Format şöyle olmak zorunda:
+- Ekstra açıklama yazma.
+- Tüm kaloriler ve makrolar sayı olmalı.
+
+Plan bugün başlamalı: ${todayName}
+
+Format (zorunlu):
 {
   "days": [
     {
@@ -156,32 +181,36 @@ Format şöyle olmak zorunda:
   ]
 }
 
-Kurallar:
-- Sadece JSON döndür baska hiçbir şey yazma!!.
-- Başka açıklama yazma.
-- Tüm kaloriler ve makrolar sayı olsun.
-- Haftanın günü bugün başlasın: ${todayName}
-
 ${previousMealsText}
 `;
+const promptEN = `
+Create a 7-day meal plan.
 
-    const promptEN = `
-Create a 7-day weekly meal plan.
-Forbidden foods: ${forbiddenFoods || "none"}
-Write the dishes with their full names.
-Each meal MUST contain multiple components (NOT a single dish).
-Meals should look like:
-- "Chicken sauté + rice pilaf + yogurt"
-- "Lentil soup + green beans with olive oil + whole wheat bread"
-- "Vegetable omelette + feta cheese + tomatoes"
+‼ MANDATORY RULES ‼
+- Each meal must contain 2–3+ components.
+- Single-word food names are FORBIDDEN (e.g., "quinoa", "rice", "pasta" is NOT allowed).
+  *Every component must contain AT LEAST 2 WORDS.*
+  Examples:
+    - "Quinoa salad"
+    - "Chicken sauté"
+    - "Vegetable bulgur pilaf"
+    - "Yogurt with chickpeas"
+- Meals must be written like:
+  "Chicken sauté + rice pilaf + yogurt"
+  "Lentil soup + green beans in olive oil + whole wheat bread"
+  "Vegetable omelette + feta cheese + tomatoes"
+- Do NOT repeat meals.
+- Meat/poultry/fish max 3 days per week.
+- Include realistic calories and macros.
 
-Do NOT repeat meals.
-Meat/chicken/fish can appear maximum 3 days per week.
-Include realistic calories and macronutrients.
+‼ OUTPUT RULES ‼
 - Output ONLY raw JSON.
-- Do NOT use markdown.
-- Do NOT use code blocks.
-- Do NOT add any explanation.
+- DO NOT add explanation.
+- DO NOT use markdown.
+- All calories/macros must be numbers.
+
+Plan must start from today: ${todayName}
+
 Format (must match exactly):
 {
   "days": [
@@ -203,14 +232,9 @@ Format (must match exactly):
   ]
 }
 
-Rules:
-- Return ONLY JSON do not write anything else!!.
-- Do NOT write any explanation.
-- All calories and macros must be numbers.
-- Start the plan from today: ${todayName}
-
 ${previousMealsText}
 `;
+
 
     // Diline göre prompt seç
     const finalPrompt = language === "en" ? promptEN : promptTR;
@@ -228,13 +252,21 @@ ${previousMealsText}
     const data = JSON.parse(completion.choices[0].message.content);
 
     // ---------------- SAVE PLAN ----------------
+    const weekDates = getWeekDates(new Date());
+
+    const finalDays = data.days.map((day, idx) => ({
+      ...day,
+      date: weekDates[idx],   // ⭐ her gün kendi tarihine sahip
+    }));
+
     const plan = await WeeklyPlanModel.create({
       userId: req.userId,
       forbiddenFoods: forbiddenFoods
         ? forbiddenFoods.split(",").map((x) => x.trim())
         : [],
-      plan: data.days,
+      plan: finalDays,
     });
+
 
     return res.json({ program: plan.plan, createdAt: plan.createdAt });
   } catch (err) {
