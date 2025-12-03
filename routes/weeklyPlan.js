@@ -262,14 +262,17 @@ ${previousMealsText}
     // ---------------- OPENAI CALL ----------------
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-5-mini",
-      messages: [{ role: "user", content: finalPrompt }],
-      temperature: 0.7,
-      max_tokens: 3000,
+    const completion = await client.responses.generate({
+      model: "gpt-5.1-mini",
+      input: finalPrompt,
+      max_completion_tokens: 3000,
     });
 
-    const data = JSON.parse(completion.choices[0].message.content);
+    // OUTPUT (her zaman bu değişkende)
+    const jsonText = completion.output_text;
+
+    // Burada model RAW JSON döndürür → direkt parse ediyoruz
+    const data = JSON.parse(jsonText);
 
     // ---------------- SAVE PLAN ----------------
     const weekDates = getWeekDates(new Date());
@@ -374,13 +377,13 @@ Sadece JSON:
  "total_carbs": 0
 }`;
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-5-mini",
-      messages: [{ role: "user", content: nutritionPrompt }],
-      response_format: { type: "json_object" }
-    });
+const completion = await client.responses.generate({
+  model: "gpt-5.1-mini",
+  input: nutritionPrompt,
+  max_completion_tokens: 1000,
+});
 
-    const nut = JSON.parse(completion.choices[0].message.content);
+const nut = JSON.parse(completion.output_text);
 
     const updated = { ...dayData, ...nut };
 
