@@ -43,7 +43,18 @@ function getWeekDates(startDate) {
 // ====================== WEEKLY PLAN CREATE ===========================
 // ====================== WEEKLY PLAN CREATE ===========================
 router.post("/weekly-plan", authMiddleware, async (req, res) => {
-  const { forbiddenFoods, language = "tr" } = req.body;
+  const {
+  weight,
+  height,
+  age,
+  gender,
+  activityLevel,
+  goal,
+  dietMode,
+  forbiddenFoods,
+  language = "tr"
+} = req.body;
+
 
   try {
     const user = await User.findById(req.userId);
@@ -131,107 +142,116 @@ Snacks: ${day.snacks}
 
     // ---------------- PROMPT (TR & EN) ----------------
 const promptTR = `
-Türk mutfağı ağırlıklı bir 7 günlük yemek planı oluştur.
-Yasaklı besinler: ${forbiddenFoods || "yok"}
+Sen profesyonel bir diyetisyen ve beslenme uzmanısın.
 
-‼ KRİTİK ZORUNLU KURALLAR ‼
-- Her öğün EN AZ 2–3 bileşenden oluşmalıdır.
-- TEK KELİMELİ yemek adı YASAKTIR (ör: sadece "kinoa", "pilav", "makarna" OLAMAZ).
-  *Her bileşen en az 2 KELİME olmalıdır.* 
-  Örneğin:
-    - "Kinoa salatası"
-    - "Tavuk sote"
-    - "Sebzeli bulgur pilavı"
-    - "Yoğurtlu nohut"
-- Öğünler şu formatta olmalıdır:
-  "Tavuk sote + pirinç pilavı + yoğurt"
-  "Mercimek çorbası + zeytinyağlı fasulye + tam buğday ekmeği"
-  "Sebzeli omlet + beyaz peynir + domates"
-- Aynı yemekleri tekrar etme.
-- Et/tavuk/balık haftada en fazla 3 gün olabilir.
-- Gerçekçi kaloriler ve makrolar ekle.
+Kullanıcı bilgileri:
+- Kilo: ${weight} kg
+- Boy: ${height} cm
+- Yaş: ${age}
+- Cinsiyet: ${gender}
+- Aktivite seviyesi: ${activityLevel}
+- Diyet türü: ${dietMode}
+- Hedef: ${goal}
+- Yasaklı besinler: ${forbiddenFoods || "yok"}
+
+Bu bilgilere göre önce kullanıcının:
+- BMR (bazal metabolizma hızı)
+- TDEE (günlük kalori ihtiyacı)
+- hedefe göre (kilo verme / alma / kas yapma) ayarlanmış günlük hedef kalorisi
+- makro dağılımı (protein / yağ / karbonhidrat)
+
+hesapla.
+
+‼ YEMEK PLANLARI KURALLARI ‼
+- 7 günlük plan oluştur.
+- Her öğün *EN AZ 2–3 bileşenli* olmalı.
+- Tek kelimelik yemek adı YASAK.
+- Öğün formatı: “sebzeli omlet + beyaz peynir + domates”
+- Her gün *farklı* yemekler olmalı (asla tekrar yok).
+- Et/tavuk/balık *haftada en fazla 3 gün* olabilir.
+- Yasaklı besinler kesinlikle yer almamalı.
+- Kaloriler GERÇEKÇİ olmalı.
+- Makrolar günlük hedeflere uygun olmalı.
 
 ‼ ÇIKTI KURALLARI ‼
-- Sadece ham JSON döndür.
-- Kod bloğu kullanma.
-- Markdown kullanma.
-- Ekstra açıklama yazma.
-- Tüm kaloriler ve makrolar sayı olmalı.
+- SADECE ham JSON döndür.
+- Kod bloğu, açıklama, markdown yok.
+- Her gün için:
+{
+  "day": "Pazartesi",
+  "breakfast": "",
+  "breakfast_cal": 0,
+  "lunch": "",
+  "lunch_cal": 0,
+  "dinner": "",
+  "dinner_cal": 0,
+  "snacks": "",
+  "snacks_cal": 0,
+  "total_cal": 0,
+  "total_protein": 0,
+  "total_fat": 0,
+  "total_carbs": 0
+}
 
 Plan bugün başlamalı: ${todayName}
 
-Format (zorunlu):
-{
-  "days": [
-    {
-      "day": "Pazartesi",
-      "breakfast": "",
-      "breakfast_cal": 0,
-      "lunch": "",
-      "lunch_cal": 0,
-      "dinner": "",
-      "dinner_cal": 0,
-      "snacks": "",
-      "snacks_cal": 0,
-      "total_cal": 0,
-      "total_protein": 0,
-      "total_fat": 0,
-      "total_carbs": 0
-    }
-  ]
-}
-
+Önceki hafta tekrar etme:
 ${previousMealsText}
 `;
-const promptEN = `
-Create a 7-day meal plan.
 
-‼ MANDATORY RULES ‼
-- Each meal must contain 2–3+ components.
-- Single-word food names are FORBIDDEN (e.g., "quinoa", "rice", "pasta" is NOT allowed).
-  *Every component must contain AT LEAST 2 WORDS.*
-  Examples:
-    - "Quinoa salad"
-    - "Chicken sauté"
-    - "Vegetable bulgur pilaf"
-    - "Yogurt with chickpeas"
-- Meals must be written like:
-  "Chicken sauté + rice pilaf + yogurt"
-  "Lentil soup + green beans in olive oil + whole wheat bread"
-  "Vegetable omelette + feta cheese + tomatoes"
-- Do NOT repeat meals.
-- Meat/poultry/fish max 3 days per week.
-- Include realistic calories and macros.
+const promptEN = `
+You are a professional dietitian and nutrition specialist.
+
+User info:
+- Weight: ${weight} kg
+- Height: ${height} cm
+- Age: ${age}
+- Gender: ${gender}
+- Activity level: ${activityLevel}
+- Diet type: ${dietMode}
+- Goal: ${goal}
+- Forbidden foods: ${forbiddenFoods || "none"}
+
+First calculate:
+- BMR (Basal Metabolic Rate)
+- TDEE
+- Goal-adjusted daily calorie target
+- Macro distribution (protein, fat, carbs)
+
+‼ MEAL PLAN RULES ‼
+- Generate a 7-day meal plan.
+- Every meal must contain AT LEAST 2–3 components.
+- Single-word foods are FORBIDDEN.
+- Each day must contain completely different meals.
+- Meat/poultry/fish allowed only 3 days/week.
+- Forbidden foods must NEVER appear.
+- Calories must be realistic.
+- Macros must match the user’s goal.
 
 ‼ OUTPUT RULES ‼
-- Output ONLY raw JSON.
-- DO NOT add explanation.
-- DO NOT use markdown.
-- All calories/macros must be numbers.
+Return ONLY raw JSON.
+NO markdown, NO explanation.
 
-Plan must start from today: ${todayName}
-
-Format (must match exactly):
+Each day must follow the format:
 {
-  "days": [
-    {
-      "day": "Monday",
-      "breakfast": "",
-      "breakfast_cal": 0,
-      "lunch": "",
-      "lunch_cal": 0,
-      "dinner": "",
-      "dinner_cal": 0,
-      "snacks": "",
-      "snacks_cal": 0,
-      "total_cal": 0,
-      "total_protein": 0,
-      "total_fat": 0,
-      "total_carbs": 0
-    }
-  ]
+  "day": "Monday",
+  "breakfast": "",
+  "breakfast_cal": 0,
+  "lunch": "",
+  "lunch_cal": 0,
+  "dinner": "",
+  "dinner_cal": 0,
+  "snacks": "",
+  "snacks_cal": 0,
+  "total_cal": 0,
+  "total_protein": 0,
+  "total_fat": 0,
+  "total_carbs": 0
 }
 
+Start from today: ${todayName}
+
+Do NOT repeat meals from last week:
 ${previousMealsText}
 `;
 
@@ -243,7 +263,7 @@ ${previousMealsText}
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-5-mini",
       messages: [{ role: "user", content: finalPrompt }],
       temperature: 0.7,
       max_tokens: 3000,
@@ -355,7 +375,7 @@ Sadece JSON:
 }`;
 
     const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-5-mini",
       messages: [{ role: "user", content: nutritionPrompt }],
       response_format: { type: "json_object" }
     });
