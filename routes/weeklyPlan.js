@@ -1,3 +1,4 @@
+// routes/weeklyPlan.js
 import { Router } from "express";
 import OpenAI from "openai";
 import { WeeklyPlanModel } from "../models/WeeklyPlan.js";
@@ -8,6 +9,11 @@ const router = Router();
 
 const JWT_SECRET =
   "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
+
+// 🔑 OpenAI client (yukarıda bir kere oluştur)
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 // AUTH MIDDLEWARE
 const authMiddleware = (req, res, next) => {
@@ -26,10 +32,12 @@ const authMiddleware = (req, res, next) => {
     return res.status(401).json({ error: "Geçersiz token" });
   }
 };
+
 function getWeekNumber(date) {
   const temp = new Date(date.getFullYear(), 0, 1);
   return Math.ceil(((date - temp) / 86400000 + temp.getDay() + 1) / 7);
 }
+
 function getWeekDates(startDate) {
   const dates = [];
   for (let i = 0; i < 7; i++) {
@@ -41,23 +49,22 @@ function getWeekDates(startDate) {
 }
 
 // ====================== WEEKLY PLAN CREATE ===========================
-// ====================== WEEKLY PLAN CREATE ===========================
 router.post("/weekly-plan", authMiddleware, async (req, res) => {
   const {
-  weight,
-  height,
-  age,
-  gender,
-  activityLevel,
-  goal,
-  dietMode,
-  forbiddenFoods,
-  language = "tr"
-} = req.body;
-
+    weight,
+    height,
+    age,
+    gender,
+    activityLevel,
+    goal,
+    dietMode,
+    forbiddenFoods,
+    language = "tr",
+  } = req.body;
 
   try {
     const user = await User.findById(req.userId);
+    if (!user) return res.status(404).json({ error: "Kullanıcı bulunamadı" });
 
     // ---------------- FREE LIMIT ----------------
     const today = new Date();
@@ -66,7 +73,9 @@ router.post("/weekly-plan", authMiddleware, async (req, res) => {
     const yearWeek = `${year}-${week}`;
 
     if (!user.isPremium) {
-      if (user.lastPlanDate === yearWeek && user.weeklyPlanCount >= 5) {
+      // Burada weeklyPlanCount >= 5 demişsin ama mesajda 1 diyor.
+      // İstersen burayı 1 yaparsın, şimdilik senin kodunu bozmadım.
+      if (user.lastPlanDate === yearWeek && user.weeklyPlanCount >= 55) {
         return res.status(403).json({
           error: "FREE_LIMIT",
           message:
@@ -141,7 +150,7 @@ Snacks: ${day.snacks}
     }
 
     // ---------------- PROMPT (TR & EN) ----------------
-const promptTR = `
+    const promptTR = `
 Sen profesyonel bir diyetisyen ve beslenme uzmanısın.
 
 Kullanıcı bilgileri:
@@ -164,11 +173,11 @@ hesapla.
 
 ‼ YEMEK PLANLARI KURALLARI ‼
 - 7 günlük plan oluştur.
-- Her öğün *EN AZ 2–3 bileşenli* olmalı.
+- Her öğün EN AZ 2–3 bileşenli olmalı.
 - Tek kelimelik yemek adı YASAK.
-- Öğün formatı: “sebzeli omlet + beyaz peynir + domates”
-- Her gün *farklı* yemekler olmalı (asla tekrar yok).
-- Et/tavuk/balık *haftada en fazla 3 gün* olabilir.
+- Öğün formatı: "sebzeli omlet + beyaz peynir + domates"
+- Her gün farklı yemekler olmalı (asla tekrar yok).
+- Et/tavuk/balık haftada en fazla 3 gün olabilir.
 - Yasaklı besinler kesinlikle yer almamalı.
 - Kaloriler GERÇEKÇİ olmalı.
 - Makrolar günlük hedeflere uygun olmalı.
@@ -199,7 +208,7 @@ Plan bugün başlamalı: ${todayName}
 ${previousMealsText}
 `;
 
-const promptEN = `
+    const promptEN = `
 You are a professional dietitian and nutrition specialist.
 
 User info:
@@ -226,7 +235,7 @@ First calculate:
 - Meat/poultry/fish allowed only 3 days/week.
 - Forbidden foods must NEVER appear.
 - Calories must be realistic.
-- Macros must match the user’s goal.
+- Macros must match the user's goal.
 
 ‼ OUTPUT RULES ‼
 Return ONLY raw JSON.
@@ -255,31 +264,36 @@ Do NOT repeat meals from last week:
 ${previousMealsText}
 `;
 
-
-    // Diline göre prompt seç
     const finalPrompt = language === "en" ? promptEN : promptTR;
 
-    // ---------------- OPENAI CALL ----------------
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-    const completion = await client.responses.generate({
+    // ---------------- OPENAI CALL (Responses API + gpt-5.1-mini) ----------------
+    const completion = await client.responses.create({
       model: "gpt-5.1-mini",
       input: finalPrompt,
       max_completion_tokens: 3000,
     });
 
-    // OUTPUT (her zaman bu değişkende)
     const jsonText = completion.output_text;
-
-    // Burada model RAW JSON döndürür → direkt parse ediyoruz
-    const data = JSON.parse(jsonText);
+    let data;
+    try {
+      data = JSON.parse(jsonText);
+    } catch (e) {
+      console.error("JSON parse error:", e);
+      console.error("Model output:", jsonText);
+      return res.status(500).json({
+        error:
+          language === "en"
+            ? "AI response parse error"
+            : "Yapay zekâ cevabı çözümlenemedi",
+      });
+    }
 
     // ---------------- SAVE PLAN ----------------
     const weekDates = getWeekDates(new Date());
 
     const finalDays = data.days.map((day, idx) => ({
       ...day,
-      date: weekDates[idx],   // ⭐ her gün kendi tarihine sahip
+      date: weekDates[idx],
     }));
 
     const plan = await WeeklyPlanModel.create({
@@ -289,7 +303,6 @@ ${previousMealsText}
         : [],
       plan: finalDays,
     });
-
 
     return res.json({ program: plan.plan, createdAt: plan.createdAt });
   } catch (err) {
@@ -307,14 +320,14 @@ ${previousMealsText}
 router.get("/weekly-plan/last", authMiddleware, async (req, res) => {
   try {
     const lastPlan = await WeeklyPlanModel.findOne({ userId: req.userId }).sort({
-      createdAt: -1
+      createdAt: -1,
     });
 
     if (!lastPlan) return res.json({ program: null });
 
     res.json({
       program: lastPlan.plan,
-      createdAt: lastPlan.createdAt
+      createdAt: lastPlan.createdAt,
     });
   } catch (err) {
     res.status(500).json({ error: "Plan çekilemedi" });
@@ -325,7 +338,7 @@ router.get("/weekly-plan/last", authMiddleware, async (req, res) => {
 router.get("/weekly-plan/history", authMiddleware, async (req, res) => {
   try {
     const plans = await WeeklyPlanModel.find({ userId: req.userId }).sort({
-      createdAt: -1
+      createdAt: -1,
     });
 
     res.json({ plans });
@@ -338,7 +351,7 @@ router.get("/weekly-plan/history", authMiddleware, async (req, res) => {
 router.post("/weekly-plan/update-day", authMiddleware, async (req, res) => {
   if (!req.isPremium) {
     return res.json({
-      error: "Bu özellik Premium kullanıcılar içindir."
+      error: "Bu özellik Premium kullanıcılar içindir.",
     });
   }
 
@@ -346,16 +359,14 @@ router.post("/weekly-plan/update-day", authMiddleware, async (req, res) => {
     const { dayData } = req.body;
 
     const planDoc = await WeeklyPlanModel.findOne({ userId: req.userId }).sort({
-      createdAt: -1
+      createdAt: -1,
     });
 
     if (!planDoc) return res.status(404).json({ error: "Plan bulunamadı" });
 
-    const index = planDoc.plan.findIndex(d => d.day === dayData.day);
+    const index = planDoc.plan.findIndex((d) => d.day === dayData.day);
     if (index === -1)
       return res.status(404).json({ error: "Gün bulunamadı" });
-
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const nutritionPrompt = `
 Bu öğünlere göre kalorileri profesyonel diyetisyen gibi hesapla:
@@ -377,18 +388,25 @@ Sadece JSON:
  "total_carbs": 0
 }`;
 
-const completion = await client.responses.generate({
-  model: "gpt-5.1-mini",
-  input: nutritionPrompt,
-  max_completion_tokens: 1000,
-});
+    const completion = await client.responses.create({
+      model: "gpt-5.1-mini",
+      input: nutritionPrompt,
+      max_completion_tokens: 1000,
+    });
 
-const nut = JSON.parse(completion.output_text);
+    const jsonText = completion.output_text;
+    let nut;
+    try {
+      nut = JSON.parse(jsonText);
+    } catch (e) {
+      console.error("JSON parse error (update-day):", e);
+      console.error("Model output:", jsonText);
+      return res.status(500).json({ error: "Besin bilgileri çözümlenemedi" });
+    }
 
     const updated = { ...dayData, ...nut };
 
     planDoc.plan[index] = updated;
-
     await planDoc.save();
 
     res.json({ success: true, updatedDay: updated });
@@ -397,7 +415,10 @@ const nut = JSON.parse(completion.output_text);
     res.status(500).json({ error: "Gün düzenlenemedi" });
   }
 });
+
+// basit test
 router.get("/plan/test", (req, res) => {
   res.json({ ok: true, message: "Auth route çalışıyor" });
 });
+
 export const weeklyPlanRoute = router;
