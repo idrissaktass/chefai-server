@@ -7,6 +7,13 @@ const SavedRecipeSchema = new mongoose.Schema({
   totalProtein: { type: Number, default: 0 },  // yeni alan
   totalFat: { type: Number, default: 0 },      // yeni alan
   totalCarbs: { type: Number, default: 0 },    // yeni alan
+    ingredients: [
+    {
+      name: String,
+      amount: String,
+      calories: Number
+    }
+  ],
   steps: { type: [String], default: [] },
   ingredientsCalories: { type: Object, default: {} },
 }, { timestamps: true });

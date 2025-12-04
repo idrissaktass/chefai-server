@@ -43,10 +43,11 @@ router.post("/shopping-list", authMiddleware, async (req, res) => {
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const prompt = `
     Haftalık yemek programı: ${JSON.stringify(program)}.
-    Sadece yemeklerin malzemelerini (domates, süt, un, limon, kinoa) listele. Kullanıcıya bir market listesi hazırla.
-    - Yemek adlarını kesinlikle yazma (karnıyarık, dolma, pilav, mevsim salatası, haşlanmış yumurta, kebap, kebab gibi böyle şeyler yazma)
-    - Çorba, salata, yemek türü kelimelerini yazma
+    KESİNLİKLE sadece yemeklerin malzemelerini, marketten, pazardan, manavdan alabileceği şeyleri (domates, süt, un, limon, kinoa) listele. Kullanıcıya bir market listesi hazırla.
+    - Yemek adlarını KESİNLİKLE yazma (karnıyarık, dolma, pilav, mevsim salatası, haşlanmış yumurta, kebap, kebab gibi böyle şeyler yazma)
+    - Çorba, salata, yemek türü kelimelerini KESİNLİKLE yazma
     - Tekrar eden malzemeleri tek yaz
+    - KESİNLİKLE YEMEK ADI YAZMAYACAKSIN!!!!!
     - Sadece JSON formatı: {"list": ["malzeme1","malzeme2",...]} 
     - Başka hiçbir açıklama, yorum, başlık veya ek bilgi yazma
     `;
