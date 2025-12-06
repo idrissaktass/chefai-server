@@ -9,6 +9,7 @@ const recipeSchema = new mongoose.Schema({
     }
   ],
   steps: [String],
+  dietMode: { type: String, default: "normal" },
 });
 
 export const Recipe = mongoose.model("Recipe", recipeSchema);

@@ -56,7 +56,7 @@ function normalizeIngredients(ingredients) {
 // ====================== WEEKLY PLAN CREATE ===========================
 // ====================== WEEKLY PLAN CREATE ===========================
 router.post("/weekly-plan", authMiddleware, async (req, res) => {
-  const { forbiddenFoods, language = "tr", cuisine = "turkish" } = req.body;
+  const { forbiddenFoods, language = "tr", cuisine = "turkish", dietMode = "normal" } = req.body;
 
   try {
     const user = await User.findById(req.userId);
@@ -149,7 +149,13 @@ Seçilen dünya mutfağı: ${cuisine}
 
 Bu mutfağın yemek kültürüne uygun tarifler üret.
 Yasaklı besinler: ${forbiddenFoods || "yok"}
-
+Diyet modu: ${dietMode}
+Diyet moduna kesinlikle uy.
+Rules:
+- vegan → HAYVAN ÜRÜNÜ YOK
+- vegetarian → HERHANGİ BİR ET YOK
+- keto → DÜŞÜK KARBONHİDRAT
+- muscle_gain → YÜKSEK PROTEİN
 ‼ KRİTİK ZORUNLU KURALLAR ‼
 - Her öğün EN AZ 2–3 yemekten oluşmalıdır.
 - TEK KELİMELİ yemek adı YASAKTIR (ör: sadece "kinoa", "pilav", "makarna" OLAMAZ).
@@ -158,13 +164,13 @@ Yasaklı besinler: ${forbiddenFoods || "yok"}
     - "Tavuk sote"
     - "Sebzeli bulgur pilavı"
     - "Yoğurtlu nohut"
-
+- Porsiyonları belirt, salatalar, domates salatalık zeytin gibi yemek olmayan meyve sebzeler için KESİNLİKLE BELİRTME!!.
 - ÖĞÜN YAZIM FORMATI ÇOK KRİTİK:
   ✅ DOĞRU:
-    "Tavuk sote + pirinç pilavı + yoğurt"
-    "Mercimek çorbası + zeytinyağlı fasulye + tam buğday ekmeği"
-    "Sebzeli omlet + beyaz peynir + domates"
-    "Kremalı mantarlı makarna + yeşil salata"
+    "Tavuk sote(200 gr) + pirinç pilavı(250 gr) + yoğurt(1 kase)"
+    "Mercimek çorbası(1 kase) + zeytinyağlı fasulye(250 gr) + tam buğday ekmeği(2 dilim"
+    "Sebzeli omlet(200 gr) + beyaz peynir(50 gr) + domates"
+    "Kremalı mantarlı makarna(300 gr) + yeşil salata"
   ❌ YANLIŞ:
     "Tavuk sote ile pirinç pilavı + yoğurt"
     "Kremalı mantar soslu makarna ile salata"
@@ -216,7 +222,8 @@ Create a 7-day meal plan.
 Selected world cuisine: ${cuisine}
 
 Generate meals that match this cuisine.
-
+Diet mode: ${dietMode}
+Follow the diet strictly.
 ‼ MANDATORY RULES ‼
 - Each meal must contain 2–3+ components.
 - Single-word food names are FORBIDDEN (e.g., "quinoa", "rice", "pasta" is NOT allowed).
@@ -290,13 +297,14 @@ ${previousMealsText}
       date: weekDates[idx],   // ⭐ her gün kendi tarihine sahip
     }));
 
-    const plan = await WeeklyPlanModel.create({
-      userId: req.userId,
-      forbiddenFoods: forbiddenFoods
-        ? forbiddenFoods.split(",").map((x) => x.trim())
-        : [],
-      plan: finalDays,
-    });
+const plan = await WeeklyPlanModel.create({
+  userId: req.userId,
+  forbiddenFoods: forbiddenFoods
+    ? forbiddenFoods.split(",").map((x) => x.trim())
+    : [],
+  plan: finalDays,
+  dietMode: dietMode   // 🔥 BURAYA EKLE
+});
 
 
     return res.json({ program: plan.plan, createdAt: plan.createdAt });
@@ -407,7 +415,7 @@ Sadece JSON:
 });
 router.post("/weekly-plan/meal-detail", authMiddleware, async (req, res) => {
   try {
-    const { mealText, language = "tr" } = req.body;
+    const { mealText, language = "tr", dietMode = "normal" } = req.body;
 
     if (!mealText || mealText.trim().length < 3)
       return res.status(400).json({ error: "Meal text missing" });
@@ -415,7 +423,6 @@ router.post("/weekly-plan/meal-detail", authMiddleware, async (req, res) => {
     const meals = mealText.split("+").map(m => m.trim());
     let finalRecipes = [];
 
-    // Title-case function
     function toTitleCase(str) {
       return str
         .toLowerCase()
@@ -424,46 +431,76 @@ router.post("/weekly-plan/meal-detail", authMiddleware, async (req, res) => {
         .join(" ");
     }
 
-    // 1) CACHE KONTROLÜ
+    // 1) CACHE CHECK (dietMode + name)
     for (let meal of meals) {
-      const searchName = toTitleCase(meal); // 🔥 Köfte Şiş formatına çevir
+      const baseName = toTitleCase(meal);
 
-      const exist = await Recipe.findOne({ name: searchName });
-      if (exist) {
-        console.log("📌 Cache’den bulundu:", searchName);
-        finalRecipes.push(exist);
-      }
+      const exist = await Recipe.findOne({
+        name: baseName,
+        dietMode: dietMode,  // 🔥 Artık prefix yok, burada arıyoruz
+      });
+
+      if (exist) finalRecipes.push(exist);
     }
 
-    // 2) EKSİKLERİ BUL
+    // 2) Missing recipes
     let missingMeals = meals.filter(meal => {
-      const searchName = toTitleCase(meal);
-      return !finalRecipes.find(r => r.name === searchName);
+      const baseName = toTitleCase(meal);
+      return !finalRecipes.find(r => r.name === baseName && r.dietMode === dietMode);
     });
 
-    // 3) AI ÇAĞRISI GEREKİYORSA
+    // 3) AI gerekli mi?
     if (missingMeals.length > 0) {
-      console.log("🚀 AI tarafından üretilecek:", missingMeals);
+            console.log("🚀 AI tarafından üretilecek:", missingMeals);
 
-      const prompt =
-        language === "en"
-          ? `
-Create detailed recipes. Meals: ${missingMeals.join(", ")}
+const prompt =
+  language === "en"
+    ? `
+Generate separate recipes for each of these meals: ${missingMeals.join(", ")}
+Diet mode: ${dietMode}
 
-Return ONLY JSON:
+Rules:
+- Vegan → no animal products
+- Vegetarian → no meat
+- Keto → low carbohydrate
+- Muscle_gain → high protein
+
+Each item separated by commas is a DIFFERENT meal. Do NOT merge meals.
+
+‼ CRITICAL RULE ‼
+Never generate a recipe for items that are NOT actual dishes unless they are part of a real cooked meal.
+Examples of items that are NOT recipes on their own:
+- yogurt, honey, olives, tomatoes, pickles, cheese, cucumbers, jam, bread, tortilla
+- any food that is already consumed as-is without cooking
+
+If ALL provided items are not actual dishes (e.g., only yogurt, tomato, bread, cheese), return an empty JSON object.
+
+To be considered a recipe:
+- It must involve a cooking or preparation process (mixing, cooking, baking, boiling, sautéing, etc.)
+
+Return ONLY JSON. No explanation, no markdown.
+
 {
   "recipes":[
     {
-      "name":"", 
-      "ingredients":[ { "ingredient":"", "amount":"" } ],
+      "name": "",
+      "ingredients":[ { "ingredient": "", "amount": "" } ],
       "steps":[ "" ]
     }
   ]
 }
 `
-          : `
-Bu yemeklerin her biri için ayrı tarif üret: ${missingMeals.join(", ")}
+    : `
+Aşağıdaki yemekler için diyet tipine uygun tarif oluştur: ${missingMeals.join(", ")}
+Diyet modu: ${dietMode}
+Kurallar:
+- Vegan → hayvansal ürün yok
+- Vejetaryen → et yok
+- Keto → düşük karbonhidrat
+- Kas kazanımı → yüksek protein
+
 Virgülle ayrılmış yemeklerin hepsi ayrı yemeklerdir, birleştirme!!!
+
 ‼ KRİTİK KURAL ‼
 Aşağıdaki türde bulunan yiyeceklere ASLA tarif üretme, ancak bir yemek içinde kullanılıyorsa üret:
 - (ör: yoğurt, bal, zeytin, domates, turşu, peynir, salatalık, reçel, ekmek, lavaş)
@@ -471,15 +508,17 @@ Aşağıdaki türde bulunan yiyeceklere ASLA tarif üretme, ancak bir yemek içi
 
 Bu tür yiyecekler yemek DEĞİLDİR ve tarif gerektirmez.
 Eğer sana sadece bu tarz yemek olmayan yiyecekler verildiyse boş json döndür.
+
 Bir yemek tarifinin üretilebilmesi için:
 - Bir pişirme/ hazırlama işlemi içermelidir.
-Sadece JSON döndür, Format:
+
+Sadece JSON döndür.
 {
   "recipes":[
     {
-      "name":"", 
-      "ingredients":[ { "ingredient":"", "amount":"" } ],
-      "steps":[ "" ]
+      "name":"",
+      "ingredients":[{"ingredient":"", "amount":""}],
+      "steps":[""]
     }
   ]
 }
@@ -495,20 +534,24 @@ Sadece JSON döndür, Format:
 
       let data = JSON.parse(completion.choices[0].message.content);
 
-      // 4) KAYDET VE EKLE
+      // 4) Save to DB
       for (const recipe of data.recipes) {
-        const titleCased = toTitleCase(recipe.name);
-        recipe.name = titleCased;
+        const baseName = toTitleCase(recipe.name);
 
-        recipe.ingredients = normalizeIngredients(recipe.ingredients);
+        const dbRecipe = {
+          name: baseName,
+          dietMode,
+          ingredients: normalizeIngredients(recipe.ingredients),
+          steps: recipe.steps
+        };
 
-        await Recipe.findOneAndUpdate(
-          { name: titleCased },
-          recipe,
-          { upsert: true }
+        const saved = await Recipe.findOneAndUpdate(
+          { name: baseName, dietMode },
+          dbRecipe,
+          { upsert: true, new: true }
         );
 
-        finalRecipes.push(recipe);
+        finalRecipes.push(saved);
       }
     }
 
@@ -519,5 +562,6 @@ Sadece JSON döndür, Format:
     return res.status(500).json({ error: "Recipe generation failed" });
   }
 });
+
 
 export const weeklyPlanRoute = router;
