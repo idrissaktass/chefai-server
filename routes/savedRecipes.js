@@ -37,7 +37,7 @@ export const verifyToken = async (req, res, next) => {
 // TARİF KAYDET
 router.post("/save-recipe", verifyToken, async (req, res) => {
   const { 
-    recipeName, totalCalories, totalProtein, totalFat, totalCarbs, steps, ingredientsCalories 
+    recipeName, totalCalories, totalProtein, totalFat, totalCarbs, steps, ingredientsCalories, image
   } = req.body;
 
   const user = req.user;
@@ -76,6 +76,7 @@ router.post("/save-recipe", verifyToken, async (req, res) => {
     totalCarbs,
     steps,
     ingredientsCalories,
+    image
   });
 
   res.json({ message: "Kaydedildi", saved });

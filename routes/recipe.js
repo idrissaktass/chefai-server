@@ -2,7 +2,7 @@ import { Router } from "express";
 import OpenAI from "openai";
 import { User } from "../models/User.js";
 import jwt from "jsonwebtoken";
-
+import axios from "axios";
 const router = Router();
 
 const JWT_SECRET =
@@ -98,14 +98,25 @@ Görev:
    • Gerçekçi makrolar (protein, yağ, karbonhidrat)
    • Gerçekçi toplam kalori
    • Hazırlanışı adım adım yaz.
-
+- Her tarif için iki isim ZORUNLU:
+   • recipeName_en → İngilizce isim
+   • recipeName_tr → Türkçe isim
+- Tarif isimleri gerçek hayatta kullanılan doğal yemek isimleri olmalı.
+- "X ve Y", "X + Y", "tabağı", "kombinasyonu" gibi yapay ifadeler YASAKTIR.
+- Birleşik ve doğal bir yemek adı kullan:
+    örn: 
+      ❌ "ızgara tavuk göğsü ve sebzeler"
+      ✔ "sebzeli ızgara tavuk"
+- Her iki isim (recipeName_en ve recipeName_tr) tek bir yemeği temsil etmeli.
+- Dünyaca kullanılan, bilinen isimler olmalı.
 ‼ SADECE JSON DÖNDÜR. Açıklama, metin, markdown YOK. ‼
 
 FORMAT (ZORUNLU):
 {
  "recipes":[
    {
-     "recipeName":"",
+    "recipeName_en":"",
+     "recipeName_tr":"",
      "prepTime":0,
      "servings":2,
      "ingredients":[
@@ -147,14 +158,19 @@ Task:
 
 - Include realistic macros + total calories.
 - Include step-by-step instructions.
-
+- recipeName_en must be a natural, real-world style dish name.
+- Avoid generic or fragmented names:
+    ❌ "Grilled chicken and vegetables"
+    ✔ "Vegetable Grilled Chicken"
+    - The name must be unified as a single concept dish.
+- Names must sound like real recipe names used by chefs or restaurants.
 ‼ RETURN ONLY RAW JSON. NO TEXT, NO MARKDOWN. ‼
 
 FORMAT (MANDATORY):
 {
  "recipes":[
    {
-     "recipeName":"",
+     "recipeName_en":"",
      "prepTime":0,
      "servings":2,
      "ingredients":[
@@ -193,17 +209,167 @@ FORMAT (MANDATORY):
 });
 
 
-router.post("/recipe-creative", authMiddleware, async (req, res) => {
-  if (!req.isPremium) {
-    return res.status(402).json({
-      error: "PREMIUM_REQUIRED"
-    });
+    const promptTR = (base) => `
+${base}
+
+Görev:
+- 3 adet modern, yaratıcı, şef seviyesinde tarif oluştur.
+- Tüm tarifler 2 kişilik olacak.
+- Tarif isimleri doğal, gerçek hayatta kullanılan yemek isimleri olmalı. Pexels api'de ismi aratacağım, ona uygun, yakın yemek resimleri bulabilmeliyim.
+- Her tarifte iki isim ZORUNLU:
+   • recipeName_en → İngilizce isim
+   • recipeName_tr → Türkçe isim
+- "X ve Y", "X + Y", "kombinasyonu", "tabağı" gibi yapay isimler YASAKTIR.
+- Tek bir birleşik yemek adı kullan:
+   Örn:
+     ❌ "ızgara tavuk göğsü ve sebzeler"
+     ✔ "sebzeli ızgara tavuk"
+- Makrolar (protein, yağ, karbonhidrat) GERÇEKÇİ olmalı.
+- totalCalories GERÇEKÇİ olmalı.
+- Hazırlanışı adım adım yazılmalı.
+- Sunum önerisi ekle (steps içinde olabilir).
+- ingredients listesinde:
+    • miktar (gram/ml/adet) ZORUNLU
+    • calories ZORUNLU
+- ingredientsCalories objesi ZORUNLU ve doğru hesaplanmış olmalı.
+
+‼ SADECE JSON döndür. Açıklama, markdown, metin YASAK. ‼
+
+FORMAT (ZORUNLU):
+{
+ "recipes":[
+   {
+     "recipeName_en":"",
+     "recipeName_tr":"",
+     "prepTime":0,
+     "servings":2,
+     "ingredients":[
+       { "name":"", "amount":"", "calories":0 }
+     ],
+     "steps":[""],
+     "totalCalories":0,
+     "totalProtein":0,
+     "totalFat":0,
+     "totalCarbs":0,
+     "ingredientsCalories":{}
+   }
+ ]
+}
+`;
+
+    const promptEN = (base) => `
+${base}
+
+Task:
+- Create 3 modern, creative, chef-level recipes.
+- All recipes MUST serve 2 people.
+- Recipe names must be natural, real-world dish names. I use Pexel api for the recipe image, I search the image with that recipe name, so the name must be foundable there.
+- Two names are MANDATORY:
+   • recipeName_en → English name
+   • recipeName_tr → Turkish name
+- Avoid artificial names:
+   WRONG: "Grilled chicken and vegetables"
+   CORRECT: "Vegetable Grilled Chicken"
+- Use realistic macros (protein, fat, carbs) and totalCalories.
+- Include step-by-step instructions.
+- Add plating suggestions (inside steps is OK).
+- For each ingredient:
+   • amount (grams/ml/pieces) is REQUIRED
+   • calories is REQUIRED
+- ingredientsCalories object MUST be correct.
+
+‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
+
+FORMAT (MANDATORY):
+{
+ "recipes":[
+   {
+     "recipeName_en":"",
+     "recipeName_tr":"",
+     "prepTime":0,
+     "servings":2,
+     "ingredients":[
+       { "name":"", "amount":"", "calories":0 }
+     ],
+     "steps":[""],
+     "totalCalories":0,
+     "totalProtein":0,
+     "totalFat":0,
+     "totalCarbs":0,
+     "ingredientsCalories":{}
+   }
+ ]
+}
+`;
+
+// Basit kelime benzerlik ölçümü
+function similarityScore(recipeName, photoText) {
+  if (!photoText) return 0;
+
+  const words = recipeName.toLowerCase().split(" ");
+  const text = photoText.toLowerCase();
+
+  let matchCount = 0;
+
+  words.forEach(w => {
+    if (w.length > 2 && text.includes(w)) matchCount++;
+  });
+
+  return matchCount / words.length; // 0.0 - 1.0 arası skor
+}
+
+router.post("/recipe-image", async (req, res) => {
+  const { recipeName } = req.body;
+
+  if (!recipeName) {
+    return res.status(400).json({ error: "recipeName missing" });
   }
 
+  try {
+    const PEXELS_KEY = "lxUXbL9YjqoUvBOIjlyU5Zk1AS7aiII4M9YcWeGxjPpnLOjPu1QYocSx";
+
+    const response = await axios.get(
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(
+        recipeName + " food"
+      )}&per_page=1`,
+      {
+        headers: { Authorization: PEXELS_KEY },
+      }
+    );
+
+    const photo = response.data.photos?.[0];
+
+    if (!photo) return res.json({ imageUrl: null });
+
+    // Benzerlik için foto alt text’i ve photographer adı kullanıyoruz
+    const checkText =
+      `${photo.alt} ${photo.photographer}`.trim();
+
+    const score = similarityScore(recipeName, checkText);
+
+    console.log("EŞLEŞME:", recipeName, "-> skor:", score);
+
+    // ⭐ Eğer benzerlik düşükse resmi gösterme
+    if (score < 0.3) {
+      console.log("⚠️ Düşük eşleşme → resim reddedildi");
+      return res.json({ imageUrl: null });
+    }
+
+    return res.json({ imageUrl: photo.src.large });
+  } catch (err) {
+    console.log("Pexels image error:", err);
+    return res.status(500).json({ error: "Image fetch failed" });
+  }
+});
+
+router.post("/recipe-creative", async (req, res) => {
   const { ingredients, dishName, cuisine, language = "tr" } = req.body;
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      organization: "org-ndMYkbD4PYCEYyHWmkIxBqpM",
+    });
 
     const baseTR = dishName
       ? `Yemek adı: ${dishName}`
@@ -213,50 +379,36 @@ router.post("/recipe-creative", authMiddleware, async (req, res) => {
       ? `Dish name: ${dishName}`
       : `Ingredients: ${ingredients}`;
 
-    const promptTR = `
-${baseTR}
+    const finalPrompt =
+      language === "en" ? promptEN(baseEN) : promptTR(baseTR);
 
-Görev:
-- 3 tane modern, yaratıcı, şef seviyesinde tarif oluştur
-- 2 kişilik olsun
-- sunum önerisi ekle
-- aromalar, baharatlar ve dokular uyumlu olsun
-- mecburi yan ürünler: pilav, yoğurt, salata veya meze alternatifleri
-- sadece JSON döndür
-`;
-
-    const promptEN = `
-${baseEN}
-
-Task:
-- Create 3 modern, creative, chef-level recipes
-- All recipes must serve 2 people
-- Add plating suggestions
-- Use balanced flavors, spices, textures
-- Required sides: rice, yogurt, salad, or mezze alternatives
-- Return ONLY JSON
-`;
-
-    const finalPrompt = language === "en" ? promptEN : promptTR;
-
+    // =========================
+    // TARİF ÜRETİMİ (GPT-4o-mini)
+    // =========================
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: finalPrompt }],
-      response_format: { type: "json_object" }
+      response_format: { type: "json_object" },
     });
 
     const data = JSON.parse(completion.choices[0].message.content);
 
+    // =========================
+    // RESİM KALDIRILDI
+    // =========================
+    for (let recipe of data.recipes) {
+      recipe.image = null; // frontend fallback kullanabilir
+    }
+
     return res.json(data);
+
   } catch (err) {
     console.log("Creative recipe error:", err);
-    res.status(500).json({
-      error: language === "en" ? "OpenAI Error" : "OpenAI hatası"
+    return res.status(500).json({
+      error: language === "en" ? "OpenAI Error" : "OpenAI hatası",
     });
   }
 });
-router.get("/recipe/test", (req, res) => {
-  res.json({ ok: true, message: "Auth route çalışıyor" });
-});
+
 
 export const recipeRoute = router;

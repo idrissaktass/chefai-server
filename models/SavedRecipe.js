@@ -16,6 +16,7 @@ const SavedRecipeSchema = new mongoose.Schema({
   ],
   steps: { type: [String], default: [] },
   ingredientsCalories: { type: Object, default: {} },
+  image: { type: String, default: null }, // ⭐⭐ ekledik
 }, { timestamps: true });
 
 export const SavedRecipe = mongoose.model("SavedRecipe", SavedRecipeSchema);
