@@ -352,7 +352,7 @@ router.post("/recipe-image", async (req, res) => {
     console.log("EŞLEŞME:", recipeName, "-> skor:", score);
 
     // ⭐ Eğer benzerlik düşükse resmi gösterme
-    if (score < 0.3) {
+    if (score < 0.1) {
       console.log("⚠️ Düşük eşleşme → resim reddedildi");
       return res.json({ imageUrl: null });
     }
