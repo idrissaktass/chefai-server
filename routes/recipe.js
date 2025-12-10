@@ -78,6 +78,7 @@ ${cuisineText}
 
 Görev:
 - 3 detaylı tarif oluştur.
+- 3 tarif birbirinden farklı olmalı.
 - 2 kişilik olacak.
 - Her tarifin tüm malzemeleri için:
    • Miktarı gram/ml/adet olarak ZORUNLU yaz.
@@ -139,6 +140,7 @@ ${cuisineText}
 
 Task:
 - Generate 3 detailed recipes.
+- The recipes must be different from each other.
 - MUST serve 2 people.
 - For every ingredient:
    • MUST include amount (grams/ml/pieces)

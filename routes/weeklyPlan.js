@@ -52,6 +52,40 @@ function normalizeIngredients(ingredients) {
     return item;
   });
 }
+function getNext7Days(startDate) {
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(startDate);
+    d.setDate(startDate.getDate() + i);
+    days.push(d.toISOString());
+  }
+  return days;
+}
+// 🔥 Eski planlarda çakışan tarihleri sil
+async function removeOverlappingDays(userId, newDates) {
+  const oldPlans = await WeeklyPlanModel.find({ userId }).sort({ createdAt: 1 });
+
+  const normalizedSet = new Set(
+    newDates.map(d => new Date(d).toISOString().slice(0, 10))
+  );
+
+  for (let plan of oldPlans) {
+    // Filtrele: eski planın içindeki günlerden yeni tarihlerle çakışmayanlar kalsın
+    const filteredDays = plan.plan.filter(oldDay => {
+      const oldDateNormalized = oldDay.date.slice(0, 10);
+      return !normalizedSet.has(oldDateNormalized);  // ÇAKIŞANLARI SİL
+    });
+
+    plan.plan = filteredDays;
+
+    // Eğer tamamen boşaldıysa dokümanı silebilirsin (opsiyonel)
+    if (filteredDays.length === 0) {
+      await WeeklyPlanModel.findByIdAndDelete(plan._id);
+    } else {
+      await plan.save();
+    }
+  }
+}
 
 // ====================== WEEKLY PLAN CREATE ===========================
 // ====================== WEEKLY PLAN CREATE ===========================
@@ -290,7 +324,11 @@ ${previousMealsText}
     const data = JSON.parse(completion.choices[0].message.content);
 
     // ---------------- SAVE PLAN ----------------
-    const weekDates = getWeekDates(new Date());
+   const today2 = new Date();
+    const weekDates = getNext7Days(today2);
+  // 🔥 Önce eski planlardan bu tarihlerle çakışan günleri sil
+  await removeOverlappingDays(req.userId, weekDates);
+
 
     const finalDays = data.days.map((day, idx) => ({
       ...day,
@@ -352,11 +390,11 @@ router.get("/weekly-plan/history", authMiddleware, async (req, res) => {
 
 // ====================== UPDATE DAY (PREMIUM ONLY) ===========================
 router.post("/weekly-plan/update-day", authMiddleware, async (req, res) => {
-  if (!req.isPremium) {
-    return res.json({
-      error: "Bu özellik Premium kullanıcılar içindir."
-    });
-  }
+  // if (!req.isPremium) {
+  //   return res.json({
+  //     error: "Bu özellik Premium kullanıcılar içindir."
+  //   });
+  // }
 
   try {
     const { dayData } = req.body;
