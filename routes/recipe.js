@@ -228,7 +228,7 @@ Görev:
      ✔ "sebzeli ızgara tavuk"
 - Makrolar (protein, yağ, karbonhidrat) GERÇEKÇİ olmalı.
 - totalCalories GERÇEKÇİ olmalı.
-- Hazırlanışı adım adım yazılmalı.
+- Hazırlanışı adım adım detaylı bir şekilde yazılmalı, yemek yapamayan biri de anlamalı.
 - Sunum önerisi ekle (steps içinde olabilir).
 - ingredients listesinde:
     • miktar (gram/ml/adet) ZORUNLU
@@ -273,7 +273,7 @@ Task:
    WRONG: "Grilled chicken and vegetables"
    CORRECT: "Vegetable Grilled Chicken"
 - Use realistic macros (protein, fat, carbs) and totalCalories.
-- Include step-by-step instructions.
+- Include step-by-step instructions with details, instructions must be understandable even by peope who cant cook.
 - Add plating suggestions (inside steps is OK).
 - For each ingredient:
    • amount (grams/ml/pieces) is REQUIRED
