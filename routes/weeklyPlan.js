@@ -256,10 +256,18 @@ Create a 7-day meal plan.
 Selected world cuisine: ${cuisine}
 
 Generate meals that match this cuisine.
+Forbidden foods: ${forbiddenFoods || "none"}
 Diet mode: ${dietMode}
-Follow the diet strictly.
+Follow the diet mode STRICTLY.
+
+Rules:
+- vegan → NO ANIMAL PRODUCTS
+- vegetarian → NO MEAT OF ANY KIND
+- keto → LOW CARB
+- muscle_gain → HIGH PROTEIN
+
 ‼ MANDATORY RULES ‼
-- Each meal must contain 2–3+ components.
+- Each meal must contain AT LEAST 2–3 components.
 - Single-word food names are FORBIDDEN (e.g., "quinoa", "rice", "pasta" is NOT allowed).
   *Every component must contain AT LEAST 2 WORDS.*
   Examples:
@@ -267,19 +275,36 @@ Follow the diet strictly.
     - "Chicken sauté"
     - "Vegetable bulgur pilaf"
     - "Yogurt with chickpeas"
-- Meals must be written like:
-  "Chicken sauté + rice pilaf + yogurt"
-  "Lentil soup + green beans in olive oil + whole wheat bread"
-  "Vegetable omelette + feta cheese + tomatoes"
-- Do NOT repeat meals.
-- Meat/poultry/fish max 3 days per week.
-- Include realistic calories and macros.
+- Specify portions for each component, like (200 g), (1 bowl), (2 slices).
+- Do NOT use plain fruits/vegetables as standalone components like only "tomatoes", "cucumber", "olives".
+  They must be part of a real dish name (e.g., "Tomato and cucumber salad").
+- MEAL TEXT FORMAT IS CRITICAL:
+  ✅ CORRECT:
+    "Chicken sauté(200 g) + rice pilaf(250 g) + yogurt(1 bowl)"
+    "Lentil soup(1 bowl) + green beans in olive oil(250 g) + whole wheat bread(2 slices)"
+    "Vegetable omelette(200 g) + feta cheese(50 g) + tomatoes"
+    "Creamy mushroom pasta(300 g) + green salad"
+  ❌ WRONG:
+    "Chicken sauté and rice pilaf + yogurt"
+    "Creamy mushroom pasta with salad"
+    "Chicken sauté and rice pilaf + yogurt"
+
+- The ONLY separator between components is " + ".
+- NEVER use "and" or "&" or "with" between components; ALWAYS use "+".
+- Do NOT repeat the same meals during the week.
+- Meat/poultry/fish can be used on a MAXIMUM of 3 days in the week.
+- Use realistic calories and macros.
+- Dish names must be natural, like on a restaurant menu or how people talk in daily life.
+  For example:
+    Instead of "creamy mushroom pasta with salad"
+    use "Creamy mushroom pasta + salad".
 
 ‼ OUTPUT RULES ‼
 - Output ONLY raw JSON.
 - DO NOT add explanation.
 - DO NOT use markdown.
-- All calories/macros must be numbers.
+- DO NOT add any extra text.
+- All calories and macros must be NUMBERS (not strings).
 
 Plan must start from today: ${todayName}
 
@@ -306,6 +331,7 @@ Format (must match exactly):
 
 ${previousMealsText}
 `;
+
 
 
     // Diline göre prompt seç
