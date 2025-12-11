@@ -25,7 +25,7 @@ const authMiddleware = (req, res, next) => {
 };
 
 router.post("/recipe", authMiddleware, async (req, res) => {
-  const { ingredients, dishName, cuisine, language = "tr" } = req.body;
+  const { ingredients, dishName, cuisine, language = "tr", diet } = req.body; // <-- diet eklendi
 
   const user = await User.findById(req.userId);
 
@@ -63,7 +63,19 @@ router.post("/recipe", authMiddleware, async (req, res) => {
         : cuisine && language === "en"
         ? `Recipes must follow ${cuisine} cuisine.\n`
         : "";
+// Yeni Diyet Kısıtlaması Metni
+    let dietTextTR = "";
+    let dietTextEN = "";
 
+    if (diet && diet !== "None") {
+        if (diet === "HighProtein") {
+            dietTextTR = "Tarifler ZORUNLU olarak yüksek protein içermeli ve makro dağılımı buna göre optimize edilmeli.";
+            dietTextEN = "Recipes MUST be high in protein and macro distribution must be optimized accordingly.";
+        } else {
+            dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
+            dietTextEN = `Recipes MUST strictly adhere to the ${diet} diet.`;
+        }
+    }
     const baseTR = dishName
       ? `Yemek adı: ${dishName}`
       : `Malzemeler: ${ingredients}`;
@@ -75,7 +87,7 @@ router.post("/recipe", authMiddleware, async (req, res) => {
     const promptTR = `
 ${baseTR}
 ${cuisineText}
-
+${dietTextTR} // <-- EKLENDİ
 Görev:
 - 3 detaylı tarif oluştur.
 - 3 tarif birbirinden farklı olmalı.
@@ -137,7 +149,7 @@ FORMAT (ZORUNLU):
     const promptEN = `
 ${baseEN}
 ${cuisineText}
-
+${dietTextEN} // <-- EKLENDİ
 Task:
 - Generate 3 detailed recipes.
 - The recipes must be different from each other.
@@ -373,8 +385,7 @@ router.post("/recipe-image", async (req, res) => {
 });
 
 router.post("/recipe-creative", async (req, res) => {
-  const { ingredients, dishName, cuisine, language = "tr" } = req.body;
-
+const { ingredients, dishName, cuisine, language = "tr", diet } = req.body; // <-- diet eklendi
   try {
     const client = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
@@ -388,10 +399,21 @@ router.post("/recipe-creative", async (req, res) => {
     const baseEN = dishName
       ? `Dish name: ${dishName}`
       : `Ingredients: ${ingredients}`;
+// Yeni Diyet Kısıtlaması Metni
+    let dietTextTR = "";
+    let dietTextEN = "";
 
+    if (diet && diet !== "None") {
+        if (diet === "HighProtein") {
+            dietTextTR = "Tarifler ZORUNLU olarak yüksek protein içermeli ve makro dağılımı buna göre optimize edilmeli.";
+            dietTextEN = "Recipes MUST be high in protein and macro distribution must be optimized accordingly.";
+        } else {
+            dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
+            dietTextEN = `Recipes MUST strictly adhere to the ${diet} diet.`;
+        }
+    }
     const finalPrompt =
-      language === "en" ? promptEN(baseEN) : promptTR(baseTR);
-
+    language === "en" ? promptEN(`${baseEN}\n${dietTextEN}`) : promptTR(`${baseTR}\n${dietTextTR}`); // <-- GÜNCELLENDİ
     // =========================
     // TARİF ÜRETİMİ (GPT-4o-mini)
     // =========================

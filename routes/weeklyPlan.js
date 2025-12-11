@@ -4,6 +4,12 @@ import { WeeklyPlanModel } from "../models/WeeklyPlan.js";
 import { User } from "../models/User.js";
 import jwt from "jsonwebtoken";
 import { Recipe } from "../models/Recipe.js";
+import fs from "fs";
+import path from "path";
+
+const mealsPath = path.join(process.cwd(), "utils", "normal.json");
+
+const mealsData = JSON.parse(fs.readFileSync(mealsPath, "utf-8"));
 
 const router = Router();
 
@@ -20,6 +26,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
+    console.log("decoded",decoded)
     req.userId = decoded.id;
     req.isPremium = decoded.isPremium || false;
     next();
@@ -87,319 +94,213 @@ async function removeOverlappingDays(userId, newDates) {
   }
 }
 
-// ====================== WEEKLY PLAN CREATE ===========================
-// ====================== WEEKLY PLAN CREATE ===========================
+
+function calculateCalories(age, gender, weight, height, goal) {
+  let BMR;
+
+  if (gender === "male") {
+    BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    BMR = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  let TDEE = BMR * 1.55; // orta aktif
+
+  if (goal === "lose") TDEE -= 300;
+  if (goal === "gain") TDEE += 300;
+
+  return Math.round(TDEE);
+}
+
+function rotateWeekToToday(dayNamesTR, dayNamesEN) {
+  const todayIndex = new Date().getDay(); // 0 = Pazar, 1 = Pazartesi ...
+  
+  // TR için (bizim dayNamesTR Pazartesi ile başlıyor, onu Pazar başlangıcına çevirmeliyiz)
+  const mapTR = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+  const shiftTR = mapTR[todayIndex]; 
+
+  const startIndexTR = dayNamesTR.indexOf(shiftTR);
+  const rotatedTR = [
+    ...dayNamesTR.slice(startIndexTR),
+    ...dayNamesTR.slice(0, startIndexTR),
+  ];
+
+  // EN için
+  const rotatedEN = [
+    ...dayNamesEN.slice(todayIndex),
+    ...dayNamesEN.slice(0, todayIndex),
+  ];
+
+  return { rotatedTR, rotatedEN };
+}
+
 router.post("/weekly-plan", authMiddleware, async (req, res) => {
-  const { forbiddenFoods, language = "tr", cuisine = "turkish", dietMode = "normal" } = req.body;
-
   try {
-    const user = await User.findById(req.userId);
+    const { age, gender, weight, height, goal, dietMode = "normal", forbiddenFoods = "", language = "" } = req.body;
+const userId = req.userId;
+    const calories = calculateCalories(age, gender, weight, height, goal);
+    console.log("diet mod", dietMode)
+    // Yemek filtreleme
+    const breakfasts = mealsData.filter(
+      m => m.mealTime === "breakfast" && m.diet.includes(dietMode)
+    );
+    const lunches = mealsData.filter(
+      m => m.mealTime === "lunch" && m.diet.includes(dietMode)
+    );
+    const dinners = mealsData.filter(
+      m => m.mealTime === "dinner" && m.diet.includes(dietMode)
+    );
+    const snacks = mealsData.filter(
+      m => m.mealTime === "snacks" && m.diet.includes(dietMode)
+    );
 
-    // ---------------- FREE LIMIT ----------------
-    const today = new Date();
-    const year = today.getFullYear();
-    const week = getWeekNumber(today);
-    const yearWeek = `${year}-${week}`;
-
-    if (!user.isPremium) {
-      if (user.lastPlanDate === yearWeek && user.weeklyPlanCount >= 5555) {
-        return res.status(403).json({
-          error: "FREE_LIMIT",
-          message:
-            language === "en"
-              ? "Free users can only generate 1 weekly plan per week."
-              : "Ücretsiz kullanıcılar haftada yalnızca 1 haftalık plan oluşturabilir.",
-        });
-      }
-
-      // Yeni hafta → sıfırla
-      if (user.lastPlanDate !== yearWeek) {
-        user.lastPlanDate = yearWeek;
-        user.weeklyPlanCount = 0;
-      }
-
-      user.weeklyPlanCount++;
-      await user.save();
-    }
-
-    // ---------------- DAILY NAME (DİL DESTEKLİ) ----------------
-    const daysTR = [
-      "Pazar",
+    const days = [];
+    const dayNames = [
       "Pazartesi",
       "Salı",
       "Çarşamba",
       "Perşembe",
       "Cuma",
       "Cumartesi",
+      "Pazar"
     ];
 
-    const daysEN = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    const todayName =
-      language === "en"
-        ? daysEN[new Date().getDay()]
-        : daysTR[new Date().getDay()];
-
-    // ---------------- PREVIOUS PLAN TEXT ----------------
-    const lastPlan = await WeeklyPlanModel.findOne({ userId: req.userId }).sort({
-      createdAt: -1,
-    });
-
-    let previousMealsText = "";
-    if (lastPlan) {
-      if (language === "en") {
-        previousMealsText =
-          "These meals were used in the previous week, do NOT repeat them:\n";
-      } else {
-        previousMealsText =
-          "Önceki haftada şu yemekler verildi, lütfen tekrar etme:\n";
-      }
-
-      previousMealsText += lastPlan.plan
-        .map(
-          (day) => `
-${day.day}:
-Breakfast: ${day.breakfast}
-Lunch: ${day.lunch}
-Dinner: ${day.dinner}
-Snacks: ${day.snacks}
-`
-        )
-        .join("\n");
+    function pickMeal(meals, target) {
+      const options = meals.filter(
+        m => Math.abs(m.kcal - target) <= 150
+      );
+      if (options.length === 0) return null;
+      return options[Math.floor(Math.random() * options.length)];
     }
+const startDate = new Date();  // 🔥 Bugün
 
-    // ---------------- PROMPT (TR & EN) ----------------
-const promptTR = `
-7 günlük yemek planı oluştur.
-Seçilen dünya mutfağı: ${cuisine} 
+for (let i = 0; i < 7; i++) {
 
-Bu mutfağın yemek kültürüne uygun tarifler üret.
-Yasaklı besinler: ${forbiddenFoods || "yok"}
-Diyet modu: ${dietMode}
-Diyet moduna kesinlikle uy.
-Rules:
-- vegan → HAYVAN ÜRÜNÜ YOK
-- vegetarian → HERHANGİ BİR ET YOK
-- keto → DÜŞÜK KARBONHİDRAT
-- muscle_gain → YÜKSEK PROTEİN
-‼ KRİTİK ZORUNLU KURALLAR ‼
-- Her öğün EN AZ 2–3 yemekten oluşmalıdır.
-- TEK KELİMELİ yemek adı YASAKTIR (ör: sadece "kinoa", "pilav", "makarna" OLAMAZ).
-  Örnek isimler:
-    - "Kinoa salatası"
-    - "Tavuk sote"
-    - "Sebzeli bulgur pilavı"
-    - "Yoğurtlu nohut"
-- Porsiyonları belirt, salatalar, domates salatalık zeytin gibi yemek olmayan meyve sebzeler için KESİNLİKLE BELİRTME!!.
-- ÖĞÜN YAZIM FORMATI ÇOK KRİTİK:
-  ✅ DOĞRU:
-    "Tavuk sote(200 gr) + pirinç pilavı(250 gr) + yoğurt(1 kase)"
-    "Mercimek çorbası(1 kase) + zeytinyağlı fasulye(250 gr) + tam buğday ekmeği(2 dilim"
-    "Sebzeli omlet(200 gr) + beyaz peynir(50 gr) + domates"
-    "Kremalı mantarlı makarna(300 gr) + yeşil salata"
-  ❌ YANLIŞ:
-    "Tavuk sote ile pirinç pilavı + yoğurt"
-    "Kremalı mantar soslu makarna ile salata"
-    "Tavuk sote ve pirinç pilavı + yoğurt"
+  // 🔥 Günün tarihini oluştur
+  const dayDate = new Date(startDate);
+  dayDate.setDate(startDate.getDate() + i);
 
-- Bileşenler arasındaki AYIRICI **sadece ve sadece " + "** olabilir.
-- "ile" "ve" bağlaçları yerine KESİNLİKLE "+" kullan!!!!!
-- Aynı yemekleri tekrar etme.
-- Et/tavuk/balık haftada en fazla 3 gün olabilir.
-- Gerçekçi kaloriler ve makrolar ekle.
-- Yemek isimlerini düzgün ver, restoran menüsündeki veya insanların günlük kullandığı isimler olmalı.
-  Özellikle:
-    - "kremalı mantar soslu makarna ile salata" yerine
-      "Kremalı mantarlı makarna + salata" yaz.
-
-‼ ÇIKTI KURALLARI ‼
-- Sadece ham JSON döndür.
-- Kod bloğu kullanma.
-- Markdown kullanma.
-- Ekstra açıklama yazma.
-- Tüm kaloriler ve makrolar sayı olmalı.
-
-Plan bugün başlamalı: ${todayName}
-Format (zorunlu):
-{
-  "days": [
-    {
-      "day": "Pazartesi",
-      "breakfast": "",
-      "breakfast_cal": 0,
-      "lunch": "",
-      "lunch_cal": 0,
-      "dinner": "",
-      "dinner_cal": 0,
-      "snacks": "",
-      "snacks_cal": 0,
-      "total_cal": 0,
-      "total_protein": 0,
-      "total_fat": 0,
-      "total_carbs": 0
-    }
-  ]
-}
-
-${previousMealsText}
-`;
-const promptEN = `
-Create a 7-day meal plan.
-Selected world cuisine: ${cuisine}
-
-Generate meals that match this cuisine.
-Forbidden foods: ${forbiddenFoods || "none"}
-Diet mode: ${dietMode}
-Follow the diet mode STRICTLY.
-
-Rules:
-- vegan → NO ANIMAL PRODUCTS
-- vegetarian → NO MEAT OF ANY KIND
-- keto → LOW CARB
-- muscle_gain → HIGH PROTEIN
-
-‼ MANDATORY RULES ‼
-- Each meal must contain AT LEAST 2–3 components.
-- Single-word food names are FORBIDDEN (e.g., "quinoa", "rice", "pasta" is NOT allowed).
-  *Every component must contain AT LEAST 2 WORDS.*
-  Examples:
-    - "Quinoa salad"
-    - "Chicken sauté"
-    - "Vegetable bulgur pilaf"
-    - "Yogurt with chickpeas"
-- Specify portions for each component, like (200 g), (1 bowl), (2 slices).
-- Do NOT use plain fruits/vegetables as standalone components like only "tomatoes", "cucumber", "olives".
-  They must be part of a real dish name (e.g., "Tomato and cucumber salad").
-- MEAL TEXT FORMAT IS CRITICAL:
-  ✅ CORRECT:
-    "Chicken sauté(200 g) + rice pilaf(250 g) + yogurt(1 bowl)"
-    "Lentil soup(1 bowl) + green beans in olive oil(250 g) + whole wheat bread(2 slices)"
-    "Vegetable omelette(200 g) + feta cheese(50 g) + tomatoes"
-    "Creamy mushroom pasta(300 g) + green salad"
-  ❌ WRONG:
-    "Chicken sauté and rice pilaf + yogurt"
-    "Creamy mushroom pasta with salad"
-    "Chicken sauté and rice pilaf + yogurt"
-
-- The ONLY separator between components is " + ".
-- NEVER use "and" or "&" or "with" between components; ALWAYS use "+".
-- Do NOT repeat the same meals during the week.
-- Meat/poultry/fish can be used on a MAXIMUM of 3 days in the week.
-- Use realistic calories and macros.
-- Dish names must be natural, like on a restaurant menu or how people talk in daily life.
-  For example:
-    Instead of "creamy mushroom pasta with salad"
-    use "Creamy mushroom pasta + salad".
-
-‼ OUTPUT RULES ‼
-- Output ONLY raw JSON.
-- DO NOT add explanation.
-- DO NOT use markdown.
-- DO NOT add any extra text.
-- All calories and macros must be NUMBERS (not strings).
-
-Plan must start from today: ${todayName}
-
-Format (must match exactly):
-{
-  "days": [
-    {
-      "day": "Monday",
-      "breakfast": "",
-      "breakfast_cal": 0,
-      "lunch": "",
-      "lunch_cal": 0,
-      "dinner": "",
-      "dinner_cal": 0,
-      "snacks": "",
-      "snacks_cal": 0,
-      "total_cal": 0,
-      "total_protein": 0,
-      "total_fat": 0,
-      "total_carbs": 0
-    }
-  ]
-}
-
-${previousMealsText}
-`;
+  const breakfast = pickMeal(breakfasts, calories * 0.25);
+  const lunch = pickMeal(lunches, calories * 0.35);
+  const dinner = pickMeal(dinners, calories * 0.30);
+  const snack = pickMeal(snacks, calories * 0.10);
 
 
+      const total =
+        (breakfast?.kcal || 0) +
+        (lunch?.kcal || 0) +
+        (dinner?.kcal || 0) +
+        (snack?.kcal || 0);
 
-    // Diline göre prompt seç
-    const finalPrompt = language === "en" ? promptEN : promptTR;
+      const totalProtein =
+        (breakfast?.protein || 0) +
+        (lunch?.protein || 0) +
+        (dinner?.protein || 0) +
+        (snack?.protein || 0);
 
-    // ---------------- OPENAI CALL ----------------
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      const totalCarbs =
+        (breakfast?.carbs || 0) +
+        (lunch?.carbs || 0) +
+        (dinner?.carbs || 0) +
+        (snack?.carbs || 0);
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: finalPrompt }],
-      temperature: 0.9,
-      max_tokens: 3000,
-    });
+      const totalFat =
+        (breakfast?.fat || 0) +
+        (lunch?.fat || 0) +
+        (dinner?.fat || 0) +
+        (snack?.fat || 0);
 
-    const data = JSON.parse(completion.choices[0].message.content);
+const dayNamesTR = ["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
+const dayNamesEN = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 
-    // ---------------- SAVE PLAN ----------------
-   const today2 = new Date();
-    const weekDates = getNext7Days(today2);
-  // 🔥 Önce eski planlardan bu tarihlerle çakışan günleri sil
-  await removeOverlappingDays(req.userId, weekDates);
+const { rotatedTR, rotatedEN } = rotateWeekToToday(dayNamesTR, dayNamesEN);
 
+days.push({
+  date: dayDate.toISOString(),  // 🔥 ZORUNLU ALAN
+  
+  day_tr: rotatedTR[i],
+  day_en: rotatedEN[i],
+  day: language === "en" ? rotatedEN[i] : rotatedTR[i],
 
-    const finalDays = data.days.map((day, idx) => ({
-      ...day,
-      date: weekDates[idx],   // ⭐ her gün kendi tarihine sahip
-    }));
+  breakfast_tr: breakfast?.name_tr || "",
+  breakfast_en: breakfast?.name_en || "",
+  lunch_tr: lunch?.name_tr || "",
+  lunch_en: lunch?.name_en || "",
+  dinner_tr: dinner?.name_tr || "",
+  dinner_en: dinner?.name_en || "",
+  snack_tr: snack?.name_tr || "",
+  snack_en: snack?.name_en || "",
 
-const plan = await WeeklyPlanModel.create({
-  userId: req.userId,
-  forbiddenFoods: forbiddenFoods
-    ? forbiddenFoods.split(",").map((x) => x.trim())
-    : [],
-  plan: finalDays,
-  dietMode: dietMode   // 🔥 BURAYA EKLE
+  breakfast: language === "en" ? breakfast?.name_en : breakfast?.name_tr,
+  lunch:     language === "en" ? lunch?.name_en : lunch?.name_tr,
+  dinner:    language === "en" ? dinner?.name_en : dinner?.name_tr,
+  snack:     language === "en" ? snack?.name_en : snack?.name_tr,
+
+  breakfast_cal: breakfast?.kcal || 0,
+  lunch_cal: lunch?.kcal || 0,
+  dinner_cal: dinner?.kcal || 0,
+  snack_cal: snack?.kcal || 0,
+
+  total_cal: total,
+  total_protein: totalProtein,
+  total_carbs: totalCarbs,
+  total_fat: totalFat,
 });
 
 
-    return res.json({ program: plan.plan, createdAt: plan.createdAt });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({
-      error:
-        language === "en"
-          ? "Failed to generate plan"
-          : "Plan oluşturulamadı",
+    }
+
+    // ✔️ DB’ye kaydet
+    const savedPlan = await WeeklyPlanModel.create({
+      userId,
+      forbiddenFoods: forbiddenFoods ? forbiddenFoods.split(",") : [],
+      dietMode,
+      plan: days,
+      shoppingList: [],
+      createdAt: new Date(),
+      date: new Date().toISOString()
     });
+
+    return res.json({
+      success: true,
+      planId: savedPlan._id,
+      days,
+      targetCalories: calories
+    });
+
+  } catch (err) {
+    console.log("Plan creation error:", err);
+    return res.status(500).json({ error: "Plan could not be created" });
   }
 });
 
-// ====================== GET LAST PLAN ===========================
+
 router.get("/weekly-plan/last", authMiddleware, async (req, res) => {
   try {
-    const lastPlan = await WeeklyPlanModel.findOne({ userId: req.userId }).sort({
-      createdAt: -1
-    });
+    const language = req.query.language || "tr";
+console.log("xd",language)
 
-    if (!lastPlan) return res.json({ program: null });
+    const lastPlan = await WeeklyPlanModel.findOne({ userId: req.userId })
+      .sort({ createdAt: -1 });
 
-    res.json({
-      program: lastPlan.plan,
+    if (!lastPlan) return res.json({ days: null });
+
+    // Gün isimlerini dile göre dönüştür
+    const converted = lastPlan.plan.map(d => ({
+      ...d,
+      day: language === "en" ? d.day_en : d.day_tr,
+    }));
+
+    return res.json({
+      days: converted,
       createdAt: lastPlan.createdAt
     });
   } catch (err) {
     res.status(500).json({ error: "Plan çekilemedi" });
   }
 });
+
+
 
 // ====================== GET HISTORY ===========================
 router.get("/weekly-plan/history", authMiddleware, async (req, res) => {
