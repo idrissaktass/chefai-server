@@ -83,13 +83,11 @@ router.post("/save-recipe", verifyToken, async (req, res) => {
 });
 
 
-// KULLANICININ TARİFLERİNİ GETİR
 router.get("/my-recipes", verifyToken, async (req, res) => {
   const recipes = await SavedRecipe.find({ userId: req.userId });
   res.json({ recipes });
 });
 
-// TARİF SİL
 router.delete("/delete-recipe/:id", verifyToken, async (req, res) => {
   const recipeId = req.params.id;
 
@@ -101,10 +99,6 @@ router.delete("/delete-recipe/:id", verifyToken, async (req, res) => {
   if (!deleted) return res.status(404).json({ message: "Tarif bulunamadı" });
 
   res.json({ message: "Tarif silindi" });
-});
-
-router.get("/saved/test", (req, res) => {
-  res.json({ ok: true, message: "Auth route çalışıyor" });
 });
 
 export const savedRecipeRoute = router;

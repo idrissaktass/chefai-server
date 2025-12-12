@@ -305,11 +305,24 @@ console.log("xd",language)
 // ====================== GET HISTORY ===========================
 router.get("/weekly-plan/history", authMiddleware, async (req, res) => {
   try {
-    const plans = await WeeklyPlanModel.find({ userId: req.userId }).sort({
-      createdAt: -1
-    });
+    const language = req.query.language || "tr";
 
-    res.json({ plans });
+    const plans = await WeeklyPlanModel.find({ userId: req.userId })
+      .sort({ createdAt: -1 });
+
+    const convertedPlans = plans.map(plan => ({
+      ...plan.toObject(),
+      plan: plan.plan.map(d => ({
+        ...d,
+        day: language === "en" ? d.day_en : d.day_tr,
+        breakfast: language === "en" ? d.breakfast_en : d.breakfast_tr,
+        lunch: language === "en" ? d.lunch_en : d.lunch_tr,
+        dinner: language === "en" ? d.dinner_en : d.dinner_tr,
+        snacks: language === "en" ? d.snack_en : d.snack_tr,
+      }))
+    }));
+
+    res.json({ plans: convertedPlans });
   } catch (err) {
     res.status(500).json({ error: "Planlar alınamadı" });
   }

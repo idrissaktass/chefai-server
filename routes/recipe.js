@@ -89,9 +89,10 @@ ${baseTR}
 ${cuisineText}
 ${dietTextTR} // <-- EKLENDİ
 Görev:
-- 3 detaylı tarif oluştur.
-- 3 tarif birbirinden farklı olmalı.
-- 2 kişilik olacak.
+- 2 farklı detaylı tarif oluştur.
+- 2 tarif birbirinden KESİNLİKLE farklı olmalı.
+- Yemeklerin her biri 2 kişilik olacak, malzemeleri ona göre belirt.
+- Hazırlanışı detaylı yaz, herkes anlasın.
 - Her tarifin tüm malzemeleri için:
    • Miktarı gram/ml/adet olarak ZORUNLU yaz.
    • Her malzemenin kalorisini hesapla (kalori alanı ZORUNLU).
@@ -151,9 +152,10 @@ ${baseEN}
 ${cuisineText}
 ${dietTextEN} // <-- EKLENDİ
 Task:
-- Generate 3 detailed recipes.
+- Generate 2 different detailed recipes.
 - The recipes must be different from each other.
-- MUST serve 2 people.
+- Each reicpe MUST serve 2 people.
+- Write the instructions clearly with details, everyone must understand it.
 - For every ingredient:
    • MUST include amount (grams/ml/pieces)
    • MUST include calories
