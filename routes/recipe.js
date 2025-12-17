@@ -24,202 +24,170 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
+function isSameDay(d1, d2) {
+  return d1 === d2;
+}
+
+// router.post("/recipe"
 router.post("/recipe", authMiddleware, async (req, res) => {
-  const { ingredients, dishName, cuisine, language = "tr", diet } = req.body; // <-- diet eklendi
-
-  const user = await User.findById(req.userId);
-
   const today = new Date().toISOString().slice(0, 10);
+  const user = await User.findById(req.userId);
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-  // -------- FREE LIMIT --------
-  if (!req.isPremium) {
-    if (user.lastRecipeDate !== today) {
-      user.lastRecipeDate = today;
-      user.dailyRecipeCount = 0;
-    }
+if (!user.isPremium) {
+  if (!user.dailyRecipeDate || !isSameDay(user.dailyRecipeDate, today)) {
+    user.dailyRecipeDate = today;
+    user.dailyRecipeCount = 0;
+  }
 
-    if (user.dailyRecipeCount >= 33) {
-      return res.status(402).json({
-        errorCode: "FREE_DAILY_LIMIT_REACHED",
+  if (user.dailyRecipeCount >= 3) {
+    return res.status(402).json({
+      errorCode: "FREE_DAILY_LIMIT_REACHED",
+      error:
+        language === "en"
+          ? "Daily free recipe limit reached."
+          : "Günlük ücretsiz tarif hakkınız doldu.",
+    });
+  }
+}
+
+  const {
+    ingredients,
+    cuisine,
+    language = "en",
+    diet,
+    isDessert = false
+  } = req.body;
+
+  if (!ingredients) {
+    return res.status(400).json({
+      errorCode: "MISSING_INGREDIENTS",
+      error: "Ingredients are required",
+    });
+  }
+
+
+  /* ===============================
+     SUITABILITY CHECK
+  =============================== */
+
+  const suitabilityPrompt = `
+Analyze the following ingredients list:
+
+"${ingredients}"
+
+Context:
+- Recipe type: ${isDessert ? "DESSERT (sweet)" : "MEAL (savory)"}
+- Diet mode: "${diet}"
+
+Rules:
+1. Input must be suitable for creating a real culinary recipe.
+2. If recipe type is DESSERT:
+   - Ingredients should reasonably allow a sweet dish.
+   - Pure savory-only ingredients are NOT suitable.
+3. If recipe type is MEAL:
+   - Ingredients must allow a savory dish.
+4. If diet is applied, ingredients must comply.
+
+Respond with ONLY ONE WORD:
+SUITABLE or UNSUITABLE
+`;
+
+  try {
+    const suitabilityCheck = await client.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: suitabilityPrompt }],
+      temperature: 0,
+      max_tokens: 5,
+    });
+
+    const suitability =
+      suitabilityCheck.choices[0].message.content.trim().toUpperCase();
+
+    if (suitability !== "SUITABLE") {
+      return res.status(400).json({
+        errorCode: "UNSUITABLE_INPUT",
         error:
           language === "en"
-            ? "Your free daily recipe limit is used."
-            : "Günlük ücretsiz tarif hakkını kullandın.",
+            ? "Ingredients are not suitable for this recipe type."
+            : "Malzemeler bu tarif türü için uygun değil.",
       });
     }
 
-    user.dailyRecipeCount++;
-    await user.save();
-  }
-
-  try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-    /* =============== PROMPT =============== */
+    /* ===============================
+       PROMPT
+    =============================== */
 
     const cuisineText =
-      cuisine && language === "tr"
-        ? `Tarifler ${cuisine} mutfağına uygun olsun.\n`
-        : cuisine && language === "en"
-        ? `Recipes must follow ${cuisine} cuisine.\n`
+      cuisine && language === "en"
+        ? `Recipes should follow ${cuisine} cuisine.\n`
+        : cuisine && language === "tr"
+        ? `Tarifler ${cuisine} mutfağına uygun olmalı.\n`
         : "";
-// Yeni Diyet Kısıtlaması Metni
-    let dietTextTR = "";
+
     let dietTextEN = "";
+    let dietTextTR = "";
 
     if (diet && diet !== "None") {
-        if (diet === "HighProtein") {
-            dietTextTR = "Tarifler ZORUNLU olarak yüksek protein içermeli ve makro dağılımı buna göre optimize edilmeli.";
-            dietTextEN = "Recipes MUST be high in protein and macro distribution must be optimized accordingly.";
-        } else {
-            dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
-            dietTextEN = `Recipes MUST strictly adhere to the ${diet} diet.`;
-        }
+      if (diet === "HighProtein") {
+        dietTextEN =
+          "Recipes MUST be high-protein and macros optimized accordingly.";
+        dietTextTR =
+          "Tarifler ZORUNLU olarak yüksek protein içermeli.";
+      } else {
+        dietTextEN = `Recipes MUST strictly follow the ${diet} diet.`;
+        dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
+      }
     }
-    const baseTR = dishName
-      ? `Yemek adı: ${dishName}`
-      : `Malzemeler: ${ingredients}`;
 
-    const baseEN = dishName
-      ? `Dish name: ${dishName}`
-      : `Ingredients: ${ingredients}`;
+    const recipeTypeEN = isDessert
+      ? "This is a DESSERT recipe. It must be SWEET."
+      : "This is a MAIN MEAL recipe. It must be SAVORY.";
 
-    const promptTR = `
-${baseTR}
+    const recipeTypeTR = isDessert
+      ? "Bu bir TATLI tarifidir. Tatlı olmalıdır."
+      : "Bu bir ANA YEMEK tarifidir. Tuzlu olmalıdır.";
+
+    const baseEN = `
+Ingredients: ${ingredients}
+${recipeTypeEN}
 ${cuisineText}
-${dietTextTR} // <-- EKLENDİ
-Görev:
-- 2 farklı detaylı tarif oluştur.
-- 2 tarif birbirinden KESİNLİKLE farklı olmalı.
-- Yemeklerin her biri 2 kişilik olacak, malzemeleri ona göre belirt.
-- Hazırlanışı detaylı yaz, herkes anlasın.
-- Her tarifin tüm malzemeleri için:
-   • Miktarı gram/ml/adet olarak ZORUNLU yaz.
-   • Her malzemenin kalorisini hesapla (kalori alanı ZORUNLU).
-   • ingredients içinde şu formatta ver:
-       {
-         "name": "Tavuk göğsü",
-         "amount": "250g",
-         "calories": 275
-       }
-   • ingredientsCalories içinde şu formatta ver:
-       {
-         "Tavuk göğsü": 275,
-         "Zeytinyağı": 120
-       }
-
-- Genel gereksinimler:
-   • Gerçekçi makrolar (protein, yağ, karbonhidrat)
-   • Gerçekçi toplam kalori
-   • Hazırlanışı adım adım yaz.
-- Her tarif için iki isim ZORUNLU:
-   • recipeName_en → İngilizce isim
-   • recipeName_tr → Türkçe isim
-- Tarif isimleri gerçek hayatta kullanılan doğal yemek isimleri olmalı.
-- "X ve Y", "X + Y", "tabağı", "kombinasyonu" gibi yapay ifadeler YASAKTIR.
-- Birleşik ve doğal bir yemek adı kullan:
-    örn: 
-      ❌ "ızgara tavuk göğsü ve sebzeler"
-      ✔ "sebzeli ızgara tavuk"
-- Her iki isim (recipeName_en ve recipeName_tr) tek bir yemeği temsil etmeli.
-- Dünyaca kullanılan, bilinen isimler olmalı.
-‼ SADECE JSON DÖNDÜR. Açıklama, metin, markdown YOK. ‼
-
-FORMAT (ZORUNLU):
-{
- "recipes":[
-   {
-    "recipeName_en":"",
-     "recipeName_tr":"",
-     "prepTime":0,
-     "servings":2,
-     "ingredients":[
-        { "name":"", "amount":"", "calories":0 }
-     ],
-     "steps":[""],
-     "totalCalories":0,
-     "totalProtein":0,
-     "totalFat":0,
-     "totalCarbs":0,
-     "ingredientsCalories":{}
-   }
- ]
-}
+${dietTextEN}
 `;
 
-    const promptEN = `
-${baseEN}
+    const baseTR = `
+Malzemeler: ${ingredients}
+${recipeTypeTR}
 ${cuisineText}
-${dietTextEN} // <-- EKLENDİ
-Task:
-- Generate 2 different detailed recipes.
-- The recipes must be different from each other.
-- Each reicpe MUST serve 2 people.
-- Write the instructions clearly with details, everyone must understand it.
-- For every ingredient:
-   • MUST include amount (grams/ml/pieces)
-   • MUST include calories
-   • MUST use this exact format:
-       {
-         "name": "Chicken breast",
-         "amount": "250g",
-         "calories": 275
-       }
-
-- ingredientsCalories must be:
-{
-  "Chicken breast": 275,
-  "Olive oil": 120
-}
-
-- Include realistic macros + total calories.
-- Include step-by-step instructions.
-- recipeName_en must be a natural, real-world style dish name.
-- Avoid generic or fragmented names:
-    ❌ "Grilled chicken and vegetables"
-    ✔ "Vegetable Grilled Chicken"
-    - The name must be unified as a single concept dish.
-- Names must sound like real recipe names used by chefs or restaurants.
-‼ RETURN ONLY RAW JSON. NO TEXT, NO MARKDOWN. ‼
-
-FORMAT (MANDATORY):
-{
- "recipes":[
-   {
-     "recipeName_en":"",
-     "prepTime":0,
-     "servings":2,
-     "ingredients":[
-        { "name":"", "amount":"", "calories":0 }
-     ],
-     "steps":[""],
-     "totalCalories":0,
-     "totalProtein":0,
-     "totalFat":0,
-     "totalCarbs":0,
-     "ingredientsCalories":{}
-   }
- ]
-}
+${dietTextTR}
 `;
 
-    const finalPrompt = language === "en" ? promptEN : promptTR;
+    const finalPrompt =
+      language === "en"
+        ? promptEN(baseEN)
+        : promptTR(baseTR);
 
-    /* =============== OPENAI CALL =============== */
+    /* ===============================
+       OPENAI CALL
+    =============================== */
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: finalPrompt }],
-      response_format: { type: "json_object" }
+      response_format: { type: "json_object" },
     });
 
     const data = JSON.parse(completion.choices[0].message.content);
+    if (!user.isPremium) {
+      user.dailyRecipeCount += 1;
+      await user.save();
+    }
 
     return res.json(data);
   } catch (err) {
     console.log("Recipe error:", err);
-    res.status(500).json({
-      error: language === "en" ? "OpenAI Error" : "OpenAI hatası"
+    return res.status(500).json({
+      error: language === "en" ? "OpenAI Error" : "OpenAI hatası",
     });
   }
 });
@@ -385,40 +353,42 @@ router.post("/recipe-image", async (req, res) => {
     return res.status(500).json({ error: "Image fetch failed" });
   }
 });
+// router.post("/recipe-creative"
+router.post("/recipe-creative", authMiddleware, async (req, res) => {
+  const { language = "en" } = req.body; // 👈 EKLE
+  const {
+    ingredients,
+    cuisine,
+    diet,
+    isDessert = false,
+  } = req.body;
 
-router.post("/recipe-creative", async (req, res) => {
-const { ingredients, dishName, cuisine, language = "tr", diet } = req.body; // <-- diet eklendi
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+  const recipeTypeEN = isDessert
+    ? "Create SWEET dessert recipes."
+    : "Create SAVORY main meal recipes.";
+
+  const recipeTypeTR = isDessert
+    ? "Tatlı ve şekerli tarifler oluştur."
+    : "Tuzlu ana yemek tarifleri oluştur.";
+
+  const baseEN = `
+Ingredients: ${ingredients}
+${recipeTypeEN}
+`;
+
+  const baseTR = `
+Malzemeler: ${ingredients}
+${recipeTypeTR}
+`;
+
+  const finalPrompt =
+    language === "en"
+      ? promptEN(baseEN)
+      : promptTR(baseTR);
+
   try {
-    const client = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      organization: "org-ndMYkbD4PYCEYyHWmkIxBqpM",
-    });
-
-    const baseTR = dishName
-      ? `Yemek adı: ${dishName}`
-      : `Malzemeler: ${ingredients}`;
-
-    const baseEN = dishName
-      ? `Dish name: ${dishName}`
-      : `Ingredients: ${ingredients}`;
-// Yeni Diyet Kısıtlaması Metni
-    let dietTextTR = "";
-    let dietTextEN = "";
-
-    if (diet && diet !== "None") {
-        if (diet === "HighProtein") {
-            dietTextTR = "Tarifler ZORUNLU olarak yüksek protein içermeli ve makro dağılımı buna göre optimize edilmeli.";
-            dietTextEN = "Recipes MUST be high in protein and macro distribution must be optimized accordingly.";
-        } else {
-            dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
-            dietTextEN = `Recipes MUST strictly adhere to the ${diet} diet.`;
-        }
-    }
-    const finalPrompt =
-    language === "en" ? promptEN(`${baseEN}\n${dietTextEN}`) : promptTR(`${baseTR}\n${dietTextTR}`); // <-- GÜNCELLENDİ
-    // =========================
-    // TARİF ÜRETİMİ (GPT-4o-mini)
-    // =========================
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: finalPrompt }],
@@ -427,15 +397,12 @@ const { ingredients, dishName, cuisine, language = "tr", diet } = req.body; // <
 
     const data = JSON.parse(completion.choices[0].message.content);
 
-    // =========================
-    // RESİM KALDIRILDI
-    // =========================
-    for (let recipe of data.recipes) {
-      recipe.image = null; // frontend fallback kullanabilir
+    // Creative tarifte image yok
+    for (let r of data.recipes) {
+      r.image = null;
     }
 
     return res.json(data);
-
   } catch (err) {
     console.log("Creative recipe error:", err);
     return res.status(500).json({
@@ -444,5 +411,7 @@ const { ingredients, dishName, cuisine, language = "tr", diet } = req.body; // <
   }
 });
 
+// promptTR, promptEN, router.post("/recipe-image") ve diğer yardımcı fonksiyonlar aynı kaldı.
+// Sadece `/recipe` ve `/recipe-creative` router'ları güncellendi.
 
 export const recipeRoute = router;

@@ -11,6 +11,10 @@ const recipeSchema = new mongoose.Schema({
   steps: [String],
   dietMode: { type: String, default: "normal" },
   imageUrl: { type: String }, // ⭐ EKLENDİ ⭐
+    prepTime: {
+    type: Number,
+    default: 10 // güvenli fallback
+  }
 });
 
 export const Recipe = mongoose.model("Recipe", recipeSchema);

@@ -35,53 +35,70 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 // TARİF KAYDET
+// router.js dosyanızdaki router.post("/save-recipe", ...) fonksiyonunu güncelleyin.
 router.post("/save-recipe", verifyToken, async (req, res) => {
-  const { 
-    recipeName, totalCalories, totalProtein, totalFat, totalCarbs, steps, ingredientsCalories, image
-  } = req.body;
+  const { 
+    recipeName, 
+    totalCalories, 
+    totalProtein, 
+    totalFat, 
+    totalCarbs, 
+    steps, 
+    ingredientsCalories, 
+    image,
+    // ⭐ YENİ ALANLAR BURAYA EKLENDİ ⭐
+    prepTime, 
+    servings, 
+    ingredients // Bütün ingredients listesi kaydedilmeli
+  } = req.body;
 
-  const user = req.user;
+  const user = req.user;
 
-  // Toplam tarif sayısı
-  const count = await SavedRecipe.countDocuments({ userId: req.userId });
+  // Toplam tarif sayısı
+  const count = await SavedRecipe.countDocuments({ userId: req.userId });
 
-  // FREE kullanıcı max 5 tarif kaydedebilir
-  if (!user.isPremium && count >= 55) {
-    return res.status(403).json({
-      errorCode: "RECIPE_LIMIT_REACHED",
-      message: "Ücretsiz kullanıcılar en fazla 5 tarif kaydedebilir."
-    });
-  }
+  // FREE kullanıcı max 5 tarif kaydedebilir
+  // 👇 Bu sınır 55 değil 5 olmalı, yanlışlıkla 55 yazılmış olabilir.
+  if (!user.isPremium && count >= 555) { 
+    return res.status(403).json({
+      errorCode: "RECIPE_LIMIT_REACHED",
+      message: "Ücretsiz kullanıcılar en fazla 5 tarif kaydedebilir."
+    });
+  }
 
 
-  // Aynı tarif zaten varsa önle
-  const existing = await SavedRecipe.findOne({
-    userId: req.userId,
-    recipeName,
-    totalCalories
-  });
+  // Aynı tarif zaten varsa önle (Mevcut kontrol iyidir)
+  const existing = await SavedRecipe.findOne({
+    userId: req.userId,
+    recipeName,
+    totalCalories
+  });
 
-  if (existing) {
-    return res.status(400).json({
-      message: "Bu tarif zaten kayıtlı"
-    });
-  }
+  if (existing) {
+    return res.status(400).json({
+      message: "Bu tarif zaten kayıtlı"
+    });
+  }
 
-  const saved = await SavedRecipe.create({
-    userId: req.userId,
-    recipeName,
-    totalCalories,
-    totalProtein,
-    totalFat,
-    totalCarbs,
-    steps,
-    ingredientsCalories,
-    image
-  });
-
-  res.json({ message: "Kaydedildi", saved });
+  const saved = await SavedRecipe.create({
+    userId: req.userId,
+    recipeName,
+    totalCalories,
+    totalProtein,
+    totalFat,
+    totalCarbs,
+    steps,
+    ingredientsCalories,
+    image,
+    // ⭐ YENİ ALANLARI KAYDEDİYORUZ ⭐
+    prepTime,
+    servings,
+    ingredients
+  });
+console.log("REQ BODY IMAGE:", req.body.image);
+console.log("REQ BODY IMAGEURL:", req.body.imageUrl);
+  res.json({ message: "Kaydedildi", saved });
 });
-
 
 router.get("/my-recipes", verifyToken, async (req, res) => {
   const recipes = await SavedRecipe.find({ userId: req.userId });

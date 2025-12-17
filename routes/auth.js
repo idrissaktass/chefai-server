@@ -35,7 +35,11 @@ router.post("/register", async (req, res) => {
   res.json({
     message: "Kayıt başarılı",
     token,
-    user: { email: user.email }
+    user: { 
+        _id: user._id, // 🔥 Bunu Ekle!
+        email: user.email,
+        isPremium: user.isPremium // Mobil uygulama bunu da bekliyor
+    }
   });
 });
 
@@ -63,7 +67,11 @@ router.post("/login", async (req, res) => {
   res.json({
     message: "Giriş başarılı",
     token,
-    user: { email: user.email }
+    user: { 
+        _id: user._id, // 🔥 Bunu Ekle!
+        email: user.email,
+        isPremium: user.isPremium // Mobil uygulama bunu da bekliyor
+    }
   });
 });
 router.get("/test", (req, res) => {

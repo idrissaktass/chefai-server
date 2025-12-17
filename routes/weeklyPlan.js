@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { Recipe } from "../models/Recipe.js";
 import fs from "fs";
 import path from "path";
+import axios from "axios";
 
 const mealsPath = path.join(process.cwd(), "utils", "normal.json");
 
@@ -93,24 +94,42 @@ async function removeOverlappingDays(userId, newDates) {
     }
   }
 }
+const activityMultipliers = {
+  sedentary: 1.2,
+  light: 1.375,
+  moderate: 1.55,
+  active: 1.725,
+  "very-active": 1.9,
+};
 
 
-function calculateCalories(age, gender, weight, height, goal) {
-  let BMR;
+function calculateCalories(
+  age,
+  gender,
+  weight,
+  height,
+  goal,
+  activityLevel = "moderate"
+) {
+  // BMR – Mifflin St Jeor
+  const bmr =
+    gender === "male"
+      ? 10 * weight + 6.25 * height - 5 * age + 5
+      : 10 * weight + 6.25 * height - 5 * age - 161;
 
-  if (gender === "male") {
-    BMR = 10 * weight + 6.25 * height - 5 * age + 5;
-  } else {
-    BMR = 10 * weight + 6.25 * height - 5 * age - 161;
-  }
+  const multiplier = activityMultipliers[activityLevel] || 1.55;
 
-  let TDEE = BMR * 1.55; // orta aktif
+  let tdee = bmr * multiplier;
 
-  if (goal === "lose") TDEE -= 300;
-  if (goal === "gain") TDEE += 300;
+  // 🎯 Goal ayarlamaları
+  if (goal === "lose") tdee -= 500;
+  if (goal === "gain") tdee += 300;
+  if (goal === "maintain") tdee += 1;
+  if (goal === "muscle-gain") tdee += 400;
 
-  return Math.round(TDEE);
+  return Math.round(tdee);
 }
+
 
 function rotateWeekToToday(dayNamesTR, dayNamesEN) {
   const todayIndex = new Date().getDay(); // 0 = Pazar, 1 = Pazartesi ...
@@ -134,146 +153,174 @@ function rotateWeekToToday(dayNamesTR, dayNamesEN) {
   return { rotatedTR, rotatedEN };
 }
 
+
+
 router.post("/weekly-plan", authMiddleware, async (req, res) => {
-  try {
-    const { age, gender, weight, height, goal, dietMode = "normal", forbiddenFoods = "", language = "" } = req.body;
-const userId = req.userId;
-    const calories = calculateCalories(age, gender, weight, height, goal);
-    console.log("diet mod", dietMode)
-    // Yemek filtreleme
-    const breakfasts = mealsData.filter(
-      m => m.mealTime === "breakfast" && m.diet.includes(dietMode)
-    );
-    const lunches = mealsData.filter(
-      m => m.mealTime === "lunch" && m.diet.includes(dietMode)
-    );
-    const dinners = mealsData.filter(
-      m => m.mealTime === "dinner" && m.diet.includes(dietMode)
-    );
-    const snacks = mealsData.filter(
-      m => m.mealTime === "snacks" && m.diet.includes(dietMode)
-    );
+  try {
+    const { age, gender, weight, height, goal, dietMode = "normal", forbiddenFoods = "", language = "", activityLevel = "moderate" } = req.body;
+    const userId = req.userId;
+    const calories = calculateCalories(age, gender, weight, height, goal, activityLevel);
+    console.log("Target Calories:", calories); // Konsol çıktısını güncelledim
 
-    const days = [];
-    const dayNames = [
-      "Pazartesi",
-      "Salı",
-      "Çarşamba",
-      "Perşembe",
-      "Cuma",
-      "Cumartesi",
-      "Pazar"
-    ];
+    const matchesDiet = (meal) => {
+      if (!meal.diet.includes(dietMode)) return false;
 
-    function pickMeal(meals, target) {
-      const options = meals.filter(
-        m => Math.abs(m.kcal - target) <= 150
-      );
-      if (options.length === 0) return null;
-      return options[Math.floor(Math.random() * options.length)];
-    }
-const startDate = new Date();  // 🔥 Bugün
+      if (goal === "muscle-gain") {
+        return meal.diet.includes("muscle-gain") || meal.diet.includes("high-protein"); 
+      }
+      return true;
+    };
 
-for (let i = 0; i < 7; i++) {
-
-  // 🔥 Günün tarihini oluştur
-  const dayDate = new Date(startDate);
-  dayDate.setDate(startDate.getDate() + i);
-
-  const breakfast = pickMeal(breakfasts, calories * 0.25);
-  const lunch = pickMeal(lunches, calories * 0.35);
-  const dinner = pickMeal(dinners, calories * 0.30);
-  const snack = pickMeal(snacks, calories * 0.10);
+    // Yemek filtreleme (Aynı kaldı)
+    const breakfasts = mealsData.filter(m => m.mealTime === "breakfast" && matchesDiet(m));
+    const lunches = mealsData.filter(m => m.mealTime === "lunch" && matchesDiet(m));
+    const dinners = mealsData.filter(m => m.mealTime === "dinner" && matchesDiet(m));
+    const snacks = mealsData.filter(m => m.mealTime === "snacks" && matchesDiet(m));
 
 
-      const total =
-        (breakfast?.kcal || 0) +
-        (lunch?.kcal || 0) +
-        (dinner?.kcal || 0) +
-        (snack?.kcal || 0);
+    const days = [];
+    
+    function pickMeal(meals, target) {
+      const options = meals.filter(
+        m => Math.abs(m.kcal - target) <= 150
+      );
+      if (options.length === 0) return null;
+      return options[Math.floor(Math.random() * options.length)];
+    }
 
-      const totalProtein =
-        (breakfast?.protein || 0) +
-        (lunch?.protein || 0) +
-        (dinner?.protein || 0) +
-        (snack?.protein || 0);
+    const startDate = new Date(); 
 
-      const totalCarbs =
-        (breakfast?.carbs || 0) +
-        (lunch?.carbs || 0) +
-        (dinner?.carbs || 0) +
-        (snack?.carbs || 0);
+    for (let i = 0; i < 7; i++) {
+      // 🔥 Günün tarihini oluştur
+      const dayDate = new Date(startDate);
+      dayDate.setDate(startDate.getDate() + i);
 
-      const totalFat =
-        (breakfast?.fat || 0) +
-        (lunch?.fat || 0) +
-        (dinner?.fat || 0) +
-        (snack?.fat || 0);
+      let p_breakfast = 0.25;
+      let p_lunch = 0.35;
+      let p_dinner = 0.30;
+      let p_snack_1 = 0.10;
+      let p_snack_2 = 0;
+      
+      // 🎯 2800 kcal ve üzeri ise iki atıştırmalık ekle ve dağılımı ayarla
+      if (calories >= 2500) {
+        p_breakfast = 0.22; // %22
+        p_lunch = 0.27;    // %30
+        p_dinner = 0.26;   // %28
+        p_snack_1 = 0.13;  // %10 (Snack 1)
+        p_snack_2 = 0.12;  // %10 (Snack 2)
+      }
 
-const dayNamesTR = ["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
-const dayNamesEN = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+      // Yüzdelere göre kalori hedeflerini belirle
+      const target_breakfast = calories * p_breakfast;
+      const target_lunch = calories * p_lunch;
+      const target_dinner = calories * p_dinner;
+      const target_snack_1 = calories * p_snack_1;
+      const target_snack_2 = calories * p_snack_2;
 
-const { rotatedTR, rotatedEN } = rotateWeekToToday(dayNamesTR, dayNamesEN);
+      const breakfast = pickMeal(breakfasts, target_breakfast);
+      const lunch = pickMeal(lunches, target_lunch);
+      const dinner = pickMeal(dinners, target_dinner);
+      const snack1 = pickMeal(snacks, target_snack_1); // Eski 'snack' yerine 'snack1'
+      const snack2 = calories >= 2800 ? pickMeal(snacks, target_snack_2) : null; // Koşullu Snack 2 seçimi
 
-days.push({
-  date: dayDate.toISOString(),  // 🔥 ZORUNLU ALAN
-  
-  day_tr: rotatedTR[i],
-  day_en: rotatedEN[i],
-  day: language === "en" ? rotatedEN[i] : rotatedTR[i],
+      // ⚡ TOTAL HESAPLAMALARI (snack1 ve snack2 dahil edildi)
+      const total =
+        (breakfast?.kcal || 0) +
+        (lunch?.kcal || 0) +
+        (dinner?.kcal || 0) +
+        (snack1?.kcal || 0) + 
+        (snack2?.kcal || 0);
 
-  breakfast_tr: breakfast?.name_tr || "",
-  breakfast_en: breakfast?.name_en || "",
-  lunch_tr: lunch?.name_tr || "",
-  lunch_en: lunch?.name_en || "",
-  dinner_tr: dinner?.name_tr || "",
-  dinner_en: dinner?.name_en || "",
-  snack_tr: snack?.name_tr || "",
-  snack_en: snack?.name_en || "",
+      const totalProtein =
+        (breakfast?.protein || 0) +
+        (lunch?.protein || 0) +
+        (dinner?.protein || 0) +
+        (snack1?.protein || 0) +
+        (snack2?.protein || 0);
 
-  breakfast: language === "en" ? breakfast?.name_en : breakfast?.name_tr,
-  lunch:     language === "en" ? lunch?.name_en : lunch?.name_tr,
-  dinner:    language === "en" ? dinner?.name_en : dinner?.name_tr,
-  snack:     language === "en" ? snack?.name_en : snack?.name_tr,
+      const totalCarbs =
+        (breakfast?.carbs || 0) +
+        (lunch?.carbs || 0) +
+        (dinner?.carbs || 0) +
+        (snack1?.carbs || 0) +
+        (snack2?.carbs || 0);
 
-  breakfast_cal: breakfast?.kcal || 0,
-  lunch_cal: lunch?.kcal || 0,
-  dinner_cal: dinner?.kcal || 0,
-  snack_cal: snack?.kcal || 0,
+      const totalFat =
+        (breakfast?.fat || 0) +
+        (lunch?.fat || 0) +
+        (dinner?.fat || 0) +
+        (snack1?.fat || 0) +
+        (snack2?.fat || 0);
+      
+      // rotateWeekToToday fonksiyonu bu scope'ta tanımlı değil, varsayalım globalde/import ile geliyor
+      const dayNamesTR = ["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
+      const dayNamesEN = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+      const { rotatedTR, rotatedEN } = rotateWeekToToday(dayNamesTR, dayNamesEN);
+  console.log("snack_2",snack1)
+      days.push({
+        date: dayDate.toISOString(),  // 🔥 ZORUNLU ALAN
+        
+        day_tr: rotatedTR[i],
+        day_en: rotatedEN[i],
+        day: language === "en" ? rotatedEN[i] : rotatedTR[i],
 
-  total_cal: total,
-  total_protein: totalProtein,
-  total_carbs: totalCarbs,
-  total_fat: totalFat,
+        breakfast_tr: breakfast?.name_tr || "",
+        breakfast_en: breakfast?.name_en || "",
+        lunch_tr: lunch?.name_tr || "",
+        lunch_en: lunch?.name_en || "",
+        dinner_tr: dinner?.name_tr || "",
+        dinner_en: dinner?.name_en || "",
+        
+        // ⚡ SNACK 1 (Eski 'snack' alanlarını buraya haritalıyoruz)
+        snack_tr: snack1?.name_tr || "",
+        snack_en: snack1?.name_en || "",
+        
+        // ⚡ SNACK 2 (Yeni alanlar)
+        snack2_tr: snack2?.name_tr || "", // 🔥 Yeni alan
+        snack2_en: snack2?.name_en || "", // 🔥 Yeni alan
+
+        breakfast: language === "en" ? breakfast?.name_en : breakfast?.name_tr,
+        lunch:     language === "en" ? lunch?.name_en : lunch?.name_tr,
+        dinner:    language === "en" ? dinner?.name_en : dinner?.name_tr,
+        snack:     language === "en" ? snack1?.name_en : snack1?.name_tr, // Snack 1'i kullan
+        snack2:    language === "en" ? snack2?.name_en : snack2?.name_tr, // 🔥 Yeni alan
+
+        breakfast_cal: breakfast?.kcal || 0,
+        lunch_cal: lunch?.kcal || 0,
+        dinner_cal: dinner?.kcal || 0,
+        snack_cal: snack1?.kcal || 0, // Snack 1'i kullan
+        snack2_cal: snack2?.kcal || 0, // 🔥 Yeni alan
+
+        total_cal: total,
+        total_protein: totalProtein,
+        total_carbs: totalCarbs,
+        total_fat: totalFat,
+      });
+    }
+
+    // ✔️ DB’ye kaydet (Aynı kaldı, 'plan: days' ile tüm yeni alanlar kaydedilecek)
+    const savedPlan = await WeeklyPlanModel.create({
+      userId,
+      forbiddenFoods: forbiddenFoods ? forbiddenFoods.split(",") : [],
+      dietMode,
+      plan: days,
+      shoppingList: [],
+      createdAt: new Date(),
+      date: new Date().toISOString()
+    });
+
+    return res.json({
+      success: true,
+      planId: savedPlan._id,
+      days, // Güncellenmiş plan verilerini döndür
+      targetCalories: calories
+    });
+
+  } catch (err) {
+    console.log("Plan creation error:", err);
+    return res.status(500).json({ error: "Plan could not be created" });
+  }
 });
-
-
-    }
-
-    // ✔️ DB’ye kaydet
-    const savedPlan = await WeeklyPlanModel.create({
-      userId,
-      forbiddenFoods: forbiddenFoods ? forbiddenFoods.split(",") : [],
-      dietMode,
-      plan: days,
-      shoppingList: [],
-      createdAt: new Date(),
-      date: new Date().toISOString()
-    });
-
-    return res.json({
-      success: true,
-      planId: savedPlan._id,
-      days,
-      targetCalories: calories
-    });
-
-  } catch (err) {
-    console.log("Plan creation error:", err);
-    return res.status(500).json({ error: "Plan could not be created" });
-  }
-});
-
 
 router.get("/weekly-plan/last", authMiddleware, async (req, res) => {
   try {
@@ -351,25 +398,40 @@ router.post("/weekly-plan/update-day", authMiddleware, async (req, res) => {
 
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-    const nutritionPrompt = `
-Bu öğünlere göre kalorileri profesyonel diyetisyen gibi hesapla:
+const nutritionPrompt = `
+Aşağıdaki öğünlerin kalorilerini ve makrolarını,
+klinik diyetisyen hassasiyetinde ve GERÇEKÇİ şekilde hesapla.
 
+ZORUNLU KURALLAR:
+- Yağ kullanımını varsay:
+  • Zeytinyağı: 1 yemek kaşığı = 120 kcal
+- Abartılı veya sporcuya özel değerler VERME.
+- Diyetisyenlerin kullandığı ortalama besin değerlerini kullan.
+- Tüm makrolar toplam kaloriyle matematiksel olarak UYUMLU olsun.
+
+ÖĞÜNLER:
 Kahvaltı: ${dayData.breakfast}
 Öğle: ${dayData.lunch}
 Akşam: ${dayData.dinner}
 Atıştırmalık: ${dayData.snacks}
 
-Sadece JSON:
+ÇIKTI KURALI:
+- SADECE JSON döndür
+- Açıklama, yorum, metin ekleme
+
+JSON FORMAT:
 {
- "breakfast_cal": 0,
- "lunch_cal": 0,
- "dinner_cal": 0,
- "snacks_cal": 0,
- "total_cal": 0,
- "total_protein": 0,
- "total_fat": 0,
- "total_carbs": 0
-}`;
+  "breakfast_cal": number,
+  "lunch_cal": number,
+  "dinner_cal": number,
+  "snacks_cal": number,
+  "total_cal": number,
+  "total_protein": number,
+  "total_fat": number,
+  "total_carbs": number
+}
+`;
+
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
@@ -391,40 +453,93 @@ Sadece JSON:
     res.status(500).json({ error: "Gün düzenlenemedi" });
   }
 });
+function similarityScore(recipeName, photoText) {
+  if (!photoText) return 0;
+
+  const words = recipeName.toLowerCase().split(" ");
+  const text = photoText.toLowerCase();
+
+  let matchCount = 0;
+
+  words.forEach(w => {
+    if (w.length > 2 && text.includes(w)) matchCount++;
+  });
+
+  return matchCount / words.length; // 0.0 - 1.0 arası skor
+}
+
+async function fetchRecipeImage(recipeName) {
+  try {
+    const PEXELS_KEY = "lxUXbL9YjqoUvBOIjlyU5Zk1AS7aiII4M9YcWeGxjPpnLOjPu1QYocSx";
+
+    const response = await axios.get(
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(
+        recipeName + " food"
+      )}&per_page=1`,
+      {
+        headers: { Authorization: PEXELS_KEY },
+      }
+    );
+
+    const photo = response.data.photos?.[0];
+    if (!photo) return null;
+
+    const checkText = `${photo.alt} ${photo.photographer}`.trim();
+    const score = similarityScore(recipeName, checkText);
+
+    if (score < 0.1) return null;
+
+    return photo.src.large;
+  } catch (err) {
+    console.log("Image fetch failed:", err.message);
+    return null;
+  }
+}
+
 router.post("/weekly-plan/meal-detail", authMiddleware, async (req, res) => {
   try {
     const { mealText, language = "tr", dietMode = "normal" } = req.body;
-
     if (!mealText || mealText.trim().length < 3)
       return res.status(400).json({ error: "Meal text missing" });
 
     const meals = mealText.split("+").map(m => m.trim());
     let finalRecipes = [];
 
-    function toTitleCase(str) {
-      return str
-        .toLowerCase()
-        .split(" ")
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-        .join(" ");
-    }
+      function toTitleCase(str) {
+        // str undefined veya null ise, boş string döndür
+        if (!str || typeof str !== 'string') {
+          return ""; 
+        }
+        
+        return str
+          .toLowerCase()
+          .split(" ")
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ");
+      }
 
     // 1) CACHE CHECK (dietMode + name)
+// 1️⃣ CACHE CHECK (AI + IMAGE ÖNCESİ)
     for (let meal of meals) {
       const baseName = toTitleCase(meal);
 
       const exist = await Recipe.findOne({
         name: baseName,
-        dietMode: dietMode,  // 🔥 Artık prefix yok, burada arıyoruz
+        dietMode
       });
 
-      if (exist) finalRecipes.push(exist);
+      if (exist) {
+        finalRecipes.push(exist); // ✅ direkt ekle
+      }
     }
+
 
     // 2) Missing recipes
     let missingMeals = meals.filter(meal => {
       const baseName = toTitleCase(meal);
-      return !finalRecipes.find(r => r.name === baseName && r.dietMode === dietMode);
+      return !finalRecipes.find(
+        r => r.name === baseName && r.dietMode === dietMode
+      );
     });
 
     // 3) AI gerekli mi?
@@ -463,7 +578,8 @@ Return ONLY JSON. No explanation, no markdown.
     {
       "name": "",
       "ingredients":[ { "ingredient": "", "amount": "" } ],
-      "steps":[ "" ]
+      "steps":[ "" ],
+       "prepTime": 0
     }
   ]
 }
@@ -496,7 +612,8 @@ Sadece JSON döndür.
     {
       "name":"",
       "ingredients":[{"ingredient":"", "amount":""}],
-      "steps":[""]
+      "steps":[""],
+       "prepTime": 0
     }
   ]
 }
@@ -513,18 +630,31 @@ Sadece JSON döndür.
       let data = JSON.parse(completion.choices[0].message.content);
 
       // 4) Save to DB
-      for (const recipe of data.recipes) {
-        const baseName = toTitleCase(recipe.name);
+      for (let i = 0; i < data.recipes.length; i++) {
+        const recipe = data.recipes[i];
+        const prepTime =
+        typeof recipe.prepTime === "number" && recipe.prepTime > 0
+          ? recipe.prepTime
+          : 10; // fallback
+
+
+        // 🔒 ASIL İSİM: ilk gönderilen yemek ismi
+        const originalMealName = toTitleCase(missingMeals[i]);
+
+        // 🔥 RESİM BUL
+        const imageUrl = await fetchRecipeImage(originalMealName);
 
         const dbRecipe = {
-          name: baseName,
+          name: originalMealName,
           dietMode,
           ingredients: normalizeIngredients(recipe.ingredients),
-          steps: recipe.steps
+          steps: recipe.steps,
+          prepTime,
+          imageUrl // ⭐ EKLENDİ
         };
 
         const saved = await Recipe.findOneAndUpdate(
-          { name: baseName, dietMode },
+          { name: originalMealName, dietMode },
           dbRecipe,
           { upsert: true, new: true }
         );
@@ -532,6 +662,7 @@ Sadece JSON döndür.
         finalRecipes.push(saved);
       }
     }
+    console.log("rec",finalRecipes)
 
     return res.json({ recipes: finalRecipes });
 
@@ -540,6 +671,87 @@ Sadece JSON döndür.
     return res.status(500).json({ error: "Recipe generation failed" });
   }
 });
+router.post("/daily-plan", authMiddleware, async (req, res) => {
+  
+const mealsDailyPath = path.join(process.cwd(), "utils", "daily.json");
 
+const dailyMeals = JSON.parse(fs.readFileSync(mealsDailyPath, "utf-8"));
+
+  try {
+    const {
+      mood,
+      dietMode = "normal",
+      language = "en",
+    } = req.body;
+
+    // ✅ SADECE BUNLAR ZORUNLU
+    if (!mood) {
+      return res.status(400).json({ error: "Mood is required" });
+    }
+
+    // 🔎 Mood + Diet filter
+const matchesMoodDiet = (meal) => {
+  // mood zorunlu
+  if (!meal.diet.includes(mood)) return false;
+
+  // dietMode opsiyonel
+  if (dietMode && !meal.diet.includes(dietMode)) {
+    // fallback: normal kabul et
+    if (!meal.diet.includes("normal")) return false;
+  }
+
+  return true;
+};
+
+    const breakfasts = dailyMeals.filter(
+      (m) => m.mealTime === "breakfast" && matchesMoodDiet(m)
+    );
+    const lunches = dailyMeals.filter(
+      (m) => m.mealTime === "lunch" && matchesMoodDiet(m)
+    );
+    const dinners = dailyMeals.filter(
+      (m) => m.mealTime === "dinner" && matchesMoodDiet(m)
+    );
+    const snacks = dailyMeals.filter(
+      (m) => m.mealTime === "snacks" && matchesMoodDiet(m)
+    );
+
+    const pick = (list) =>
+      list.length ? list[Math.floor(Math.random() * list.length)] : null;
+
+    const b = pick(breakfasts);
+    const l = pick(lunches);
+    const d = pick(dinners);
+    const s = pick(snacks);
+  console.log("1",s)
+    const dayPlan = {
+      date: new Date().toISOString(),
+
+      breakfast: language === "en" ? b?.name_en : b?.name_tr,
+      lunch: language === "en" ? l?.name_en : l?.name_tr,
+      dinner: language === "en" ? d?.name_en : d?.name_tr,
+      snacks: language === "en" ? s?.name_en : s?.name_tr,
+
+      breakfast_cal: b?.kcal || 0,
+      lunch_cal: l?.kcal || 0,
+      dinner_cal: d?.kcal || 0,
+      snacks_cal: s?.kcal || 0,
+
+      total_cal:
+        (b?.kcal || 0) +
+        (l?.kcal || 0) +
+        (d?.kcal || 0) +
+        (s?.kcal || 0),
+    };
+    console.log("plan", dayPlan)
+    return res.json({
+      success: true,
+      day: dayPlan,
+    });
+  } catch (err) {
+    console.log("Daily plan error:", err);
+    return res.status(500).json({ error: "Daily plan failed" });
+  }
+});
 
 export const weeklyPlanRoute = router;

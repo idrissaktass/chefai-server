@@ -41,16 +41,21 @@ router.post("/shopping-list", authMiddleware, async (req, res) => {
 
     // AI’den oluştur
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const prompt = `
-    Haftalık yemek programı: ${JSON.stringify(program)}.
-    KESİNLİKLE sadece yemeklerin malzemelerini, marketten, pazardan, manavdan alabileceği şeyleri (domates, süt, un, limon, kinoa) listele. Kullanıcıya bir market listesi hazırla.
-    - Yemek adlarını KESİNLİKLE yazma (karnıyarık, dolma, pilav, mevsim salatası, haşlanmış yumurta, kebap, kebab gibi böyle şeyler yazma)
-    - Çorba, salata, yemek türü kelimelerini KESİNLİKLE yazma
-    - Tekrar eden malzemeleri tek yaz
-    - KESİNLİKLE YEMEK ADI YAZMAYACAKSIN!!!!!
-    - Sadece JSON formatı: {"list": ["malzeme1","malzeme2",...]} 
-    - Başka hiçbir açıklama, yorum, başlık veya ek bilgi yazma
-    `;
+const prompt = `
+Weekly meal plan: ${JSON.stringify(program)}.
+
+Create a grocery shopping list.
+
+STRICT RULES:
+- ONLY list raw ingredients that can be bought from a market, grocery store, or greengrocer (tomato, milk, flour, lemon, quinoa)
+- DO NOT write any meal or dish names under any circumstances (karnıyarık, dolma, pilaf, salad, boiled egg, kebab, etc.)
+- DO NOT write words like soup, salad, or meal types
+- Remove duplicate ingredients (each ingredient must appear only once)
+- ABSOLUTELY DO NOT WRITE ANY MEAL NAMES
+- Return ONLY JSON in the following format: {"list": ["ingredient1","ingredient2",...]}
+- Do NOT include any explanations, comments, titles, or extra text
+`;
+
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
@@ -58,7 +63,7 @@ router.post("/shopping-list", authMiddleware, async (req, res) => {
       max_tokens: 1000,
       temperature: 0.7,
     });
-
+  
     const raw = completion.choices[0].message.content;
     let data;
     try {
