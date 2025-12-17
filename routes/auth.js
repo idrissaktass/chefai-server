@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
 
   res.json({
     message: "Kayıt başarılı",
-    token,
+    token, 
     user: { 
         _id: user._id, // 🔥 Bunu Ekle!
         email: user.email,
