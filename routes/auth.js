@@ -6,61 +6,61 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 const router = Router();
 
-// const GOOGLE_WEB_CLIENT_ID =
-//    "509344696126-684b6nigs3e5i43q98gcjtag1eg6n537.apps.googleusercontent.com";
+const GOOGLE_WEB_CLIENT_ID =
+   "509344696126-684b6nigs3e5i43q98gcjtag1eg6n537.apps.googleusercontent.com";
 
-// const googleClient = new OAuth2Client(GOOGLE_WEB_CLIENT_ID);
+const googleClient = new OAuth2Client(GOOGLE_WEB_CLIENT_ID);
 
-// router.post("/google", async (req, res) => {
-//   const { token } = req.body;
+router.post("/google", async (req, res) => {
+  const { token } = req.body;
 
-//   if (!token) {
-//     return res.status(400).json({ error: "NO_TOKEN" });
-//   }
+  if (!token) {
+    return res.status(400).json({ error: "NO_TOKEN" });
+  }
 
-//   try {
-//     const ticket = await googleClient.verifyIdToken({
-//       idToken: token,
-//       audience: GOOGLE_WEB_CLIENT_ID,
-//     });
+  try {
+    const ticket = await googleClient.verifyIdToken({
+      idToken: token,
+      audience: GOOGLE_WEB_CLIENT_ID,
+    });
 
-//     const payload = ticket.getPayload();
+    const payload = ticket.getPayload();
 
-//     if (!payload?.email) {
-//       return res.status(400).json({ error: "NO_EMAIL" });
-//     }
+    if (!payload?.email) {
+      return res.status(400).json({ error: "NO_EMAIL" });
+    }
 
-//     let user = await User.findOne({ email: payload.email });
+    let user = await User.findOne({ email: payload.email });
 
-//     if (!user) {
-//       user = new User({
-//         email: payload.email,
-//         authProvider: "google",
-//         profileCompleted: false,
-//       });
-//       await user.save();
-//     }
-//   const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
+    if (!user) {
+      user = new User({
+        email: payload.email,
+        authProvider: "google",
+        profileCompleted: false,
+      });
+      await user.save();
+    }
+  const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
 
-//     const jwtToken = jwt.sign(
-//       { id: user._id, isPremium: user.isPremium },
-//       JWT_SECRET,
-//       { expiresIn: "7d" }
-//     );
+    const jwtToken = jwt.sign(
+      { id: user._id, isPremium: user.isPremium },
+      JWT_SECRET,
+      { expiresIn: "7d" }
+    );
 
-//     res.json({
-//       token: jwtToken,
-//       user: {
-//         _id: user._id,
-//         email: user.email,
-//         profileCompleted: user.profileCompleted,
-//       },
-//     });
-//   } catch (err) {
-//     console.error("GOOGLE VERIFY ERROR:", err);
-//     res.status(401).json({ error: "GOOGLE_VERIFY_FAILED" });
-//   }
-// });
+    res.json({
+      token: jwtToken,
+      user: {
+        _id: user._id,
+        email: user.email,
+        profileCompleted: user.profileCompleted,
+      },
+    });
+  } catch (err) {
+    console.error("GOOGLE VERIFY ERROR:", err);
+    res.status(401).json({ error: "GOOGLE_VERIFY_FAILED" });
+  }
+});
 
 
 // REGISTER
