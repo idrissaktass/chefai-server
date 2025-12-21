@@ -295,6 +295,26 @@ router.post("/weekly-plan", authMiddleware, async (req, res) => {
         total_protein: totalProtein,
         total_carbs: totalCarbs,
         total_fat: totalFat,
+breakfast_protein: breakfast?.protein || 0,
+breakfast_carbs: breakfast?.carbs || 0,
+breakfast_fat: breakfast?.fat || 0,
+
+lunch_protein: lunch?.protein || 0,
+lunch_carbs: lunch?.carbs || 0,
+lunch_fat: lunch?.fat || 0,
+
+dinner_protein: dinner?.protein || 0,
+dinner_carbs: dinner?.carbs || 0,
+dinner_fat: dinner?.fat || 0,
+
+snack_protein: snack1?.protein || 0,
+snack_carbs: snack1?.carbs || 0,
+snack_fat: snack1?.fat || 0,
+
+snack2_protein: snack2?.protein || 0,
+snack2_carbs: snack2?.carbs || 0,
+snack2_fat: snack2?.fat || 0,
+
       });
     }
 
@@ -372,6 +392,117 @@ router.get("/weekly-plan/history", authMiddleware, async (req, res) => {
     res.json({ plans: convertedPlans });
   } catch (err) {
     res.status(500).json({ error: "Planlar alınamadı" });
+  }
+});
+router.post("/weekly-plan/update-meal", authMiddleware, async (req, res) => {
+  try {
+    const { day, mealType, text_tr, text_en } = req.body;
+
+    // 🔒 Güvenlik
+    const allowedMeals = ["breakfast", "lunch", "dinner", "snack", "snack2"];
+    if (!allowedMeals.includes(mealType)) {
+      return res.status(400).json({ error: "Geçersiz öğün tipi" });
+    }
+
+    const planDoc = await WeeklyPlanModel
+      .findOne({ userId: req.userId })
+      .sort({ createdAt: -1 });
+
+    if (!planDoc) {
+      return res.status(404).json({ error: "Plan bulunamadı" });
+    }
+
+    const dayIndex = planDoc.plan.findIndex(d => d.day === day);
+    if (dayIndex === -1) {
+      return res.status(404).json({ error: "Gün bulunamadı" });
+    }
+
+    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+    // 🧠 AI PROMPT – TEK ÖĞÜN
+    const prompt = `
+Aşağıdaki öğünün kalorilerini ve makrolarını,
+klinik diyetisyen hassasiyetinde ve GERÇEKÇİ şekilde hesapla.
+
+ZORUNLU KURALLAR:
+- Zeytinyağı varsayımı yap:
+  • 1 yemek kaşığı = 120 kcal
+- Abartılı / sporcuya özel değerler VERME
+- Diyetisyenlerin kullandığı ortalama değerleri kullan
+- Makrolar kaloriyle MATEMATİKSEL olarak UYUMLU olsun
+
+ÖĞÜN:
+${text_tr}
+
+SADECE JSON DÖN:
+{
+  "cal": number,
+  "protein": number,
+  "carbs": number,
+  "fat": number
+}
+`;
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" }
+    });
+
+    const mealNut = JSON.parse(completion.choices[0].message.content);
+
+    const dayObj = planDoc.plan[dayIndex];
+
+    // ================================
+    // 🔥 1️⃣ ÖĞÜNÜ GÜNCELLE
+    // ================================
+    dayObj[`${mealType}_tr`] = text_tr;
+    dayObj[`${mealType}_en`] = text_en;
+
+    dayObj[`${mealType}_cal`] = mealNut.cal;
+    dayObj[`${mealType}_protein`] = mealNut.protein;
+    dayObj[`${mealType}_carbs`] = mealNut.carbs;
+    dayObj[`${mealType}_fat`] = mealNut.fat;
+
+    // ================================
+    // 🔄 2️⃣ GÜN TOPLAMLARINI YENİDEN HESAPLA
+    // ================================
+    const meals = ["breakfast", "lunch", "dinner", "snack", "snack2"];
+
+    dayObj.total_cal = meals.reduce(
+      (sum, m) => sum + (dayObj[`${m}_cal`] || 0),
+      0
+    );
+
+    dayObj.total_protein = meals.reduce(
+      (sum, m) => sum + (dayObj[`${m}_protein`] || 0),
+      0
+    );
+
+    dayObj.total_carbs = meals.reduce(
+      (sum, m) => sum + (dayObj[`${m}_carbs`] || 0),
+      0
+    );
+
+    dayObj.total_fat = meals.reduce(
+      (sum, m) => sum + (dayObj[`${m}_fat`] || 0),
+      0
+    );
+
+    // ================================
+    // 💾 3️⃣ DB KAYDET
+    // ================================
+    planDoc.plan[dayIndex] = dayObj;
+    await planDoc.save();
+
+    return res.json({
+      success: true,
+      updatedDay: dayObj
+    });
+
+  } catch (err) {
+    console.error("update-meal error:", err);
+    return res.status(500).json({ error: "Öğün güncellenemedi" });
   }
 });
 

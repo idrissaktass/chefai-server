@@ -34,143 +34,130 @@ router.post("/recipe", authMiddleware, async (req, res) => {
   const user = await User.findById(req.userId);
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-if (!user.isPremium) {
-  if (!user.dailyRecipeDate || !isSameDay(user.dailyRecipeDate, today)) {
-    user.dailyRecipeDate = today;
-    user.dailyRecipeCount = 0;
-  }
-
-  if (user.dailyRecipeCount >= 3) {
-    return res.status(402).json({
-      errorCode: "FREE_DAILY_LIMIT_REACHED",
-      error:
-        language === "en"
-          ? "Daily free recipe limit reached."
-          : "Günlük ücretsiz tarif hakkınız doldu.",
-    });
-  }
-}
-
   const {
     ingredients,
     cuisine,
     language = "en",
     diet,
-    isDessert = false
+    mealType = "main",      // main | dessert | snack | soup
+    calorieRange,           // { min, max }
   } = req.body;
 
-  if (!ingredients) {
-    return res.status(400).json({
-      errorCode: "MISSING_INGREDIENTS",
-      error: "Ingredients are required",
-    });
-  }
-
-
   /* ===============================
-     SUITABILITY CHECK
+     FREE DAILY LIMIT
   =============================== */
+  if (!user.isPremium) {
+    if (user.dailyRecipeDate !== today) {
+      user.dailyRecipeDate = today;
+      user.dailyRecipeCount = 0;
+    }
 
-  const suitabilityPrompt = `
-Analyze the following ingredients list:
-
-"${ingredients}"
-
-Context:
-- Recipe type: ${isDessert ? "DESSERT (sweet)" : "MEAL (savory)"}
-- Diet mode: "${diet}"
-
-Rules:
-1. Input must be suitable for creating a real culinary recipe.
-2. If recipe type is DESSERT:
-   - Ingredients should reasonably allow a sweet dish.
-   - Pure savory-only ingredients are NOT suitable.
-3. If recipe type is MEAL:
-   - Ingredients must allow a savory dish.
-4. If diet is applied, ingredients must comply.
-
-Respond with ONLY ONE WORD:
-SUITABLE or UNSUITABLE
-`;
-
-  try {
-    const suitabilityCheck = await client.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: suitabilityPrompt }],
-      temperature: 0,
-      max_tokens: 5,
-    });
-
-    const suitability =
-      suitabilityCheck.choices[0].message.content.trim().toUpperCase();
-
-    if (suitability !== "SUITABLE") {
-      return res.status(400).json({
-        errorCode: "UNSUITABLE_INPUT",
+    if (user.dailyRecipeCount >= 3) {
+      return res.status(402).json({
+        errorCode: "FREE_DAILY_LIMIT_REACHED",
         error:
           language === "en"
-            ? "Ingredients are not suitable for this recipe type."
-            : "Malzemeler bu tarif türü için uygun değil.",
+            ? "Daily free recipe limit reached."
+            : "Günlük ücretsiz tarif hakkınız doldu.",
       });
     }
+  }
 
-    /* ===============================
-       PROMPT
-    =============================== */
+  /* ===============================
+     PROMPT BUILDING
+  =============================== */
 
-    const cuisineText =
-      cuisine && language === "en"
-        ? `Recipes should follow ${cuisine} cuisine.\n`
-        : cuisine && language === "tr"
-        ? `Tarifler ${cuisine} mutfağına uygun olmalı.\n`
-        : "";
+  const ingredientsText = ingredients
+    ? language === "en"
+      ? `Ingredients: ${ingredients}`
+      : `Malzemeler: ${ingredients}`
+    : language === "en"
+    ? "Create the recipe freely without specific ingredients."
+    : "Belirli bir malzeme olmadan serbest tarif oluştur.";
 
-    let dietTextEN = "";
-    let dietTextTR = "";
+  const mealTypeTextEN = {
+      breakfast: "This is a BREAKFAST recipe. Suitable for morning.",
+  lunch: "This is a LUNCH recipe. Balanced and filling.",
+  dinner: "This is a DINNER recipe. Suitable for evening meal.",
+    dessert: "This is a DESSERT recipe. It must be SWEET.",
+    snack: "This is a SNACK recipe. Light and quick.",
+    soup: "This is a SOUP recipe.",
+    shake: "This is a SHAKE recipe. Drinkable and blended.",
+  };
 
-    if (diet && diet !== "None") {
-      if (diet === "HighProtein") {
-        dietTextEN =
-          "Recipes MUST be high-protein and macros optimized accordingly.";
-        dietTextTR =
-          "Tarifler ZORUNLU olarak yüksek protein içermeli.";
-      } else {
-        dietTextEN = `Recipes MUST strictly follow the ${diet} diet.`;
-        dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
-      }
+  const mealTypeTextTR = {
+      breakfast: "Bu bir KAHVALTI tarifidir. Sabah için uygundur.",
+  lunch: "Bu bir ÖĞLE YEMEĞİ tarifidir. Dengeli ve doyurucu olmalıdır.",
+  dinner: "Bu bir AKŞAM YEMEĞİ tarifidir.",
+    dessert: "Bu bir TATLI tarifidir. Tatlı olmalıdır.",
+    snack: "Bu bir ATIŞTIRMALIK tarifidir.",
+    soup: "Bu bir ÇORBA tarifidir.",
+    shake: "This is a SHAKE recipe. İçilebilir ve blender ile hazırlanır.",
+  };
+
+  const cuisineText =
+    cuisine && language === "en"
+      ? `Recipes should follow ${cuisine} cuisine.`
+      : cuisine && language === "tr"
+      ? `Tarifler ${cuisine} mutfağına uygun olmalı.`
+      : "";
+
+  const calorieTextEN =
+    calorieRange?.min && calorieRange?.max
+      ? `Total calories(Sum of ingredients calories) MUST be between ${calorieRange.min}-${calorieRange.max} kcal.`
+      : "";
+
+  const calorieTextTR =
+    calorieRange?.min && calorieRange?.max
+      ? `Toplam kalori ${calorieRange.min}-${calorieRange.max} kcal arasında OLMALIDIR. Miktarları ona göre belirle (artır ya da azalt)`
+      : "";
+
+  let dietTextEN = "";
+  let dietTextTR = "";
+
+  if (diet && diet !== "None") {
+    if (diet === "HighProtein") {
+      dietTextEN = "Recipes MUST be high-protein and macros optimized accordingly.";
+      dietTextTR = "Tarifler ZORUNLU olarak yüksek protein içermeli.";
+    } else {
+      dietTextEN = `Recipes MUST strictly follow the ${diet} diet.`;
+      dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
     }
+  }
 
-    const recipeTypeEN = isDessert
-      ? "This is a DESSERT recipe. It must be SWEET."
-      : "This is a MAIN MEAL recipe. It must be SAVORY.";
-
-    const recipeTypeTR = isDessert
-      ? "Bu bir TATLI tarifidir. Tatlı olmalıdır."
-      : "Bu bir ANA YEMEK tarifidir. Tuzlu olmalıdır.";
-
-    const baseEN = `
-Ingredients: ${ingredients}
-${recipeTypeEN}
+  const baseEN = `
+${ingredientsText}
+${mealTypeTextEN[mealType]}
 ${cuisineText}
 ${dietTextEN}
+${calorieTextEN}
+IMPORTANT:
+- Create 2 recipes.
+- This recipe MUST serve EXACTLY 1 person.
+- servings field MUST be 1.
 `;
 
-    const baseTR = `
-Malzemeler: ${ingredients}
-${recipeTypeTR}
+  const baseTR = `
+${ingredientsText}
+${mealTypeTextTR[mealType]}
 ${cuisineText}
 ${dietTextTR}
+${calorieTextTR}ÖNEMLİ:
+- 2 tane tarif oluştur.
+- Bu tarif ZORUNLU olarak 1 kişilik olmalıdır.
+- servings alanı MUTLAKA 1 olmalı.
 `;
 
-    const finalPrompt =
-      language === "en"
-        ? promptEN(baseEN)
-        : promptTR(baseTR);
+  const finalPrompt =
+    language === "en"
+      ? promptEN(baseEN)
+      : promptTR(baseTR);
 
-    /* ===============================
-       OPENAI CALL
-    =============================== */
+  /* ===============================
+     OPENAI CALL
+  =============================== */
 
+  try {
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: finalPrompt }],
@@ -178,6 +165,7 @@ ${dietTextTR}
     });
 
     const data = JSON.parse(completion.choices[0].message.content);
+
     if (!user.isPremium) {
       user.dailyRecipeCount += 1;
       await user.save();
@@ -185,7 +173,7 @@ ${dietTextTR}
 
     return res.json(data);
   } catch (err) {
-    console.log("Recipe error:", err);
+    console.error("Recipe error:", err);
     return res.status(500).json({
       error: language === "en" ? "OpenAI Error" : "OpenAI hatası",
     });
@@ -197,8 +185,8 @@ ${dietTextTR}
 ${base}
 
 Görev:
-- 3 adet modern, yaratıcı, şef seviyesinde tarif oluştur.
-- Tüm tarifler 2 kişilik olacak.
+- 2 adet modern, yaratıcı, şef seviyesinde tarif oluştur.
+- Tüm tarifler 1 kişilik olacak.
 - Tarif isimleri doğal, gerçek hayatta kullanılan yemek isimleri olmalı. Pexels api'de ismi aratacağım, ona uygun, yakın yemek resimleri bulabilmeliyim.
 - Her tarifte iki isim ZORUNLU:
    • recipeName_en → İngilizce isim
@@ -230,7 +218,7 @@ FORMAT (ZORUNLU):
      "recipeName_en":"",
      "recipeName_tr":"",
      "prepTime":0,
-     "servings":2,
+     "servings":1,
      "ingredients":[
        { "name":"", "amount":"", "calories":0 }
      ],
@@ -249,8 +237,8 @@ FORMAT (ZORUNLU):
 ${base}
 
 Task:
-- Create 3 modern, creative, chef-level recipes.
-- All recipes MUST serve 2 people.
+- Create 2 modern, creative, chef-level recipes.
+- All recipes MUST serve 1 people.
 - Recipe names must be natural, real-world dish names. I use Pexel api for the recipe image, I search the image with that recipe name, so the name must be foundable there.
 - Two names are MANDATORY:
    • recipeName_en → English name
@@ -279,7 +267,7 @@ FORMAT (MANDATORY):
      "recipeName_en":"",
      "recipeName_tr":"",
      "prepTime":0,
-     "servings":2,
+     "servings":1,
      "ingredients":[
        { "name":"", "amount":"", "calories":0 }
      ],

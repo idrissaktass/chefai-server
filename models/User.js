@@ -15,8 +15,57 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true,
+      required: false,
     },
+    authProvider: {
+  type: String,
+  enum: ["local", "google"],
+  default: "local",
+},
+// -----------------
+// PROFILE
+// -----------------
+age: {
+  type: Number,
+  default: null,
+},
+
+height: {
+  type: Number, // cm
+  default: null,
+},
+profileCompleted: {
+  type: Boolean,
+  default: false,
+},
+weight: {
+  type: Number, // kg
+  default: null,
+},
+weightUnit: {
+  type: String,
+  enum: ["kg", "lbs"],
+  default: "kg",
+},
+heightUnit: {
+  type: String,
+  enum: ["cm", "in"],
+  default: "cm",
+},
+gender: {
+  type: String,
+  enum: ["male", "female"],
+  default: null,
+},
+weightHistory: [
+  {
+    value: Number,   // kg (HER ZAMAN kg)
+    date: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+],
 
     // -----------------
     // PREMIUM
