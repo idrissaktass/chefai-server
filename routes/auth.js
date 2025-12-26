@@ -1,66 +1,58 @@
 import 'dotenv/config'; // dotenv’i otomatik yükler
 import { Router } from "express";
-// import { OAuth2Client } from "google-auth-library";
+import { OAuth2Client } from "google-auth-library";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 const router = Router();
 
-// const GOOGLE_WEB_CLIENT_ID =
-//    "509344696126-684b6nigs3e5i43q98gcjtag1eg6n537.apps.googleusercontent.com";
+// ✅ Android clientId’yi de ekle (çünkü akışta clientId olarak o görünüyor)
+const GOOGLE_ANDROID_CLIENT_ID =
+  "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com";
+const GOOGLE_WEB_CLIENT_ID =
+  "737872217384-d4bjnk44e7uisim4sd8q9obf9kd9snor.apps.googleusercontent.com";
 
-// const googleClient = new OAuth2Client(GOOGLE_WEB_CLIENT_ID);
+const googleClient = new OAuth2Client(); // verify için audience’ı aşağıda kontrol edeceğiz
 
-// router.post("/google", async (req, res) => {
-//   const { token } = req.body;
+router.post("/google", async (req, res) => {
+  const { token } = req.body;
 
-//   if (!token) {
-//     return res.status(400).json({ error: "NO_TOKEN" });
-//   }
+  if (!token) return res.status(400).json({ error: "NO_TOKEN" });
 
-//   try {
-//     const ticket = await googleClient.verifyIdToken({
-//       idToken: token,
-//       audience: GOOGLE_WEB_CLIENT_ID,
-//     });
+  const ticket = await googleClient.verifyIdToken({
+    idToken: token,
+    audience: [GOOGLE_ANDROID_CLIENT_ID, GOOGLE_WEB_CLIENT_ID],
+  });
 
-//     const payload = ticket.getPayload();
+  const payload = ticket.getPayload();
+  if (!payload?.email) return res.status(400).json({ error: "NO_EMAIL" });
 
-//     if (!payload?.email) {
-//       return res.status(400).json({ error: "NO_EMAIL" });
-//     }
+  let user = await User.findOne({ email: payload.email });
+  if (!user) {
+    user = await User.create({
+      email: payload.email,
+      authProvider: "google",
+      profileCompleted: false,
+    });
+  }
+      const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
+  const jwtToken = jwt.sign(
+    { id: user._id, isPremium: user.isPremium },
+    JWT_SECRET,
+    { expiresIn: "7d" }
+  );
 
-//     let user = await User.findOne({ email: payload.email });
+  res.json({
+    token: jwtToken,
+    user: {
+      _id: user._id,
+      email: user.email,
+      profileCompleted: user.profileCompleted,
+    },
+  });
+});
 
-//     if (!user) {
-//       user = new User({
-//         email: payload.email,
-//         authProvider: "google",
-//         profileCompleted: false,
-//       });
-//       await user.save();
-//     }
-//   const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
-
-//     const jwtToken = jwt.sign(
-//       { id: user._id, isPremium: user.isPremium },
-//       JWT_SECRET,
-//       { expiresIn: "7d" }
-//     );
-
-//     res.json({
-//       token: jwtToken,
-//       user: {
-//         _id: user._id,
-//         email: user.email,
-//         profileCompleted: user.profileCompleted,
-//       },
-//     });
-//   } catch (err) {
-//     console.error("GOOGLE VERIFY ERROR:", err);
-//     res.status(401).json({ error: "GOOGLE_VERIFY_FAILED" });
-//   }
-// });
+export default router;
 
 
 // REGISTER
