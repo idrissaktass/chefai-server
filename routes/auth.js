@@ -7,124 +7,183 @@ import { User } from "../models/User.js";
 const router = Router();
 
 // ✅ Android clientId’yi de ekle (çünkü akışta clientId olarak o görünüyor)
-const GOOGLE_ANDROID_CLIENT_ID =
-  "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com";
-const GOOGLE_WEB_CLIENT_ID =
-  "737872217384-d4bjnk44e7uisim4sd8q9obf9kd9snor.apps.googleusercontent.com";
-const GOOGLE_WEB_CLIENT_SECRET = process.env.GOOGLE_WEB_CLIENT_SECRET; // .env'den geliyor
-console.log("Google Web Client Secret:", GOOGLE_WEB_CLIENT_SECRET); // Sadece debug için
 
-const googleClient = new OAuth2Client({
-  clientId: GOOGLE_ANDROID_CLIENT_ID,
-});
+const GOOGLE_ANDROID_CLIENT_ID =
+
+  "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com";
+
+const GOOGLE_WEB_CLIENT_ID =
+
+  "737872217384-d4bjnk44e7uisim4sd8q9obf9kd9snor.apps.googleusercontent.com";
+
+const GOOGLE_WEB_CLIENT_SECRET = process.env.GOOGLE_WEB_CLIENT_SECRET; // .env'den geliyor
+
+
+
+const googleClient = new OAuth2Client(
+
+  GOOGLE_WEB_CLIENT_ID,
+
+  GOOGLE_WEB_CLIENT_SECRET
+
+);
+
+
 
 router.post("/google", async (req, res) => {
+
   try {
+
     const { code, codeVerifier, redirectUri } = req.body;
-console.log("GOOGLE BODY", {
-  code,
-  codeVerifier,
-  redirectUri,
-});
+
+
 
     if (!code) return res.status(400).json({ error: "Kod eksik" });
 
+
+
     // 1. Gelen 'code'u Google Token ile takas ediyoruz
+
     const { tokens } = await googleClient.getToken({
+
       code,
-      codeVerifier,
-      redirectUri,
+
+      codeVerifier, // Frontend'den gelen verifier
+
+      redirectUri,   // Frontend'deki URI ile tam eşleşmeli
+
     });
 
-    console.log("Google'dan alınan tokenlar:", tokens);
+
 
     // 2. Alınan id_token'ı doğruluyoruz
+
     const ticket = await googleClient.verifyIdToken({
+
       idToken: tokens.id_token,
+
       audience: [
-        GOOGLE_ANDROID_CLIENT_ID,
+
         GOOGLE_WEB_CLIENT_ID,
+
+        "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com" // Android ID
+
       ],
+
     });
+
 
 
     const payload = ticket.getPayload();
+
     if (!payload?.email) return res.status(400).json({ error: "Email bulunamadı" });
 
+
+
     // 3. Kullanıcı Kayıt/Giriş Mantığı
+
     let user = await User.findOne({ email: payload.email });
+
     if (!user) {
+
       user = await User.create({
+
         email: payload.email,
+
         authProvider: "google",
+
         profileCompleted: false,
+
       });
+
     }
 
+
+
     const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
+
     const jwtToken = jwt.sign(
+
+      { id: user._id, isPremium: user.isPremium },
+
+      JWT_SECRET,
+
+      { expiresIn: "7d" }
+
+    );
+
+
+
+    res.json({
+
+      token: jwtToken,
+
+      user: {
+
+        _id: user._id,
+
+        email: user.email,
+
+        profileCompleted: user.profileCompleted,
+
+      },
+
+    });
+
+  } catch (error) {
+
+    console.error("Google Auth Hatası:", error);
+
+    res.status(500).json({ error: "Sunucu hatası" });
+
+  }
+
+});
+
+export default router;
+
+
+router.post("/register", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password)
+      return res.status(400).json({ error: "FIELDS_REQUIRED" });
+
+    const existing = await User.findOne({ email });
+    if (existing)
+      return res.status(409).json({ error: "EMAIL_EXISTS" });
+
+    const hashed = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashed,
+      profileCompleted: false,
+    });
+  const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb"; // burada kendi gizli key’ini yaz
+
+    const token = jwt.sign(
       { id: user._id, isPremium: user.isPremium },
       JWT_SECRET,
       { expiresIn: "7d" }
     );
 
     res.json({
-      token: jwtToken,
+      token,
       user: {
         _id: user._id,
         email: user.email,
         profileCompleted: user.profileCompleted,
       },
     });
-// Backend catch bloğu
-} catch (error) {
-  console.error("Google Auth Detaylı Hata:", error.response ? error.response.data : error.message);
-  res.status(500).json({ 
-    error: "Google login failed", 
-    details: error.response ? error.response.data : error.message 
-  });
-}
+  } catch (err) {
+    console.error("REGISTER ERROR:", err);
+    res.status(500).json({ error: "REGISTER_FAILED" });
+  }
 });
-export default router;
 
-
-// REGISTER
-// REGISTER
-router.post("/register", async (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password)
-    return res.status(400).json({ error: "Email ve şifre gerekli" });
-
-  const existing = await User.findOne({ email });
-  if (existing)
-    return res.status(400).json({ error: "Bu email zaten kayıtlı" });
-
-  const hashed = await bcrypt.hash(password, 10);
-
-  const user = new User({ email, password: hashed });
-  await user.save();
-
-  // Kayıt başarılı → token üret
-  const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
-    const token = jwt.sign(
-    { id: user._id, isPremium: user.isPremium },
-    JWT_SECRET,
-    { expiresIn: "7d" }
-  );
-
-
-  res.json({
-    message: "Kayıt başarılı",
-    token, 
-user: {
-  _id: user._id,
-  email: user.email,
-  isPremium: user.isPremium,
-  profileCompleted: user.profileCompleted, // 🔥
-}
-  });
-});
 
 // LOGIN
 router.post("/login", async (req, res) => {
