@@ -18,6 +18,7 @@ const GOOGLE_WEB_CLIENT_ID =
 
 const GOOGLE_WEB_CLIENT_SECRET = process.env.GOOGLE_WEB_CLIENT_SECRET; // .env'den geliyor
 
+console.log("WEB CLIENT SECRET:", process.env.GOOGLE_WEB_CLIENT_SECRET);
 
 
 const googleClient = new OAuth2Client(
