@@ -33,12 +33,13 @@ router.post("/google", async (req, res) => {
   try {
     const { code, codeVerifier, redirectUri } = req.body;
     if (!code) return res.status(400).json({ error: "CODE_MISSING" });
-
+    console.log("Google Auth Request:", { code, redirectUri });
     const { tokens } = await googleClient.getToken({
       code,
       codeVerifier,
       redirectUri,
     });
+    console.log("Google Tokens:", tokens);
 
     const ticket = await googleClient.verifyIdToken({
       idToken: tokens.id_token,
@@ -84,6 +85,7 @@ router.post("/google", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
+    console.log("Google Auth Success:", user.email);
 
     res.json({
       token: jwtToken,
