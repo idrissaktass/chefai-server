@@ -29,115 +29,75 @@ const googleClient = new OAuth2Client(
 );
 
 
-
 router.post("/google", async (req, res) => {
-
   try {
-
     const { code, codeVerifier, redirectUri } = req.body;
-
-
-
-    if (!code) return res.status(400).json({ error: "Kod eksik" });
-
-
-
-    // 1. Gelen 'code'u Google Token ile takas ediyoruz
+    if (!code) return res.status(400).json({ error: "CODE_MISSING" });
 
     const { tokens } = await googleClient.getToken({
-
       code,
-
-      codeVerifier, // Frontend'den gelen verifier
-
-      redirectUri,   // Frontend'deki URI ile tam eşleşmeli
-
+      codeVerifier,
+      redirectUri,
     });
-
-
-
-    // 2. Alınan id_token'ı doğruluyoruz
 
     const ticket = await googleClient.verifyIdToken({
-
       idToken: tokens.id_token,
-
       audience: [
-
         GOOGLE_WEB_CLIENT_ID,
-
-        "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com" // Android ID
-
+        GOOGLE_ANDROID_CLIENT_ID,
       ],
-
     });
-
-
 
     const payload = ticket.getPayload();
-
-    if (!payload?.email) return res.status(400).json({ error: "Email bulunamadı" });
-
-
-
-    // 3. Kullanıcı Kayıt/Giriş Mantığı
-
-    let user = await User.findOne({ email: payload.email });
-
-    if (!user) {
-
-      user = await User.create({
-
-        email: payload.email,
-
-        authProvider: "google",
-
-        profileCompleted: false,
-
-      });
-
+    if (!payload?.email) {
+      return res.status(400).json({ error: "EMAIL_NOT_FOUND" });
     }
 
-
-
-    const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
-
-    const jwtToken = jwt.sign(
-
-      { id: user._id, isPremium: user.isPremium },
-
-      JWT_SECRET,
-
-      { expiresIn: "7d" }
-
-    );
-
-
-
-    res.json({
-
-      token: jwtToken,
-
-      user: {
-
-        _id: user._id,
-
-        email: user.email,
-
-        profileCompleted: user.profileCompleted,
-
-      },
-
+    // Local user check
+    const localUser = await User.findOne({
+      email: payload.email,
+      authProvider: "local",
     });
 
-  } catch (error) {
+    if (localUser) {
+      return res.status(409).json({
+        error: "EMAIL_REGISTERED_WITH_PASSWORD",
+      });
+    }
 
-    console.error("Google Auth Hatası:", error);
+    let user = await User.findOne({
+      email: payload.email,
+      authProvider: "google",
+    });
 
-    res.status(500).json({ error: "Sunucu hatası" });
+    if (!user) {
+      user = await User.create({
+        email: payload.email,
+        name: payload.name || "",
+        authProvider: "google",
+        profileCompleted: false,
+      });
+    }
 
+    const jwtToken = jwt.sign(
+      { id: user._id, isPremium: user.isPremium },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    res.json({
+      token: jwtToken,
+      user: {
+        _id: user._id,
+        email: user.email,
+        profileCompleted: user.profileCompleted,
+      },
+    });
+
+  } catch (err) {
+    console.error("Google Auth Error:", err);
+    res.status(500).json({ error: "GOOGLE_AUTH_FAILED" });
   }
-
 });
 
 export default router;

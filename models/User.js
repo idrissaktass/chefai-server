@@ -23,11 +23,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-//     authProvider: {
-//   type: String,
-//   enum: ["local", "google"],
-//   default: "local",
-// },
+authProvider: {
+  type: String,
+  enum: ["local", "google"],
+  default: "local",
+},
+
 // -----------------
 // PROFILE
 // -----------------
