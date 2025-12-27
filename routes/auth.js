@@ -12,34 +12,41 @@ const GOOGLE_ANDROID_CLIENT_ID =
 const GOOGLE_WEB_CLIENT_ID =
   "737872217384-d4bjnk44e7uisim4sd8q9obf9kd9snor.apps.googleusercontent.com";
 const GOOGLE_WEB_CLIENT_SECRET = process.env.GOOGLE_WEB_CLIENT_SECRET; // .env'den geliyor
+console.log("Google Web Client Secret:", GOOGLE_WEB_CLIENT_SECRET); // Sadece debug için
 
-const googleClient = new OAuth2Client(
-  GOOGLE_WEB_CLIENT_ID,
-  GOOGLE_WEB_CLIENT_SECRET
-);
+const googleClient = new OAuth2Client({
+  clientId: GOOGLE_ANDROID_CLIENT_ID,
+});
 
 router.post("/google", async (req, res) => {
   try {
     const { code, codeVerifier, redirectUri } = req.body;
+console.log("GOOGLE BODY", {
+  code,
+  codeVerifier,
+  redirectUri,
+});
 
     if (!code) return res.status(400).json({ error: "Kod eksik" });
 
     // 1. Gelen 'code'u Google Token ile takas ediyoruz
     const { tokens } = await googleClient.getToken({
       code,
-      codeVerifier, // Frontend'den gelen verifier
-      redirectUri,   // Frontend'deki URI ile tam eşleşmeli
+      codeVerifier,
+      redirectUri,
     });
+
     console.log("Google'dan alınan tokenlar:", tokens);
 
     // 2. Alınan id_token'ı doğruluyoruz
     const ticket = await googleClient.verifyIdToken({
       idToken: tokens.id_token,
       audience: [
+        GOOGLE_ANDROID_CLIENT_ID,
         GOOGLE_WEB_CLIENT_ID,
-        "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com" // Android ID
       ],
     });
+
 
     const payload = ticket.getPayload();
     if (!payload?.email) return res.status(400).json({ error: "Email bulunamadı" });
