@@ -30,6 +30,7 @@ router.post("/google", async (req, res) => {
       codeVerifier, // Frontend'den gelen verifier
       redirectUri,   // Frontend'deki URI ile tam eşleşmeli
     });
+    console.log("Google'dan alınan tokenlar:", tokens);
 
     // 2. Alınan id_token'ı doğruluyoruz
     const ticket = await googleClient.verifyIdToken({
@@ -68,10 +69,14 @@ router.post("/google", async (req, res) => {
         profileCompleted: user.profileCompleted,
       },
     });
-  } catch (error) {
-    console.error("Google Auth Hatası:", error);
-    res.status(500).json({ error: "Sunucu hatası" });
-  }
+// Backend catch bloğu
+} catch (error) {
+  console.error("Google Auth Detaylı Hata:", error.response ? error.response.data : error.message);
+  res.status(500).json({ 
+    error: "Google login failed", 
+    details: error.response ? error.response.data : error.message 
+  });
+}
 });
 export default router;
 
