@@ -1,70 +1,79 @@
-import 'dotenv/config'; // dotenv’i otomatik yükler
+import 'dotenv/config';
 import { Router } from "express";
 import { OAuth2Client } from "google-auth-library";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
+
 const router = Router();
 
-// ✅ Android clientId’yi de ekle (çünkü akışta clientId olarak o görünüyor)
-
-const GOOGLE_ANDROID_CLIENT_ID =
-
-  "737872217384-56mi7snkkg010gs2ssbl5hlstivhtb0c.apps.googleusercontent.com";
+/* =====================================================
+   🔐 GOOGLE OAUTH CONFIG (WEB CLIENT ONLY)
+===================================================== */
 
 const GOOGLE_WEB_CLIENT_ID =
-
   "737872217384-d4bjnk44e7uisim4sd8q9obf9kd9snor.apps.googleusercontent.com";
 
-const GOOGLE_WEB_CLIENT_SECRET = process.env.GOOGLE_WEB_CLIENT_SECRET; // .env'den geliyor
+const GOOGLE_WEB_CLIENT_SECRET =
+  process.env.GOOGLE_WEB_CLIENT_SECRET;
 
-console.log("WEB CLIENT SECRET:", process.env.GOOGLE_WEB_CLIENT_SECRET);
+const GOOGLE_REDIRECT_URI =
+  "https://chefai-server-1.onrender.com/auth/google/callback";
 
-
-const googleClient = new OAuth2Client(
-
+const oauth2Client = new OAuth2Client(
   GOOGLE_WEB_CLIENT_ID,
-
-  GOOGLE_WEB_CLIENT_SECRET
-
+  GOOGLE_WEB_CLIENT_SECRET,
+  GOOGLE_REDIRECT_URI
 );
 
+/* =====================================================
+   🚀 GOOGLE LOGIN START (APK bunu açar)
+===================================================== */
 
-router.post("/google", async (req, res) => {
+router.get("/auth/google/start", (req, res) => {
+  const url = oauth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: ["profile", "email"],
+    prompt: "consent",
+  });
+
+  res.redirect(url);
+});
+
+/* =====================================================
+   🔁 GOOGLE CALLBACK (TOKEN EXCHANGE BURADA)
+===================================================== */
+
+router.get("/auth/google/callback", async (req, res) => {
   try {
-    const { code, codeVerifier, redirectUri } = req.body;
-    if (!code) return res.status(400).json({ error: "CODE_MISSING" });
-    console.log("Google Auth Request:", { code, redirectUri });
-    const { tokens } = await googleClient.getToken({
-      code,
-      codeVerifier,
-      redirectUri,
-    });
-    console.log("Google Tokens:", tokens);
+    const { code } = req.query;
+    if (!code) {
+      return res.redirect("com.idrisaktas.chefai://login-error");
+    }
 
-    const ticket = await googleClient.verifyIdToken({
+    const { tokens } = await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(tokens);
+
+    const ticket = await oauth2Client.verifyIdToken({
       idToken: tokens.id_token,
-      audience: [
-        GOOGLE_WEB_CLIENT_ID,
-        GOOGLE_ANDROID_CLIENT_ID,
-      ],
+      audience: GOOGLE_WEB_CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
     if (!payload?.email) {
-      return res.status(400).json({ error: "EMAIL_NOT_FOUND" });
+      return res.redirect("com.idrisaktas.chefai://login-error");
     }
 
-    // Local user check
+    /* ❗ LOCAL vs GOOGLE çakışma kontrolü */
     const localUser = await User.findOne({
       email: payload.email,
       authProvider: "local",
     });
 
     if (localUser) {
-      return res.status(409).json({
-        error: "EMAIL_REGISTERED_WITH_PASSWORD",
-      });
+      return res.redirect(
+        "com.idrisaktas.chefai://login-error?reason=EMAIL_REGISTERED_WITH_PASSWORD"
+      );
     }
 
     let user = await User.findOne({
@@ -86,24 +95,15 @@ router.post("/google", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
-    console.log("Google Auth Success:", user.email);
 
-    res.json({
-      token: jwtToken,
-      user: {
-        _id: user._id,
-        email: user.email,
-        profileCompleted: user.profileCompleted,
-      },
-    });
-
+    return res.redirect(
+      `com.idrisaktas.chefai://login-success?token=${jwtToken}`
+    );
   } catch (err) {
-    console.error("Google Auth Error:", err);
-    res.status(500).json({ error: "GOOGLE_AUTH_FAILED" });
+    console.error("GOOGLE CALLBACK ERROR:", err);
+    return res.redirect("com.idrisaktas.chefai://login-error");
   }
 });
-
-export default router;
 
 
 router.post("/register", async (req, res) => {
