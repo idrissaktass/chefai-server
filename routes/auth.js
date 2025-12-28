@@ -23,7 +23,7 @@ const GOOGLE_REDIRECT_URI =
 const oauth2Client = new OAuth2Client(
   GOOGLE_WEB_CLIENT_ID,
   GOOGLE_WEB_CLIENT_SECRET,
-  GOOGLE_REDIRECT_URI
+  // GOOGLE_REDIRECT_URI
 );
 
 /* =====================================================
@@ -31,29 +31,42 @@ const oauth2Client = new OAuth2Client(
 ===================================================== */
 
 router.get("/google/start", (req, res) => {
+    const redirectUri = req.query.redirect_uri;
+
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: ["profile", "email"],
     prompt: "consent",
+    redirect_uri: "https://chefai-server-1.onrender.com/api/auth/google/callback",
+    state: encodeURIComponent(redirectUri), // 🔥 ÇOK ÖNEMLİ
   });
-
+console.log("DEEPLINK:", url);
   res.redirect(url);
 });
 
 /* =====================================================
    🔁 GOOGLE CALLBACK (TOKEN EXCHANGE BURADA)
 ===================================================== */
-
 router.get("/google/callback", async (req, res) => {
   try {
-    const { code } = req.query;
-    if (!code) {
+    const { code, state } = req.query;
+
+    if (!code || !state) {
       return res.redirect("com.idrisaktas.chefai://login-error");
     }
 
-    const { tokens } = await oauth2Client.getToken(code);
+    const callbackRedirectUri =
+      "https://chefai-server-1.onrender.com/api/auth/google/callback";
+
+    /* 🔁 CODE → TOKEN */
+    const { tokens } = await oauth2Client.getToken({
+      code,
+      redirect_uri: callbackRedirectUri,
+    });
+
     oauth2Client.setCredentials(tokens);
 
+    /* 🔐 ID TOKEN DOĞRULAMA */
     const ticket = await oauth2Client.verifyIdToken({
       idToken: tokens.id_token,
       audience: GOOGLE_WEB_CLIENT_ID,
@@ -64,7 +77,7 @@ router.get("/google/callback", async (req, res) => {
       return res.redirect("com.idrisaktas.chefai://login-error");
     }
 
-    /* ❗ LOCAL vs GOOGLE çakışma kontrolü */
+    /* ❗ LOCAL vs GOOGLE ÇAKIŞMA KONTROLÜ */
     const localUser = await User.findOne({
       email: payload.email,
       authProvider: "local",
@@ -76,6 +89,7 @@ router.get("/google/callback", async (req, res) => {
       );
     }
 
+    /* 🔎 GOOGLE USER BUL / OLUŞTUR */
     let user = await User.findOne({
       email: payload.email,
       authProvider: "google",
@@ -87,17 +101,25 @@ router.get("/google/callback", async (req, res) => {
         name: payload.name || "",
         authProvider: "google",
         profileCompleted: false,
+        isPremium: false,
       });
     }
 
+    /* 🔑 JWT */
     const jwtToken = jwt.sign(
-      { id: user._id, isPremium: user.isPremium },
+      {
+        id: user._id,
+        isPremium: user.isPremium,
+      },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
+    /* 📲 APP’E GERİ DÖN */
+    const appRedirect = decodeURIComponent(state);
+
     return res.redirect(
-      `com.idrisaktas.chefai://login-success?token=${jwtToken}`
+      `${appRedirect}?token=${jwtToken}`
     );
   } catch (err) {
     console.error("GOOGLE CALLBACK ERROR:", err);
