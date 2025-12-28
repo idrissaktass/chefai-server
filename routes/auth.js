@@ -18,7 +18,7 @@ const GOOGLE_WEB_CLIENT_SECRET =
   process.env.GOOGLE_WEB_CLIENT_SECRET;
 
 const GOOGLE_REDIRECT_URI =
-  "https://chefai-server-1.onrender.com/auth/google/callback";
+  "https://chefai-server-1.onrender.com/api/auth/google/callback";
 
 const oauth2Client = new OAuth2Client(
   GOOGLE_WEB_CLIENT_ID,
@@ -30,7 +30,7 @@ const oauth2Client = new OAuth2Client(
    🚀 GOOGLE LOGIN START (APK bunu açar)
 ===================================================== */
 
-router.get("/auth/google/start", (req, res) => {
+router.get("/google/start", (req, res) => {
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: ["profile", "email"],
@@ -44,7 +44,7 @@ router.get("/auth/google/start", (req, res) => {
    🔁 GOOGLE CALLBACK (TOKEN EXCHANGE BURADA)
 ===================================================== */
 
-router.get("/auth/google/callback", async (req, res) => {
+router.get("/google/callback", async (req, res) => {
   try {
     const { code } = req.query;
     if (!code) {
