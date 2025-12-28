@@ -31,18 +31,19 @@ const oauth2Client = new OAuth2Client(
 ===================================================== */
 
 router.get("/google/start", (req, res) => {
-    const redirectUri = req.query.redirect_uri;
-
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: ["profile", "email"],
     prompt: "consent",
-    redirect_uri: "https://chefai-server-1.onrender.com/api/auth/google/callback",
-    state: encodeURIComponent(redirectUri), // 🔥 ÇOK ÖNEMLİ
+    redirect_uri: GOOGLE_REDIRECT_URI,
+    state: encodeURIComponent(
+      "com.idrisaktas.chefai://login-callback"
+    ),
   });
-console.log("DEEPLINK:", url);
+
   res.redirect(url);
 });
+
 
 /* =====================================================
    🔁 GOOGLE CALLBACK (TOKEN EXCHANGE BURADA)
@@ -52,7 +53,7 @@ router.get("/google/callback", async (req, res) => {
     const { code, state } = req.query;
 
     if (!code || !state) {
-      return res.redirect("com.idrisaktas.chefai://login-error");
+      return res.redirect("com.idrisaktas.chefai://login-callback?reason=ERROR_CODE");
     }
 
     const callbackRedirectUri =
@@ -74,7 +75,7 @@ router.get("/google/callback", async (req, res) => {
 
     const payload = ticket.getPayload();
     if (!payload?.email) {
-      return res.redirect("com.idrisaktas.chefai://login-error");
+      return res.redirect("com.idrisaktas.chefai://login-callback?reason=ERROR_CODE");
     }
 
     /* ❗ LOCAL vs GOOGLE ÇAKIŞMA KONTROLÜ */
@@ -85,7 +86,7 @@ router.get("/google/callback", async (req, res) => {
 
     if (localUser) {
       return res.redirect(
-        "com.idrisaktas.chefai://login-error?reason=EMAIL_REGISTERED_WITH_PASSWORD"
+        "com.idrisaktas.chefai://login-callback?reason=EMAIL_REGISTERED_WITH_PASSWORD"
       );
     }
 
@@ -123,7 +124,7 @@ router.get("/google/callback", async (req, res) => {
     );
   } catch (err) {
     console.error("GOOGLE CALLBACK ERROR:", err);
-    return res.redirect("com.idrisaktas.chefai://login-error");
+    return res.redirect("com.idrisaktas.chefai://login-callback?reason=ERROR_CODE");
   }
 });
 
