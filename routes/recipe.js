@@ -28,6 +28,91 @@ function isSameDay(d1, d2) {
   return d1 === d2;
 }
 
+const recipePromptTR = (base) => `
+${base}
+
+GÖREV:
+- 2 adet modern ve iştah açıcı tarif oluştur.
+- Her tarif 1 kişiliktir.
+
+GÖRSEL ARAMA KRİTERİ (KRİTİK):
+- "recipeName_en" alanı Pexels API'de fotoğraf bulmak için kullanılacak.
+- Bu isim mutlaka basit, yaygın ve görsel karşılığı olan bir yemek adı olmalıdır.
+- Örn: "Avokadolu ve Çilekli Somon Salatası" yerine sadece "Salmon Salad" kullan.
+- Örn: "Anne usulü bol sebzeli şehriye çorbası" yerine "Vegetable Soup" kullan.
+- ASLA "Special", "Healthy", "Surprise", "Style" gibi soyut kelimeler ekleme.
+
+İSİMLENDİRME KURALLARI:
+- recipeName_tr: Kullanıcının göreceği doğal isim (Örn: "Izgara Sebzeli Tavuk")
+- recipeName_en: Pexels'te aranacak global isim (Örn: "Grilled Chicken")
+
+TEKNİK DETAYLAR:
+- Hazırlanış adımları (steps) kısa, net ve numaralandırılmış olmalıdır.
+- totalCalories ve makrolar (protein, fat, carbs) malzemelerle tutarlı olmalıdır.
+- ingredients listesinde miktar ve kalori zorunludur.
+
+FORMAT:
+{
+ "recipes":[
+   {
+     "recipeName_en": "Simple Iconic Name",
+     "recipeName_tr": "Doğal Türkçe İsim",
+     "prepTime": 20,
+     "servings": 1,
+     "ingredients": [{ "name": "Tavuk", "amount": "150g", "calories": 250 }],
+     "steps": ["Adım 1...", "Adım 2..."],
+     "totalCalories": 0,
+     "totalProtein": 0,
+     "totalFat": 0,
+     "totalCarbs": 0,
+     "ingredientsCalories": {}
+   }
+ ]
+}
+`;
+
+const recipePromptEN = (base) => `
+${base}
+
+TASK:
+- Create 2 modern and delicious recipes for 1 person.
+
+IMAGE SEARCH OPTIMIZATION (CRITICAL):
+- The "recipeName_en" field will be used directly to fetch stock photos from Pexels.
+- It MUST be a simple, iconic, and high-level dish name.
+- DO NOT use complex adjectives.
+- CORRECT: "Grilled Salmon", "Caesar Salad", "Beef Steak", "Lentil Soup".
+- WRONG: "Chef's Special Protein-Rich Grilled Salmon with Herbs".
+- Use names that a photographer would use to tag their photo.
+
+NAMING:
+- recipeName_en: The simple search term for Pexels.
+- recipeName_tr: The natural Turkish translation for the user.
+
+TECHNICAL:
+- Steps must be simple, one action per step.
+- Macros and totalCalories must be realistic based on ingredients.
+
+FORMAT:
+{
+ "recipes":[
+   {
+     "recipeName_en": "Simple Iconic Name",
+     "recipeName_tr": "Natural Turkish Name",
+     "prepTime": 20,
+     "servings": 1,
+     "ingredients": [{ "name": "Chicken", "amount": "150g", "calories": 250 }],
+     "steps": ["Step 1...", "Step 2..."],
+     "totalCalories": 0,
+     "totalProtein": 0,
+     "totalFat": 0,
+     "totalCarbs": 0,
+     "ingredientsCalories": {}
+   }
+ ]
+}
+`;
+
 // router.post("/recipe"
 router.post("/recipe", authMiddleware, async (req, res) => {
   const today = new Date().toISOString().slice(0, 10);
@@ -148,10 +233,10 @@ ${calorieTextTR}ÖNEMLİ:
 - servings alanı MUTLAKA 1 olmalı.
 `;
 
-  const finalPrompt =
-    language === "en"
-      ? promptEN(baseEN)
-      : promptTR(baseTR);
+const finalPrompt =
+  language === "en"
+    ? recipePromptEN(baseEN) // Yeni fonksiyon
+    : recipePromptTR(baseTR);
 
   /* ===============================
      OPENAI CALL
@@ -239,7 +324,6 @@ ${base}
 Task:
 - Create 2 modern, creative, chef-level recipes.
 - All recipes MUST serve 1 people.
-- Recipe names must be natural, real-world dish names. I use Pexel api for the recipe image, I search the image with that recipe name, so the name must be foundable there.
 - Two names are MANDATORY:
    • recipeName_en → English name
    • recipeName_tr → Turkish name

@@ -25,21 +25,22 @@ const oauth2Client = new OAuth2Client(
   GOOGLE_WEB_CLIENT_SECRET,
   // GOOGLE_REDIRECT_URI
 );
+const JWT_SECRET = process.env.JWT_SECRET || 
+"d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
 
 /* =====================================================
    🚀 GOOGLE LOGIN START (APK bunu açar)
 ===================================================== */
 
 router.get("/google/start", (req, res) => {
-  const url = oauth2Client.generateAuthUrl({
-    access_type: "offline",
-    scope: ["profile", "email"],
-    prompt: "consent",
-    redirect_uri: GOOGLE_REDIRECT_URI,
-    state: encodeURIComponent(
-      "com.idrisaktas.chefai://login-callback"
-    ),
-  });
+// state parametresini basitleştirin ve 3 adet "/" kullanın
+const appRedirect = "com.idrisaktas.chefai://login-callback";
+const url = oauth2Client.generateAuthUrl({
+  access_type: "offline",
+  scope: ["profile", "email"],
+  state: appRedirect, // encodeURIComponent kullanmayın, kütüphane halleder
+  redirect_uri: GOOGLE_REDIRECT_URI,
+});
 
   res.redirect(url);
 });
@@ -280,6 +281,32 @@ router.get("/profile/weight-history", async (req, res) => {
     res.json(user);
   } catch {
     res.status(401).json({ error: "Invalid token" });
+  }
+});
+
+/* =====================================================
+   🗑️ DELETE ACCOUNT
+===================================================== */
+router.delete("/delete-account", async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) return res.status(401).json({ error: "NO_TOKEN" });
+
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(404).json({ error: "USER_NOT_FOUND" });
+
+    // ❗️ BURADA GERÇEKTEN SİLİYORUZ
+    await User.findByIdAndDelete(decoded.id);
+
+    return res.json({
+      success: true,
+      message: "Account deleted successfully",
+    });
+  } catch (err) {
+    console.error("DELETE ACCOUNT ERROR:", err);
+    return res.status(401).json({ error: "INVALID_TOKEN" });
   }
 });
 
