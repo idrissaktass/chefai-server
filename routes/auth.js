@@ -50,6 +50,7 @@ const url = oauth2Client.generateAuthUrl({
    🔁 GOOGLE CALLBACK (TOKEN EXCHANGE BURADA)
 ===================================================== */
 router.get("/google/callback", async (req, res) => {
+  console.log("Google callback tetiklendi");
   try {
     const { code } = req.query;
 
