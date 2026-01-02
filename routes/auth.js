@@ -51,24 +51,19 @@ const url = oauth2Client.generateAuthUrl({
 ===================================================== */
 router.get("/google/callback", async (req, res) => {
   try {
-    const { code, state } = req.query;
+    const { code } = req.query;
 
-    if (!code || !state) {
-      return res.redirect("com.idrisaktas.chefai://login-callback?reason=ERROR_CODE");
+    if (!code) {
+      return res.redirect(
+        "com.idrisaktas.chefai://login-callback?reason=ERROR_CODE"
+      );
     }
 
-    const callbackRedirectUri =
-      "https://chefai-server-1.onrender.com/api/auth/google/callback";
-
-    /* 🔁 CODE → TOKEN */
     const { tokens } = await oauth2Client.getToken({
       code,
-      redirect_uri: callbackRedirectUri,
+      redirect_uri: GOOGLE_REDIRECT_URI,
     });
 
-    oauth2Client.setCredentials(tokens);
-
-    /* 🔐 ID TOKEN DOĞRULAMA */
     const ticket = await oauth2Client.verifyIdToken({
       idToken: tokens.id_token,
       audience: GOOGLE_WEB_CLIENT_ID,
@@ -76,10 +71,11 @@ router.get("/google/callback", async (req, res) => {
 
     const payload = ticket.getPayload();
     if (!payload?.email) {
-      return res.redirect("com.idrisaktas.chefai://login-callback?reason=ERROR_CODE");
+      return res.redirect(
+        "com.idrisaktas.chefai://login-callback?reason=ERROR_CODE"
+      );
     }
 
-    /* ❗ LOCAL vs GOOGLE ÇAKIŞMA KONTROLÜ */
     const localUser = await User.findOne({
       email: payload.email,
       authProvider: "local",
@@ -91,7 +87,6 @@ router.get("/google/callback", async (req, res) => {
       );
     }
 
-    /* 🔎 GOOGLE USER BUL / OLUŞTUR */
     let user = await User.findOne({
       email: payload.email,
       authProvider: "google",
@@ -104,28 +99,27 @@ router.get("/google/callback", async (req, res) => {
         authProvider: "google",
         profileCompleted: false,
         isPremium: false,
+        weightUnit: "kg",
+        heightUnit: "cm",
       });
     }
 
-    /* 🔑 JWT */
     const jwtToken = jwt.sign(
-      {
-        id: user._id,
-        isPremium: user.isPremium,
-      },
-      process.env.JWT_SECRET,
+      { id: user._id, isPremium: user.isPremium },
+      JWT_SECRET,
       { expiresIn: "7d" }
     );
-
-    /* 📲 APP’E GERİ DÖN */
-    const appRedirect = decodeURIComponent(state);
-
+    console.log("JWT Token Oluşturuldu:", jwtToken);
     return res.redirect(
-      `${appRedirect}?token=${jwtToken}`
+      `com.idrisaktas.chefai://login-callback?token=${encodeURIComponent(
+        jwtToken
+      )}`
     );
   } catch (err) {
-    console.error("GOOGLE CALLBACK ERROR:", err);
-    return res.redirect("com.idrisaktas.chefai://login-callback?reason=ERROR_CODE");
+    console.error(err);
+    return res.redirect(
+      "com.idrisaktas.chefai://login-callback?reason=ERROR_CODE"
+    );
   }
 });
 
