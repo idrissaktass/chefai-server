@@ -50,6 +50,7 @@ TEKNİK DETAYLAR:
 - Hazırlanış adımları (steps) kısa, net ve numaralandırılmış olmalıdır.
 - totalCalories ve makrolar (protein, fat, carbs) malzemelerle tutarlı olmalıdır.
 - ingredients listesinde miktar ve kalori zorunludur.
+‼ SADECE JSON DÖNDÜR ‼
 
 FORMAT:
 {
@@ -92,6 +93,8 @@ NAMING:
 TECHNICAL:
 - Steps must be simple, one action per step.
 - Macros and totalCalories must be realistic based on ingredients.
+
+‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
 
 FORMAT:
 {
@@ -322,7 +325,12 @@ FORMAT (ZORUNLU):
 ${base}
 
 Task:
-- Create 2 modern, creative, chef-level recipes.
+CREATIVITY REQUIREMENTS (VERY IMPORTANT):
+- Recipes MUST be truly creative and original, not standard or common dishes.
+- Avoid typical home-style or restaurant menu recipes.
+- Each recipe should include at least one unexpected flavor combination, technique, or presentation idea.
+- Think like a modern chef creating a signature dish.
+- The result should feel unique, experimental, and inspiring.
 - All recipes MUST serve 1 people.
 - Two names are MANDATORY:
    • recipeName_en → English name
