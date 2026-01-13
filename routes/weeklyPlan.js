@@ -8,7 +8,7 @@ import fs from "fs";
 import path from "path";
 import axios from "axios";
 
-const mealsPath = path.join(process.cwd(), "utils", "normal.json");
+const mealsPath = path.join(process.cwd(), "utils", "yeni.json");
 
 const mealsData = JSON.parse(fs.readFileSync(mealsPath, "utf-8"));
 
@@ -125,7 +125,7 @@ function calculateCalories(
   if (goal === "lose") tdee -= 500;
   if (goal === "gain") tdee += 300;
   if (goal === "maintain") tdee += 1;
-  if (goal === "muscle-gain") tdee += 400;
+  if (goal === "muscle_gain") tdee += 400;
 
   return Math.round(tdee);
 }
@@ -165,8 +165,8 @@ router.post("/weekly-plan", authMiddleware, async (req, res) => {
     const matchesDiet = (meal) => {
       if (!meal.diet.includes(dietMode)) return false;
 
-      if (goal === "muscle-gain") {
-        return meal.diet.includes("muscle-gain") || meal.diet.includes("high-protein"); 
+      if (goal === "muscle_gain") {
+        return meal.diet.includes("muscle_gain") || meal.diet.includes("high-protein"); 
       }
       return true;
     };
