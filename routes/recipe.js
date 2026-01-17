@@ -24,10 +24,6 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-function isSameDay(d1, d2) {
-  return d1 === d2;
-}
-
 const recipePromptTR = (base) => `
 ${base}
 
@@ -35,32 +31,37 @@ GÖREV:
 - 2 adet modern ve iştah açıcı tarif oluştur.
 - Her tarif 1 kişiliktir.
 
-GÖRSEL ARAMA KRİTERİ (KRİTİK):
-- "recipeName_en" alanı Pexels API'de fotoğraf bulmak için kullanılacak.
-- Bu isim mutlaka basit, yaygın ve görsel karşılığı olan bir yemek adı olmalıdır.
-- Örn: "Avokadolu ve Çilekli Somon Salatası" yerine sadece "Salmon Salad" kullan.
-- Örn: "Anne usulü bol sebzeli şehriye çorbası" yerine "Vegetable Soup" kullan.
-- ASLA "Special", "Healthy", "Surprise", "Style" gibi soyut kelimeler ekleme.
+İSİMLENDİRME:
+- recipeName_tr → Kullanıcıya gösterilecek doğal isim
+- recipeName_en → Global yemek ismi
+- basicName → En basit, en genel, herkesin bildiği isim (görsel arama için)
 
-İSİMLENDİRME KURALLARI:
-- recipeName_tr: Kullanıcının göreceği doğal isim (Örn: "Izgara Sebzeli Tavuk")
-- recipeName_en: Pexels'te aranacak global isim (Örn: "Grilled Chicken")
+Örnek:
+ recipeName_tr: "Ballı Soslu Izgara Tavuk"
+ recipeName_en: "Honey Glazed Grilled Chicken"
+ basicName: "Grilled Chicken"
 
-TEKNİK DETAYLAR:
-- Hazırlanış adımları (steps) kısa, net ve numaralandırılmış olmalıdır.
-- totalCalories ve makrolar (protein, fat, carbs) malzemelerle tutarlı olmalıdır.
-- ingredients listesinde miktar ve kalori zorunludur.
+KURALLAR:
+- basicName 1–3 kelime olmalı.
+- Süsleme, hayali isim, nadir yemek basicName olamaz.
+
+TEKNİK:
+- steps kısa, net, numaralı.
+- ingredients: miktar + kalori zorunlu.
+- Makrolar ve totalCalories GERÇEKÇİ olmalı.
+
 ‼ SADECE JSON DÖNDÜR ‼
 
 FORMAT:
 {
  "recipes":[
    {
-     "recipeName_en": "Simple Iconic Name",
-     "recipeName_tr": "Doğal Türkçe İsim",
+     "basicName": "",
+     "recipeName_en": "",
+     "recipeName_tr": "",
      "prepTime": 20,
      "servings": 1,
-     "ingredients": [{ "name": "Tavuk", "amount": "150g", "calories": 250 }],
+     "ingredients": [{ "name": "", "amount": "", "calories": 0 }],
      "steps": ["Adım 1...", "Adım 2..."],
      "totalCalories": 0,
      "totalProtein": 0,
@@ -78,17 +79,19 @@ ${base}
 TASK:
 - Create 2 modern and delicious recipes for 1 person.
 
-IMAGE SEARCH OPTIMIZATION (CRITICAL):
-- The "recipeName_en" field will be used directly to fetch stock photos from Pexels.
-- It MUST be a simple, iconic, and high-level dish name.
-- DO NOT use complex adjectives.
-- CORRECT: "Grilled Salmon", "Caesar Salad", "Beef Steak", "Lentil Soup".
-- WRONG: "Chef's Special Protein-Rich Grilled Salmon with Herbs".
-- Use names that a photographer would use to tag their photo.
-
 NAMING:
-- recipeName_en: The simple search term for Pexels.
-- recipeName_tr: The natural Turkish translation for the user.
+- recipeName_en → The simple global name.
+- recipeName_tr → Turkish translation
+- basicName → MOST BASIC globally known name for stock photo search
+
+- Example:
+   recipeName_en: "Honey Glazed Grilled Chicken"
+   basicName: "Grilled Chicken"
+
+Rules for basicName:
+- 1–3 simple words
+- globally known
+- perfect for stock photo search
 
 TECHNICAL:
 - Steps must be simple, one action per step.
@@ -100,6 +103,7 @@ FORMAT:
 {
  "recipes":[
    {
+    "basicName": "Grilled Chicken",
      "recipeName_en": "Simple Iconic Name",
      "recipeName_tr": "Natural Turkish Name",
      "prepTime": 20,
@@ -109,7 +113,7 @@ FORMAT:
      "totalCalories": 0,
      "totalProtein": 0,
      "totalFat": 0,
-     "totalCarbs": 0,
+     "totalCarbs": 0
      "ingredientsCalories": {}
    }
  ]
@@ -163,25 +167,52 @@ router.post("/recipe", authMiddleware, async (req, res) => {
     ? "Create the recipe freely without specific ingredients."
     : "Belirli bir malzeme olmadan serbest tarif oluştur.";
 
-  const mealTypeTextEN = {
-      breakfast: "This is a BREAKFAST recipe. Suitable for morning.",
+const mealTypeTextEN = {
+  breakfast: "This is a BREAKFAST recipe. Suitable for morning.",
   lunch: "This is a LUNCH recipe. Balanced and filling.",
   dinner: "This is a DINNER recipe. Suitable for evening meal.",
-    dessert: "This is a DESSERT recipe. It must be SWEET.",
-    snack: "This is a SNACK recipe. Light and quick.",
-    soup: "This is a SOUP recipe.",
-    shake: "This is a SHAKE recipe. Drinkable and blended.",
-  };
+  dessert: "This is a DESSERT recipe. It must be SWEET.",
+  snack: "This is a SNACK recipe. Light and quick.",
+  soup: "This is a SOUP recipe.",
+  shake: "This is a SHAKE recipe. Drinkable and blended.",
 
-  const mealTypeTextTR = {
-      breakfast: "Bu bir KAHVALTI tarifidir. Sabah için uygundur.",
+  // 🔥 NEW
+  sandwich: "This is a SANDWICH recipe. Must be handheld and layered.",
+  pizza: "This is a PIZZA recipe. Must include dough/base, sauce and toppings.",
+  burger: "This is a BURGER recipe. Must include bun, patty and sauce.",
+  wrap: "This is a WRAP recipe. Rolled and easy to eat.",
+  fastfood: "This is a FAST FOOD style recipe. Quick, indulgent and street-style.",
+  salad: "This is a SALAD recipe. Fresh, light and mostly cold.",
+  pasta: "This is a PASTA recipe. Italian-style noodle based dish.",
+  chicken: "This is a CHICKEN-based main dish.",
+  seafood: "This is a SEAFOOD recipe. Based on fish or seafood.",
+  streetfood: "This is a STREET FOOD recipe. Practical, handheld, bold flavors.",
+  bakery: "This is a BAKERY style recipe. Dough-based, oven baked."
+};
+
+const mealTypeTextTR = {
+  breakfast: "Bu bir KAHVALTI tarifidir. Sabah için uygundur.",
   lunch: "Bu bir ÖĞLE YEMEĞİ tarifidir. Dengeli ve doyurucu olmalıdır.",
   dinner: "Bu bir AKŞAM YEMEĞİ tarifidir.",
-    dessert: "Bu bir TATLI tarifidir. Tatlı olmalıdır.",
-    snack: "Bu bir ATIŞTIRMALIK tarifidir.",
-    soup: "Bu bir ÇORBA tarifidir.",
-    shake: "This is a SHAKE recipe. İçilebilir ve blender ile hazırlanır.",
-  };
+  dessert: "Bu bir TATLI tarifidir. Tatlı olmalıdır.",
+  snack: "Bu bir ATIŞTIRMALIK tarifidir.",
+  soup: "Bu bir ÇORBA tarifidir.",
+  shake: "Bu bir SHAKE tarifidir. İçilebilir ve blender ile hazırlanır.",
+
+  // 🔥 NEW
+  sandwich: "Bu bir SANDVİÇ tarifidir. Elde yenebilir ve katmanlı olmalıdır.",
+  pizza: "Bu bir PİZZA tarifidir. Hamur, sos ve üst malzemeler içermelidir.",
+  burger: "Bu bir BURGER tarifidir. Ekmek, köfte ve sos içermelidir.",
+  wrap: "Bu bir DÜRÜM/WRAP tarifidir. Sarılarak hazırlanmalıdır.",
+  fastfood: "Bu bir FAST FOOD tarzı tariftir. Pratik, sokak lezzeti stilinde olmalıdır.",
+  salad: "Bu bir SALATA tarifidir. Hafif, ferah ve çoğunlukla soğuk olmalıdır.",
+  pasta: "Bu bir MAKARNA tarifidir. İtalyan tarzı olmalıdır.",
+  chicken: "Bu bir TAVUK bazlı ana yemektir.",
+  seafood: "Bu bir DENİZ ÜRÜNLERİ tarifidir.",
+  streetfood: "Bu bir SOKAK LEZZETİ tarifidir. Pratik ve elde yenebilir olmalıdır.",
+  bakery: "Bu bir FIRIN / HAMUR İŞİ tarifidir. Fırında pişirilmelidir."
+};
+
 
   const cuisineText =
     cuisine && language === "en"
@@ -220,9 +251,10 @@ ${cuisineText}
 ${dietTextEN}
 ${calorieTextEN}
 IMPORTANT:
-- Create 2 recipes.
-- This recipe MUST serve EXACTLY 1 person.
-- servings field MUST be 1.
+- 2 recipes
+- MUST serve 1 person
+- servings must be 1
+- basicName must be perfect for stock food photos
 `;
 
   const baseTR = `
@@ -268,6 +300,47 @@ const finalPrompt =
   }
 });
 
+router.post("/recipe-image", async (req, res) => {
+  const { recipeName } = req.body;
+
+  if (!recipeName) {
+    return res.status(400).json({ error: "recipeName missing" });
+  }
+
+  try {
+    const PIXABAY_KEY = "54233466-13c9ed6a59b17c998d642b0aa";
+
+    const response = await axios.get(
+      "https://pixabay.com/api/",
+      {
+        params: {
+          key: PIXABAY_KEY,
+          q: recipeName + " food",
+          image_type: "photo",
+          category: "food",
+          safesearch: true,
+          per_page: 5,
+        },
+      }
+    );
+
+    const hits = response.data?.hits || [];
+
+    if (!hits.length) return res.json({ imageUrl: null });
+
+    // ⭐ en yüksek çözünürlüklü olanı al
+    const best = hits[0];
+
+    return res.json({
+      imageUrl: best.largeImageURL || best.webformatURL
+    });
+
+  } catch (err) {
+    console.log("Pixabay image error:", err);
+    return res.status(500).json({ error: "Image fetch failed" });
+  }
+});
+
 
     const promptTR = (base) => `
 ${base}
@@ -275,7 +348,6 @@ ${base}
 Görev:
 - 2 adet modern, yaratıcı, şef seviyesinde tarif oluştur.
 - Tüm tarifler 1 kişilik olacak.
-- Tarif isimleri doğal, gerçek hayatta kullanılan yemek isimleri olmalı. Pexels api'de ismi aratacağım, ona uygun, yakın yemek resimleri bulabilmeliyim.
 - Her tarifte iki isim ZORUNLU:
    • recipeName_en → İngilizce isim
    • recipeName_tr → Türkçe isim
@@ -374,94 +446,66 @@ FORMAT (MANDATORY):
 }
 `;
 
-// Basit kelime benzerlik ölçümü
-function similarityScore(recipeName, photoText) {
-  if (!photoText) return 0;
-
-  const words = recipeName.toLowerCase().split(" ");
-  const text = photoText.toLowerCase();
-
-  let matchCount = 0;
-
-  words.forEach(w => {
-    if (w.length > 2 && text.includes(w)) matchCount++;
-  });
-
-  return matchCount / words.length; // 0.0 - 1.0 arası skor
-}
-
-router.post("/recipe-image", async (req, res) => {
-  const { recipeName } = req.body;
-
-  if (!recipeName) {
-    return res.status(400).json({ error: "recipeName missing" });
-  }
-
-  try {
-    const PEXELS_KEY = "lxUXbL9YjqoUvBOIjlyU5Zk1AS7aiII4M9YcWeGxjPpnLOjPu1QYocSx";
-
-    const response = await axios.get(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(
-        recipeName + " food"
-      )}&per_page=1`,
-      {
-        headers: { Authorization: PEXELS_KEY },
-      }
-    );
-
-    const photo = response.data.photos?.[0];
-
-    if (!photo) return res.json({ imageUrl: null });
-
-    // Benzerlik için foto alt text’i ve photographer adı kullanıyoruz
-    const checkText =
-      `${photo.alt} ${photo.photographer}`.trim();
-
-    const score = similarityScore(recipeName, checkText);
-
-    console.log("EŞLEŞME:", recipeName, "-> skor:", score);
-
-    // ⭐ Eğer benzerlik düşükse resmi gösterme
-    if (score < 0.1) {
-      console.log("⚠️ Düşük eşleşme → resim reddedildi");
-      return res.json({ imageUrl: null });
-    }
-
-    return res.json({ imageUrl: photo.src.large });
-  } catch (err) {
-    console.log("Pexels image error:", err);
-    return res.status(500).json({ error: "Image fetch failed" });
-  }
-});
 // router.post("/recipe-creative"
 router.post("/recipe-creative", authMiddleware, async (req, res) => {
   const { language = "en" } = req.body; // 👈 EKLE
-  const {
-    ingredients,
-    cuisine,
-    diet,
-    isDessert = false,
-  } = req.body;
+const { ingredients, cuisine, diet, mealType } = req.body;
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-  const recipeTypeEN = isDessert
-    ? "Create SWEET dessert recipes."
-    : "Create SAVORY main meal recipes.";
+const creativeTypeEN = mealType
+  ? `This creative recipe MUST strictly follow this style: ${mealType}.`
+  : "";
 
-  const recipeTypeTR = isDessert
-    ? "Tatlı ve şekerli tarifler oluştur."
-    : "Tuzlu ana yemek tarifleri oluştur.";
+const creativeTypeTR = mealType
+  ? `Bu yaratıcı tarif ZORUNLU olarak şu türe uymalıdır: ${mealType}.`
+  : "";
 
-  const baseEN = `
-Ingredients: ${ingredients}
-${recipeTypeEN}
+const cuisineTextEN = cuisine
+  ? `Recipes MUST follow ${cuisine} cuisine.`
+  : "";
+
+const cuisineTextTR = cuisine
+  ? `Tarifler ZORUNLU olarak ${cuisine} mutfağına uygun olmalıdır.`
+  : "";
+
+let dietTextEN = "";
+let dietTextTR = "";
+
+if (diet && diet !== "None") {
+  if (diet === "HighProtein") {
+    dietTextEN = "Recipes MUST be high-protein and macros optimized accordingly.";
+    dietTextTR = "Tarifler ZORUNLU olarak yüksek proteinli olmalıdır.";
+  } else {
+    dietTextEN = `Recipes MUST strictly follow the ${diet} diet.`;
+    dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalıdır.`;
+  }
+}
+const baseEN = `
+Ingredients: ${ingredients || "Free creative ingredients."}
+${creativeTypeEN}
+${cuisineTextEN}
+${dietTextEN}
+
+IMPORTANT:
+- Create 2 creative chef-level recipes.
+- All recipes MUST serve EXACTLY 1 person.
+- servings field MUST always be 1.
+Each creative recipe must feel "Instagrammable" and visually striking.
 `;
 
-  const baseTR = `
-Malzemeler: ${ingredients}
-${recipeTypeTR}
+const baseTR = `
+Malzemeler: ${ingredients || "Serbest yaratıcı tarif oluştur."}
+${creativeTypeTR}
+${cuisineTextTR}
+${dietTextTR}
+
+ÖNEMLİ:
+- 2 adet yaratıcı, şef seviyesinde tarif oluştur.
+- Tüm tarifler ZORUNLU olarak 1 kişilik olmalıdır.
+- servings alanı her zaman 1 olmalı.
 `;
+
 
   const finalPrompt =
     language === "en"
