@@ -94,7 +94,12 @@ Rules for basicName:
 - perfect for stock photo search
 
 TECHNICAL:
-- Steps must be simple, one action per step.
+- Write step-by-step instructions in SIMPLE and DETAILED language:
+   • Each step should describe a single clear action.
+   • Use short, plain sentences.
+   • Avoid cooking jargon; if you must use it, explain it in brackets (e.g. "sauté (cook over medium heat while stirring)").
+   • Even someone who has never cooked before must be able to follow and succeed.
+   • Use simple English.
 - Macros and totalCalories must be realistic based on ingredients.
 
 ‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
@@ -426,6 +431,7 @@ CREATIVITY REQUIREMENTS (VERY IMPORTANT):
    • Use short, plain sentences.
    • Avoid cooking jargon; if you must use it, explain it in brackets (e.g. "sauté (cook over medium heat while stirring)").
    • Even someone who has never cooked before must be able to follow and succeed.
+   • Use simple English.
 - Add plating suggestions (inside steps is OK).
 - For each ingredient:
    • amount (grams/ml/pieces) is REQUIRED
