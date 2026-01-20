@@ -128,6 +128,7 @@ router.post("/recipe", authMiddleware, async (req, res) => {
 
   const {
     ingredients,
+    dishName,
     cuisine,
     language = "en",
     diet,
@@ -159,13 +160,22 @@ router.post("/recipe", authMiddleware, async (req, res) => {
      PROMPT BUILDING
   =============================== */
 
-  const ingredientsText = ingredients
-    ? language === "en"
-      ? `Ingredients: ${ingredients}`
-      : `Malzemeler: ${ingredients}`
-    : language === "en"
-    ? "Create the recipe freely without specific ingredients."
-    : "Belirli bir malzeme olmadan serbest tarif oluştur.";
+let baseIdeaText = "";
+
+if (dishName) {
+  baseIdeaText = language === "en"
+    ? `The user wants this specific dish: ${dishName}. Create recipes that clearly match this dish. Adapt according to diet type and cuisine.`
+    : `Kullanıcı özellikle şu yemeği istiyor: ${dishName}. Tarifler bu yemeğe net şekilde uymalıdır.`;
+} else if (ingredients) {
+  baseIdeaText = language === "en"
+    ? `Ingredients: ${ingredients}`
+    : `Malzemeler: ${ingredients}`;
+} else {
+  baseIdeaText = language === "en"
+    ? "Create the recipe freely."
+    : "Serbest tarif oluştur.";
+}
+
 
 const mealTypeTextEN = {
   breakfast: "This is a BREAKFAST recipe. Suitable for morning.",
@@ -245,7 +255,7 @@ const mealTypeTextTR = {
   }
 
   const baseEN = `
-${ingredientsText}
+${baseIdeaText}
 ${mealTypeTextEN[mealType]}
 ${cuisineText}
 ${dietTextEN}
@@ -258,7 +268,7 @@ IMPORTANT:
 `;
 
   const baseTR = `
-${ingredientsText}
+${baseIdeaText}
 ${mealTypeTextTR[mealType]}
 ${cuisineText}
 ${dietTextTR}
@@ -449,7 +459,7 @@ FORMAT (MANDATORY):
 // router.post("/recipe-creative"
 router.post("/recipe-creative", authMiddleware, async (req, res) => {
   const { language = "en" } = req.body; // 👈 EKLE
-const { ingredients, cuisine, diet, mealType } = req.body;
+const { ingredients, cuisine, diet, mealType, dishName } = req.body;
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -481,8 +491,21 @@ if (diet && diet !== "None") {
     dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalıdır.`;
   }
 }
+  let baseIdeaEN = "";
+  let baseIdeaTR = "";
+
+  if (dishName) {
+    baseIdeaEN = `The user specifically wants this dish: "${dishName}". Create creative chef-level versions of this dish. The core identity of the dish must be clearly recognizable.Adapt according to diet type and cuisine.`;
+    baseIdeaTR = `Kullanıcı özellikle şu yemeği istiyor: "${dishName}". Bu yemeğin yaratıcı, şef seviyesinde versiyonlarını oluştur. Yemeğin ana kimliği NET şekilde korunmalı.`;
+  } else if (ingredients) {
+    baseIdeaEN = `Ingredients: ${ingredients}`;
+    baseIdeaTR = `Malzemeler: ${ingredients}`;
+  } else {
+    baseIdeaEN = "Create free creative chef-level recipes.";
+    baseIdeaTR = "Serbest yaratıcı, şef seviyesinde tarifler oluştur.";
+  }
 const baseEN = `
-Ingredients: ${ingredients || "Free creative ingredients."}
+${baseIdeaEN}
 ${creativeTypeEN}
 ${cuisineTextEN}
 ${dietTextEN}
@@ -491,6 +514,7 @@ IMPORTANT:
 - Create 2 creative chef-level recipes.
 - All recipes MUST serve EXACTLY 1 person.
 - servings field MUST always be 1.
+- If a dish name is given, the result MUST clearly match that dish.
 Each creative recipe must feel "Instagrammable" and visually striking.
 `;
 
