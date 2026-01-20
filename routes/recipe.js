@@ -3,6 +3,9 @@ import OpenAI from "openai";
 import { User } from "../models/User.js";
 import jwt from "jsonwebtoken";
 import axios from "axios";
+import fs from "fs";
+import path from "path";
+
 const router = Router();
 
 const JWT_SECRET =
@@ -136,6 +139,7 @@ router.post("/recipe", authMiddleware, async (req, res) => {
     cuisine,
     language = "en",
     diet,
+    quickType,
     mealType = "main",      // main | dessert | snack | soup
     calorieRange,           // { min, max }
   } = req.body;
@@ -178,6 +182,79 @@ if (dishName) {
   baseIdeaText = language === "en"
     ? "Create the recipe freely."
     : "Serbest tarif oluştur.";
+}
+let quickTextEN = "";
+let quickTextTR = "";
+
+if (quickType === "movie_night") {
+  quickTextEN = "Create fun, easy, finger-food style recipes perfect for a movie night. Snack-like, shareable, indulgent.";
+  quickTextTR = "Film gecesi için eğlenceli, elde yenebilen, atıştırmalık tarzı tarifler oluştur.";
+}
+
+if (quickType === "date_night") {
+  quickTextEN = "Create elegant, romantic, visually appealing dinner recipes suitable for a date night.";
+  quickTextTR = "Date night için şık, romantik, sunumu güzel akşam yemeği tarifleri oluştur.";
+}
+
+if (quickType === "gym_meal") {
+  quickTextEN = "Create high-protein, fitness-oriented meals suitable for gym lifestyle.";
+  quickTextTR = "Spor yapanlar için yüksek proteinli tarifler oluştur.";
+}
+if (quickType === "comfort_food") {
+  quickTextEN = "Create comforting, warm, emotionally satisfying comfort food recipes.";
+  quickTextTR = "Rahatlatıcı, doyurucu, insanı iyi hissettiren comfort food tarifleri oluştur.";
+}
+
+if (quickType === "late_night") {
+  quickTextEN = "Create light but satisfying late night snack recipes.";
+  quickTextTR = "Gece için hafif ama tatmin edici atıştırmalık tarifler oluştur.";
+}
+
+if (quickType === "healthy_breakfast") {
+  quickTextEN = "Create healthy, energizing breakfast recipes.";
+  quickTextTR = "Sağlıklı, enerji veren kahvaltı tarifleri oluştur.";
+}
+
+if (quickType === "world_flavors") {
+  quickTextEN = "Create recipes inspired by different world cuisines.";
+  quickTextTR = "Dünya mutfaklarından ilham alan tarifler oluştur.";
+}
+
+if (quickType === "chef_special") {
+  quickTextEN = "Create visually impressive chef-style signature dishes.";
+  quickTextTR = "Şef tarzı, sunumu etkileyici imza yemekler oluştur.";
+}
+
+if (quickType === "meal_prep") {
+  quickTextEN = "Create meal prep friendly recipes suitable for batch cooking.";
+  quickTextTR = "Önceden hazırlanıp saklanabilecek meal-prep tarifleri oluştur.";
+}
+
+if (quickType === "kid_friendly") {
+  quickTextEN = "Create fun, colorful, kid-friendly recipes.";
+  quickTextTR = "Çocuklara uygun, eğlenceli tarifler oluştur.";
+}
+
+if (quickType === "spicy_food") {
+  quickTextEN = "Create bold, spicy, flavor-packed recipes.";
+  quickTextTR = "Acılı, aroması güçlü tarifler oluştur.";
+}
+
+if (quickType === "low_cal") {
+  quickTextEN = "Create low calorie, light but tasty recipes.";
+  quickTextTR = "Düşük kalorili, hafif ama lezzetli tarifler oluştur.";
+}
+if (quickType === "sweet_craving") {
+  quickTextEN = "Create sweet, indulgent dessert-style recipes. Focus on sugar cravings, chocolate, fruits, or baked treats.";
+  quickTextTR = "Tatlı isteğine yönelik, tatlı ve keyif veren tarifler oluştur. Çikolata, meyve veya fırın tatlıları olabilir.";
+}
+if (quickType === "quick_meal") {
+  quickTextEN = "Create very fast recipes that can be prepared in 10 minutes or less. Simple steps, minimal ingredients.";
+  quickTextTR = "10 dakikada hazırlanabilecek, çok pratik ve az malzemeli tarifler oluştur.";
+}
+if (quickType === "surprise") {
+  quickTextEN = "Surprise the user with unexpected, fun, creative, and varied recipes. Do not stick to a single cuisine or style.";
+  quickTextTR = "Kullanıcıyı şaşırtacak, eğlenceli, yaratıcı ve farklı tarzlarda tarifler oluştur. Tek bir mutfağa bağlı kalma.";
 }
 
 
@@ -259,6 +336,7 @@ const mealTypeTextTR = {
   }
 
   const baseEN = `
+${quickTextEN}
 ${baseIdeaText}
 ${mealTypeTextEN[mealType]}
 ${cuisineText}
@@ -304,6 +382,7 @@ const finalPrompt =
       user.dailyRecipeCount += 1;
       await user.save();
     }
+    console.log("xd",data)
 
     return res.json(data);
   } catch (err) {
@@ -313,6 +392,33 @@ const finalPrompt =
     });
   }
 });
+
+router.post("/quick-recipe", authMiddleware, async (req, res) => {
+  try {
+    const { quickType, language = "en" } = req.body;
+
+    const filePath = path.join(process.cwd(), "utils", "quick.json");
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const data = JSON.parse(raw);
+
+    let recipes = data.recipes;
+
+    // type filtresi
+    if (quickType) {
+      recipes = recipes.filter(r => r.type === quickType);
+    }
+
+    // random 2 tane seç
+    recipes = recipes.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+    return res.json({ recipes });
+
+  } catch (err) {
+    console.log("quick json error:", err);
+    return res.status(500).json({ error: "Quick recipe load failed" });
+  }
+});
+
 
 router.post("/recipe-image", async (req, res) => {
   const { recipeName } = req.body;

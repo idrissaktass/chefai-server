@@ -1,0 +1,4573 @@
+{
+  "recipes": [
+    {
+      "basicName": "Cheesy Nacho Cups",
+      "recipeName_en": "Cheesy Nacho Cups",
+      "recipeName_tr": "Peynirli Nacho Kupaları",
+      "type": "movie_night",
+      "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla chips", "amount": "40g", "calories": 200 },
+        { "name": "Cheddar cheese (grated)", "amount": "40g", "calories": 160 },
+        { "name": "Salsa sauce", "amount": "2 tbsp", "calories": 20 },
+        { "name": "Pickled jalapeños (optional)", "amount": "1 tbsp", "calories": 5 }
+      ],
+      "steps": [
+        "Place a small non-stick pan on the stove and turn the heat to LOW. This is important so the cheese does not burn.",
+        "Add the grated cheddar cheese into the pan.",
+        "Stir slowly and continuously with a spoon until the cheese fully melts and becomes smooth and creamy.",
+        "While the cheese is melting, put the tortilla chips into a small bowl, cup, or heat-safe glass.",
+        "Once the cheese is fully melted, carefully pour it over the tortilla chips.",
+        "Add salsa sauce on top of the cheese.",
+        "Sprinkle jalapeños if you like a spicy taste.",
+        "Let it cool for about 1 minute so it’s not too hot, then enjoy with a spoon or fork."
+      ],
+      "totalCalories": 385,
+      "totalProtein": 12,
+      "totalFat": 26,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Tortilla chips": 200,
+        "Cheddar cheese": 160,
+        "Salsa sauce": 20,
+        "Pickled jalapeños": 5
+      }
+    },
+
+    {
+      "basicName": "Mini Popcorn Chicken",
+      "recipeName_en": "Mini Popcorn Chicken Bites",
+      "recipeName_tr": "Mini Patlamış Tavuk Lokmaları",
+      "type": "movie_night",
+      "image": "https://images.unsplash.com/photo-1604908554161-31f5b52c56a9",
+      "prepTime": 20,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
+        { "name": "Flour", "amount": "3 tbsp", "calories": 90 },
+        { "name": "Egg", "amount": "1 small", "calories": 70 },
+        { "name": "Breadcrumbs", "amount": "3 tbsp", "calories": 60 },
+        { "name": "Oil (for shallow frying)", "amount": "1 tbsp", "calories": 120 },
+        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Place the chicken breast on a cutting board and cut it into very small bite-sized cubes.",
+        "Crack the egg into a bowl and beat it with a fork until smooth.",
+        "Put flour on one plate and breadcrumbs on another plate.",
+        "Take one chicken piece and coat it in flour.",
+        "Dip it into the egg, making sure it is fully covered.",
+        "Roll it in breadcrumbs until all sides are coated.",
+        "Heat oil in a pan over medium heat.",
+        "Carefully place chicken pieces into the hot oil.",
+        "Cook for about 3–4 minutes, turning them so all sides become golden brown.",
+        "Remove the chicken and place on paper towel to absorb excess oil.",
+        "Sprinkle with salt and pepper and serve warm."
+      ],
+      "totalCalories": 540,
+      "totalProtein": 34,
+      "totalFat": 24,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Chicken breast": 200,
+        "Flour": 90,
+        "Egg": 70,
+        "Breadcrumbs": 60,
+        "Oil": 120
+      }
+    },
+
+    {
+      "basicName": "Chocolate Banana Pops",
+      "recipeName_en": "Chocolate Banana Pops",
+      "recipeName_tr": "Çikolatalı Muz Lokmaları",
+      "type": "movie_night",
+      "image": "https://images.unsplash.com/photo-1585238342028-4bbc4b9f1f23",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Banana", "amount": "1 medium", "calories": 105 },
+        { "name": "Dark chocolate", "amount": "30g", "calories": 160 },
+        { "name": "Crushed nuts (optional)", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Peel the banana and cut it into thick round slices.",
+        "Place the chocolate into a microwave-safe bowl.",
+        "Heat it for 30 seconds, stir, then heat again until fully melted.",
+        "Dip each banana slice into the melted chocolate using a fork.",
+        "Place them on a plate lined with baking paper.",
+        "Sprinkle crushed nuts on top if desired.",
+        "Put the plate in the fridge for 5 minutes until the chocolate hardens.",
+        "Serve cold as sweet bite-sized snacks."
+      ],
+      "totalCalories": 315,
+      "totalProtein": 4,
+      "totalFat": 18,
+      "totalCarbs": 36,
+      "ingredientsCalories": {
+        "Banana": 105,
+        "Dark chocolate": 160,
+        "Crushed nuts": 50
+      }
+    },
+
+    {
+      "basicName": "Pizza Toast Bites",
+      "recipeName_en": "Mini Pizza Toast Bites",
+      "recipeName_tr": "Mini Pizza Ekmekleri",
+      "type": "movie_night",
+      "image": "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Pizza sauce", "amount": "2 tbsp", "calories": 25 },
+        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
+        { "name": "Sliced sausage or pepperoni", "amount": "30g", "calories": 130 }
+      ],
+      "steps": [
+        "Place the toast bread on a cutting board and cut it into small square pieces.",
+        "Spread a little pizza sauce on each piece using a spoon.",
+        "Sprinkle mozzarella cheese on top of the sauce.",
+        "Add sausage or pepperoni slices over the cheese.",
+        "Place the pieces in a pan, oven tray, or air fryer basket.",
+        "Cook on medium heat until cheese fully melts and edges are crispy (about 5–7 minutes).",
+        "Let cool slightly before eating as finger food."
+      ],
+      "totalCalories": 355,
+      "totalProtein": 16,
+      "totalFat": 20,
+      "totalCarbs": 26,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Pizza sauce": 25,
+        "Mozzarella cheese": 120,
+        "Sausage or pepperoni": 130
+      }
+    },
+
+    {
+      "type": "movie_night",
+      "basicName": "Sausage Roll Ups",
+      "recipeName_en": "Cheesy Sausage Roll Ups",
+      "recipeName_tr": "Peynirli Sosis Ruloları",
+      "image": "https://images.unsplash.com/photo-1625944525533-473f1a3b0c8a",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Sausage", "amount": "2 small", "calories": 180 },
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Cheddar cheese", "amount": "30g", "calories": 120 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Place the toast bread on a cutting board.",
+        "Use a glass to flatten the bread gently.",
+        "Put sausage and cheese near one edge.",
+        "Roll the bread tightly around the filling.",
+        "Heat butter in a pan on medium heat.",
+        "Place the roll into the pan and cook until all sides are golden.",
+        "Remove, slice into bite-sized pieces, and serve warm."
+      ],
+      "totalCalories": 415,
+      "totalProtein": 16,
+      "totalFat": 28,
+      "totalCarbs": 22,
+      "ingredientsCalories": {
+        "Sausage": 180,
+        "Toast bread": 80,
+        "Cheddar cheese": 120,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "movie_night",
+      "basicName": "Garlic Cheese Bread",
+      "recipeName_en": "Pull Apart Garlic Cheese Bread",
+      "recipeName_tr": "Sarımsaklı Peynirli Ekmek",
+      "image": "https://images.unsplash.com/photo-1601050690014-4a0b38c0b9d9",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Mini bread loaf", "amount": "1 small", "calories": 140 },
+        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 }
+      ],
+      "steps": [
+        "Cut deep lines across the bread without cutting fully through.",
+        "Melt butter in a small pan.",
+        "Crush garlic and mix into the butter.",
+        "Brush the garlic butter inside all cuts.",
+        "Insert cheese into the gaps.",
+        "Heat in a pan or air fryer until cheese melts.",
+        "Serve warm by pulling pieces apart."
+      ],
+      "totalCalories": 365,
+      "totalProtein": 12,
+      "totalFat": 24,
+      "totalCarbs": 26,
+      "ingredientsCalories": {
+        "Mini bread loaf": 140,
+        "Mozzarella cheese": 120,
+        "Butter": 100,
+        "Garlic": 5
+      }
+    },
+
+    {
+      "type": "movie_night",
+      "basicName": "Crispy Potato Pops",
+      "recipeName_en": "Crispy Potato Pops",
+      "recipeName_tr": "Çıtır Patates Topları",
+      "image": "https://images.unsplash.com/photo-1639024471283-03518883512d",
+      "prepTime": 18,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Potato", "amount": "1 medium", "calories": 150 },
+        { "name": "Breadcrumbs", "amount": "3 tbsp", "calories": 60 },
+        { "name": "Egg", "amount": "1 small", "calories": 70 },
+        { "name": "Oil", "amount": "1 tbsp", "calories": 120 }
+      ],
+      "steps": [
+        "Peel and boil the potato until very soft.",
+        "Mash it completely until smooth.",
+        "Shape into small balls using your hands.",
+        "Dip each ball into beaten egg.",
+        "Roll in breadcrumbs until coated.",
+        "Heat oil in a pan and fry until golden.",
+        "Remove and place on paper towel.",
+        "Serve hot with ketchup or yogurt sauce."
+      ],
+      "totalCalories": 400,
+      "totalProtein": 9,
+      "totalFat": 18,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Potato": 150,
+        "Breadcrumbs": 60,
+        "Egg": 70,
+        "Oil": 120
+      }
+    },
+
+    {
+      "type": "movie_night",
+      "basicName": "Caramel Popcorn",
+      "recipeName_en": "Quick Caramel Popcorn",
+      "recipeName_tr": "Karamelli Patlamış Mısır",
+      "image": "https://images.unsplash.com/photo-1585238341986-12c8b3c42ff1",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Popcorn", "amount": "25g", "calories": 95 },
+        { "name": "Sugar", "amount": "2 tbsp", "calories": 100 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 }
+      ],
+      "steps": [
+        "Pop the popcorn according to package instructions.",
+        "In another pan, melt butter and sugar together.",
+        "Stir continuously until golden and liquid.",
+        "Pour caramel over popcorn slowly.",
+        "Mix well to coat evenly.",
+        "Let cool slightly before eating."
+      ],
+      "totalCalories": 295,
+      "totalProtein": 3,
+      "totalFat": 12,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Popcorn": 95,
+        "Sugar": 100,
+        "Butter": 100
+      }
+    },
+
+    {
+      "type": "movie_night",
+      "basicName": "Mini Quesadilla",
+      "recipeName_en": "Mini Cheese Quesadilla",
+      "recipeName_tr": "Mini Peynirli Quesadilla",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
+        { "name": "Cheddar cheese", "amount": "40g", "calories": 160 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Heat a pan on medium heat and melt butter.",
+        "Place tortilla flat in the pan.",
+        "Add cheese on one half of tortilla.",
+        "Fold tortilla in half.",
+        "Cook both sides until crispy and cheese melts.",
+        "Cut into triangles and serve warm."
+      ],
+      "totalCalories": 335,
+      "totalProtein": 12,
+      "totalFat": 22,
+      "totalCarbs": 24,
+      "ingredientsCalories": {
+        "Tortilla": 140,
+        "Cheddar cheese": 160,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "movie_night",
+      "basicName": "Apple Nachos",
+      "recipeName_en": "Sweet Apple Nachos",
+      "recipeName_tr": "Tatlı Elma Nachos",
+      "image": "https://images.unsplash.com/photo-1605472560826-85f6e03fdfd8",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Apple", "amount": "1 medium", "calories": 95 },
+        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
+        { "name": "Dark chocolate", "amount": "15g", "calories": 80 },
+        { "name": "Crushed nuts", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Wash the apple and cut into thin slices.",
+        "Arrange apple slices on a plate like nachos.",
+        "Melt dark chocolate in microwave.",
+        "Drizzle chocolate and peanut butter on top.",
+        "Sprinkle crushed nuts.",
+        "Serve immediately and eat by hand."
+      ],
+      "totalCalories": 315,
+      "totalProtein": 6,
+      "totalFat": 18,
+      "totalCarbs": 34,
+      "ingredientsCalories": {
+        "Apple": 95,
+        "Peanut butter": 90,
+        "Dark chocolate": 80,
+        "Crushed nuts": 50
+      }
+    },
+    {
+      "type": "date_night",
+      "basicName": "Strawberry Chocolate Cups",
+      "recipeName_en": "Strawberry Chocolate Cups",
+      "recipeName_tr": "Çikolatalı Çilek Kaseleri",
+      "image": "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Strawberries", "amount": "5 medium", "calories": 25 },
+        { "name": "Dark chocolate", "amount": "40g", "calories": 210 },
+        { "name": "Crushed nuts", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Wash the strawberries thoroughly under clean water.",
+        "Remove the green tops and cut the strawberries into small bite-sized pieces.",
+        "Place the dark chocolate into a microwave-safe bowl.",
+        "Heat in the microwave for 30 seconds, remove and stir. Repeat until fully melted and smooth.",
+        "Put the strawberry pieces into a small serving bowl or glass.",
+        "Slowly pour the melted chocolate over the strawberries.",
+        "Sprinkle crushed nuts evenly on top.",
+        "Let it cool for 1–2 minutes so it thickens slightly, then serve with a small spoon."
+      ],
+      "totalCalories": 285,
+      "totalProtein": 4,
+      "totalFat": 18,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Strawberries": 25,
+        "Dark chocolate": 210,
+        "Crushed nuts": 50
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Mini Caprese Skewers",
+      "recipeName_en": "Mini Caprese Skewers",
+      "recipeName_tr": "Mini Caprese Şişleri",
+      "image": "https://images.unsplash.com/photo-1604908554049-2b5d2a51f9c3",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cherry tomatoes", "amount": "5 pieces", "calories": 15 },
+        { "name": "Mini mozzarella balls", "amount": "50g", "calories": 140 },
+        { "name": "Fresh basil", "amount": "5 leaves", "calories": 2 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Wash the cherry tomatoes and basil leaves gently and dry them with paper towel.",
+        "Prepare small skewers or toothpicks.",
+        "Place one tomato onto the skewer.",
+        "Add one mozzarella ball after the tomato.",
+        "Fold a basil leaf and slide it onto the skewer.",
+        "Repeat until all ingredients are used.",
+        "Arrange skewers on a small plate.",
+        "Drizzle olive oil lightly over the top and serve fresh."
+      ],
+      "totalCalories": 197,
+      "totalProtein": 9,
+      "totalFat": 14,
+      "totalCarbs": 6,
+      "ingredientsCalories": {
+        "Cherry tomatoes": 15,
+        "Mini mozzarella balls": 140,
+        "Fresh basil": 2,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Creamy Garlic Shrimp",
+      "recipeName_en": "Creamy Garlic Shrimp Bites",
+      "recipeName_tr": "Kremalı Sarımsaklı Karides",
+      "image": "https://images.unsplash.com/photo-1600891963935-c4d61c78b60f",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Shrimp", "amount": "120g", "calories": 120 },
+        { "name": "Cream", "amount": "3 tbsp", "calories": 90 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 }
+      ],
+      "steps": [
+        "Peel and clean the shrimp if not already prepared.",
+        "Place a pan on medium heat and melt the butter.",
+        "Finely chop the garlic and add it to the butter.",
+        "Cook garlic for about 30 seconds until fragrant (do not burn).",
+        "Add shrimp to the pan and cook, stirring, until they turn pink.",
+        "Pour cream into the pan and gently stir.",
+        "Let it simmer for about 2 minutes until slightly thick.",
+        "Remove from heat and serve warm with toothpicks or bread."
+      ],
+      "totalCalories": 250,
+      "totalProtein": 22,
+      "totalFat": 17,
+      "totalCarbs": 4,
+      "ingredientsCalories": {
+        "Shrimp": 120,
+        "Cream": 90,
+        "Butter": 35,
+        "Garlic": 5
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Heart Pancakes",
+      "recipeName_en": "Mini Heart Pancakes",
+      "recipeName_tr": "Mini Kalp Pankekler",
+      "image": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Pancake mix", "amount": "4 tbsp", "calories": 140 },
+        { "name": "Milk", "amount": "3 tbsp", "calories": 25 },
+        { "name": "Egg", "amount": "1 small", "calories": 70 },
+        { "name": "Honey", "amount": "1 tbsp", "calories": 60 }
+      ],
+      "steps": [
+        "Add pancake mix, milk, and egg into a bowl.",
+        "Whisk until smooth and lump-free.",
+        "Heat a non-stick pan on low to medium heat.",
+        "Pour small heart shapes using a spoon or squeeze bottle.",
+        "Cook until bubbles appear on top, then flip carefully.",
+        "Cook the other side until golden.",
+        "Transfer to a plate and drizzle honey on top.",
+        "Serve warm."
+      ],
+      "totalCalories": 295,
+      "totalProtein": 9,
+      "totalFat": 7,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Pancake mix": 140,
+        "Milk": 25,
+        "Egg": 70,
+        "Honey": 60
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Cheese Grape Bites",
+      "recipeName_en": "Cheese & Grape Bites",
+      "recipeName_tr": "Peynir Üzümlü Lokmalar",
+      "image": "https://images.unsplash.com/photo-1604908812277-06c1a318e44b",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Grapes", "amount": "10 pieces", "calories": 35 },
+        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 }
+      ],
+      "steps": [
+        "Wash the grapes and dry them well.",
+        "Cut cheese into small cube shapes.",
+        "Take a toothpick and insert one grape.",
+        "Add one cheese cube after the grape.",
+        "Repeat until finished.",
+        "Arrange neatly on a small plate and serve chilled."
+      ],
+      "totalCalories": 235,
+      "totalProtein": 10,
+      "totalFat": 16,
+      "totalCarbs": 10,
+      "ingredientsCalories": {
+        "Grapes": 35,
+        "Cheddar cheese": 200
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Chocolate Fondue",
+      "recipeName_en": "Quick Chocolate Fondue",
+      "recipeName_tr": "Hızlı Çikolata Fondü",
+      "image": "https://images.unsplash.com/photo-1511381939415-e44015466834",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Dark chocolate", "amount": "50g", "calories": 260 },
+        { "name": "Cream", "amount": "2 tbsp", "calories": 60 },
+        { "name": "Banana", "amount": "1 small", "calories": 90 }
+      ],
+      "steps": [
+        "Slice the banana into round pieces and set aside.",
+        "Pour cream into a small pan and heat on low.",
+        "Add dark chocolate pieces to the warm cream.",
+        "Stir constantly until fully melted and smooth.",
+        "Remove from heat and pour into a small bowl.",
+        "Dip banana slices into the chocolate and serve immediately."
+      ],
+      "totalCalories": 410,
+      "totalProtein": 4,
+      "totalFat": 24,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Dark chocolate": 260,
+        "Cream": 60,
+        "Banana": 90
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Mini Bruschetta",
+      "recipeName_en": "Mini Tomato Bruschetta",
+      "recipeName_tr": "Mini Domates Bruschetta",
+      "image": "https://images.unsplash.com/photo-1625944230945-dc8c63a5f56c",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Tomato", "amount": "1 small", "calories": 20 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
+        { "name": "Garlic", "amount": "1/2 clove", "calories": 3 }
+      ],
+      "steps": [
+        "Lightly toast the bread.",
+        "Rub garlic gently over the warm surface.",
+        "Chop the tomato into very small cubes.",
+        "Spoon tomatoes onto the bread.",
+        "Drizzle olive oil over the top.",
+        "Cut into small pieces and serve."
+      ],
+      "totalCalories": 143,
+      "totalProtein": 3,
+      "totalFat": 6,
+      "totalCarbs": 18,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Tomato": 20,
+        "Olive oil": 40,
+        "Garlic": 3
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Mini Chicken Wraps",
+      "recipeName_en": "Mini Creamy Chicken Wraps",
+      "recipeName_tr": "Mini Tavuk Dürümleri",
+      "image": "https://images.unsplash.com/photo-1601050690117-94f5f7c3b034",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "100g", "calories": 165 },
+        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
+        { "name": "Yogurt", "amount": "2 tbsp", "calories": 30 }
+      ],
+      "steps": [
+        "Cut chicken into small pieces.",
+        "Cook in a pan on medium heat until fully done.",
+        "Shred chicken using a fork.",
+        "Mix with yogurt until creamy.",
+        "Spread mixture onto tortilla.",
+        "Roll tightly and cut into small pieces.",
+        "Serve warm."
+      ],
+      "totalCalories": 335,
+      "totalProtein": 28,
+      "totalFat": 8,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Chicken breast": 165,
+        "Tortilla": 140,
+        "Yogurt": 30
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Strawberry Yogurt Cups",
+      "recipeName_en": "Strawberry Yogurt Dessert Cups",
+      "recipeName_tr": "Çilekli Yoğurt Kupaları",
+      "image": "https://images.unsplash.com/photo-1546549032-9571cd6b27df",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "120g", "calories": 90 },
+        { "name": "Strawberries", "amount": "4 pieces", "calories": 20 },
+        { "name": "Honey", "amount": "1 tbsp", "calories": 60 }
+      ],
+      "steps": [
+        "Wash and slice strawberries.",
+        "Add yogurt into a serving glass.",
+        "Place strawberries on top.",
+        "Drizzle honey evenly.",
+        "Serve chilled."
+      ],
+      "totalCalories": 170,
+      "totalProtein": 9,
+      "totalFat": 3,
+      "totalCarbs": 24,
+      "ingredientsCalories": {
+        "Greek yogurt": 90,
+        "Strawberries": 20,
+        "Honey": 60
+      }
+    },
+
+    {
+      "type": "date_night",
+      "basicName": "Nutella Toast Hearts",
+      "recipeName_en": "Nutella Toast Hearts",
+      "recipeName_tr": "Nutellalı Kalp Tostlar",
+      "image": "https://images.unsplash.com/photo-1589308078059-f6f35c6c33c3",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Nutella", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+      ],
+      "steps": [
+        "Use a knife or cookie cutter to cut bread into heart shapes.",
+        "Toast lightly in a pan or toaster.",
+        "Spread Nutella evenly on top.",
+        "Slice banana and place on Nutella.",
+        "Serve warm or cold."
+      ],
+      "totalCalories": 225,
+      "totalProtein": 4,
+      "totalFat": 10,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Nutella": 100,
+        "Banana": 45
+      }
+    },
+    {
+      "type": "gym_meal",
+      "basicName": "Protein Egg Toast",
+      "recipeName_en": "High-Protein Egg Toast",
+      "recipeName_tr": "Yüksek Proteinli Yumurtalı Tost",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Eggs", "amount": "2 large", "calories": 140 },
+        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
+        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Heat a non-stick pan on medium heat and add olive oil.",
+        "Crack both eggs into a bowl and whisk with a fork.",
+        "Pour eggs into the pan and gently stir until fully cooked.",
+        "Toast the bread slice lightly.",
+        "Place cooked eggs on top of toast.",
+        "Season with salt and pepper.",
+        "Serve warm as a high-protein gym meal."
+      ],
+      "totalCalories": 270,
+      "totalProtein": 18,
+      "totalFat": 16,
+      "totalCarbs": 14,
+      "ingredientsCalories": {
+        "Eggs": 140,
+        "Whole wheat bread": 90,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Chicken Rice Bowl",
+      "recipeName_en": "Lean Chicken Rice Bowl",
+      "recipeName_tr": "Diyet Tavuklu Pilav Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908177522-4326c5c8d8b2",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
+        { "name": "Cooked rice", "amount": "100g", "calories": 130 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
+        { "name": "Spices", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Cut chicken breast into small cubes.",
+        "Heat pan and add olive oil.",
+        "Cook chicken on medium heat until fully white inside.",
+        "Add spices and stir.",
+        "Place cooked rice into a bowl.",
+        "Add chicken on top.",
+        "Serve warm as post-workout meal."
+      ],
+      "totalCalories": 370,
+      "totalProtein": 32,
+      "totalFat": 9,
+      "totalCarbs": 36,
+      "ingredientsCalories": {
+        "Chicken breast": 200,
+        "Cooked rice": 130,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Tuna Protein Wrap",
+      "recipeName_en": "High-Protein Tuna Wrap",
+      "recipeName_tr": "Yüksek Proteinli Ton Balıklı Dürüm",
+      "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Canned tuna (water)", "amount": "1 can", "calories": 140 },
+        { "name": "Whole wheat tortilla", "amount": "1 small", "calories": 140 },
+        { "name": "Greek yogurt", "amount": "2 tbsp", "calories": 30 },
+        { "name": "Lettuce", "amount": "a few leaves", "calories": 5 }
+      ],
+      "steps": [
+        "Drain tuna completely.",
+        "Mix tuna with Greek yogurt in a bowl.",
+        "Place lettuce on tortilla.",
+        "Add tuna mixture.",
+        "Roll tightly into wrap.",
+        "Cut in half and serve."
+      ],
+      "totalCalories": 315,
+      "totalProtein": 30,
+      "totalFat": 6,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Tuna": 140,
+        "Whole wheat tortilla": 140,
+        "Greek yogurt": 30,
+        "Lettuce": 5
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Protein Yogurt Bowl",
+      "recipeName_en": "Protein Yogurt Power Bowl",
+      "recipeName_tr": "Proteinli Yoğurt Kasesi",
+      "image": "https://images.unsplash.com/photo-1514996937319-344454492b37",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
+        { "name": "Protein powder", "amount": "1 scoop", "calories": 110 },
+        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+      ],
+      "steps": [
+        "Add Greek yogurt into bowl.",
+        "Add protein powder.",
+        "Mix well until smooth.",
+        "Slice banana and add on top.",
+        "Serve cold."
+      ],
+      "totalCalories": 305,
+      "totalProtein": 32,
+      "totalFat": 4,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Greek yogurt": 150,
+        "Protein powder": 110,
+        "Banana": 45
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Egg White Omelette",
+      "recipeName_en": "Lean Egg White Omelette",
+      "recipeName_tr": "Yumurta Beyazı Omlet",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Egg whites", "amount": "4 whites", "calories": 70 },
+        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Heat pan and add olive oil.",
+        "Pour egg whites into pan.",
+        "Add spinach on top.",
+        "Cook until set.",
+        "Fold omelette and serve."
+      ],
+      "totalCalories": 120,
+      "totalProtein": 18,
+      "totalFat": 5,
+      "totalCarbs": 3,
+      "ingredientsCalories": {
+        "Egg whites": 70,
+        "Spinach": 10,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Protein Oatmeal",
+      "recipeName_en": "Protein Oatmeal Bowl",
+      "recipeName_tr": "Proteinli Yulaf Kasesi",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "40g", "calories": 150 },
+        { "name": "Milk", "amount": "150ml", "calories": 70 },
+        { "name": "Protein powder", "amount": "1 scoop", "calories": 110 }
+      ],
+      "steps": [
+        "Add oats and milk into a pot.",
+        "Cook on low heat and stir.",
+        "When thick, remove from heat.",
+        "Mix in protein powder.",
+        "Serve warm."
+      ],
+      "totalCalories": 330,
+      "totalProtein": 28,
+      "totalFat": 6,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Oats": 150,
+        "Milk": 70,
+        "Protein powder": 110
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Cottage Cheese Bowl",
+      "recipeName_en": "Cottage Cheese Protein Bowl",
+      "recipeName_tr": "Lor Peynirli Protein Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908554243-f3f45b5c1a2b",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cottage cheese", "amount": "200g", "calories": 160 },
+        { "name": "Tomato", "amount": "1 small", "calories": 20 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Add cottage cheese into bowl.",
+        "Chop tomato and add.",
+        "Drizzle olive oil.",
+        "Mix lightly and serve."
+      ],
+      "totalCalories": 220,
+      "totalProtein": 26,
+      "totalFat": 8,
+      "totalCarbs": 6,
+      "ingredientsCalories": {
+        "Cottage cheese": 160,
+        "Tomato": 20,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Protein Smoothie",
+      "recipeName_en": "Banana Protein Smoothie",
+      "recipeName_tr": "Muzlu Protein Smoothie",
+      "image": "https://images.unsplash.com/photo-1553530666-9f4b94d19a08",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Milk", "amount": "200ml", "calories": 90 },
+        { "name": "Protein powder", "amount": "1 scoop", "calories": 110 },
+        { "name": "Banana", "amount": "1 small", "calories": 90 }
+      ],
+      "steps": [
+        "Add all ingredients into blender.",
+        "Blend until smooth.",
+        "Pour into glass and drink cold."
+      ],
+      "totalCalories": 290,
+      "totalProtein": 26,
+      "totalFat": 5,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Milk": 90,
+        "Protein powder": 110,
+        "Banana": 90
+      }
+    },
+
+    {
+      "type": "gym_meal",
+      "basicName": "Turkey Avocado Toast",
+      "recipeName_en": "Turkey & Avocado Protein Toast",
+      "recipeName_tr": "Hindi Füme Avokadolu Tost",
+      "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
+        { "name": "Turkey breast", "amount": "60g", "calories": 90 },
+        { "name": "Avocado", "amount": "1/4 fruit", "calories": 60 }
+      ],
+      "steps": [
+        "Toast the bread.",
+        "Mash avocado with fork.",
+        "Spread avocado on toast.",
+        "Add turkey slices on top.",
+        "Serve immediately."
+      ],
+      "totalCalories": 240,
+      "totalProtein": 22,
+      "totalFat": 8,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Whole wheat bread": 90,
+        "Turkey breast": 90,
+        "Avocado": 60
+      }
+    },
+    {
+      "type": "comfort_food",
+      "basicName": "Creamy Mac and Cheese",
+      "recipeName_en": "Creamy Comfort Mac & Cheese",
+      "recipeName_tr": "Kremamsı Mac & Cheese",
+      "image": "https://images.unsplash.com/photo-1617196037304-5f7e06c7a4bb",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Macaroni pasta", "amount": "70g", "calories": 250 },
+        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 },
+        { "name": "Milk", "amount": "100ml", "calories": 45 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Boil water in a pot and cook the macaroni according to package instructions.",
+        "Drain the pasta and set aside.",
+        "In the same pot, add butter and let it melt on low heat.",
+        "Pour in the milk and slowly heat it (do not boil).",
+        "Add grated cheddar cheese and stir continuously until fully melted and creamy.",
+        "Add the cooked pasta back into the pot.",
+        "Mix gently until all pasta is coated with cheese sauce.",
+        "Serve warm and enjoy a comforting, creamy meal."
+      ],
+      "totalCalories": 530,
+      "totalProtein": 22,
+      "totalFat": 28,
+      "totalCarbs": 48,
+      "ingredientsCalories": {
+        "Macaroni pasta": 250,
+        "Cheddar cheese": 200,
+        "Milk": 45,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Creamy Mashed Potatoes",
+      "recipeName_en": "Creamy Butter Mashed Potatoes",
+      "recipeName_tr": "Kremalı Tereyağlı Patates Püresi",
+      "image": "https://images.unsplash.com/photo-1604908177225-6f1b0f0e68e4",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Potato", "amount": "2 small", "calories": 220 },
+        { "name": "Milk", "amount": "80ml", "calories": 35 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 }
+      ],
+      "steps": [
+        "Peel the potatoes and cut them into small cubes.",
+        "Boil in salted water until very soft.",
+        "Drain completely and place into a bowl.",
+        "Add butter and mash until smooth.",
+        "Slowly add warm milk while mashing.",
+        "Continue until creamy and fluffy.",
+        "Serve hot as a cozy comfort side dish."
+      ],
+      "totalCalories": 355,
+      "totalProtein": 6,
+      "totalFat": 18,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Potato": 220,
+        "Milk": 35,
+        "Butter": 100
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Grilled Cheese Sandwich",
+      "recipeName_en": "Classic Grilled Cheese Sandwich",
+      "recipeName_tr": "Klasik Peynirli Tost",
+      "image": "https://images.unsplash.com/photo-1601050690590-c3f6f4c8f4c6",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "2 slices", "calories": 160 },
+        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Butter one side of each bread slice.",
+        "Place cheese between the unbuttered sides.",
+        "Heat a pan on medium heat.",
+        "Place sandwich butter-side down.",
+        "Cook until golden brown, then flip.",
+        "Cook until cheese is fully melted.",
+        "Serve warm and stretchy."
+      ],
+      "totalCalories": 395,
+      "totalProtein": 14,
+      "totalFat": 22,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Toast bread": 160,
+        "Cheddar cheese": 200,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Chicken Noodle Soup",
+      "recipeName_en": "Warm Chicken Noodle Soup",
+      "recipeName_tr": "Tavuklu Şehriye Çorbası",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 20,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "100g", "calories": 165 },
+        { "name": "Noodles", "amount": "40g", "calories": 150 },
+        { "name": "Carrot", "amount": "1/2", "calories": 15 },
+        { "name": "Water or broth", "amount": "400ml", "calories": 10 }
+      ],
+      "steps": [
+        "Cut chicken into small pieces.",
+        "Add water or broth to a pot and bring to boil.",
+        "Add chicken and cook for 5 minutes.",
+        "Add noodles and chopped carrot.",
+        "Cook until noodles are soft.",
+        "Season lightly with salt.",
+        "Serve hot in a bowl and enjoy the warmth."
+      ],
+      "totalCalories": 340,
+      "totalProtein": 26,
+      "totalFat": 4,
+      "totalCarbs": 38,
+      "ingredientsCalories": {
+        "Chicken breast": 165,
+        "Noodles": 150,
+        "Carrot": 15,
+        "Water or broth": 10
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Rice Pudding",
+      "recipeName_en": "Warm Vanilla Rice Pudding",
+      "recipeName_tr": "Sütlaç",
+      "image": "https://images.unsplash.com/photo-1605478442871-9c9c8bb8cfd6",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Rice", "amount": "40g", "calories": 150 },
+        { "name": "Milk", "amount": "300ml", "calories": 140 },
+        { "name": "Sugar", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Boil rice in water until soft.",
+        "Drain and add milk.",
+        "Cook on low heat, stirring.",
+        "Add sugar and continue stirring.",
+        "Cook until thick and creamy.",
+        "Serve warm or chilled."
+      ],
+      "totalCalories": 340,
+      "totalProtein": 9,
+      "totalFat": 6,
+      "totalCarbs": 56,
+      "ingredientsCalories": {
+        "Rice": 150,
+        "Milk": 140,
+        "Sugar": 50
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Creamy Scrambled Eggs",
+      "recipeName_en": "Soft Creamy Scrambled Eggs",
+      "recipeName_tr": "Yumuşak Kremamsı Yumurta",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Eggs", "amount": "2", "calories": 140 },
+        { "name": "Milk", "amount": "2 tbsp", "calories": 20 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Crack eggs into a bowl and add milk.",
+        "Whisk gently.",
+        "Melt butter in pan on low heat.",
+        "Pour eggs and stir slowly.",
+        "Cook gently until soft and creamy.",
+        "Serve warm on a plate or toast."
+      ],
+      "totalCalories": 195,
+      "totalProtein": 12,
+      "totalFat": 14,
+      "totalCarbs": 3,
+      "ingredientsCalories": {
+        "Eggs": 140,
+        "Milk": 20,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Baked Oatmeal",
+      "recipeName_en": "Warm Comfort Baked Oatmeal",
+      "recipeName_tr": "Fırın Yulaf Lapası",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "40g", "calories": 150 },
+        { "name": "Milk", "amount": "150ml", "calories": 70 },
+        { "name": "Honey", "amount": "1 tbsp", "calories": 60 }
+      ],
+      "steps": [
+        "Add oats and milk to a small oven-safe dish.",
+        "Stir and bake or cook in pan on low heat.",
+        "When soft and thick, remove from heat.",
+        "Drizzle honey on top.",
+        "Serve warm."
+      ],
+      "totalCalories": 280,
+      "totalProtein": 9,
+      "totalFat": 5,
+      "totalCarbs": 44,
+      "ingredientsCalories": {
+        "Oats": 150,
+        "Milk": 70,
+        "Honey": 60
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Creamy Hot Chocolate",
+      "recipeName_en": "Warm Creamy Hot Chocolate",
+      "recipeName_tr": "Sıcak Çikolata",
+      "image": "https://images.unsplash.com/photo-1542990253-0d0f5be9b3ad",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Milk", "amount": "250ml", "calories": 120 },
+        { "name": "Dark chocolate", "amount": "30g", "calories": 160 },
+        { "name": "Sugar (optional)", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Heat milk in a small pot on low heat.",
+        "Add chocolate pieces.",
+        "Stir until fully melted.",
+        "Add sugar if desired.",
+        "Pour into mug and serve warm."
+      ],
+      "totalCalories": 300,
+      "totalProtein": 9,
+      "totalFat": 16,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Milk": 120,
+        "Dark chocolate": 160,
+        "Sugar": 20
+      }
+    },
+
+    {
+      "type": "comfort_food",
+      "basicName": "Creamy Chicken Rice",
+      "recipeName_en": "Creamy Chicken Rice Bowl",
+      "recipeName_tr": "Kremalı Tavuklu Pilav",
+      "image": "https://images.unsplash.com/photo-1604908177522-4326c5c8d8b2",
+      "prepTime": 18,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "100g", "calories": 165 },
+        { "name": "Cooked rice", "amount": "120g", "calories": 160 },
+        { "name": "Cream", "amount": "2 tbsp", "calories": 60 }
+      ],
+      "steps": [
+        "Cook chicken in a pan until soft.",
+        "Shred chicken into small pieces.",
+        "Add cream and stir.",
+        "Add warm rice.",
+        "Mix gently and heat 2 minutes.",
+        "Serve hot and comforting."
+      ],
+      "totalCalories": 385,
+      "totalProtein": 26,
+      "totalFat": 9,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Chicken breast": 165,
+        "Cooked rice": 160,
+        "Cream": 60
+      }
+    },
+    {
+      "type": "late_night",
+      "basicName": "Banana Peanut Toast",
+      "recipeName_en": "Banana Peanut Butter Toast",
+      "recipeName_tr": "Muzlu Fıstık Ezmeli Tost",
+      "image": "https://images.unsplash.com/photo-1589308078059-f6f35c6c33c3",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
+        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
+        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+      ],
+      "steps": [
+        "Toast the bread lightly.",
+        "Spread peanut butter evenly.",
+        "Slice banana and place on top.",
+        "Serve immediately."
+      ],
+      "totalCalories": 225,
+      "totalProtein": 7,
+      "totalFat": 9,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Whole wheat bread": 90,
+        "Peanut butter": 90,
+        "Banana": 45
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Warm Yogurt Bowl",
+      "recipeName_en": "Warm Honey Yogurt Bowl",
+      "recipeName_tr": "Ilık Ballı Yoğurt Kasesi",
+      "image": "https://images.unsplash.com/photo-1546549032-9571cd6b27df",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "150g", "calories": 110 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
+        { "name": "Cinnamon (optional)", "amount": "a pinch", "calories": 0 }
+      ],
+      "steps": [
+        "Place yogurt into a microwave-safe bowl.",
+        "Warm gently for 15–20 seconds (do not boil).",
+        "Add honey and stir.",
+        "Sprinkle cinnamon and enjoy warm."
+      ],
+      "totalCalories": 130,
+      "totalProtein": 9,
+      "totalFat": 3,
+      "totalCarbs": 12,
+      "ingredientsCalories": {
+        "Greek yogurt": 110,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Cheese Crackers",
+      "recipeName_en": "Light Cheese & Crackers",
+      "recipeName_tr": "Peynirli Kraker Atıştırmalığı",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+      "prepTime": 3,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Crackers", "amount": "6 small", "calories": 120 },
+        { "name": "Cheddar cheese", "amount": "30g", "calories": 120 }
+      ],
+      "steps": [
+        "Place crackers on a plate.",
+        "Cut cheese into thin slices.",
+        "Place cheese on crackers.",
+        "Serve and snack slowly."
+      ],
+      "totalCalories": 240,
+      "totalProtein": 9,
+      "totalFat": 14,
+      "totalCarbs": 18,
+      "ingredientsCalories": {
+        "Crackers": 120,
+        "Cheddar cheese": 120
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Egg Night Bowl",
+      "recipeName_en": "Soft Scrambled Egg Bowl",
+      "recipeName_tr": "Gece İçin Yumuşak Yumurta Kasesi",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Egg", "amount": "1 large", "calories": 70 },
+        { "name": "Milk", "amount": "1 tbsp", "calories": 10 },
+        { "name": "Butter", "amount": "1/2 tsp", "calories": 18 }
+      ],
+      "steps": [
+        "Crack egg into a bowl and whisk with milk.",
+        "Melt butter in pan on low heat.",
+        "Pour egg mixture and stir slowly.",
+        "Cook gently until soft and creamy.",
+        "Serve warm in a bowl."
+      ],
+      "totalCalories": 98,
+      "totalProtein": 6,
+      "totalFat": 7,
+      "totalCarbs": 2,
+      "ingredientsCalories": {
+        "Egg": 70,
+        "Milk": 10,
+        "Butter": 18
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Apple Yogurt Dip",
+      "recipeName_en": "Apple Slices with Yogurt Dip",
+      "recipeName_tr": "Yoğurtlu Elma Dilimleri",
+      "image": "https://images.unsplash.com/photo-1605472560826-85f6e03fdfd8",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Apple", "amount": "1 small", "calories": 80 },
+        { "name": "Greek yogurt", "amount": "2 tbsp", "calories": 30 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Wash and slice apple thinly.",
+        "Mix yogurt and honey in a small bowl.",
+        "Dip apple slices into yogurt and enjoy."
+      ],
+      "totalCalories": 130,
+      "totalProtein": 3,
+      "totalFat": 1,
+      "totalCarbs": 22,
+      "ingredientsCalories": {
+        "Apple": 80,
+        "Greek yogurt": 30,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Mini Oat Bowl",
+      "recipeName_en": "Warm Mini Oat Bowl",
+      "recipeName_tr": "Ilık Mini Yulaf Kasesi",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "25g", "calories": 95 },
+        { "name": "Milk", "amount": "100ml", "calories": 45 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Add oats and milk into a small pot or bowl.",
+        "Heat gently and stir until soft.",
+        "Drizzle honey on top.",
+        "Eat warm."
+      ],
+      "totalCalories": 160,
+      "totalProtein": 6,
+      "totalFat": 3,
+      "totalCarbs": 26,
+      "ingredientsCalories": {
+        "Oats": 95,
+        "Milk": 45,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Avocado Crackers",
+      "recipeName_en": "Avocado Crackers",
+      "recipeName_tr": "Avokadolu Kraker",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Crackers", "amount": "6 small", "calories": 120 },
+        { "name": "Avocado", "amount": "2 tbsp mashed", "calories": 60 }
+      ],
+      "steps": [
+        "Mash avocado with a fork.",
+        "Spread avocado on crackers.",
+        "Serve immediately."
+      ],
+      "totalCalories": 180,
+      "totalProtein": 3,
+      "totalFat": 9,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Crackers": 120,
+        "Avocado": 60
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Warm Milk Cocoa",
+      "recipeName_en": "Light Warm Cocoa Milk",
+      "recipeName_tr": "Hafif Sıcak Kakao",
+      "image": "https://images.unsplash.com/photo-1542990253-0d0f5be9b3ad",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Milk", "amount": "200ml", "calories": 90 },
+        { "name": "Cocoa powder", "amount": "1 tsp", "calories": 10 },
+        { "name": "Honey (optional)", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Heat milk gently in a small pot.",
+        "Add cocoa powder and stir.",
+        "Add honey if desired.",
+        "Pour into mug and drink warm."
+      ],
+      "totalCalories": 120,
+      "totalProtein": 7,
+      "totalFat": 4,
+      "totalCarbs": 14,
+      "ingredientsCalories": {
+        "Milk": 90,
+        "Cocoa powder": 10,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "late_night",
+      "basicName": "Cottage Night Bowl",
+      "recipeName_en": "Cottage Cheese Night Bowl",
+      "recipeName_tr": "Gece Lor Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908554243-f3f45b5c1a2b",
+      "prepTime": 3,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cottage cheese", "amount": "120g", "calories": 95 },
+        { "name": "Cucumber", "amount": "4 slices", "calories": 5 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Place cottage cheese into bowl.",
+        "Slice cucumber and add.",
+        "Drizzle olive oil.",
+        "Mix lightly and serve cold."
+      ],
+      "totalCalories": 120,
+      "totalProtein": 14,
+      "totalFat": 4,
+      "totalCarbs": 4,
+      "ingredientsCalories": {
+        "Cottage cheese": 95,
+        "Cucumber": 5,
+        "Olive oil": 20
+      }
+    },
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Avocado Egg Toast",
+      "recipeName_en": "Avocado Egg Power Toast",
+      "recipeName_tr": "Avokadolu Yumurtalı Enerji Tostu",
+      "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
+        { "name": "Egg", "amount": "1 large", "calories": 70 },
+        { "name": "Avocado", "amount": "1/4 fruit", "calories": 60 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Toast the whole wheat bread lightly until golden.",
+        "Heat a small pan and add olive oil.",
+        "Crack the egg into the pan and cook to your preference.",
+        "Mash avocado in a small bowl with a fork.",
+        "Spread avocado on toast.",
+        "Place cooked egg on top.",
+        "Serve warm as an energizing breakfast."
+      ],
+      "totalCalories": 240,
+      "totalProtein": 11,
+      "totalFat": 14,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Whole wheat bread": 90,
+        "Egg": 70,
+        "Avocado": 60,
+        "Olive oil": 20
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Berry Yogurt Bowl",
+      "recipeName_en": "Berry Greek Yogurt Bowl",
+      "recipeName_tr": "Orman Meyveli Yoğurt Kasesi",
+      "image": "https://images.unsplash.com/photo-1514996937319-344454492b37",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
+        { "name": "Mixed berries", "amount": "1/2 cup", "calories": 40 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
+        { "name": "Chia seeds", "amount": "1 tsp", "calories": 25 }
+      ],
+      "steps": [
+        "Add Greek yogurt into a bowl.",
+        "Wash berries and place on top.",
+        "Drizzle honey over yogurt.",
+        "Sprinkle chia seeds.",
+        "Serve cold for a fresh, light breakfast."
+      ],
+      "totalCalories": 235,
+      "totalProtein": 18,
+      "totalFat": 6,
+      "totalCarbs": 22,
+      "ingredientsCalories": {
+        "Greek yogurt": 150,
+        "Mixed berries": 40,
+        "Honey": 20,
+        "Chia seeds": 25
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Banana Oat Pancakes",
+      "recipeName_en": "Healthy Banana Oat Pancakes",
+      "recipeName_tr": "Muzlu Yulaflı Sağlıklı Pankek",
+      "image": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "40g", "calories": 150 },
+        { "name": "Banana", "amount": "1 small", "calories": 90 },
+        { "name": "Egg", "amount": "1 large", "calories": 70 }
+      ],
+      "steps": [
+        "Mash banana in a bowl.",
+        "Add egg and oats.",
+        "Mix well until batter forms.",
+        "Heat non-stick pan.",
+        "Pour small pancakes.",
+        "Cook both sides until golden.",
+        "Serve warm."
+      ],
+      "totalCalories": 310,
+      "totalProtein": 12,
+      "totalFat": 8,
+      "totalCarbs": 40,
+      "ingredientsCalories": {
+        "Oats": 150,
+        "Banana": 90,
+        "Egg": 70
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Green Energy Smoothie",
+      "recipeName_en": "Green Energy Smoothie",
+      "recipeName_tr": "Yeşil Enerji Smoothie",
+      "image": "https://images.unsplash.com/photo-1553530666-9f4b94d19a08",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
+        { "name": "Banana", "amount": "1 small", "calories": 90 },
+        { "name": "Milk or almond milk", "amount": "200ml", "calories": 80 },
+        { "name": "Peanut butter", "amount": "1 tsp", "calories": 30 }
+      ],
+      "steps": [
+        "Add all ingredients into blender.",
+        "Blend until smooth.",
+        "Pour into a glass.",
+        "Drink immediately for a refreshing start."
+      ],
+      "totalCalories": 210,
+      "totalProtein": 8,
+      "totalFat": 6,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Spinach": 10,
+        "Banana": 90,
+        "Milk or almond milk": 80,
+        "Peanut butter": 30
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Egg Veggie Scramble",
+      "recipeName_en": "Veggie Egg Scramble",
+      "recipeName_tr": "Sebzeli Yumurta Karışımı",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Eggs", "amount": "2 large", "calories": 140 },
+        { "name": "Tomato", "amount": "1 small", "calories": 20 },
+        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Chop tomato and spinach.",
+        "Heat pan and add olive oil.",
+        "Add vegetables and cook lightly.",
+        "Crack eggs into pan and stir.",
+        "Cook until softly set.",
+        "Serve warm."
+      ],
+      "totalCalories": 190,
+      "totalProtein": 14,
+      "totalFat": 12,
+      "totalCarbs": 6,
+      "ingredientsCalories": {
+        "Eggs": 140,
+        "Tomato": 20,
+        "Spinach": 10,
+        "Olive oil": 20
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Chia Pudding",
+      "recipeName_en": "Overnight Chia Pudding",
+      "recipeName_tr": "Chia Pudingi",
+      "image": "https://images.unsplash.com/photo-1553530666-9f4b94d19a08",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chia seeds", "amount": "2 tbsp", "calories": 120 },
+        { "name": "Milk or almond milk", "amount": "200ml", "calories": 80 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Add chia seeds and milk into jar.",
+        "Stir well.",
+        "Let sit in fridge overnight or at least 2 hours.",
+        "Top with honey before eating."
+      ],
+      "totalCalories": 220,
+      "totalProtein": 8,
+      "totalFat": 10,
+      "totalCarbs": 18,
+      "ingredientsCalories": {
+        "Chia seeds": 120,
+        "Milk or almond milk": 80,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Apple Peanut Oats",
+      "recipeName_en": "Apple Peanut Butter Oatmeal",
+      "recipeName_tr": "Elmalı Fıstık Ezmeli Yulaf",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "40g", "calories": 150 },
+        { "name": "Milk", "amount": "150ml", "calories": 70 },
+        { "name": "Apple", "amount": "1/2 small", "calories": 40 },
+        { "name": "Peanut butter", "amount": "1 tsp", "calories": 30 }
+      ],
+      "steps": [
+        "Add oats and milk to pot.",
+        "Cook on low heat and stir.",
+        "Chop apple and add.",
+        "Cook until soft.",
+        "Top with peanut butter and serve warm."
+      ],
+      "totalCalories": 290,
+      "totalProtein": 9,
+      "totalFat": 7,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Oats": 150,
+        "Milk": 70,
+        "Apple": 40,
+        "Peanut butter": 30
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Cottage Breakfast Bowl",
+      "recipeName_en": "Cottage Cheese Breakfast Bowl",
+      "recipeName_tr": "Lor Peynirli Kahvaltı Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908554243-f3f45b5c1a2b",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cottage cheese", "amount": "150g", "calories": 120 },
+        { "name": "Cucumber", "amount": "5 slices", "calories": 5 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Add cottage cheese into bowl.",
+        "Slice cucumber and add.",
+        "Drizzle olive oil.",
+        "Mix lightly and serve."
+      ],
+      "totalCalories": 145,
+      "totalProtein": 17,
+      "totalFat": 6,
+      "totalCarbs": 4,
+      "ingredientsCalories": {
+        "Cottage cheese": 120,
+        "Cucumber": 5,
+        "Olive oil": 20
+      }
+    },
+
+    {
+      "type": "healthy_breakfast",
+      "basicName": "Egg Muffin Cups",
+      "recipeName_en": "Veggie Egg Muffin Cups",
+      "recipeName_tr": "Sebzeli Yumurta Muffinleri",
+      "image": "https://images.unsplash.com/photo-1604908177522-4326c5c8d8b2",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Eggs", "amount": "2 large", "calories": 140 },
+        { "name": "Bell pepper", "amount": "2 tbsp chopped", "calories": 10 },
+        { "name": "Cheese", "amount": "20g", "calories": 80 }
+      ],
+      "steps": [
+        "Whisk eggs in a bowl.",
+        "Add chopped vegetables and cheese.",
+        "Pour into small oven-safe cups.",
+        "Bake or pan-cook until set.",
+        "Serve warm."
+      ],
+      "totalCalories": 230,
+      "totalProtein": 14,
+      "totalFat": 16,
+      "totalCarbs": 4,
+      "ingredientsCalories": {
+        "Eggs": 140,
+        "Bell pepper": 10,
+        "Cheese": 80
+      }
+    },
+    {
+      "type": "world_flavors",
+      "basicName": "Italian Bruschetta",
+      "recipeName_en": "Italian Tomato Bruschetta",
+      "recipeName_tr": "İtalyan Usulü Domates Bruschetta",
+      "image": "https://images.unsplash.com/photo-1625944230945-dc8c63a5f56c",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
+        { "name": "Garlic", "amount": "1/2 clove", "calories": 3 },
+        { "name": "Basil (optional)", "amount": "a few leaves", "calories": 2 }
+      ],
+      "steps": [
+        "Toast the bread slice lightly until golden and crispy.",
+        "Wash the tomato and cut it into very small cubes.",
+        "Place chopped tomato into a small bowl.",
+        "Finely chop basil leaves and add to tomato.",
+        "Drizzle olive oil and gently mix.",
+        "Rub the warm toast lightly with garlic.",
+        "Spoon tomato mixture on top of toast.",
+        "Cut into bite-size pieces and serve immediately."
+      ],
+      "totalCalories": 150,
+      "totalProtein": 4,
+      "totalFat": 6,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Tomato": 25,
+        "Olive oil": 40,
+        "Garlic": 3,
+        "Basil": 2
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Japanese Egg Rice",
+      "recipeName_en": "Japanese Egg Rice Bowl",
+      "recipeName_tr": "Japon Usulü Yumurtalı Pilav",
+      "image": "https://images.unsplash.com/photo-1604908177522-4326c5c8d8b2",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
+        { "name": "Egg", "amount": "1 large", "calories": 70 },
+        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 }
+      ],
+      "steps": [
+        "Place hot cooked rice into a bowl.",
+        "Crack egg into a separate bowl and lightly beat.",
+        "Slowly pour egg over hot rice.",
+        "Stir quickly so heat gently cooks the egg.",
+        "Add soy sauce and mix well.",
+        "Serve warm as a comforting Japanese-style bowl."
+      ],
+      "totalCalories": 270,
+      "totalProtein": 10,
+      "totalFat": 6,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Cooked rice": 195,
+        "Egg": 70,
+        "Soy sauce": 5
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Mexican Quesadilla",
+      "recipeName_en": "Mexican Cheese Quesadilla",
+      "recipeName_tr": "Meksika Usulü Quesadilla",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla", "amount": "1 medium", "calories": 150 },
+        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 },
+        { "name": "Butter or oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Heat a pan on medium heat and lightly grease it.",
+        "Place tortilla flat into the pan.",
+        "Sprinkle cheese on one half of tortilla.",
+        "Fold tortilla over the cheese.",
+        "Cook until bottom is golden.",
+        "Flip carefully and cook until cheese melts.",
+        "Remove from pan, cut into triangles, and serve warm."
+      ],
+      "totalCalories": 370,
+      "totalProtein": 14,
+      "totalFat": 20,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Tortilla": 150,
+        "Cheddar cheese": 200,
+        "Butter or oil": 20
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Indian Butter Chickpeas",
+      "recipeName_en": "Indian Butter Chickpeas",
+      "recipeName_tr": "Hint Usulü Kremalı Nohut",
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Boiled chickpeas", "amount": "120g", "calories": 200 },
+        { "name": "Cream", "amount": "2 tbsp", "calories": 60 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
+        { "name": "Curry powder", "amount": "1/2 tsp", "calories": 5 }
+      ],
+      "steps": [
+        "Heat a small pan on low-medium heat.",
+        "Add butter and let it melt.",
+        "Add curry powder and stir for 20 seconds.",
+        "Add chickpeas and stir to coat evenly.",
+        "Pour in cream and gently mix.",
+        "Simmer for 3–4 minutes until warm and creamy.",
+        "Serve hot with bread or rice."
+      ],
+      "totalCalories": 300,
+      "totalProtein": 12,
+      "totalFat": 12,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Boiled chickpeas": 200,
+        "Cream": 60,
+        "Butter": 35,
+        "Curry powder": 5
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Turkish Menemen",
+      "recipeName_en": "Turkish Menemen",
+      "recipeName_tr": "Menemen",
+      "image": "https://images.unsplash.com/photo-1625944525533-473f1a3b0c8a",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Eggs", "amount": "2", "calories": 140 },
+        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
+        { "name": "Green pepper", "amount": "1 small", "calories": 10 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Chop tomato and pepper into small pieces.",
+        "Heat olive oil in a pan.",
+        "Add peppers and cook until soft.",
+        "Add tomatoes and cook until juicy.",
+        "Crack eggs directly into pan.",
+        "Gently mix eggs into vegetables.",
+        "Cook until eggs are softly set.",
+        "Serve hot with bread."
+      ],
+      "totalCalories": 215,
+      "totalProtein": 12,
+      "totalFat": 14,
+      "totalCarbs": 10,
+      "ingredientsCalories": {
+        "Eggs": 140,
+        "Tomato": 25,
+        "Green pepper": 10,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Korean Rice Bowl",
+      "recipeName_en": "Korean Style Rice Bowl",
+      "recipeName_tr": "Kore Usulü Pirinç Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908177225-6f1b0f0e68e4",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
+        { "name": "Egg", "amount": "1", "calories": 70 },
+        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
+        { "name": "Sesame oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Place hot rice into bowl.",
+        "Fry egg sunny-side up in small pan.",
+        "Place egg on top of rice.",
+        "Drizzle soy sauce and sesame oil.",
+        "Mix before eating.",
+        "Serve warm."
+      ],
+      "totalCalories": 290,
+      "totalProtein": 11,
+      "totalFat": 9,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Cooked rice": 195,
+        "Egg": 70,
+        "Soy sauce": 5,
+        "Sesame oil": 20
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Greek Yogurt Dip",
+      "recipeName_en": "Greek Yogurt Garlic Dip",
+      "recipeName_tr": "Yunan Usulü Sarımsaklı Yoğurt",
+      "image": "https://images.unsplash.com/photo-1546549032-9571cd6b27df",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "150g", "calories": 110 },
+        { "name": "Garlic", "amount": "1/2 clove", "calories": 3 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Add yogurt into bowl.",
+        "Grate garlic finely and mix in.",
+        "Drizzle olive oil on top.",
+        "Stir gently.",
+        "Serve as dip or side."
+      ],
+      "totalCalories": 153,
+      "totalProtein": 9,
+      "totalFat": 6,
+      "totalCarbs": 6,
+      "ingredientsCalories": {
+        "Greek yogurt": 110,
+        "Garlic": 3,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Chinese Garlic Noodles",
+      "recipeName_en": "Chinese Style Garlic Noodles",
+      "recipeName_tr": "Çin Usulü Sarımsaklı Noodle",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Noodles", "amount": "60g", "calories": 220 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Soy sauce", "amount": "1 tbsp", "calories": 10 },
+        { "name": "Oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Boil noodles until soft, then drain.",
+        "Heat oil in pan on medium heat.",
+        "Add minced garlic and cook briefly.",
+        "Add noodles and toss.",
+        "Pour soy sauce and stir well.",
+        "Cook 1 more minute and serve hot."
+      ],
+      "totalCalories": 275,
+      "totalProtein": 7,
+      "totalFat": 7,
+      "totalCarbs": 45,
+      "ingredientsCalories": {
+        "Noodles": 220,
+        "Garlic": 5,
+        "Soy sauce": 10,
+        "Oil": 40
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "French Sweet Toast",
+      "recipeName_en": "French Sweet Toast",
+      "recipeName_tr": "Fransız Usulü Tatlı Tost",
+      "image": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Egg", "amount": "1", "calories": 70 },
+        { "name": "Milk", "amount": "2 tbsp", "calories": 20 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Whisk egg and milk in a bowl.",
+        "Dip bread into mixture.",
+        "Heat pan lightly and cook bread both sides.",
+        "Cook until golden.",
+        "Drizzle honey and serve warm."
+      ],
+      "totalCalories": 190,
+      "totalProtein": 8,
+      "totalFat": 7,
+      "totalCarbs": 24,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Egg": 70,
+        "Milk": 20,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "world_flavors",
+      "basicName": "Moroccan Chickpea Bowl",
+      "recipeName_en": "Moroccan Spiced Chickpea Bowl",
+      "recipeName_tr": "Fas Usulü Baharatlı Nohut",
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Boiled chickpeas", "amount": "120g", "calories": 200 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
+        { "name": "Cumin & paprika", "amount": "1/2 tsp", "calories": 5 }
+      ],
+      "steps": [
+        "Heat olive oil in pan.",
+        "Add spices and stir briefly.",
+        "Add chickpeas and toss well.",
+        "Cook until hot and fragrant.",
+        "Serve warm as a world-flavor bowl."
+      ],
+      "totalCalories": 245,
+      "totalProtein": 10,
+      "totalFat": 8,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Boiled chickpeas": 200,
+        "Olive oil": 40,
+        "Cumin & paprika": 5
+      }
+    },
+    {
+      "type": "chef_special",
+      "basicName": "Creamy Garlic Chicken",
+      "recipeName_en": "Creamy Garlic Chicken with Herb Drizzle",
+      "recipeName_tr": "Otlu Soslu Kremalı Sarımsaklı Tavuk",
+      "image": "https://images.unsplash.com/photo-1600891963935-c4d61c78b60f",
+      "prepTime": 25,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "150g", "calories": 250 },
+        { "name": "Cream", "amount": "3 tbsp", "calories": 90 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Pat the chicken breast dry using paper towel. Season both sides lightly with salt and pepper.",
+        "Heat a pan on medium-high heat and add olive oil.",
+        "Place the chicken in the pan and sear for 3–4 minutes on each side until golden brown.",
+        "Remove chicken from the pan and set aside.",
+        "Lower the heat and add butter to the same pan.",
+        "Add finely minced garlic and gently sauté for 20–30 seconds (do not burn).",
+        "Pour in the cream slowly while stirring.",
+        "Let the sauce gently simmer until it thickens slightly.",
+        "Return chicken to the pan and spoon sauce over it.",
+        "Cook for another 4–5 minutes until chicken is fully cooked and sauce coats the meat.",
+        "Plate the chicken, pour sauce artistically over the top, and wipe plate edges clean before serving."
+      ],
+      "totalCalories": 420,
+      "totalProtein": 34,
+      "totalFat": 28,
+      "totalCarbs": 4,
+      "ingredientsCalories": {
+        "Chicken breast": 250,
+        "Cream": 90,
+        "Butter": 35,
+        "Garlic": 5,
+        "Olive oil": 40
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Salmon Glaze",
+      "recipeName_en": "Honey Glazed Salmon with Pan Reduction",
+      "recipeName_tr": "Bal Glazeli Somon",
+      "image": "https://images.unsplash.com/photo-1600891965054-72c92b63b38c",
+      "prepTime": 22,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Salmon fillet", "amount": "150g", "calories": 280 },
+        { "name": "Honey", "amount": "1 tbsp", "calories": 60 },
+        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Pat salmon dry and lightly season with salt.",
+        "Heat a non-stick pan on medium-high and add butter.",
+        "Place salmon skin-side down and cook without moving for 3 minutes.",
+        "Flip gently and cook another 2 minutes.",
+        "In a small bowl mix honey and soy sauce.",
+        "Pour glaze into the pan and spoon over salmon continuously.",
+        "Allow glaze to bubble and slightly thicken.",
+        "Remove salmon carefully.",
+        "Spoon glossy glaze over fish before serving."
+      ],
+      "totalCalories": 380,
+      "totalProtein": 28,
+      "totalFat": 24,
+      "totalCarbs": 8,
+      "ingredientsCalories": {
+        "Salmon fillet": 280,
+        "Honey": 60,
+        "Soy sauce": 5,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Truffle Pasta",
+      "recipeName_en": "Creamy Truffle Parmesan Pasta",
+      "recipeName_tr": "Parmesanlı Trüflü Makarna",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 20,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Pasta", "amount": "70g", "calories": 250 },
+        { "name": "Cream", "amount": "3 tbsp", "calories": 90 },
+        { "name": "Parmesan cheese", "amount": "25g", "calories": 110 },
+        { "name": "Truffle oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Boil pasta in salted water until al dente.",
+        "Reserve 3 tablespoons pasta water before draining.",
+        "In a pan, heat cream on low heat.",
+        "Add pasta water and stir.",
+        "Add drained pasta and toss gently.",
+        "Add parmesan gradually while mixing.",
+        "Drizzle truffle oil at the end.",
+        "Twirl pasta into the center of plate for visual effect."
+      ],
+      "totalCalories": 470,
+      "totalProtein": 16,
+      "totalFat": 22,
+      "totalCarbs": 52,
+      "ingredientsCalories": {
+        "Pasta": 250,
+        "Cream": 90,
+        "Parmesan cheese": 110,
+        "Truffle oil": 20
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Steak Butter",
+      "recipeName_en": "Pan Seared Steak with Herb Butter",
+      "recipeName_tr": "Otlu Tereyağlı Mühürlenmiş Biftek",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 25,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Beef steak", "amount": "180g", "calories": 360 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 }
+      ],
+      "steps": [
+        "Remove steak from fridge 15 minutes before cooking.",
+        "Season generously with salt and pepper.",
+        "Heat heavy pan until very hot.",
+        "Place steak and press gently.",
+        "Sear 2–3 minutes per side.",
+        "Lower heat, add butter and crushed garlic.",
+        "Spoon melted butter continuously over steak.",
+        "Rest steak for 3 minutes before slicing.",
+        "Slice and fan onto plate."
+      ],
+      "totalCalories": 465,
+      "totalProtein": 36,
+      "totalFat": 34,
+      "totalCarbs": 0,
+      "ingredientsCalories": {
+        "Beef steak": 360,
+        "Butter": 100,
+        "Garlic": 5
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Stuffed Chicken",
+      "recipeName_en": "Spinach Stuffed Chicken Breast",
+      "recipeName_tr": "Ispanak Dolgulu Tavuk Göğsü",
+      "image": "https://images.unsplash.com/photo-1600891963935-c4d61c78b60f",
+      "prepTime": 30,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "160g", "calories": 260 },
+        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
+        { "name": "Cream cheese", "amount": "2 tbsp", "calories": 90 }
+      ],
+      "steps": [
+        "Cut a pocket into chicken breast carefully.",
+        "Mix spinach and cream cheese.",
+        "Stuff mixture into chicken.",
+        "Secure opening with toothpicks.",
+        "Sear chicken on all sides.",
+        "Lower heat, cover and cook until inside is done.",
+        "Slice diagonally and plate beautifully."
+      ],
+      "totalCalories": 360,
+      "totalProtein": 34,
+      "totalFat": 22,
+      "totalCarbs": 3,
+      "ingredientsCalories": {
+        "Chicken breast": 260,
+        "Spinach": 10,
+        "Cream cheese": 90
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Chocolate Lava",
+      "recipeName_en": "Molten Chocolate Lava Cake",
+      "recipeName_tr": "Akışkan Çikolatalı Sufle",
+      "image": "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3",
+      "prepTime": 18,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Dark chocolate", "amount": "50g", "calories": 260 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Egg", "amount": "1", "calories": 70 },
+        { "name": "Sugar", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Melt chocolate and butter together slowly.",
+        "Whisk egg and sugar until pale.",
+        "Combine chocolate mixture gently.",
+        "Pour into greased cup.",
+        "Bake until edges set but center soft.",
+        "Turn out carefully and serve immediately."
+      ],
+      "totalCalories": 480,
+      "totalProtein": 8,
+      "totalFat": 32,
+      "totalCarbs": 38,
+      "ingredientsCalories": {
+        "Dark chocolate": 260,
+        "Butter": 100,
+        "Egg": 70,
+        "Sugar": 50
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Shrimp Risotto",
+      "recipeName_en": "Creamy Shrimp Risotto",
+      "recipeName_tr": "Kremalı Karidesli Risotto",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 30,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Arborio rice", "amount": "70g", "calories": 250 },
+        { "name": "Shrimp", "amount": "100g", "calories": 100 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
+        { "name": "Parmesan", "amount": "20g", "calories": 80 }
+      ],
+      "steps": [
+        "Sauté shrimp quickly and remove.",
+        "Toast rice in butter.",
+        "Add warm water gradually, stirring.",
+        "Cook until creamy.",
+        "Return shrimp and parmesan.",
+        "Stir gently.",
+        "Spoon risotto into shallow bowl and tap plate for spread."
+      ],
+      "totalCalories": 465,
+      "totalProtein": 26,
+      "totalFat": 14,
+      "totalCarbs": 52,
+      "ingredientsCalories": {
+        "Arborio rice": 250,
+        "Shrimp": 100,
+        "Butter": 35,
+        "Parmesan": 80
+      }
+    },
+
+    {
+      "type": "chef_special",
+      "basicName": "Vanilla Berry Plate",
+      "recipeName_en": "Vanilla Cream with Fresh Berry Art Plate",
+      "recipeName_tr": "Vanilyalı Krema & Meyve Tabağı",
+      "image": "https://images.unsplash.com/photo-1514996937319-344454492b37",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cream", "amount": "4 tbsp", "calories": 120 },
+        { "name": "Vanilla sugar", "amount": "1 tsp", "calories": 20 },
+        { "name": "Mixed berries", "amount": "1/2 cup", "calories": 40 }
+      ],
+      "steps": [
+        "Whisk cream and vanilla until thick.",
+        "Spread cream artistically on plate.",
+        "Place berries carefully.",
+        "Finish with light dusting sugar.",
+        "Serve chilled."
+      ],
+      "totalCalories": 180,
+      "totalProtein": 3,
+      "totalFat": 14,
+      "totalCarbs": 12,
+      "ingredientsCalories": {
+        "Cream": 120,
+        "Vanilla sugar": 20,
+        "Mixed berries": 40
+      }
+    },
+    {
+      "type": "meal_prep",
+      "basicName": "Chicken Veggie Boxes",
+      "recipeName_en": "Meal Prep Chicken Veggie Boxes",
+      "recipeName_tr": "Haftalık Tavuk Sebze Kutuları",
+      "image": "https://images.unsplash.com/photo-1604908177522-4326c5c8d8b2",
+      "prepTime": 40,
+      "servings": 4,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "600g", "calories": 1000 },
+        { "name": "Broccoli", "amount": "2 cups", "calories": 100 },
+        { "name": "Carrot", "amount": "2 medium", "calories": 50 },
+        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 },
+        { "name": "Spices", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Prepare 4 clean food containers and place them on the counter.",
+        "Wash all vegetables thoroughly and pat them dry.",
+        "Cut chicken breasts into equal-sized cubes so they cook evenly.",
+        "Season chicken with salt, pepper, and any spices you like.",
+        "Heat a large pan, add olive oil, and cook chicken in batches until golden and fully cooked.",
+        "Remove chicken and let it cool slightly.",
+        "In the same pan, add broccoli and carrots with a splash of water.",
+        "Cover and steam-cook vegetables until slightly soft but still bright.",
+        "Divide chicken evenly between 4 containers.",
+        "Add vegetables next to chicken in each box.",
+        "Allow boxes to cool completely before closing lids.",
+        "Store in fridge for up to 4 days. Reheat one box at a time."
+      ],
+      "totalCalories": 1390,
+      "totalProtein": 130,
+      "totalFat": 60,
+      "totalCarbs": 40,
+      "ingredientsCalories": {
+        "Chicken breast": 1000,
+        "Broccoli": 100,
+        "Carrot": 50,
+        "Olive oil": 240
+      }
+    },
+
+    {
+      "type": "meal_prep",
+      "basicName": "Turkey Rice Prep",
+      "recipeName_en": "Ground Turkey Rice Meal Prep",
+      "recipeName_tr": "Hindi Kıymalı Pilav Kutuları",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 35,
+      "servings": 4,
+      "ingredients": [
+        { "name": "Ground turkey", "amount": "600g", "calories": 900 },
+        { "name": "Rice (uncooked)", "amount": "1.5 cups", "calories": 900 },
+        { "name": "Onion", "amount": "1 medium", "calories": 40 },
+        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 }
+      ],
+      "steps": [
+        "Rinse rice thoroughly and cook in a large pot. Set aside.",
+        "Chop onion finely.",
+        "Heat olive oil in a large pan.",
+        "Add onion and cook until soft and fragrant.",
+        "Add ground turkey and break it apart with spoon.",
+        "Cook until fully browned and no pink remains.",
+        "Season with salt, pepper, and paprika.",
+        "Allow turkey mixture to cool slightly.",
+        "Lay out 4 meal prep containers.",
+        "Divide rice equally among containers.",
+        "Top each portion with turkey mixture.",
+        "Let cool completely before sealing and refrigerating."
+      ],
+      "totalCalories": 2080,
+      "totalProtein": 120,
+      "totalFat": 70,
+      "totalCarbs": 260,
+      "ingredientsCalories": {
+        "Ground turkey": 900,
+        "Rice": 900,
+        "Onion": 40,
+        "Olive oil": 240
+      }
+    },
+
+    {
+      "type": "meal_prep",
+      "basicName": "Salmon Sweet Potato",
+      "recipeName_en": "Baked Salmon Sweet Potato Prep",
+      "recipeName_tr": "Somon & Tatlı Patates Kutuları",
+      "image": "https://images.unsplash.com/photo-1600891965054-72c92b63b38c",
+      "prepTime": 40,
+      "servings": 3,
+      "ingredients": [
+        { "name": "Salmon fillet", "amount": "450g", "calories": 840 },
+        { "name": "Sweet potato", "amount": "2 large", "calories": 360 },
+        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 },
+        { "name": "Lemon", "amount": "1", "calories": 10 }
+      ],
+      "steps": [
+        "Preheat oven to 200°C (390°F).",
+        "Wash sweet potatoes and cut into cubes.",
+        "Spread on baking tray and drizzle olive oil.",
+        "Roast sweet potatoes for 20 minutes.",
+        "Place salmon on second tray, drizzle oil and lemon.",
+        "Bake salmon for 12–15 minutes.",
+        "Remove and let both cool.",
+        "Portion sweet potatoes into containers.",
+        "Top with salmon pieces.",
+        "Cool completely and refrigerate."
+      ],
+      "totalCalories": 1450,
+      "totalProtein": 95,
+      "totalFat": 85,
+      "totalCarbs": 110,
+      "ingredientsCalories": {
+        "Salmon fillet": 840,
+        "Sweet potato": 360,
+        "Olive oil": 240,
+        "Lemon": 10
+      }
+    },
+
+    {
+      "type": "meal_prep",
+      "basicName": "Egg Muffin Prep",
+      "recipeName_en": "Vegetable Egg Muffin Meal Prep",
+      "recipeName_tr": "Sebzeli Yumurta Muffinleri",
+      "image": "https://images.unsplash.com/photo-1604908177225-6f1b0f0e68e4",
+      "prepTime": 30,
+      "servings": 5,
+      "ingredients": [
+        { "name": "Eggs", "amount": "10 large", "calories": 700 },
+        { "name": "Bell pepper", "amount": "1 large", "calories": 40 },
+        { "name": "Spinach", "amount": "2 handfuls", "calories": 20 },
+        { "name": "Cheese", "amount": "80g", "calories": 320 }
+      ],
+      "steps": [
+        "Preheat oven to 180°C (350°F).",
+        "Chop all vegetables very finely.",
+        "Whisk eggs in a large bowl.",
+        "Add vegetables and cheese.",
+        "Pour mixture into greased muffin tray.",
+        "Bake for 18–22 minutes until set.",
+        "Let muffins cool fully.",
+        "Store in airtight container in fridge.",
+        "Reheat 1–2 muffins per serving."
+      ],
+      "totalCalories": 1080,
+      "totalProtein": 75,
+      "totalFat": 70,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Eggs": 700,
+        "Bell pepper": 40,
+        "Spinach": 20,
+        "Cheese": 320
+      }
+    },
+
+    {
+      "type": "meal_prep",
+      "basicName": "Overnight Oats",
+      "recipeName_en": "High-Protein Overnight Oats",
+      "recipeName_tr": "Proteinli Geceden Yulaf",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 10,
+      "servings": 4,
+      "ingredients": [
+        { "name": "Oats", "amount": "2 cups", "calories": 760 },
+        { "name": "Milk", "amount": "3 cups", "calories": 420 },
+        { "name": "Greek yogurt", "amount": "1 cup", "calories": 150 },
+        { "name": "Honey", "amount": "2 tbsp", "calories": 120 }
+      ],
+      "steps": [
+        "Prepare 4 jars or containers with lids.",
+        "Add oats evenly to each jar.",
+        "Pour milk equally into each jar.",
+        "Add yogurt and honey.",
+        "Stir very well so oats are fully soaked.",
+        "Seal jars and refrigerate overnight.",
+        "In the morning, shake and enjoy.",
+        "Keeps fresh up to 4 days."
+      ],
+      "totalCalories": 1450,
+      "totalProtein": 52,
+      "totalFat": 36,
+      "totalCarbs": 210,
+      "ingredientsCalories": {
+        "Oats": 760,
+        "Milk": 420,
+        "Greek yogurt": 150,
+        "Honey": 120
+      }
+    },
+
+    {
+      "type": "meal_prep",
+      "basicName": "Lentil Veggie Stew",
+      "recipeName_en": "One-Pot Lentil Veggie Stew",
+      "recipeName_tr": "Sebzeli Mercimek Tenceresi",
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe",
+      "prepTime": 45,
+      "servings": 5,
+      "ingredients": [
+        { "name": "Red lentils", "amount": "2 cups", "calories": 900 },
+        { "name": "Carrot", "amount": "2 large", "calories": 50 },
+        { "name": "Onion", "amount": "1 large", "calories": 40 },
+        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 }
+      ],
+      "steps": [
+        "Rinse lentils until water runs clear.",
+        "Chop carrots and onion finely.",
+        "Heat oil in a large pot.",
+        "Add onion and cook until soft.",
+        "Add carrots and lentils.",
+        "Add 6 cups water and bring to boil.",
+        "Lower heat and simmer 25 minutes.",
+        "Stir occasionally to prevent sticking.",
+        "Cool completely before portioning.",
+        "Store in containers up to 5 days."
+      ],
+      "totalCalories": 1230,
+      "totalProtein": 72,
+      "totalFat": 30,
+      "totalCarbs": 180,
+      "ingredientsCalories": {
+        "Red lentils": 900,
+        "Carrot": 50,
+        "Onion": 40,
+        "Olive oil": 240
+      }
+    },
+
+    {
+      "type": "meal_prep",
+      "basicName": "Pasta Chicken Prep",
+      "recipeName_en": "Creamy Chicken Pasta Meal Prep",
+      "recipeName_tr": "Kremalı Tavuklu Makarna Kutuları",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 40,
+      "servings": 4,
+      "ingredients": [
+        { "name": "Pasta", "amount": "300g", "calories": 1050 },
+        { "name": "Chicken breast", "amount": "500g", "calories": 830 },
+        { "name": "Cream", "amount": "6 tbsp", "calories": 180 },
+        { "name": "Olive oil", "amount": "1 tbsp", "calories": 120 }
+      ],
+      "steps": [
+        "Boil pasta in a large pot until al dente.",
+        "Cut chicken into strips.",
+        "Heat oil and cook chicken fully.",
+        "Lower heat and add cream.",
+        "Drain pasta and mix into sauce.",
+        "Stir gently until coated.",
+        "Allow to cool.",
+        "Divide evenly into 4 containers.",
+        "Seal and refrigerate."
+      ],
+      "totalCalories": 2180,
+      "totalProtein": 145,
+      "totalFat": 75,
+      "totalCarbs": 230,
+      "ingredientsCalories": {
+        "Pasta": 1050,
+        "Chicken breast": 830,
+        "Cream": 180,
+        "Olive oil": 120
+      }
+    },
+    {
+      "type": "kid_friendly",
+      "basicName": "Rainbow Fruit Skewers",
+      "recipeName_en": "Rainbow Fruit Skewers",
+      "recipeName_tr": "Gökkuşağı Meyve Şişleri",
+      "image": "https://images.unsplash.com/photo-1546549032-9571cd6b27df",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Strawberries", "amount": "3 pieces", "calories": 15 },
+        { "name": "Banana", "amount": "1/2", "calories": 45 },
+        { "name": "Kiwi", "amount": "1", "calories": 40 },
+        { "name": "Grapes", "amount": "6", "calories": 20 }
+      ],
+      "steps": [
+        "Wash all fruits very well under running water.",
+        "With adult help, peel banana and kiwi.",
+        "Cut all fruits into small bite-sized pieces.",
+        "Prepare a wooden skewer or straw.",
+        "Let the child slide fruits onto the skewer in colorful order.",
+        "Place on a plate in rainbow style.",
+        "Serve fresh and cold."
+      ],
+      "totalCalories": 120,
+      "totalProtein": 2,
+      "totalFat": 1,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Strawberries": 15,
+        "Banana": 45,
+        "Kiwi": 40,
+        "Grapes": 20
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Banana Pancake Bites",
+      "recipeName_en": "Mini Banana Pancake Bites",
+      "recipeName_tr": "Mini Muzlu Pankek Lokmaları",
+      "image": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Banana", "amount": "1 small", "calories": 90 },
+        { "name": "Egg", "amount": "1", "calories": 70 },
+        { "name": "Oats", "amount": "2 tbsp", "calories": 70 }
+      ],
+      "steps": [
+        "Peel banana and place into a bowl.",
+        "Mash banana very well using a fork.",
+        "Crack egg into bowl and mix.",
+        "Add oats and stir until batter forms.",
+        "Heat non-stick pan on low heat.",
+        "Drop tiny spoonfuls to make mini pancakes.",
+        "Cook slowly and flip carefully.",
+        "Let cool slightly before serving."
+      ],
+      "totalCalories": 230,
+      "totalProtein": 9,
+      "totalFat": 6,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Banana": 90,
+        "Egg": 70,
+        "Oats": 70
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Cheese Stars",
+      "recipeName_en": "Cheesy Star Toasts",
+      "recipeName_tr": "Yıldız Peynirli Tostlar",
+      "image": "https://images.unsplash.com/photo-1601050690590-c3f6f4c8f4c6",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Cheddar cheese", "amount": "30g", "calories": 120 },
+        { "name": "Butter", "amount": "1/2 tsp", "calories": 18 }
+      ],
+      "steps": [
+        "Use a star-shaped cutter to cut bread.",
+        "Place cheese on top of bread shapes.",
+        "Lightly butter the pan.",
+        "Toast bread slowly until cheese melts.",
+        "Remove carefully and place on plate.",
+        "Let cool slightly before giving to child."
+      ],
+      "totalCalories": 218,
+      "totalProtein": 8,
+      "totalFat": 11,
+      "totalCarbs": 18,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Cheddar cheese": 120,
+        "Butter": 18
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Funny Face Sandwich",
+      "recipeName_en": "Funny Face Sandwich",
+      "recipeName_tr": "Komik Surat Sandviç",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Cream cheese", "amount": "2 tbsp", "calories": 60 },
+        { "name": "Cucumber", "amount": "4 slices", "calories": 5 },
+        { "name": "Cherry tomato", "amount": "1", "calories": 5 }
+      ],
+      "steps": [
+        "Place bread on plate.",
+        "Spread cream cheese gently.",
+        "Use cucumber slices as eyes.",
+        "Cut tomato into small shapes for mouth.",
+        "Let the child decorate the face.",
+        "Cut sandwich into small pieces and serve."
+      ],
+      "totalCalories": 150,
+      "totalProtein": 5,
+      "totalFat": 6,
+      "totalCarbs": 18,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Cream cheese": 60,
+        "Cucumber": 5,
+        "Cherry tomato": 5
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Apple Donuts",
+      "recipeName_en": "Apple Donut Rings",
+      "recipeName_tr": "Elma Donutları",
+      "image": "https://images.unsplash.com/photo-1605472560826-85f6e03fdfd8",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Apple", "amount": "1 medium", "calories": 95 },
+        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
+        { "name": "Colorful sprinkles", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Wash apple well.",
+        "With adult help, slice apple into rings.",
+        "Remove core carefully.",
+        "Spread peanut butter on rings.",
+        "Sprinkle colorful toppings.",
+        "Serve immediately."
+      ],
+      "totalCalories": 205,
+      "totalProtein": 4,
+      "totalFat": 8,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Apple": 95,
+        "Peanut butter": 90,
+        "Colorful sprinkles": 20
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Mini Pizza Faces",
+      "recipeName_en": "Mini Pizza Faces",
+      "recipeName_tr": "Mini Pizza Suratlar",
+      "image": "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Pizza sauce", "amount": "2 tbsp", "calories": 25 },
+        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
+        { "name": "Olives", "amount": "2", "calories": 10 }
+      ],
+      "steps": [
+        "Cut bread into small circles.",
+        "Spread pizza sauce.",
+        "Add cheese.",
+        "Decorate face using olives.",
+        "Bake or pan-toast until cheese melts.",
+        "Let cool and serve."
+      ],
+      "totalCalories": 235,
+      "totalProtein": 10,
+      "totalFat": 10,
+      "totalCarbs": 22,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Pizza sauce": 25,
+        "Mozzarella cheese": 120,
+        "Olives": 10
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Colorful Yogurt Cups",
+      "recipeName_en": "Colorful Yogurt Rainbow Cups",
+      "recipeName_tr": "Renkli Yoğurt Kupaları",
+      "image": "https://images.unsplash.com/photo-1514996937319-344454492b37",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "120g", "calories": 90 },
+        { "name": "Strawberries", "amount": "2", "calories": 10 },
+        { "name": "Blueberries", "amount": "1 tbsp", "calories": 10 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Wash all fruits.",
+        "Chop strawberries very small.",
+        "Place yogurt into clear cup.",
+        "Add fruits in colorful layers.",
+        "Drizzle honey on top.",
+        "Serve cold."
+      ],
+      "totalCalories": 130,
+      "totalProtein": 6,
+      "totalFat": 2,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Greek yogurt": 90,
+        "Strawberries": 10,
+        "Blueberries": 10,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "kid_friendly",
+      "basicName": "Mini Banana Boats",
+      "recipeName_en": "Mini Banana Boats",
+      "recipeName_tr": "Mini Muz Tekneleri",
+      "image": "https://images.unsplash.com/photo-1585238342028-4bbc4b9f1f23",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Banana", "amount": "1 medium", "calories": 105 },
+        { "name": "Dark chocolate chips", "amount": "1 tbsp", "calories": 70 },
+        { "name": "Marshmallows", "amount": "4 mini", "calories": 40 }
+      ],
+      "steps": [
+        "Peel banana and place on plate.",
+        "With adult help, cut a long line on top.",
+        "Insert chocolate chips and marshmallows.",
+        "Microwave 15 seconds.",
+        "Let cool and serve with spoon."
+      ],
+      "totalCalories": 215,
+      "totalProtein": 3,
+      "totalFat": 7,
+      "totalCarbs": 34,
+      "ingredientsCalories": {
+        "Banana": 105,
+        "Dark chocolate chips": 70,
+        "Marshmallows": 40
+      }
+    },
+    {
+      "type": "spicy_food",
+      "basicName": "Fire Chicken Bites",
+      "recipeName_en": "Fire Garlic Chicken Bites",
+      "recipeName_tr": "Ateş Sarımsaklı Tavuk Lokmaları",
+      "image": "https://images.unsplash.com/photo-1600891963935-c4d61c78b60f",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "150g", "calories": 250 },
+        { "name": "Hot sauce", "amount": "1 tbsp", "calories": 15 },
+        { "name": "Garlic", "amount": "2 cloves", "calories": 10 },
+        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
+        { "name": "Chili flakes", "amount": "1/2 tsp", "calories": 5 }
+      ],
+      "steps": [
+        "Place chicken on cutting board and cut into small bite-sized cubes.",
+        "Pat the chicken dry with paper towel to help it brown better.",
+        "Heat a pan over medium-high heat until hot.",
+        "Add olive oil and immediately add chicken pieces in a single layer.",
+        "Do not move chicken for the first minute to allow proper searing.",
+        "Stir and cook until all sides are golden and chicken is fully cooked.",
+        "Lower the heat slightly and add minced garlic.",
+        "Stir continuously for about 20 seconds until fragrant.",
+        "Add hot sauce and chili flakes.",
+        "Toss chicken in sauce until fully coated and sticky.",
+        "Turn off heat and let rest 30 seconds before serving."
+      ],
+      "totalCalories": 320,
+      "totalProtein": 34,
+      "totalFat": 12,
+      "totalCarbs": 6,
+      "ingredientsCalories": {
+        "Chicken breast": 250,
+        "Hot sauce": 15,
+        "Garlic": 10,
+        "Olive oil": 40,
+        "Chili flakes": 5
+      }
+    },
+
+    {
+      "type": "spicy_food",
+      "basicName": "Korean Fire Noodles",
+      "recipeName_en": "Korean Spicy Fire Noodles",
+      "recipeName_tr": "Kore Usulü Acılı Noodle",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Noodles", "amount": "70g", "calories": 250 },
+        { "name": "Gochujang", "amount": "1 tbsp", "calories": 35 },
+        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Sesame oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Boil noodles in water until soft, then drain and set aside.",
+        "Heat a pan on medium heat and add sesame oil.",
+        "Add minced garlic and stir until fragrant but not browned.",
+        "Add gochujang and soy sauce, stirring to form a thick paste.",
+        "Add noodles into the pan.",
+        "Toss continuously so noodles absorb the spicy sauce.",
+        "Cook for 1–2 minutes until glossy and well coated.",
+        "Serve hot and spicy."
+      ],
+      "totalCalories": 315,
+      "totalProtein": 8,
+      "totalFat": 7,
+      "totalCarbs": 52,
+      "ingredientsCalories": {
+        "Noodles": 250,
+        "Gochujang": 35,
+        "Soy sauce": 5,
+        "Garlic": 5,
+        "Sesame oil": 20
+      }
+    },
+
+    {
+      "type": "spicy_food",
+      "basicName": "Volcano Shrimp",
+      "recipeName_en": "Chili Garlic Volcano Shrimp",
+      "recipeName_tr": "Volkan Karides",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Shrimp", "amount": "120g", "calories": 120 },
+        { "name": "Chili paste", "amount": "1 tbsp", "calories": 30 },
+        { "name": "Garlic", "amount": "2 cloves", "calories": 10 },
+        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+      ],
+      "steps": [
+        "Peel and clean shrimp, pat completely dry.",
+        "Heat pan on high heat until very hot.",
+        "Add butter and immediately add shrimp.",
+        "Let shrimp sear without moving for 30 seconds.",
+        "Flip shrimp and add garlic.",
+        "Stir quickly until fragrant.",
+        "Add chili paste and toss shrimp rapidly.",
+        "Cook until shrimp turn bright pink and sauce coats them.",
+        "Serve immediately while sizzling."
+      ],
+      "totalCalories": 195,
+      "totalProtein": 22,
+      "totalFat": 8,
+      "totalCarbs": 6,
+      "ingredientsCalories": {
+        "Shrimp": 120,
+        "Chili paste": 30,
+        "Garlic": 10,
+        "Butter": 35
+      }
+    },
+
+    {
+      "type": "spicy_food",
+      "basicName": "Mexican Heat Tacos",
+      "recipeName_en": "Mexican Spicy Chicken Tacos",
+      "recipeName_tr": "Meksika Usulü Acılı Tavuk Taco",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
+        { "name": "Tortilla", "amount": "2 small", "calories": 200 },
+        { "name": "Chili powder", "amount": "1/2 tsp", "calories": 5 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Slice chicken into thin strips.",
+        "Pat dry and season with chili powder and salt.",
+        "Heat oil in pan on high heat.",
+        "Add chicken and cook quickly to sear.",
+        "Add minced garlic and toss.",
+        "Warm tortillas separately.",
+        "Fill tortillas with spicy chicken.",
+        "Serve hot with optional lime."
+      ],
+      "totalCalories": 450,
+      "totalProtein": 28,
+      "totalFat": 12,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Chicken breast": 200,
+        "Tortilla": 200,
+        "Chili powder": 5,
+        "Garlic": 5,
+        "Oil": 40
+      }
+    },
+
+    {
+      "type": "spicy_food",
+      "basicName": "Red Devil Potatoes",
+      "recipeName_en": "Crispy Red Devil Potatoes",
+      "recipeName_tr": "Kızıl Şeytan Patatesleri",
+      "image": "https://images.unsplash.com/photo-1639024471283-03518883512d",
+      "prepTime": 18,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Potato", "amount": "1 large", "calories": 180 },
+        { "name": "Chili flakes", "amount": "1 tsp", "calories": 10 },
+        { "name": "Paprika", "amount": "1/2 tsp", "calories": 5 },
+        { "name": "Olive oil", "amount": "1 tbsp", "calories": 120 }
+      ],
+      "steps": [
+        "Wash potato thoroughly and cut into cubes.",
+        "Dry potato pieces with paper towel.",
+        "Heat oil in pan on medium-high.",
+        "Add potatoes and spread evenly.",
+        "Let cook without stirring for 2 minutes.",
+        "Flip and cook until crispy.",
+        "Sprinkle chili flakes and paprika.",
+        "Toss and cook another minute.",
+        "Serve hot and crunchy."
+      ],
+      "totalCalories": 315,
+      "totalProtein": 4,
+      "totalFat": 14,
+      "totalCarbs": 38,
+      "ingredientsCalories": {
+        "Potato": 180,
+        "Chili flakes": 10,
+        "Paprika": 5,
+        "Olive oil": 120
+      }
+    },
+
+    {
+      "type": "spicy_food",
+      "basicName": "Thai Fire Rice",
+      "recipeName_en": "Thai Basil Chili Rice",
+      "recipeName_tr": "Tay Usulü Acılı Fesleğenli Pilav",
+      "image": "https://images.unsplash.com/photo-1604908177225-6f1b0f0e68e4",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
+        { "name": "Chili pepper", "amount": "1 small", "calories": 5 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
+        { "name": "Oil", "amount": "1 tsp", "calories": 40 }
+      ],
+      "steps": [
+        "Chop chili and garlic very finely.",
+        "Heat oil in pan on high heat.",
+        "Add chili and garlic and stir quickly.",
+        "Immediately add cooked rice.",
+        "Press rice flat and let it toast slightly.",
+        "Add soy sauce and stir well.",
+        "Cook another minute and serve hot."
+      ],
+      "totalCalories": 250,
+      "totalProtein": 5,
+      "totalFat": 6,
+      "totalCarbs": 42,
+      "ingredientsCalories": {
+        "Cooked rice": 195,
+        "Chili pepper": 5,
+        "Garlic": 5,
+        "Soy sauce": 5,
+        "Oil": 40
+      }
+    },
+
+    {
+      "type": "spicy_food",
+      "basicName": "Dragon Eggs",
+      "recipeName_en": "Dragon Fire Deviled Eggs",
+      "recipeName_tr": "Ejder Ateşi Yumurtalar",
+      "image": "https://images.unsplash.com/photo-1601050690590-c3f6f4c8f4c6",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Boiled eggs", "amount": "2", "calories": 140 },
+        { "name": "Hot sauce", "amount": "1 tsp", "calories": 5 },
+        { "name": "Mustard", "amount": "1 tsp", "calories": 5 },
+        { "name": "Chili powder", "amount": "1/4 tsp", "calories": 3 }
+      ],
+      "steps": [
+        "Peel boiled eggs carefully.",
+        "Slice eggs in half lengthwise.",
+        "Remove yolks and place in bowl.",
+        "Mash yolks until smooth.",
+        "Add hot sauce, mustard, and chili powder.",
+        "Mix until creamy and spicy.",
+        "Spoon mixture back into egg whites.",
+        "Sprinkle extra chili powder on top.",
+        "Serve chilled or slightly warm."
+      ],
+      "totalCalories": 153,
+      "totalProtein": 12,
+      "totalFat": 9,
+      "totalCarbs": 2,
+      "ingredientsCalories": {
+        "Boiled eggs": 140,
+        "Hot sauce": 5,
+        "Mustard": 5,
+        "Chili powder": 3
+      }
+    },
+    {
+      "type": "low_cal",
+      "basicName": "Lemon Herb Chicken Salad",
+      "recipeName_en": "Lemon Herb Chicken Salad",
+      "recipeName_tr": "Limonlu Otlu Tavuk Salatası",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
+        { "name": "Mixed greens", "amount": "2 cups", "calories": 20 },
+        { "name": "Cucumber", "amount": "1/2 medium", "calories": 10 },
+        { "name": "Cherry tomatoes", "amount": "6 pieces", "calories": 18 },
+        { "name": "Lemon juice", "amount": "1 tbsp", "calories": 4 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
+        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Place the chicken breast on a plate and pat it dry with a paper towel (this helps it brown nicely).",
+        "Season both sides lightly with salt and pepper.",
+        "Heat a non-stick pan on medium heat. If your pan sticks easily, add 1–2 teaspoons of water instead of oil and let it heat up for 10 seconds.",
+        "Add the chicken to the pan. Cook for about 4–5 minutes on the first side without moving it too much.",
+        "Flip the chicken and cook another 4–5 minutes until fully cooked (inside should be white, no pink).",
+        "Move chicken to a plate and let it rest for 2 minutes (resting keeps it juicy). Then slice into thin strips.",
+        "While chicken rests, wash greens, cucumber, and tomatoes. Slice cucumber and cut tomatoes in half.",
+        "Add greens, cucumber, and tomatoes to a large bowl.",
+        "In a small cup, mix lemon juice, olive oil, a pinch of salt and pepper. Stir well.",
+        "Add sliced chicken on top of the salad and drizzle the lemon dressing. Toss gently and serve."
+      ],
+      "totalCalories": 292,
+      "totalProtein": 34,
+      "totalFat": 9,
+      "totalCarbs": 14,
+      "ingredientsCalories": {
+        "Chicken breast": 200,
+        "Mixed greens": 20,
+        "Cucumber": 10,
+        "Cherry tomatoes": 18,
+        "Lemon juice": 4,
+        "Olive oil": 20
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Egg White Veggie Scramble",
+      "recipeName_en": "Egg White Veggie Scramble",
+      "recipeName_tr": "Sebzeli Yumurta Beyazı",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Egg whites", "amount": "200ml (or 4 whites)", "calories": 100 },
+        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
+        { "name": "Tomato", "amount": "1 small", "calories": 20 },
+        { "name": "Mushrooms", "amount": "3 pieces", "calories": 10 },
+        { "name": "Olive oil spray (optional)", "amount": "1 quick spray", "calories": 5 }
+      ],
+      "steps": [
+        "Wash spinach and mushrooms. Slice mushrooms thinly and dice the tomato.",
+        "Heat a non-stick pan on low-medium heat. If using oil spray, do one quick spray (or add 1–2 teaspoons water).",
+        "Add mushrooms first and cook 2 minutes until they soften and release moisture.",
+        "Add spinach and stir for 30 seconds until it wilts down.",
+        "Pour egg whites into the pan. Let them sit for 10–15 seconds so the bottom starts to set.",
+        "Using a spatula, gently push eggs from the edges toward the center, repeating slowly (this keeps the scramble soft).",
+        "Add diced tomato near the end so it stays fresh and not watery.",
+        "Cook until egg whites are fully set (no clear liquid), then serve immediately."
+      ],
+      "totalCalories": 145,
+      "totalProtein": 26,
+      "totalFat": 2,
+      "totalCarbs": 8,
+      "ingredientsCalories": {
+        "Egg whites": 100,
+        "Spinach": 10,
+        "Tomato": 20,
+        "Mushrooms": 10,
+        "Olive oil spray": 5
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Tuna Cucumber Boats",
+      "recipeName_en": "Tuna Cucumber Boats",
+      "recipeName_tr": "Ton Balıklı Salatalık Kayıkları",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cucumber", "amount": "1 large", "calories": 20 },
+        { "name": "Tuna (in water, drained)", "amount": "100g", "calories": 120 },
+        { "name": "Greek yogurt", "amount": "2 tbsp", "calories": 30 },
+        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 },
+        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Wash the cucumber and cut it in half lengthwise.",
+        "Use a small spoon to gently scoop out the seeds to create a 'boat' shape (leave some flesh so it stays sturdy).",
+        "In a bowl, add drained tuna, yogurt, lemon juice, salt, and pepper.",
+        "Mix with a fork until the tuna becomes a creamy filling (taste and adjust seasoning).",
+        "Spoon the tuna mixture into the cucumber boats.",
+        "Slice each boat into 2–3 bite pieces if you want finger-food style.",
+        "Serve chilled for a crisp, light snack."
+      ],
+      "totalCalories": 171,
+      "totalProtein": 26,
+      "totalFat": 3,
+      "totalCarbs": 8,
+      "ingredientsCalories": {
+        "Cucumber": 20,
+        "Tuna (in water, drained)": 120,
+        "Greek yogurt": 30,
+        "Lemon juice": 1
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Zucchini Noodles",
+      "recipeName_en": "Garlic Zucchini Noodles",
+      "recipeName_tr": "Sarımsaklı Kabak Spagetti",
+      "image": "https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Zucchini", "amount": "1 medium", "calories": 35 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
+        { "name": "Parmesan (optional)", "amount": "10g", "calories": 40 }
+      ],
+      "steps": [
+        "Wash zucchini and cut off the ends.",
+        "Use a peeler to make long thin strips (or spiralize if you have a tool).",
+        "Pat zucchini noodles lightly with paper towel to remove extra water (this prevents soggy noodles).",
+        "Heat a pan on medium heat and add olive oil.",
+        "Add minced garlic and stir for 15–20 seconds until fragrant (do not brown).",
+        "Add zucchini noodles and toss for 2–3 minutes only (they should stay slightly firm).",
+        "Turn off heat and add parmesan if using. Toss once more.",
+        "Serve immediately (zucchini releases water if it sits too long)."
+      ],
+      "totalCalories": 100,
+      "totalProtein": 4,
+      "totalFat": 6,
+      "totalCarbs": 9,
+      "ingredientsCalories": {
+        "Zucchini": 35,
+        "Garlic": 5,
+        "Olive oil": 20,
+        "Parmesan (optional)": 40
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Tomato Basil Soup",
+      "recipeName_en": "Light Tomato Basil Soup",
+      "recipeName_tr": "Hafif Domates Fesleğen Çorbası",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 18,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tomatoes", "amount": "2 medium", "calories": 50 },
+        { "name": "Onion", "amount": "1/4 medium", "calories": 10 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Water or broth", "amount": "350ml", "calories": 10 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Dice onion and mince garlic.",
+        "Heat a pot on medium heat and add olive oil.",
+        "Add onion and cook 2–3 minutes until soft and slightly translucent.",
+        "Add garlic and stir for 15 seconds.",
+        "Chop tomatoes and add to the pot. Stir and cook 3 minutes to release juices.",
+        "Pour in water or broth. Bring to a gentle boil.",
+        "Lower heat and simmer for 8–10 minutes.",
+        "Use a blender (or mash carefully) to make it smoother.",
+        "Taste and add salt/pepper if needed.",
+        "Serve warm."
+      ],
+      "totalCalories": 95,
+      "totalProtein": 3,
+      "totalFat": 3,
+      "totalCarbs": 14,
+      "ingredientsCalories": {
+        "Tomatoes": 50,
+        "Onion": 10,
+        "Garlic": 5,
+        "Water or broth": 10,
+        "Olive oil": 20
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Greek Salad Bowl",
+      "recipeName_en": "Light Greek Salad Bowl",
+      "recipeName_tr": "Hafif Yunan Salatası",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cucumber", "amount": "1/2", "calories": 10 },
+        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
+        { "name": "Red onion", "amount": "2 tbsp sliced", "calories": 10 },
+        { "name": "Feta cheese", "amount": "25g", "calories": 70 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
+        { "name": "Lemon juice", "amount": "1 tbsp", "calories": 4 }
+      ],
+      "steps": [
+        "Wash cucumber and tomato.",
+        "Dice cucumber and tomato into small bite-size pieces.",
+        "Slice red onion very thinly (thin slices taste milder).",
+        "Add vegetables into a bowl.",
+        "Crumble feta cheese on top.",
+        "Mix olive oil and lemon juice in a small cup, then drizzle over salad.",
+        "Toss gently and serve immediately."
+      ],
+      "totalCalories": 139,
+      "totalProtein": 6,
+      "totalFat": 8,
+      "totalCarbs": 11,
+      "ingredientsCalories": {
+        "Cucumber": 10,
+        "Tomato": 25,
+        "Red onion": 10,
+        "Feta cheese": 70,
+        "Olive oil": 20,
+        "Lemon juice": 4
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Crispy Air Fryer Chickpeas",
+      "recipeName_en": "Crispy Spiced Chickpeas",
+      "recipeName_tr": "Çıtır Baharatlı Nohut",
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe",
+      "prepTime": 15,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Chickpeas (cooked, drained)", "amount": "120g", "calories": 200 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
+        { "name": "Paprika", "amount": "1/2 tsp", "calories": 5 },
+        { "name": "Salt", "amount": "a pinch", "calories": 0 }
+      ],
+      "steps": [
+        "Drain chickpeas and rinse quickly under water, then drain again.",
+        "Pat chickpeas very dry with paper towel (dry = crispy).",
+        "Place chickpeas into a bowl and add olive oil, paprika, and salt.",
+        "Mix well so spices coat every chickpea.",
+        "If using air fryer: cook at 200°C (390°F) for 10–12 minutes, shaking halfway.",
+        "If using oven: spread on tray and bake at 200°C for 18–20 minutes.",
+        "Let cool 2 minutes after cooking (they crisp up more as they cool).",
+        "Eat as a crunchy, high-fiber snack."
+      ],
+      "totalCalories": 225,
+      "totalProtein": 12,
+      "totalFat": 4,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Chickpeas (cooked, drained)": 200,
+        "Olive oil": 20,
+        "Paprika": 5
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Cottage Cucumber Bowl",
+      "recipeName_en": "Cottage Cheese Cucumber Bowl",
+      "recipeName_tr": "Lor Salatalık Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908554243-f3f45b5c1a2b",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cottage cheese", "amount": "150g", "calories": 120 },
+        { "name": "Cucumber", "amount": "1/2 medium", "calories": 10 },
+        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 },
+        { "name": "Black pepper", "amount": "a pinch", "calories": 0 }
+      ],
+      "steps": [
+        "Slice cucumber into small cubes or thin half-moons.",
+        "Add cottage cheese to a bowl.",
+        "Add cucumber on top.",
+        "Drizzle lemon juice and sprinkle black pepper.",
+        "Mix gently and eat cold.",
+        "If you want it extra filling, add more cucumber (almost no calories)."
+      ],
+      "totalCalories": 131,
+      "totalProtein": 17,
+      "totalFat": 4,
+      "totalCarbs": 5,
+      "ingredientsCalories": {
+        "Cottage cheese": 120,
+        "Cucumber": 10,
+        "Lemon juice": 1
+      }
+    },
+
+    {
+      "type": "low_cal",
+      "basicName": "Berry Protein Smoothie",
+      "recipeName_en": "Light Berry Protein Smoothie",
+      "recipeName_tr": "Hafif Proteinli Berry Smoothie",
+      "image": "https://images.unsplash.com/photo-1553530666-9f4b94d19a08",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Mixed berries", "amount": "1 cup", "calories": 70 },
+        { "name": "Greek yogurt", "amount": "120g", "calories": 90 },
+        { "name": "Water (or ice)", "amount": "150ml", "calories": 0 }
+      ],
+      "steps": [
+        "If using frozen berries, no need to thaw (it makes the smoothie thicker).",
+        "Add berries into blender first.",
+        "Add Greek yogurt on top.",
+        "Pour water (or add a few ice cubes).",
+        "Blend for 30–45 seconds until smooth.",
+        "Taste: if too thick, add a little more water and blend again.",
+        "Pour into a glass and drink immediately."
+      ],
+      "totalCalories": 160,
+      "totalProtein": 12,
+      "totalFat": 2,
+      "totalCarbs": 22,
+      "ingredientsCalories": {
+        "Mixed berries": 70,
+        "Greek yogurt": 90
+      }
+    },
+    {
+      "type": "sweet_craving",
+      "basicName": "Chocolate Lava Mug",
+      "recipeName_en": "Chocolate Lava Mug Cake",
+      "recipeName_tr": "Kupada Akışkan Çikolatalı Kek",
+      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Dark chocolate", "amount": "30g", "calories": 160 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Egg", "amount": "1 small", "calories": 70 },
+        { "name": "Sugar", "amount": "1 tbsp", "calories": 50 },
+        { "name": "Flour", "amount": "1 tbsp", "calories": 30 }
+      ],
+      "steps": [
+        "Break the chocolate into small pieces and place them into a microwave-safe mug.",
+        "Add butter to the same mug.",
+        "Microwave for 20–30 seconds until melted.",
+        "Stir very well until smooth and glossy.",
+        "Add the egg and mix quickly so it doesn’t cook from the heat.",
+        "Add sugar and flour, and stir until no lumps remain.",
+        "Microwave for 30–40 seconds (center should stay slightly soft).",
+        "Let it rest 30 seconds.",
+        "Eat warm directly from the mug for lava effect."
+      ],
+      "totalCalories": 570,
+      "totalProtein": 10,
+      "totalFat": 38,
+      "totalCarbs": 45,
+      "ingredientsCalories": {
+        "Dark chocolate": 160,
+        "Butter": 100,
+        "Egg": 70,
+        "Sugar": 50,
+        "Flour": 30
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Strawberry Chocolate Bowl",
+      "recipeName_en": "Chocolate Strawberry Dessert Bowl",
+      "recipeName_tr": "Çikolatalı Çilek Kasesi",
+      "image": "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Strawberries", "amount": "6 medium", "calories": 30 },
+        { "name": "Milk chocolate", "amount": "40g", "calories": 220 },
+        { "name": "Crushed biscuits", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Wash strawberries and pat them completely dry.",
+        "Remove stems and slice strawberries into halves.",
+        "Place chocolate into a small bowl.",
+        "Melt in microwave in 20-second intervals, stirring each time.",
+        "Place strawberries into a serving bowl.",
+        "Pour melted chocolate over strawberries.",
+        "Sprinkle crushed biscuits on top.",
+        "Serve immediately while chocolate is warm."
+      ],
+      "totalCalories": 300,
+      "totalProtein": 4,
+      "totalFat": 16,
+      "totalCarbs": 36,
+      "ingredientsCalories": {
+        "Strawberries": 30,
+        "Milk chocolate": 220,
+        "Crushed biscuits": 50
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Banana Nutella Toast",
+      "recipeName_en": "Warm Banana Nutella Toast",
+      "recipeName_tr": "Muzlu Nutellalı Tost",
+      "image": "https://images.unsplash.com/photo-1589308078059-f6f35c6c33c3",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Nutella", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+      ],
+      "steps": [
+        "Toast bread lightly until golden.",
+        "Spread Nutella evenly while toast is still warm.",
+        "Slice banana into thin rounds.",
+        "Arrange banana slices on top.",
+        "Optional: warm for 20 seconds in microwave.",
+        "Serve warm for stronger chocolate aroma."
+      ],
+      "totalCalories": 225,
+      "totalProtein": 4,
+      "totalFat": 10,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Nutella": 100,
+        "Banana": 45
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Cookie Dough Bites",
+      "recipeName_en": "No-Bake Cookie Dough Bites",
+      "recipeName_tr": "Pişmeyen Kurabiye Hamuru Lokmaları",
+      "image": "https://images.unsplash.com/photo-1599785209707-28d59c56a1b1",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Flour (heat treated)", "amount": "3 tbsp", "calories": 90 },
+        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
+        { "name": "Brown sugar", "amount": "1 tbsp", "calories": 50 },
+        { "name": "Chocolate chips", "amount": "1 tbsp", "calories": 70 }
+      ],
+      "steps": [
+        "Place flour in microwave and heat 40 seconds to make it safe to eat.",
+        "In a bowl, mix softened butter and sugar until creamy.",
+        "Add flour and mix until soft dough forms.",
+        "Fold in chocolate chips.",
+        "Roll small balls with your hands.",
+        "Chill 5 minutes and enjoy."
+      ],
+      "totalCalories": 310,
+      "totalProtein": 3,
+      "totalFat": 18,
+      "totalCarbs": 34,
+      "ingredientsCalories": {
+        "Flour": 90,
+        "Butter": 100,
+        "Brown sugar": 50,
+        "Chocolate chips": 70
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Apple Cinnamon Crumble",
+      "recipeName_en": "Warm Apple Cinnamon Crumble",
+      "recipeName_tr": "Tarçınlı Ilık Elma Crumble",
+      "image": "https://images.unsplash.com/photo-1605472560826-85f6e03fdfd8",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Apple", "amount": "1 medium", "calories": 95 },
+        { "name": "Oats", "amount": "2 tbsp", "calories": 70 },
+        { "name": "Honey", "amount": "1 tbsp", "calories": 60 },
+        { "name": "Cinnamon", "amount": "1/2 tsp", "calories": 3 }
+      ],
+      "steps": [
+        "Wash and peel apple.",
+        "Cut into small cubes.",
+        "Place apple in microwave-safe bowl.",
+        "Add honey and cinnamon and mix.",
+        "Microwave 2 minutes until soft.",
+        "Sprinkle oats on top.",
+        "Microwave another 30 seconds.",
+        "Stir gently and eat warm."
+      ],
+      "totalCalories": 228,
+      "totalProtein": 4,
+      "totalFat": 3,
+      "totalCarbs": 48,
+      "ingredientsCalories": {
+        "Apple": 95,
+        "Oats": 70,
+        "Honey": 60,
+        "Cinnamon": 3
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Choco Banana Pops",
+      "recipeName_en": "Frozen Chocolate Banana Pops",
+      "recipeName_tr": "Dondurulmuş Çikolatalı Muz",
+      "image": "https://images.unsplash.com/photo-1585238342028-4bbc4b9f1f23",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Banana", "amount": "1 medium", "calories": 105 },
+        { "name": "Dark chocolate", "amount": "25g", "calories": 135 },
+        { "name": "Crushed nuts", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Peel banana and cut into thick slices.",
+        "Insert toothpicks into banana pieces.",
+        "Melt chocolate gently.",
+        "Dip banana into chocolate.",
+        "Sprinkle nuts.",
+        "Place on parchment paper.",
+        "Freeze 5–10 minutes.",
+        "Serve cold like mini ice cream."
+      ],
+      "totalCalories": 290,
+      "totalProtein": 4,
+      "totalFat": 14,
+      "totalCarbs": 38,
+      "ingredientsCalories": {
+        "Banana": 105,
+        "Dark chocolate": 135,
+        "Crushed nuts": 50
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Berry Cream Cup",
+      "recipeName_en": "Berry Cream Dessert Cup",
+      "recipeName_tr": "Berry Kremalı Tatlı Kupası",
+      "image": "https://images.unsplash.com/photo-1546549032-9571cd6b27df",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Whipping cream", "amount": "4 tbsp", "calories": 140 },
+        { "name": "Strawberries", "amount": "4 pieces", "calories": 20 },
+        { "name": "Sugar", "amount": "1 tsp", "calories": 16 }
+      ],
+      "steps": [
+        "Pour cold cream into a bowl.",
+        "Whisk vigorously until fluffy.",
+        "Add sugar and whisk again.",
+        "Slice strawberries.",
+        "Layer cream and strawberries in a glass.",
+        "Serve immediately or chill 5 minutes."
+      ],
+      "totalCalories": 176,
+      "totalProtein": 2,
+      "totalFat": 14,
+      "totalCarbs": 12,
+      "ingredientsCalories": {
+        "Whipping cream": 140,
+        "Strawberries": 20,
+        "Sugar": 16
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Brownie Mug",
+      "recipeName_en": "Fudgy Brownie Mug Cake",
+      "recipeName_tr": "Kupada Islak Brownie",
+      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cocoa powder", "amount": "2 tbsp", "calories": 40 },
+        { "name": "Sugar", "amount": "1.5 tbsp", "calories": 75 },
+        { "name": "Milk", "amount": "2 tbsp", "calories": 20 },
+        { "name": "Oil", "amount": "1 tbsp", "calories": 120 },
+        { "name": "Flour", "amount": "2 tbsp", "calories": 60 }
+      ],
+      "steps": [
+        "Add all ingredients into a microwave-safe mug.",
+        "Mix thoroughly until smooth.",
+        "Microwave for 45–60 seconds.",
+        "Check center; it should be slightly soft.",
+        "Let cool 30 seconds.",
+        "Eat warm."
+      ],
+      "totalCalories": 315,
+      "totalProtein": 4,
+      "totalFat": 14,
+      "totalCarbs": 44,
+      "ingredientsCalories": {
+        "Cocoa powder": 40,
+        "Sugar": 75,
+        "Milk": 20,
+        "Oil": 120,
+        "Flour": 60
+      }
+    },
+
+    {
+      "type": "sweet_craving",
+      "basicName": "Caramel Banana Wrap",
+      "recipeName_en": "Warm Caramel Banana Wrap",
+      "recipeName_tr": "Karamelli Muz Dürümü",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
+        { "name": "Banana", "amount": "1 small", "calories": 90 },
+        { "name": "Caramel sauce", "amount": "1 tbsp", "calories": 60 }
+      ],
+      "steps": [
+        "Warm tortilla lightly in a pan.",
+        "Place banana in the center.",
+        "Drizzle caramel sauce.",
+        "Roll tightly.",
+        "Toast in pan until golden.",
+        "Slice and serve warm."
+      ],
+      "totalCalories": 290,
+      "totalProtein": 4,
+      "totalFat": 6,
+      "totalCarbs": 52,
+      "ingredientsCalories": {
+        "Tortilla": 140,
+        "Banana": 90,
+        "Caramel sauce": 60
+      }
+    },
+    {
+      "type": "quick_meal",
+      "basicName": "Egg Avocado Toast",
+      "recipeName_en": "5-Min Egg & Avocado Toast",
+      "recipeName_tr": "5 Dakikada Yumurtalı Avokado Tostu",
+      "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
+        { "name": "Egg", "amount": "1 large", "calories": 70 },
+        { "name": "Avocado", "amount": "1/4 fruit", "calories": 60 },
+        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Put the bread in a toaster (or a dry pan) and toast until lightly golden.",
+        "While the bread toasts, crack the egg into a small bowl (this helps avoid shell pieces).",
+        "Heat a non-stick pan on medium heat. If needed, add a tiny splash of water to prevent sticking.",
+        "Pour the egg into the pan and cook 1–2 minutes for a soft yolk (longer if you want it firm).",
+        "Cut the avocado, scoop out about 1/4, and mash it in a bowl with a fork.",
+        "Season the mashed avocado with a pinch of salt and pepper.",
+        "Spread the avocado evenly over the toasted bread.",
+        "Place the cooked egg on top of the avocado toast.",
+        "Add another pinch of pepper (optional) and serve immediately while warm."
+      ],
+      "totalCalories": 220,
+      "totalProtein": 9,
+      "totalFat": 12,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Whole wheat bread": 90,
+        "Egg": 70,
+        "Avocado": 60
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Tuna Yogurt Bowl",
+      "recipeName_en": "3-Min Tuna Yogurt Bowl",
+      "recipeName_tr": "3 Dakikada Ton Balıklı Yoğurt Kasesi",
+      "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tuna (in water, drained)", "amount": "100g", "calories": 120 },
+        { "name": "Greek yogurt", "amount": "3 tbsp", "calories": 45 },
+        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 },
+        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Open the tuna can and drain the water completely (press the lid down carefully).",
+        "Add drained tuna into a bowl and break it apart with a fork.",
+        "Add Greek yogurt on top of the tuna.",
+        "Add lemon juice and a pinch of salt and pepper.",
+        "Mix well until creamy and evenly combined.",
+        "Taste and adjust: more lemon for freshness, more salt for flavor.",
+        "Eat with a spoon, or scoop with cucumber slices/bread if you have them."
+      ],
+      "totalCalories": 166,
+      "totalProtein": 26,
+      "totalFat": 2,
+      "totalCarbs": 5,
+      "ingredientsCalories": {
+        "Tuna (in water, drained)": 120,
+        "Greek yogurt": 45,
+        "Lemon juice": 1
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Cheese Quesadilla",
+      "recipeName_en": "10-Min Crispy Cheese Quesadilla",
+      "recipeName_tr": "10 Dakikada Çıtır Peynirli Quesadilla",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla", "amount": "1 medium", "calories": 150 },
+        { "name": "Cheddar cheese (grated)", "amount": "50g", "calories": 200 },
+        { "name": "Butter or oil", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Place a pan on medium heat and let it warm up for 30 seconds.",
+        "Add butter/oil and spread it around the pan.",
+        "Lay the tortilla flat in the pan.",
+        "Sprinkle cheese over half of the tortilla (keep it on one side so it folds easily).",
+        "Fold the tortilla in half like a book, pressing gently with a spatula.",
+        "Cook 2 minutes until the bottom is golden and cheese starts melting.",
+        "Flip carefully and cook another 1–2 minutes until crispy.",
+        "Move to a cutting board, let it rest 30 seconds (cheese sets slightly).",
+        "Cut into triangles and eat warm."
+      ],
+      "totalCalories": 370,
+      "totalProtein": 14,
+      "totalFat": 22,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Tortilla": 150,
+        "Cheddar cheese (grated)": 200,
+        "Butter or oil": 20
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Tomato Egg Scramble",
+      "recipeName_en": "Quick Tomato Egg Scramble",
+      "recipeName_tr": "Hızlı Domatesli Yumurta",
+      "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Eggs", "amount": "2 large", "calories": 140 },
+        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
+        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
+        { "name": "Salt", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Wash the tomato and cut it into small cubes.",
+        "Crack eggs into a bowl and whisk with a fork until the yolks and whites blend.",
+        "Heat a pan on medium heat and add olive oil.",
+        "Add diced tomato and cook 1 minute to release juices.",
+        "Pour the whisked eggs into the pan.",
+        "Wait 10 seconds, then gently stir from the edges toward the center.",
+        "Cook until eggs are set but still soft (about 2–3 minutes).",
+        "Season with salt and serve hot."
+      ],
+      "totalCalories": 185,
+      "totalProtein": 12,
+      "totalFat": 13,
+      "totalCarbs": 5,
+      "ingredientsCalories": {
+        "Eggs": 140,
+        "Tomato": 25,
+        "Olive oil": 20
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Greek Yogurt Fruit",
+      "recipeName_en": "5-Min Honey Yogurt Fruit Cup",
+      "recipeName_tr": "5 Dakikada Ballı Yoğurt Meyve Kupası",
+      "image": "https://images.unsplash.com/photo-1514996937319-344454492b37",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
+        { "name": "Banana", "amount": "1/2", "calories": 45 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Add Greek yogurt to a bowl or cup.",
+        "Slice half a banana into thin rounds.",
+        "Place banana slices on top of the yogurt.",
+        "Drizzle honey over the top.",
+        "Mix lightly if you want, or eat in layers."
+      ],
+      "totalCalories": 215,
+      "totalProtein": 18,
+      "totalFat": 4,
+      "totalCarbs": 26,
+      "ingredientsCalories": {
+        "Greek yogurt": 150,
+        "Banana": 45,
+        "Honey": 20
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Cucumber Cottage Bowl",
+      "recipeName_en": "5-Min Cucumber Cottage Bowl",
+      "recipeName_tr": "5 Dakikada Salatalıklı Lor Kasesi",
+      "image": "https://images.unsplash.com/photo-1604908554243-f3f45b5c1a2b",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cottage cheese", "amount": "150g", "calories": 120 },
+        { "name": "Cucumber", "amount": "1/2 medium", "calories": 10 },
+        { "name": "Black pepper", "amount": "a pinch", "calories": 0 },
+        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 }
+      ],
+      "steps": [
+        "Wash the cucumber and slice it into small cubes or thin half-moons.",
+        "Add cottage cheese to a bowl.",
+        "Add cucumber on top.",
+        "Add lemon juice and black pepper.",
+        "Mix gently and eat cold."
+      ],
+      "totalCalories": 131,
+      "totalProtein": 17,
+      "totalFat": 4,
+      "totalCarbs": 5,
+      "ingredientsCalories": {
+        "Cottage cheese": 120,
+        "Cucumber": 10,
+        "Lemon juice": 1
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Peanut Banana Wrap",
+      "recipeName_en": "6-Min Peanut Banana Wrap",
+      "recipeName_tr": "6 Dakikada Fıstık Ezmeli Muz Dürümü",
+      "image": "https://images.unsplash.com/photo-1589308078059-f6f35c6c33c3",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
+        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
+        { "name": "Banana", "amount": "1 small", "calories": 90 }
+      ],
+      "steps": [
+        "Lay the tortilla flat on a plate.",
+        "Spread peanut butter evenly across the tortilla.",
+        "Peel banana and place it in the center.",
+        "Roll the tortilla tightly around the banana.",
+        "Slice into bite-size pieces (optional).",
+        "Eat immediately, or toast in a pan for 1 minute per side for extra crunch."
+      ],
+      "totalCalories": 320,
+      "totalProtein": 9,
+      "totalFat": 12,
+      "totalCarbs": 44,
+      "ingredientsCalories": {
+        "Tortilla": 140,
+        "Peanut butter": 90,
+        "Banana": 90
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Quick Garlic Noodles",
+      "recipeName_en": "10-Min Garlic Soy Noodles",
+      "recipeName_tr": "10 Dakikada Sarımsaklı Soya Noodle",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Instant noodles (plain)", "amount": "1 pack", "calories": 300 },
+        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
+        { "name": "Soy sauce", "amount": "1 tbsp", "calories": 10 },
+        { "name": "Sesame oil (optional)", "amount": "1/2 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Boil water in a pot or kettle.",
+        "Cook noodles in boiling water for 2–3 minutes until soft.",
+        "Drain noodles, leaving 2 tablespoons of water in the pot (helps sauce coat).",
+        "Add minced garlic to the warm pot (use low heat).",
+        "Add soy sauce (and sesame oil if using).",
+        "Add noodles back in and toss quickly until coated.",
+        "Turn off heat and serve hot."
+      ],
+      "totalCalories": 335,
+      "totalProtein": 8,
+      "totalFat": 9,
+      "totalCarbs": 54,
+      "ingredientsCalories": {
+        "Instant noodles (plain)": 300,
+        "Garlic": 5,
+        "Soy sauce": 10,
+        "Sesame oil (optional)": 20
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Cheesy Tomato Melt",
+      "recipeName_en": "8-Min Cheesy Tomato Melt",
+      "recipeName_tr": "8 Dakikada Peynirli Domatesli Tost",
+      "image": "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c",
+      "prepTime": 8,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
+        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
+        { "name": "Tomato", "amount": "1/2 medium", "calories": 12 }
+      ],
+      "steps": [
+        "Slice the tomato into thin rounds.",
+        "Place bread in a pan on low-medium heat.",
+        "Add mozzarella on top of bread.",
+        "Place tomato slices on top of the cheese.",
+        "Cover the pan with a lid (this melts cheese faster).",
+        "Cook 3–4 minutes until cheese melts fully.",
+        "Remove and let it cool 30 seconds before eating."
+      ],
+      "totalCalories": 212,
+      "totalProtein": 12,
+      "totalFat": 9,
+      "totalCarbs": 20,
+      "ingredientsCalories": {
+        "Toast bread": 80,
+        "Mozzarella cheese": 120,
+        "Tomato": 12
+      }
+    },
+
+    {
+      "type": "quick_meal",
+      "basicName": "Microwave Oat Bowl",
+      "recipeName_en": "3-Min Microwave Oat Bowl",
+      "recipeName_tr": "3 Dakikada Mikrodalga Yulaf",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 4,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "40g", "calories": 150 },
+        { "name": "Milk (or water)", "amount": "200ml", "calories": 80 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+      ],
+      "steps": [
+        "Add oats to a microwave-safe bowl (use a big bowl to prevent overflow).",
+        "Pour milk (or water) over oats and stir once.",
+        "Microwave for 60 seconds.",
+        "Stir well, then microwave another 30–45 seconds until thick.",
+        "Let sit 1 minute (it thickens more).",
+        "Drizzle honey on top and eat warm."
+      ],
+      "totalCalories": 250,
+      "totalProtein": 10,
+      "totalFat": 6,
+      "totalCarbs": 40,
+      "ingredientsCalories": {
+        "Oats": 150,
+        "Milk (or water)": 80,
+        "Honey": 20
+      }
+    },
+    {
+      "type": "surprise",
+      "basicName": "Sushi Taco",
+      "recipeName_en": "Crispy Sushi Taco (No-Roll Hack)",
+      "recipeName_tr": "Sushi Taco (Rulosuz Pratik)",
+      "image": "https://images.unsplash.com/photo-1553621042-f6e147245754",
+      "prepTime": 12,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
+        { "name": "Canned tuna (drained)", "amount": "80g", "calories": 95 },
+        { "name": "Soy sauce", "amount": "1 tbsp", "calories": 10 },
+        { "name": "Mayonnaise", "amount": "1 tsp", "calories": 35 },
+        { "name": "Nori sheet", "amount": "1", "calories": 10 },
+        { "name": "Cucumber", "amount": "6 thin slices", "calories": 5 }
+      ],
+      "steps": [
+        "If your rice is cold, microwave it for 30–40 seconds so it becomes sticky and easy to shape.",
+        "Place a piece of plastic wrap on the counter (this prevents rice from sticking to your hands).",
+        "Spread the warm rice into a thin rectangle on the plastic wrap and press firmly so it holds together.",
+        "Fold the rice rectangle gently into a taco shape (like a U) and keep the fold tight so it doesn’t break.",
+        "Place the folded rice into a hot dry pan for 1 minute per side to lightly crisp the outside (optional but fun).",
+        "In a bowl, mix drained tuna with soy sauce and mayonnaise until creamy.",
+        "Cut the nori sheet into a strip and wrap it around the rice taco as a ‘belt’ to hold shape.",
+        "Stuff cucumber slices inside first (adds crunch), then spoon the tuna mixture on top.",
+        "Serve immediately while the outside is warm and the inside is cool and fresh."
+      ],
+      "totalCalories": 355,
+      "totalProtein": 24,
+      "totalFat": 8,
+      "totalCarbs": 50,
+      "ingredientsCalories": {
+        "Cooked rice": 195,
+        "Canned tuna (drained)": 95,
+        "Soy sauce": 10,
+        "Mayonnaise": 35,
+        "Nori sheet": 10,
+        "Cucumber": 5
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Popcorn Trail Mix",
+      "recipeName_en": "Sweet & Spicy Popcorn Trail Mix",
+      "recipeName_tr": "Tatlı-Acı Patlamış Mısır Karışımı",
+      "image": "https://images.unsplash.com/photo-1585238341986-12c8b3c42ff1",
+      "prepTime": 7,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Popcorn (plain)", "amount": "25g", "calories": 95 },
+        { "name": "Dark chocolate", "amount": "15g", "calories": 80 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
+        { "name": "Chili flakes", "amount": "a pinch", "calories": 2 },
+        { "name": "Peanuts", "amount": "1 tbsp", "calories": 50 }
+      ],
+      "steps": [
+        "Pop the popcorn using an air popper or a pot with a lid (avoid heavy butter to keep it light).",
+        "Pour popcorn into a large bowl so you have room to mix without spilling.",
+        "Break chocolate into small pieces and microwave for 15–20 seconds, stir, then repeat until melted.",
+        "Drizzle honey into the melted chocolate and stir quickly (this makes a glossy sweet coating).",
+        "Drizzle the warm chocolate over the popcorn in thin lines (don’t dump it in one spot).",
+        "Sprinkle peanuts for crunch.",
+        "Add a tiny pinch of chili flakes for a surprise spicy kick (start small!).",
+        "Toss gently with two spoons so popcorn doesn’t break.",
+        "Let it sit 1–2 minutes so chocolate sets slightly, then snack immediately."
+      ],
+      "totalCalories": 247,
+      "totalProtein": 6,
+      "totalFat": 12,
+      "totalCarbs": 32,
+      "ingredientsCalories": {
+        "Popcorn (plain)": 95,
+        "Dark chocolate": 80,
+        "Honey": 20,
+        "Chili flakes": 2,
+        "Peanuts": 50
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Breakfast Dessert Bowl",
+      "recipeName_en": "Cheesecake-Style Breakfast Bowl",
+      "recipeName_tr": "Cheesecake Kahvaltı Kasesi",
+      "image": "https://images.unsplash.com/photo-1514996937319-344454492b37",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
+        { "name": "Cream cheese", "amount": "1 tbsp", "calories": 50 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
+        { "name": "Crushed biscuits", "amount": "1 tbsp", "calories": 50 },
+        { "name": "Strawberries", "amount": "3 medium", "calories": 15 }
+      ],
+      "steps": [
+        "Add Greek yogurt to a bowl.",
+        "Add cream cheese on top (this makes it taste like cheesecake).",
+        "Mix very well with a spoon until the texture becomes smooth and thick (no white lumps).",
+        "Drizzle honey and stir once more so sweetness spreads evenly.",
+        "Crush biscuits in your hand or with a spoon until you get small crumbs.",
+        "Sprinkle biscuit crumbs over the yogurt mixture (this mimics cheesecake crust).",
+        "Slice strawberries and place them on top like a mini dessert decoration.",
+        "Chill for 2 minutes if you want it firmer, or eat immediately."
+      ],
+      "totalCalories": 285,
+      "totalProtein": 20,
+      "totalFat": 9,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Greek yogurt": 150,
+        "Cream cheese": 50,
+        "Honey": 20,
+        "Crushed biscuits": 50,
+        "Strawberries": 15
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Ramen Carbonara",
+      "recipeName_en": "Instant Ramen Carbonara Hack",
+      "recipeName_tr": "Ramen Carbonara Hilesi",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd",
+      "prepTime": 9,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Instant noodles", "amount": "1 pack", "calories": 300 },
+        { "name": "Egg", "amount": "1", "calories": 70 },
+        { "name": "Parmesan (or any hard cheese)", "amount": "20g", "calories": 80 },
+        { "name": "Black pepper", "amount": "to taste", "calories": 0 }
+      ],
+      "steps": [
+        "Boil water and cook the noodles for 2–3 minutes until soft.",
+        "Drain the noodles but keep 3 tablespoons of the hot noodle water in the pot (this makes the sauce creamy).",
+        "Turn the heat OFF completely (important: egg will scramble if heat is on).",
+        "Crack the egg into a bowl and whisk with a fork for 10 seconds.",
+        "Add the egg to the warm noodles and stir very fast for 20–30 seconds.",
+        "Add grated parmesan and keep stirring until it melts and becomes glossy.",
+        "Add black pepper generously (carbonara-style).",
+        "If too thick, add a small splash of the reserved hot water and mix again.",
+        "Serve immediately while creamy."
+      ],
+      "totalCalories": 450,
+      "totalProtein": 17,
+      "totalFat": 16,
+      "totalCarbs": 58,
+      "ingredientsCalories": {
+        "Instant noodles": 300,
+        "Egg": 70,
+        "Parmesan (or any hard cheese)": 80
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Watermelon Feta Bite",
+      "recipeName_en": "Watermelon Feta Lime Bites",
+      "recipeName_tr": "Karpuz Peynir Lime Lokmaları",
+      "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Watermelon", "amount": "1 cup cubes", "calories": 45 },
+        { "name": "Feta cheese", "amount": "25g", "calories": 70 },
+        { "name": "Lime (or lemon) juice", "amount": "1 tsp", "calories": 1 },
+        { "name": "Mint (optional)", "amount": "3 leaves", "calories": 1 }
+      ],
+      "steps": [
+        "Cut watermelon into bite-size cubes (dry them slightly with paper towel so toppings stick).",
+        "Crumble feta cheese into small pieces using your fingers.",
+        "Place watermelon cubes on a plate with a little space between them.",
+        "Sprinkle feta evenly over the watermelon.",
+        "Drizzle lime juice lightly across the top (a little goes a long way).",
+        "If using mint, tear leaves with your hands (tearing releases aroma better than chopping).",
+        "Scatter mint on top for a fresh ‘chef’ finish.",
+        "Serve immediately while cold and juicy."
+      ],
+      "totalCalories": 118,
+      "totalProtein": 5,
+      "totalFat": 6,
+      "totalCarbs": 12,
+      "ingredientsCalories": {
+        "Watermelon": 45,
+        "Feta cheese": 70,
+        "Lime (or lemon) juice": 1,
+        "Mint (optional)": 1
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Hot Honey Halloumi",
+      "recipeName_en": "Hot Honey Halloumi Sliders (No Bun)",
+      "recipeName_tr": "Acı Ballı Hellim Mini Atıştırmalık",
+      "image": "https://images.unsplash.com/photo-1604908554161-31f5b52c56a9",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Halloumi cheese", "amount": "80g", "calories": 260 },
+        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
+        { "name": "Chili flakes", "amount": "a pinch", "calories": 2 },
+        { "name": "Cucumber", "amount": "6 slices", "calories": 5 }
+      ],
+      "steps": [
+        "Slice halloumi into 2–3 thick pieces (thick slices stay juicy).",
+        "Heat a non-stick pan on medium-high heat (no oil needed; halloumi doesn’t melt).",
+        "Place halloumi slices in the pan and cook 1–2 minutes until golden underneath.",
+        "Flip and cook the other side until golden.",
+        "Mix honey and chili flakes in a small cup (this becomes hot honey).",
+        "Place cucumber slices on a plate as ‘mini buns’ (two slices per slider).",
+        "Put halloumi on top of cucumber slices.",
+        "Drizzle hot honey over the halloumi right before eating.",
+        "Serve immediately for the sweet-salty-spicy surprise."
+      ],
+      "totalCalories": 287,
+      "totalProtein": 18,
+      "totalFat": 22,
+      "totalCarbs": 7,
+      "ingredientsCalories": {
+        "Halloumi cheese": 260,
+        "Honey": 20,
+        "Chili flakes": 2,
+        "Cucumber": 5
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Dessert Quesadilla",
+      "recipeName_en": "Chocolate Banana Dessert Quesadilla",
+      "recipeName_tr": "Çikolatalı Muzlu Tatlı Quesadilla",
+      "image": "https://images.unsplash.com/photo-1589308078059-f6f35c6c33c3",
+      "prepTime": 9,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
+        { "name": "Banana", "amount": "1/2 medium", "calories": 45 },
+        { "name": "Dark chocolate", "amount": "20g", "calories": 110 },
+        { "name": "Butter (optional)", "amount": "1/2 tsp", "calories": 18 }
+      ],
+      "steps": [
+        "Slice banana into thin rounds so it warms quickly inside the tortilla.",
+        "Place tortilla flat on a cutting board.",
+        "Scatter chocolate pieces on one half of the tortilla.",
+        "Add banana slices on top of the chocolate.",
+        "Fold the tortilla in half like a book and press gently.",
+        "Heat a pan on medium heat; add a tiny bit of butter if you want extra crisp.",
+        "Cook 1–2 minutes per side until golden and the chocolate melts inside.",
+        "Transfer to a board and rest 30 seconds (hot filling can burn your mouth).",
+        "Cut into triangles and serve warm."
+      ],
+      "totalCalories": 313,
+      "totalProtein": 5,
+      "totalFat": 11,
+      "totalCarbs": 50,
+      "ingredientsCalories": {
+        "Tortilla": 140,
+        "Banana": 45,
+        "Dark chocolate": 110,
+        "Butter (optional)": 18
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Savory Oat Bowl",
+      "recipeName_en": "Savory Oats with Egg & Chili",
+      "recipeName_tr": "Tuzlu Yulaf Kasesi",
+      "image": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+      "prepTime": 10,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Oats", "amount": "40g", "calories": 150 },
+        { "name": "Water", "amount": "220ml", "calories": 0 },
+        { "name": "Egg", "amount": "1", "calories": 70 },
+        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
+        { "name": "Chili flakes", "amount": "a pinch", "calories": 2 }
+      ],
+      "steps": [
+        "Add oats and water to a small pot or microwave-safe bowl.",
+        "Cook for 2–3 minutes until thick like porridge (stir once halfway).",
+        "While oats cook, boil or fry one egg (quickest: fry in a non-stick pan).",
+        "Pour cooked oats into a bowl and smooth the surface with a spoon.",
+        "Add soy sauce around the edges (this spreads flavor without making it too salty in one spot).",
+        "Place the egg on top like a ramen bowl.",
+        "Sprinkle chili flakes for heat.",
+        "Mix gently as you eat so every bite gets egg + oats."
+      ],
+      "totalCalories": 227,
+      "totalProtein": 12,
+      "totalFat": 7,
+      "totalCarbs": 28,
+      "ingredientsCalories": {
+        "Oats": 150,
+        "Water": 0,
+        "Egg": 70,
+        "Soy sauce": 5,
+        "Chili flakes": 2
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Ice Cream Coffee",
+      "recipeName_en": "Affogato-Style Instant Coffee Dessert",
+      "recipeName_tr": "Affogato Tarzı Kahveli Tatlı",
+      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735",
+      "prepTime": 5,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Vanilla ice cream", "amount": "2 scoops", "calories": 180 },
+        { "name": "Instant coffee", "amount": "1 tsp", "calories": 5 },
+        { "name": "Hot water", "amount": "60ml", "calories": 0 },
+        { "name": "Dark chocolate (optional)", "amount": "10g", "calories": 55 }
+      ],
+      "steps": [
+        "Add instant coffee to a small cup.",
+        "Pour hot water over coffee and stir until fully dissolved.",
+        "Place ice cream scoops into a serving glass or bowl.",
+        "Slowly pour the hot coffee over the ice cream (it should melt around the edges).",
+        "If using chocolate, grate or break it into tiny pieces and sprinkle on top.",
+        "Serve immediately with a spoon (half drink, half dessert)."
+      ],
+      "totalCalories": 240,
+      "totalProtein": 4,
+      "totalFat": 12,
+      "totalCarbs": 30,
+      "ingredientsCalories": {
+        "Vanilla ice cream": 180,
+        "Instant coffee": 5,
+        "Hot water": 0,
+        "Dark chocolate (optional)": 55
+      }
+    },
+
+    {
+      "type": "surprise",
+      "basicName": "Pickle Peanut Chips",
+      "recipeName_en": "Pickle Peanut Crunch Chips (Weirdly Good)",
+      "recipeName_tr": "Turşu Fıstık Cipsi (Garip Ama Güzel)",
+      "image": "https://images.unsplash.com/photo-1585238341986-12c8b3c42ff1",
+      "prepTime": 6,
+      "servings": 1,
+      "ingredients": [
+        { "name": "Potato chips", "amount": "30g", "calories": 160 },
+        { "name": "Pickles", "amount": "3 slices", "calories": 3 },
+        { "name": "Peanuts", "amount": "1 tbsp", "calories": 50 },
+        { "name": "Hot sauce (optional)", "amount": "1 tsp", "calories": 5 }
+      ],
+      "steps": [
+        "Place potato chips into a bowl (use a wide bowl so mixing is easy).",
+        "Pat pickle slices dry with paper towel (this prevents soggy chips).",
+        "Chop pickles into tiny pieces so you get a little tang in each bite.",
+        "Add chopped pickles on top of chips.",
+        "Add peanuts for extra crunch and salty balance.",
+        "If you like it spicy, drizzle a small amount of hot sauce (don’t overdo; chips get soft).",
+        "Toss quickly with a spoon, eat immediately for the best crunch."
+      ],
+      "totalCalories": 218,
+      "totalProtein": 6,
+      "totalFat": 14,
+      "totalCarbs": 18,
+      "ingredientsCalories": {
+        "Potato chips": 160,
+        "Pickles": 3,
+        "Peanuts": 50,
+        "Hot sauce (optional)": 5
+      }
+    }
+
+  ]
+}
