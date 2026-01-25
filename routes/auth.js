@@ -18,7 +18,7 @@ const GOOGLE_WEB_CLIENT_SECRET =
   process.env.GOOGLE_WEB_CLIENT_SECRET;
 
 const GOOGLE_REDIRECT_URI =
-  "https://chefai-server-1.onrender.com/api/auth/google/callback";
+  "https://chefai-server-5hes.onrender.com/api/auth/google/callback";
 
 const oauth2Client = new OAuth2Client(
   GOOGLE_WEB_CLIENT_ID,
