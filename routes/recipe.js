@@ -80,7 +80,7 @@ const recipePromptEN = (base) => `
 ${base}
 
 TASK:
-- Create 2 modern and delicious recipes for 1 person.
+- Create 1 modern and delicious recipes for 1 person.
 
 NAMING:
 - recipeName_en → The simple global name.
@@ -108,7 +108,7 @@ TECHNICAL:
 
 FORMAT:
 {
- "recipes":[
+ "recipes":
    {
     "basicName": "Grilled Chicken",
      "recipeName_en": "Simple Iconic Name",
@@ -123,7 +123,6 @@ FORMAT:
      "totalCarbs": 0
      "ingredientsCalories": {}
    }
- ]
 }
 `;
 
@@ -518,9 +517,9 @@ ${base}
 
 Task:
 CREATIVITY REQUIREMENTS (VERY IMPORTANT):
-- Recipes MUST be truly creative and original, not standard or common dishes.
+- Recipe MUST be truly creative and original, not standard or common dishes.
 - Avoid typical home-style or restaurant menu recipes.
-- Each recipe should include at least one unexpected flavor combination, technique, or presentation idea.
+- Recipe should include at least one unexpected flavor combination, technique, or presentation idea.
 - Think like a modern chef creating a signature dish.
 - The result should feel unique, experimental, and inspiring.
 - All recipes MUST serve 1 people.
@@ -546,7 +545,7 @@ CREATIVITY REQUIREMENTS (VERY IMPORTANT):
 
 FORMAT (MANDATORY):
 {
- "recipes":[
+ "recipes":
    {
      "recipeName_en":"",
      "recipeName_tr":"",
@@ -562,7 +561,6 @@ FORMAT (MANDATORY):
      "totalCarbs":0,
      "ingredientsCalories":{}
    }
- ]
 }
 `;
 
@@ -582,7 +580,7 @@ const creativeTypeTR = mealType
   : "";
 
 const cuisineTextEN = cuisine
-  ? `Recipes MUST follow ${cuisine} cuisine.`
+  ? `Recipe MUST follow ${cuisine} cuisine.`
   : "";
 
 const cuisineTextTR = cuisine
@@ -594,10 +592,10 @@ let dietTextTR = "";
 
 if (diet && diet !== "None") {
   if (diet === "HighProtein") {
-    dietTextEN = "Recipes MUST be high-protein and macros optimized accordingly.";
+    dietTextEN = "Recipe MUST be high-protein and macros optimized accordingly.";
     dietTextTR = "Tarifler ZORUNLU olarak yüksek proteinli olmalıdır.";
   } else {
-    dietTextEN = `Recipes MUST strictly follow the ${diet} diet.`;
+    dietTextEN = `Recipe MUST strictly follow the ${diet} diet.`;
     dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalıdır.`;
   }
 }
@@ -611,7 +609,7 @@ if (diet && diet !== "None") {
     baseIdeaEN = `Ingredients: ${ingredients}`;
     baseIdeaTR = `Malzemeler: ${ingredients}`;
   } else {
-    baseIdeaEN = "Create free creative chef-level recipes.";
+    baseIdeaEN = "Create free creative chef-level recipe.";
     baseIdeaTR = "Serbest yaratıcı, şef seviyesinde tarifler oluştur.";
   }
 const baseEN = `
@@ -621,7 +619,7 @@ ${cuisineTextEN}
 ${dietTextEN}
 
 IMPORTANT:
-- Create 2 creative chef-level recipes.
+- Create 1 creative chef-level recipes.
 - All recipes MUST serve EXACTLY 1 person.
 - servings field MUST always be 1.
 - If a dish name is given, the result MUST clearly match that dish.
@@ -635,7 +633,7 @@ ${cuisineTextTR}
 ${dietTextTR}
 
 ÖNEMLİ:
-- 2 adet yaratıcı, şef seviyesinde tarif oluştur.
+- 1 adet yaratıcı, şef seviyesinde tarif oluştur.
 - Tüm tarifler ZORUNLU olarak 1 kişilik olmalıdır.
 - servings alanı her zaman 1 olmalı.
 `;
@@ -655,12 +653,17 @@ ${dietTextTR}
 
     const data = JSON.parse(completion.choices[0].message.content);
 
-    // Creative tarifte image yok
+    // ✅ HER DURUMDA ARRAY'E ÇEVİR
+    if (data.recipes && !Array.isArray(data.recipes)) {
+      data.recipes = [data.recipes];
+    }
+    
     for (let r of data.recipes) {
       r.image = null;
     }
 
     return res.json(data);
+
   } catch (err) {
     console.log("Creative recipe error:", err);
     return res.status(500).json({

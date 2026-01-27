@@ -100,6 +100,38 @@ console.log("REQ BODY IMAGEURL:", req.body.imageUrl);
   res.json({ message: "Kaydedildi", saved });
 });
 
+router.post("/update-recipe-image/:id", verifyToken, async (req, res) => {
+  try {
+    console.log("🔥 UPDATE IMAGE HIT BODY:", req.body);
+
+    const { image } = req.body;
+    const recipeId = req.params.id;
+
+    if (!image) {
+      return res.status(400).json({ message: "Image is required" });
+    }
+
+    const recipe = await SavedRecipe.findOneAndUpdate(
+      { _id: recipeId, userId: req.userId },
+      { $set: { image } },
+      { new: true }
+    );
+
+    if (!recipe) {
+      return res.status(404).json({ message: "Tarif bulunamadı" });
+    }
+
+    console.log("✅ UPDATED IMAGE:", recipe.image);
+
+    res.json({ message: "Foto güncellendi", recipe });
+
+  } catch (err) {
+    console.log("❌ update image error:", err);
+    res.status(500).json({ message: "Image update failed" });
+  }
+});
+
+
 router.get("/my-recipes", verifyToken, async (req, res) => {
   const recipes = await SavedRecipe.find({ userId: req.userId });
   res.json({ recipes });
