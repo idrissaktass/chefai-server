@@ -73,7 +73,7 @@ router.post("/sync", authMiddleware, async (req, res) => {
       return res.status(404).json({ error: "User not found in database" });
     }
 
-    console.log(`Sync complete for user ${userId}. Premium: ${isPremium}`);
+    console.log(`Sync complete for user xd ${userId}. Premium: ${isPremium}`);
 
     // 4. Frontend'in beklediği formatta yanıt dön
     return res.json({ 
