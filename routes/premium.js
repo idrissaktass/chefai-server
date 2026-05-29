@@ -28,11 +28,12 @@ const authMiddleware = (req, res, next) => {
  * @desc    RevenueCat üzerinden abonelik durumunu doğrular ve DB'yi günceller
  */
 router.post("/sync", authMiddleware, async (req, res) => {
+  console.log("Received sync request");
   try {
     // Frontend'den gelen userId veya authMiddleware'den gelen req.userId kullanılabilir
     const userId = req.userId; 
     const { appUserId } = req.body; // RevenueCat'teki identify ID'si
-
+    console.log("appuserId", req.body)
     if (!appUserId) {
       return res.status(400).json({ error: "appUserId is required" });
     }
@@ -47,17 +48,18 @@ router.post("/sync", authMiddleware, async (req, res) => {
         }
       }
     );
-
+  console.log("response", response)
     const entitlements = response.data.subscriber.entitlements || {};
-    
+    console.log("entitlements",entitlements)
     // 2. Belirlenen Entitlement ID aktif mi kontrol et
     // RevenueCat v1 formatında entitlement doğrudan anahtar olarak gelir
     const premiumEntitlement = entitlements[ENTITLEMENT_ID];
-    
+        console.log("premiumEntitlement",premiumEntitlement)
+
     // Eğer entitlement varsa ve bitiş tarihi geçmemişse (veya null ise sonsuzdur) isPremium true olur
     const isPremium = !!premiumEntitlement;
     const expiresDate = premiumEntitlement ? premiumEntitlement.expires_date : null;
-
+    console.log("isPremium",isPremium)
     // 3. Veritabanındaki kullanıcıyı güncelle
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -68,6 +70,7 @@ router.post("/sync", authMiddleware, async (req, res) => {
       },
       { new: true }
     );
+    console.log("updatedUser",updatedUser)
 
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found in database" });
