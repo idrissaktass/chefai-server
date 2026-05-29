@@ -84,7 +84,7 @@ weightHistory: [
 
     premiumPlan: {
       type: String,
-      enum: ["premium-monthly", "premium-yearly"],
+      enum: ["monthly-id", "year-id"],
       default: null,
     },
 
