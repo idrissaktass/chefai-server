@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-const ENTITLEMENT_ID = "premium_access"; // RevenueCat Dashboard'daki ID ile aynı olmalı
+const ENTITLEMENT_ID = "pro"; // RevenueCat Dashboard'daki ID ile aynı olmalı
 const JWT_SECRET = process.env.JWT_SECRET || "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
 
 // Kimlik Doğrulama Middleware (Güvenlik için)
