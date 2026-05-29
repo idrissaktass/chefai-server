@@ -11,14 +11,20 @@ const JWT_SECRET = process.env.JWT_SECRET || "d5f721491a7b51a3c83511efd6457e8772
 // Kimlik Doğrulama Middleware (Güvenlik için)
 const authMiddleware = (req, res, next) => {
   const header = req.headers.authorization;
-  if (!header) return res.status(401).json({ error: "No token provided" });
+  console.error("[AUTH] Request headers:", Object.keys(req.headers));
+  if (!header) {
+    console.error("[AUTH] No authorization header");
+    return res.status(401).json({ error: "No token provided" });
+  }
 
   try {
     const token = header.split(" ")[1];
     const decoded = jwt.verify(token, JWT_SECRET);
     req.userId = decoded.id;
+    console.error("[AUTH] Token verified for user:", decoded.id);
     next();
-  } catch {
+  } catch (err) {
+    console.error("[AUTH] Token verification failed:", err.message);
     return res.status(401).json({ error: "Invalid token" });
   }
 };
@@ -28,17 +34,18 @@ const authMiddleware = (req, res, next) => {
  * @desc    RevenueCat üzerinden abonelik durumunu doğrular ve DB'yi günceller
  */
 router.post("/sync", authMiddleware, async (req, res) => {
-  console.log("Received sync request");
+  console.error("[SYNC] 🟢 Received sync request");
   try {
     // Frontend'den gelen userId veya authMiddleware'den gelen req.userId kullanılabilir
     const userId = req.userId; 
     const { appUserId } = req.body; // RevenueCat'teki identify ID'si
-    console.log("appuserId", req.body)
+    console.error("[SYNC] appUserId from body:", appUserId, "userId from token:", userId);
     if (!appUserId) {
       return res.status(400).json({ error: "appUserId is required" });
     }
 
     // 1. RevenueCat API'den kullanıcı bilgilerini çek
+    console.error("[SYNC] Fetching from RevenueCat...");
     const response = await axios.get(
       `https://api.revenuecat.com/v1/subscribers/${appUserId}`,
       {
@@ -48,18 +55,18 @@ router.post("/sync", authMiddleware, async (req, res) => {
         }
       }
     );
-  console.log("response", response)
+    console.error("[SYNC] RevenueCat response status:", response.status);
     const entitlements = response.data.subscriber.entitlements || {};
-    console.log("entitlements",entitlements)
+    console.error("[SYNC] Entitlements:", Object.keys(entitlements));
     // 2. Belirlenen Entitlement ID aktif mi kontrol et
     // RevenueCat v1 formatında entitlement doğrudan anahtar olarak gelir
     const premiumEntitlement = entitlements[ENTITLEMENT_ID];
-        console.log("premiumEntitlement",premiumEntitlement)
+    console.error("[SYNC] Premium entitlement found:", !!premiumEntitlement);
 
     // Eğer entitlement varsa ve bitiş tarihi geçmemişse (veya null ise sonsuzdur) isPremium true olur
     const isPremium = !!premiumEntitlement;
     const expiresDate = premiumEntitlement ? premiumEntitlement.expires_date : null;
-    console.log("isPremium",isPremium)
+    console.error("[SYNC] isPremium:", isPremium, "expiresDate:", expiresDate);
     // 3. Veritabanındaki kullanıcıyı güncelle
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -70,13 +77,13 @@ router.post("/sync", authMiddleware, async (req, res) => {
       },
       { new: true }
     );
-    console.log("updatedUser",updatedUser)
+    console.error("[SYNC] Updated user in DB:", !!updatedUser);
 
     if (!updatedUser) {
       return res.status(404).json({ error: "User not found in database" });
     }
 
-    console.log(`Sync complete for user xd ${userId}. Premium: ${isPremium}`);
+    console.error(`[SYNC] ✅ Complete for user ${userId}. Premium: ${isPremium}`);
 
     // 4. Frontend'in beklediği formatta yanıt dön
     return res.json({ 
@@ -86,7 +93,7 @@ router.post("/sync", authMiddleware, async (req, res) => {
     });
 
   } catch (err) {
-    console.error("RC Sync Error:", err.response?.data || err.message);
+    console.error("[SYNC] ❌ Error:", err.response?.data || err.message, "Stack:", err.stack);
     return res.status(500).json({ 
       error: "Sync failed", 
       details: err.response?.data?.message || err.message 

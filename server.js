@@ -18,9 +18,19 @@ app.use(cors());
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
+// 🔥 Global request logging
+app.use((req, res, next) => {
+  console.error(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  if (req.body && Object.keys(req.body).length > 0) {
+    console.error("[BODY]", JSON.stringify(req.body).substring(0, 200));
+  }
+  next();
+});
+
 app.use((req, res, next) => {
   if (req.url.includes("update-recipe-image")) {
-    console.log("📩 Incoming:", req.method, req.url, req.body);
+    console.error("📩 Incoming:", req.method, req.url, req.body);
   }
   next();
 });
