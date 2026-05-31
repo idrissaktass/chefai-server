@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.100.1",
     "@vendia/serverless-express": "^4.12.6",
     "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",

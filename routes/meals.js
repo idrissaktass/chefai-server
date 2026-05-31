@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const router = Router();
 
-const JWT_SECRET =
+const JWT_SECRET = process.env.JWT_SECRET || 
   "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
 
 const openai = new OpenAI({
@@ -14,31 +14,51 @@ const openai = new OpenAI({
 
 // AUTH MIDDLEWARE
 const authMiddleware = (req, res, next) => {
-  const header = req.headers.authorization;
-  if (!header) return res.status(401).json({ error: "Token yok" });
+  const authHeader = req.headers.authorization;
+  console.log("[Meals Auth] Authorization header:", authHeader ? "EXISTS" : "MISSING");
+  
+  if (!authHeader) {
+    console.log("[Meals Auth] No auth header provided");
+    return res.status(401).json({ error: "Token yok" });
+  }
+
+  const parts = authHeader.split(" ");
+  const token = parts[1];
+  
+  console.log("[Meals Auth] Header parts:", parts.length, "Token:", token ? "EXISTS" : "MISSING");
+  
+  if (!token) {
+    console.log("[Meals Auth] No token in header");
+    return res.status(401).json({ error: "Token yok" });
+  }
 
   try {
-    const token = header.split(" ")[1];
+    console.log("[Meals Auth] Verifying token with JWT_SECRET...");
     const decoded = jwt.verify(token, JWT_SECRET);
+    console.log("[Meals Auth] Token verified! UserId:", decoded.id);
     req.userId = decoded.id;
     next();
-  } catch {
+  } catch (err) {
+    console.log("[Meals Auth] JWT verify ERROR:", err.message);
     return res.status(401).json({ error: "Geçersiz token" });
   }
 };
 
+
 // PROMPTS
 const analyzeImagePromptTR = `
-Verilen yemek fotoğrafını analiz et ve aşağıdaki JSON formatında yanıt ver:
+Yemek fotoğrafını analiz et ve aşağıdaki JSON formatında yanıt ver. 
+Fotoğrafta gördüğün miktarları porsiyon bazlı olarak tahmin et.
 
 {
   "foods": [
     {
       "name": "yemek adı (Türkçe)",
-      "calories": kalori sayısı,
-      "protein": protein gram,
-      "fat": yağ gram,
-      "carbs": karbonhidrat gram
+      "gramage": "AI'nın tahmin ettiği gramaj (örn: 250)",
+      "calories": "Toplam kalori",
+      "protein": "Toplam protein gram",
+      "fat": "Toplam yağ gram",
+      "carbs": "Toplam karbonhidrat gram"
     }
   ],
   "totalCalories": toplam kalori,
@@ -49,33 +69,39 @@ Verilen yemek fotoğrafını analiz et ve aşağıdaki JSON formatında yanıt v
 
 KURALLAR:
 - Her bir yiyecek maddesini ayrı olarak listele
-- Kalori, protein, yağ ve karbonhidratı makul şekilde tahmin et
+- Kalori, protein, yağ ve karbonhidratı 100 gram için tahmin et
+- gramage her zaman 100 olarak başlasın
 - Porsiyonları fotoğraftan görüntüye göre belirle
 - Sadece JSON döndür, başka birşey yazma
 `;
 
 const analyzeImagePromptEN = `
-Analyze the meal in the food photo and respond in the following JSON format:
+Analyze the meal in the photo. Estimate the portion size in grams and calculate the nutritional values based on that specific weight.
+Respond ONLY with a valid JSON.
 
 {
   "foods": [
     {
-      "name": "food name",
-      "calories": calorie number,
-      "protein": protein grams,
-      "fat": fat grams,
-      "carbs": carbohydrate grams
+      "name": "Food name",
+      "gramage": 250,
+      "calories": 400,
+      "protein": 30,
+      "fat": 15,
+      "carbs": 40
     }
   ],
-  "totalCalories": total calories,
-  "totalProtein": total protein grams,
-  "totalFat": total fat grams,
-  "totalCarbs": total carbohydrate grams
+  "totalCalories": 400,
+  "totalProtein": 30,
+  "totalFat": 15,
+  "totalCarbs": 40
 }
 
 RULES:
+- Gramage must be the estimated portion weight (not fixed at 100g).
+- Calories, protein, fat, and carbs must be calculated based on the estimated 'gramage'.
 - List each food item separately
-- Estimate calories, protein, fat and carbs reasonably
+- Estimate calories, protein, fat and carbs per 100 grams
+- gramage always starts at 100
 - Determine portions based on what you see in the photo
 - Return only JSON, nothing else
 `;
@@ -84,61 +110,53 @@ RULES:
 router.post("/analyze-meal", authMiddleware, async (req, res) => {
   try {
     const { image, language = "en" } = req.body;
+    if (!image) return res.status(400).json({ error: "Görüntü gerekli" });
 
-    if (!image) {
-      return res.status(400).json({ error: "Görüntü gerekli" });
-    }
+    const prompt = language === "tr" ? analyzeImagePromptTR : analyzeImagePromptEN;
 
-    const prompt =
-      language === "tr" ? analyzeImagePromptTR : analyzeImagePromptEN;
-
-    // Call OpenAI Vision API
     const response = await openai.chat.completions.create({
-      model: "gpt-4-turbo",
+      model: "gpt-4o",
       messages: [
+        {
+          role: "system", 
+          content: "Sen uzman bir diyetisyen ve besin analistisin. Her zaman geçerli JSON döndürürsün."
+        },
         {
           role: "user",
           content: [
-            {
-              type: "image_url",
-              image_url: {
-                url: `data:image/jpeg;base64,${image}`,
-              },
-            },
-            {
-              type: "text",
-              text: prompt,
-            },
+            { type: "image_url", image_url: { url: `data:image/jpeg;base64,${image}` } },
+            { type: "text", text: prompt },
           ],
         },
       ],
+      response_format: { type: "json_object" }, // GPT-4o JSON modunu zorlar
       max_tokens: 1024,
     });
 
     const content = response.choices[0].message.content;
-
-    // Parse JSON from response
-    const jsonMatch = content?.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      return res.status(400).json({ error: "Analiz sırasında hata oluştu" });
-    }
-
-    const analysisResult = JSON.parse(jsonMatch[0]);
+    const analysisResult = JSON.parse(content); // json_object kullandığımız için direkt parse edebiliriz
 
     res.json(analysisResult);
   } catch (error) {
     console.error("Analyze meal error:", error);
-    res.status(500).json({
-      error: error.message || "Analiz sırasında hata oluştu",
-    });
+    res.status(500).json({ error: "Analiz başarısız oldu" });
   }
 });
 
 // SAVE MEAL
 router.post("/meals", authMiddleware, async (req, res) => {
   try {
-    const { image, date, foods, totalCalories, totalProtein, totalFat, totalCarbs, notes } =
-      req.body;
+    const {
+      image,
+      date,
+      foods,
+      totalCalories,
+      totalProtein,
+      totalFat,
+      totalCarbs,
+      notes,
+      mealType,
+    } = req.body;
 
     const meal = new Meal({
       userId: req.userId,
@@ -150,6 +168,7 @@ router.post("/meals", authMiddleware, async (req, res) => {
       totalFat,
       totalCarbs,
       notes,
+      mealType: mealType || "snack",
     });
 
     await meal.save();

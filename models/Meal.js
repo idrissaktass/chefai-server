@@ -40,6 +40,11 @@ const mealSchema = new mongoose.Schema(
       default: 0,
     },
     notes: String,
+    mealType: {
+      type: String,
+      enum: ["breakfast", "lunch", "dinner", "snack"],
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
