@@ -1,5 +1,35 @@
 import mongoose from "mongoose";
 
+const foodSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    calories: {
+      type: Number,
+      default: 0,
+    },
+    protein: {
+      type: Number,
+      default: 0,
+    },
+    fat: {
+      type: Number,
+      default: 0,
+    },
+    carbs: {
+      type: Number,
+      default: 0,
+    },
+    gramage: {
+      type: Number,
+      default: 0,
+    },
+  },
+  { _id: false }
+);
+
 const mealSchema = new mongoose.Schema(
   {
     userId: {
@@ -14,15 +44,7 @@ const mealSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    foods: [
-      {
-        name: String,
-        calories: Number,
-        protein: Number,
-        fat: Number,
-        carbs: Number,
-      },
-    ],
+    foods: [foodSchema],
     totalCalories: {
       type: Number,
       default: 0,

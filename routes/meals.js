@@ -229,7 +229,7 @@ router.delete("/meals/:id", authMiddleware, async (req, res) => {
     res.json({ message: "Yemek silindi" });
   } catch (error) {
     console.error("Delete meal error:", error);
-    res.status(500).json({ error: "Yemek silinirken hata oluştu" });
+    res.status(500).json({ error: "An error occurred while deleting the meal" });
   }
 });
 
