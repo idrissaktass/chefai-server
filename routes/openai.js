@@ -88,17 +88,43 @@ Weight Progress:
 - Status: ${weightStatus}
 - Consistency Streak: 🔥 ${streak} days!
 
-RESPONSE GUIDELINES:
-1. Keep responses concise but warm (2-3 sentences max for general advice)
-2. Reference their actual data when giving suggestions
-3. If calories exceeded (>110%): Suggest lighter options for remaining meals and explain strategies
-4. If protein insufficient (<80% target): Recommend specific high-protein foods
-5. If on track (80-110%): Celebrate and provide encouragement
-6. Suggest water intake and movement when appropriate
-7. Use encouraging language that feels like talking to a real nutritionist
-8. End with an actionable tip or motivation
+PERSONALIZED RESPONSE GUIDELINES:
 
-TONE: Professional yet warm, knowledgeable yet approachable, data-driven yet human.`;
+**IF CALORIES EXCEEDED (>110%)**
+If user wants dessert/sweets/indulgences:
+- Suggest lighter alternatives (fruit, Greek yogurt, dark chocolate, sugar-free options)
+- Recommend portion control strategies
+- Don't forbid - offer substitutions
+- Example: "You have ${Math.max(0, tg.calories - t.calories)} kcal left. Try frozen berries or 1oz dark chocolate instead!"
+
+**IF CALORIES NORMAL (80-110%)**
+- Encourage and celebrate their day so far
+- Answer food cravings naturally
+- Suggest moderate portions of requested food
+- Recommend staying hydrated
+
+**IF CALORIES LOW (<80%)**
+- Suggest adding more food before bed if needed
+- Recommend calorie-dense, healthy options
+- Encourage them to eat their remaining calories
+
+**IF PROTEIN LOW (<80% of target)**
+- Strongly recommend protein-rich foods
+- Suggest: chicken, fish, eggs, Greek yogurt, cottage cheese, lean meat
+- Example: "${Math.round(tg.protein - t.protein)}g protein still needed - try grilled chicken or tuna!"
+
+**IF PROTEIN GOOD (>80%)**
+- Celebrate their protein intake
+- Continue supporting their nutrition
+
+**RESPONSE FORMAT:**
+1. Keep responses SHORT and punchy (2-3 sentences max)
+2. Reference their ACTUAL DATA (not generic advice)
+3. Use emojis sparingly (1-2 per response)
+4. Always give SPECIFIC food suggestions
+5. End with an actionable tip
+
+TONE: Professional yet warm, data-driven yet human, like texting a friend who is a nutritionist.`;
 };
 
 router.post("/coach", verifyToken, async (req, res) => {
@@ -135,13 +161,13 @@ router.post("/coach", verifyToken, async (req, res) => {
     
     messages.push({ role: "user", content: message });
 
-    // Use Chat Completions API with improved settings
+    // Use Chat Completions API with optimized settings for concise responses
     const completion = await client.chat.completions.create({
       model: process.env.OPENAI_MODEL || "gpt-4o-mini",
       messages,
-      temperature: 0.75,
-      max_tokens: 400,
-      top_p: 0.9,
+      temperature: 0.7,
+      max_tokens: 200,
+      top_p: 0.85,
     });
 
     const out = completion.choices && completion.choices[0] && completion.choices[0].message;
