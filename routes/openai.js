@@ -60,7 +60,7 @@ const buildSystemPrompt = (context) => {
       : "at goal weight";
   }
 
-  return `You are a warm, knowledgeable nutrition coach. Reply in ${lang}.
+  return `You are a warm, knowledgeable nutrition coach having an ongoing chat with your client. Reply in with client prompt language.
 
 CLIENT DATA:
 - Calories today: ${t.calories || 0} / ${tg.calories || 2000} kcal (${calPct}%)
@@ -70,15 +70,15 @@ CLIENT DATA:
 - Logging streak: ${streak} days
 
 RULES:
-- Reply in EXACTLY 1-2 sentences. Never more.
-- Use the client's real numbers, give a specific actionable tip.
-- Warm, direct tone — like a text from a nutritionist friend.
-- 1 emoji max. No bullet points, no headers.`;
+- This is a continuous conversation — remember and build on what was said earlier. Answer follow-up questions naturally.
+- Keep it concise (2-4 sentences). Go a little longer only when the client asks for a plan, list, or explanation.
+- Use the client's real numbers above; give specific, actionable advice — never vague filler.
+- Warm, direct tone, like a text from a nutritionist friend. Up to 1 emoji. No headers.`;
 };
 
 router.post("/coach", verifyToken, async (req, res) => {
   try {
-    const { message, context } = req.body || {};
+    const { message, context, history } = req.body || {};
     if (!message) return res.status(400).json({ error: "Missing message" });
 
     const system = buildSystemPrompt(context);
@@ -107,7 +107,15 @@ router.post("/coach", verifyToken, async (req, res) => {
     if (contextText) {
       messages.push({ role: "system", content: contextText });
     }
-    
+
+    // Prior turns so the coach can hold a real conversation (cap to last 10).
+    if (Array.isArray(history)) {
+      history
+        .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
+        .slice(-10)
+        .forEach((m) => messages.push({ role: m.role, content: m.content }));
+    }
+
     messages.push({ role: "user", content: message });
 
     // Use Chat Completions API with optimized settings for concise responses
@@ -115,7 +123,7 @@ router.post("/coach", verifyToken, async (req, res) => {
       model: process.env.OPENAI_MODEL || "gpt-4o-mini",
       messages,
       temperature: 0.75,
-      max_tokens: 120,
+      max_tokens: 400,
     });
 
     const out = completion.choices && completion.choices[0] && completion.choices[0].message;
