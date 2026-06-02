@@ -143,6 +143,81 @@ router.post("/analyze-meal", authMiddleware, async (req, res) => {
   }
 });
 
+// ANALYZE MEAL BY TEXT (Manual entry)
+router.post("/analyze-meal-text", authMiddleware, async (req, res) => {
+  try {
+    const { mealName, mealType = "snack", language = "en" } = req.body;
+    if (!mealName) return res.status(400).json({ error: "Meal name required" });
+
+    const textPrompt = language === "tr"
+      ? `Yemek adı: "${mealName}" (Tip: ${mealType}). Bu yemeğin beslenme değerini tahmin et ve aşağıdaki JSON formatında yanıt ver:
+{
+  "foods": [
+    {
+      "name": "yemek adı",
+      "gramage": 200,
+      "calories": 450,
+      "protein": 35,
+      "fat": 15,
+      "carbs": 45
+    }
+  ],
+  "totalCalories": 450,
+  "totalProtein": 35,
+  "totalFat": 15,
+  "totalCarbs": 45
+}
+KURALLAR:
+- Porsiyon boyutunu makul tahmin et (gramage)
+- Kalori, protein, yağ ve karbonhidratları tahmin et
+- Sadece JSON döndür, başka birşey yazma`
+      : `Meal name: "${mealName}" (Type: ${mealType}). Estimate the nutritional values and respond with this JSON format:
+{
+  "foods": [
+    {
+      "name": "meal name",
+      "gramage": 200,
+      "calories": 450,
+      "protein": 35,
+      "fat": 15,
+      "carbs": 45
+    }
+  ],
+  "totalCalories": 450,
+  "totalProtein": 35,
+  "totalFat": 15,
+  "totalCarbs": 45
+}
+RULES:
+- Estimate reasonable portion size (gramage in grams)
+- Estimate calories, protein, fat, and carbs
+- Return only JSON`;
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert nutritionist and food analyst. Always return valid JSON."
+        },
+        {
+          role: "user",
+          content: textPrompt,
+        },
+      ],
+      response_format: { type: "json_object" },
+      max_tokens: 512,
+    });
+
+    const content = response.choices[0].message.content;
+    const analysisResult = JSON.parse(content);
+    res.json(analysisResult);
+  } catch (error) {
+    console.error("Analyze meal text error:", error);
+    res.status(500).json({ error: "Analysis failed" });
+  }
+});
+
 // SAVE MEAL
 router.post("/meals", authMiddleware, async (req, res) => {
   try {
