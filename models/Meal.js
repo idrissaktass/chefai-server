@@ -62,6 +62,7 @@ const mealSchema = new mongoose.Schema(
       default: 0,
     },
     notes: String,
+    mealName: String,
     mealType: {
       type: String,
       enum: ["breakfast", "lunch", "dinner", "snack"],

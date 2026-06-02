@@ -209,7 +209,7 @@ router.get("/profile", async (req, res) => {
     const decoded = jwt.verify(token, JWT_SECRET);
 
     const user = await User.findById(decoded.id).select(
-      "email isPremium age height weight profileCompleted weightUnit heightUnit gender"
+      "email isPremium age height weight goalWeight profileCompleted weightUnit heightUnit gender"
     );
 
     res.json(user);
@@ -226,12 +226,13 @@ router.put("/profile", async (req, res) => {
     const JWT_SECRET = "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
     const decoded = jwt.verify(token, JWT_SECRET);
 
-const { age, height, weight, gender, weightUnit, heightUnit } = req.body;
+const { age, height, weight, goalWeight, gender, weightUnit, heightUnit } = req.body;
 
 const update = {
   age,
   height,
   weight,
+  goalWeight,
   gender,
   weightUnit,
   heightUnit,
@@ -253,7 +254,7 @@ const user = await User.findByIdAndUpdate(
   update,
   { new: true }
 ).select(
-  "email age weight height gender weightUnit heightUnit weightHistory"
+  "email age weight goalWeight height gender weightUnit heightUnit weightHistory"
 );
 
 res.json(user);

@@ -49,6 +49,10 @@ weight: {
   type: Number, // kg
   default: null,
 },
+goalWeight: {
+  type: Number, // kg
+  default: null,
+},
 weightUnit: {
   type: String,
   enum: ["kg", "lbs"],

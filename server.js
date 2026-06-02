@@ -10,6 +10,7 @@ import { weeklyPlanRoute } from "./routes/weeklyPlan.js";
 import { shoppingListRoute } from "./routes/shopping-list.js";
 import { premiumRoutes } from "./routes/premium.js";
 import { mealRoute } from "./routes/meals.js";
+import { openaiRoute } from "./routes/openai.js";
 
 dotenv.config();
 connectDB();
@@ -42,6 +43,7 @@ app.use("/api", weeklyPlanRoute);
 app.use("/api", shoppingListRoute);
 app.use("/api/premium", premiumRoutes);
 app.use("/api", mealRoute);
+app.use("/api/openai", openaiRoute);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log("Server running on port", port));

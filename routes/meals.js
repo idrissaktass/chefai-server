@@ -230,6 +230,7 @@ router.post("/meals", authMiddleware, async (req, res) => {
       totalFat,
       totalCarbs,
       notes,
+      mealName,
       mealType,
     } = req.body;
 
@@ -243,6 +244,7 @@ router.post("/meals", authMiddleware, async (req, res) => {
       totalFat,
       totalCarbs,
       notes,
+      mealName,
       mealType: mealType || "snack",
     });
 
