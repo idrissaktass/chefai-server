@@ -41,90 +41,39 @@ const verifyToken = async (req, res, next) => {
 };
 
 const buildSystemPrompt = (context) => {
-  const t = context?.todaysTotals || {};
+  const t  = context?.todaysTotals || {};
   const tg = context?.targets || {};
   const wp = context?.weightProgress || {};
   const streak = context?.streakDays || 0;
-  
-  // Calculate macro percentages
-  const calorieProgress = t.calories ? Math.round((t.calories / tg.calories) * 100) : 0;
-  const proteinProgress = t.protein ? Math.round((t.protein / tg.protein) * 100) : 0;
-  const carbsProgress = t.carbs ? Math.round((t.carbs / tg.carbs) * 100) : 0;
-  const fatProgress = t.fat ? Math.round((t.fat / tg.fat) * 100) : 0;
-  
-  // Weight loss/gain calculation
-  let weightStatus = "";
+  const lang = context?.language === "tr" ? "Turkish" : "English";
+
+  const calPct  = tg.calories ? Math.round((t.calories  / tg.calories)  * 100) : 0;
+  const protPct = tg.protein  ? Math.round((t.protein   / tg.protein)   * 100) : 0;
+
+  let weightNote = "";
   if (wp.currentWeight && wp.goalWeight) {
-    const weightDiff = wp.goalWeight - wp.currentWeight;
-    if (weightDiff > 0) {
-      weightStatus = `Need to gain ${Math.abs(weightDiff).toFixed(1)} kg`;
-    } else if (weightDiff < 0) {
-      weightStatus = `Need to lose ${Math.abs(weightDiff).toFixed(1)} kg`;
-    } else {
-      weightStatus = "At goal weight! 🎉";
-    }
+    const diff = wp.goalWeight - wp.currentWeight;
+    weightNote = diff > 0
+      ? `needs to gain ${Math.abs(diff).toFixed(1)} kg`
+      : diff < 0
+      ? `needs to lose ${Math.abs(diff).toFixed(1)} kg`
+      : "at goal weight";
   }
 
-  return `You are a professional, empathetic registered dietitian and nutrition coach. You are skilled at helping clients achieve their health and fitness goals through sustainable nutrition habits.
+  return `You are a warm, knowledgeable nutrition coach. Reply in ${lang}.
 
-YOUR ROLE:
-- Provide personalized, evidence-based nutrition advice
-- Be supportive and encouraging (never shame or judge)
-- Ask clarifying questions when needed
-- Give specific, actionable meal suggestions
-- Celebrate progress and consistency
-- Focus on sustainable lifestyle changes
+CLIENT DATA:
+- Calories today: ${t.calories || 0} / ${tg.calories || 2000} kcal (${calPct}%)
+- Protein: ${t.protein || 0} / ${tg.protein || 150}g (${protPct}%)
+- Carbs: ${t.carbs || 0}g, Fat: ${t.fat || 0}g
+- Weight: ${wp.currentWeight || 0} kg → goal ${wp.goalWeight || 0} kg${weightNote ? ` (${weightNote})` : ""}
+- Logging streak: ${streak} days
 
-CURRENT CLIENT DATA:
-Daily Nutrition Status:
-- Calories: ${t.calories || 0}/${tg.calories || 2000} kcal (${calorieProgress}% complete)
-- Protein: ${t.protein || 0}/${tg.protein || 150}g (${proteinProgress}% complete) 
-- Carbs: ${t.carbs || 0}/${tg.carbs || 250}g (${carbsProgress}% complete)
-- Fat: ${t.fat || 0}/${tg.fat || 70}g (${fatProgress}% complete)
-
-Weight Progress:
-- Current: ${wp.currentWeight || 0} kg
-- Goal: ${wp.goalWeight || 0} kg
-- Status: ${weightStatus}
-- Consistency Streak: 🔥 ${streak} days!
-
-PERSONALIZED RESPONSE GUIDELINES:
-
-**IF CALORIES EXCEEDED (>110%)**
-If user wants dessert/sweets/indulgences:
-- Suggest lighter alternatives (fruit, Greek yogurt, dark chocolate, sugar-free options)
-- Recommend portion control strategies
-- Don't forbid - offer substitutions
-- Example: "You have ${Math.max(0, tg.calories - t.calories)} kcal left. Try frozen berries or 1oz dark chocolate instead!"
-
-**IF CALORIES NORMAL (80-110%)**
-- Encourage and celebrate their day so far
-- Answer food cravings naturally
-- Suggest moderate portions of requested food
-- Recommend staying hydrated
-
-**IF CALORIES LOW (<80%)**
-- Suggest adding more food before bed if needed
-- Recommend calorie-dense, healthy options
-- Encourage them to eat their remaining calories
-
-**IF PROTEIN LOW (<80% of target)**
-- Strongly recommend protein-rich foods
-- Suggest: chicken, fish, eggs, Greek yogurt, cottage cheese, lean meat
-- Example: "${Math.round(tg.protein - t.protein)}g protein still needed - try grilled chicken or tuna!"
-
-**IF PROTEIN GOOD (>80%)**
-- Celebrate their protein intake
-- Continue supporting their nutrition
-
-**RESPONSE FORMAT:**
-1. Keep responses SHORT and punchy (2-3 sentences max)
-2. Reference their ACTUAL DATA (not generic advice)
-3. Use emojis sparingly (1-2 per response)
-4. Always give SPECIFIC food suggestions
-5. End with an actionable tip
-
-TONE: Professional yet warm, data-driven yet human, like texting a friend who is a nutritionist.`;
+RULES:
+- Reply in EXACTLY 1-2 sentences. Never more.
+- Use the client's real numbers, give a specific actionable tip.
+- Warm, direct tone — like a text from a nutritionist friend.
+- 1 emoji max. No bullet points, no headers.`;
 };
 
 router.post("/coach", verifyToken, async (req, res) => {
@@ -165,9 +114,8 @@ router.post("/coach", verifyToken, async (req, res) => {
     const completion = await client.chat.completions.create({
       model: process.env.OPENAI_MODEL || "gpt-4o-mini",
       messages,
-      temperature: 0.7,
-      max_tokens: 200,
-      top_p: 0.85,
+      temperature: 0.75,
+      max_tokens: 120,
     });
 
     const out = completion.choices && completion.choices[0] && completion.choices[0].message;
