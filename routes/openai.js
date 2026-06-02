@@ -14,6 +14,19 @@ if (!OPENAI_KEY) {
 
 const client = new OpenAI({ apiKey: OPENAI_KEY });
 
+// ── Abuse / cost protection ──────────────────────────────────────────────────
+const COACH_DAILY_LIMIT_PREMIUM = Number(process.env.COACH_DAILY_LIMIT_PREMIUM) || 50;
+const COACH_DAILY_LIMIT_FREE    = Number(process.env.COACH_DAILY_LIMIT_FREE)    || 5;
+const COACH_BURST_MAX           = Number(process.env.COACH_BURST_MAX)           || 10; // per window
+const COACH_BURST_WINDOW_MS     = 60_000; // 1 minute
+const COACH_MAX_MESSAGE_LEN     = 1000;
+
+// In-memory burst tracker: userId -> recent request timestamps.
+// Note: per-process only. Fine for a single Render instance; switch to Redis if you scale out.
+const burstHits = new Map();
+
+const todayKey = () => new Date().toISOString().split("T")[0];
+
 // Token verification middleware
 const verifyToken = async (req, res, next) => {
   const header = req.headers.authorization;
@@ -78,8 +91,46 @@ RULES:
 
 router.post("/coach", verifyToken, async (req, res) => {
   try {
-    const { message, context, history } = req.body || {};
+    const { message, context, history, skipLimit } = req.body || {};
     if (!message) return res.status(400).json({ error: "Missing message" });
+
+    // Server-side length guard (frontend caps at 500, this is a hard ceiling).
+    if (typeof message !== "string" || message.length > COACH_MAX_MESSAGE_LEN) {
+      return res.status(400).json({ error: "Message too long" });
+    }
+
+    const user = req.user;
+    const uid = String(req.userId);
+
+    // 1) Burst protection — block rapid-fire spamming.
+    const now = Date.now();
+    const hits = (burstHits.get(uid) || []).filter((ts) => now - ts < COACH_BURST_WINDOW_MS);
+    if (hits.length >= COACH_BURST_MAX) {
+      return res.status(429).json({
+        errorCode: "COACH_RATE_LIMITED",
+        error: "Too many messages, please slow down.",
+      });
+    }
+    hits.push(now);
+    burstHits.set(uid, hits);
+
+    // 2) Daily quota — premium vs free (skipLimit = automatic insights, not counted).
+    const limit = user.isPremium ? COACH_DAILY_LIMIT_PREMIUM : COACH_DAILY_LIMIT_FREE;
+    const today = todayKey();
+    if (!skipLimit) {
+      if (user.coachDailyDate !== today) {
+        user.coachDailyDate = today;
+        user.coachDailyCount = 0;
+      }
+      if (user.coachDailyCount >= limit) {
+        return res.status(402).json({
+          errorCode: "COACH_DAILY_LIMIT_REACHED",
+          isPremium: !!user.isPremium,
+          limit,
+          error: user.isPremium ? "Daily message limit reached." : "Free daily limit reached.",
+        });
+      }
+    }
 
     const system = buildSystemPrompt(context);
 
@@ -129,7 +180,13 @@ router.post("/coach", verifyToken, async (req, res) => {
     const out = completion.choices && completion.choices[0] && completion.choices[0].message;
     const content = out?.content || "";
 
-    console.log(`[Coach] ${req.user?.email || "unknown"}: "${message.substring(0, 50)}..." → Response sent`);
+    // Count this turn against the daily quota (insights skip it).
+    if (!skipLimit) {
+      user.coachDailyCount += 1;
+      await user.save();
+    }
+
+    console.log(`[Coach] ${req.user?.email || "unknown"} (${user.coachDailyCount}/${limit}): "${message.substring(0, 50)}..." → Response sent`);
 
     return res.json({ 
       id: `coach-${Date.now()}`, 

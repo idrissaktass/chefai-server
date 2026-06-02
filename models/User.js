@@ -124,6 +124,17 @@ weightHistory: [
       type: String, // örn: "2025-01-16"
       default: "",
     },
+
+    // AI coach chat daily limit
+    coachDailyCount: {
+      type: Number,
+      default: 0,
+    },
+
+    coachDailyDate: {
+      type: String, // örn: "2025-01-16"
+      default: "",
+    },
   },
   {
     timestamps: true, // createdAt / updatedAt
