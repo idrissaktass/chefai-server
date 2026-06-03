@@ -506,6 +506,74 @@ SADECE JSON DÖN:
   }
 });
 
+// ====================== ADD AI RECIPE TO PLAN (no extra AI call) ============
+// Custom AI tarif ekranından gelen bir tarifi, kullanıcının seçtiği gün + öğün
+// slotuna doğrudan yazar. Tarifin makroları zaten bilindiği için AI çağrılmaz.
+router.post("/weekly-plan/add-recipe", authMiddleware, async (req, res) => {
+  try {
+    const {
+      day,                 // seçilen günün adı (day_en / day_tr / day)
+      mealType,            // breakfast | lunch | dinner | snack | snack2
+      name_tr,
+      name_en,
+      cal = 0,
+      protein = 0,
+      carbs = 0,
+      fat = 0,
+      language = "tr",
+    } = req.body;
+
+    const allowedMeals = ["breakfast", "lunch", "dinner", "snack", "snack2"];
+    if (!allowedMeals.includes(mealType)) {
+      return res.status(400).json({ error: "Geçersiz öğün tipi" });
+    }
+    if (!name_tr && !name_en) {
+      return res.status(400).json({ error: "Tarif adı eksik" });
+    }
+
+    const planDoc = await WeeklyPlanModel.findOne({ userId: req.userId }).sort({
+      createdAt: -1,
+    });
+    if (!planDoc) return res.status(404).json({ error: "Plan bulunamadı" });
+
+    const dayIndex = planDoc.plan.findIndex(
+      (d) => d.day === day || d.day_en === day || d.day_tr === day
+    );
+    if (dayIndex === -1) {
+      return res.status(404).json({ error: "Gün bulunamadı" });
+    }
+
+    const dayObj = planDoc.plan[dayIndex];
+
+    // 1️⃣ Öğünü doğrudan tarifin değerleriyle güncelle
+    dayObj[`${mealType}_tr`] = name_tr || name_en;
+    dayObj[`${mealType}_en`] = name_en || name_tr;
+    dayObj[mealType] = language === "en" ? (name_en || name_tr) : (name_tr || name_en);
+
+    dayObj[`${mealType}_cal`] = Math.round(Number(cal) || 0);
+    dayObj[`${mealType}_protein`] = Math.round(Number(protein) || 0);
+    dayObj[`${mealType}_carbs`] = Math.round(Number(carbs) || 0);
+    dayObj[`${mealType}_fat`] = Math.round(Number(fat) || 0);
+
+    // 2️⃣ Gün toplamlarını yeniden hesapla
+    const meals = ["breakfast", "lunch", "dinner", "snack", "snack2"];
+    dayObj.total_cal = meals.reduce((s, m) => s + (dayObj[`${m}_cal`] || 0), 0);
+    dayObj.total_protein = meals.reduce((s, m) => s + (dayObj[`${m}_protein`] || 0), 0);
+    dayObj.total_carbs = meals.reduce((s, m) => s + (dayObj[`${m}_carbs`] || 0), 0);
+    dayObj.total_fat = meals.reduce((s, m) => s + (dayObj[`${m}_fat`] || 0), 0);
+
+    // 3️⃣ Kaydet (Mixed array için değişikliği işaretle)
+    planDoc.plan[dayIndex] = dayObj;
+    planDoc.markModified("plan");
+    await planDoc.save();
+
+    return res.json({ success: true, updatedDay: dayObj });
+  } catch (err) {
+    console.error("add-recipe error:", err);
+    return res.status(500).json({ error: "Tarif plana eklenemedi" });
+  }
+});
+
 // ====================== UPDATE DAY (PREMIUM ONLY) ===========================
 router.post("/weekly-plan/update-day", authMiddleware, async (req, res) => {
   // if (!req.isPremium) {

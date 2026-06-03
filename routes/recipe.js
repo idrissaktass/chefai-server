@@ -141,6 +141,7 @@ router.post("/recipe", authMiddleware, async (req, res) => {
     quickType,
     mealType = "main",      // main | dessert | snack | soup
     calorieRange,           // { min, max }
+    allergies,              // string[] | string → hariç tutulacak malzemeler
   } = req.body;
 
   /* ===============================
@@ -334,12 +335,25 @@ const mealTypeTextTR = {
     }
   }
 
+  // 🚫 ALERJI / HARİÇ TUTMA
+  const allergyList = Array.isArray(allergies)
+    ? allergies.filter(Boolean).join(", ")
+    : (typeof allergies === "string" ? allergies.trim() : "");
+
+  const allergyTextEN = allergyList
+    ? `STRICT ALLERGY/EXCLUSION: The recipe MUST NOT contain any of the following ingredients or their derivatives: ${allergyList}. This is a safety requirement.`
+    : "";
+  const allergyTextTR = allergyList
+    ? `ZORUNLU ALERJI/HARİÇ TUTMA: Tarif şu malzemeleri ve türevlerini KESİNLİKLE içermemelidir: ${allergyList}. Bu bir güvenlik kuralıdır.`
+    : "";
+
   const baseEN = `
 ${quickTextEN}
 ${baseIdeaText}
 ${mealTypeTextEN[mealType]}
 ${cuisineText}
 ${dietTextEN}
+${allergyTextEN}
 ${calorieTextEN}
 IMPORTANT:
 - 2 recipes
@@ -353,6 +367,7 @@ ${baseIdeaText}
 ${mealTypeTextTR[mealType]}
 ${cuisineText}
 ${dietTextTR}
+${allergyTextTR}
 ${calorieTextTR}ÖNEMLİ:
 - 2 tane tarif oluştur.
 - Bu tarif ZORUNLU olarak 1 kişilik olmalıdır.
@@ -567,7 +582,18 @@ FORMAT (MANDATORY):
 // router.post("/recipe-creative"
 router.post("/recipe-creative", authMiddleware, async (req, res) => {
   const { language = "en" } = req.body; // 👈 EKLE
-const { ingredients, cuisine, diet, mealType, dishName } = req.body;
+const { ingredients, cuisine, diet, mealType, dishName, allergies } = req.body;
+
+const creativeAllergyList = Array.isArray(allergies)
+  ? allergies.filter(Boolean).join(", ")
+  : (typeof allergies === "string" ? allergies.trim() : "");
+
+const allergyTextEN = creativeAllergyList
+  ? `STRICT ALLERGY/EXCLUSION: The recipe MUST NOT contain any of the following ingredients or their derivatives: ${creativeAllergyList}. This is a safety requirement.`
+  : "";
+const allergyTextTR = creativeAllergyList
+  ? `ZORUNLU ALERJI/HARİÇ TUTMA: Tarif şu malzemeleri ve türevlerini KESİNLİKLE içermemelidir: ${creativeAllergyList}. Bu bir güvenlik kuralıdır.`
+  : "";
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -617,6 +643,7 @@ ${baseIdeaEN}
 ${creativeTypeEN}
 ${cuisineTextEN}
 ${dietTextEN}
+${allergyTextEN}
 
 IMPORTANT:
 - Create 1 creative chef-level recipes.
@@ -631,6 +658,7 @@ Malzemeler: ${ingredients || "Serbest yaratıcı tarif oluştur."}
 ${creativeTypeTR}
 ${cuisineTextTR}
 ${dietTextTR}
+${allergyTextTR}
 
 ÖNEMLİ:
 - 1 adet yaratıcı, şef seviyesinde tarif oluştur.
