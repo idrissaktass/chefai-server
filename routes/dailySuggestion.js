@@ -42,7 +42,7 @@ function calcTDEE(user) {
   return Math.round(tdee);
 }
 
-// ── AI ile öğün üret ────────────────────────────────────────────────────────
+// ── AI ile 4 öğün üret ─────────────────────────────────────────────────────
 async function generateMeals({ targetCal, language = "en", excludeNames = [] }) {
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -52,18 +52,21 @@ async function generateMeals({ targetCal, language = "en", excludeNames = [] }) 
         : `AVOID these (already suggested today): ${excludeNames.join(", ")}.`)
     : "";
 
+  // Dağılım: kahvaltı %25, öğle %35, atıştırmalık %10, akşam %30
   const prompt = language === "tr"
     ? `
 Günlük kalori hedefi: ${targetCal} kcal.
 ${excludeClause}
 
-Bir günlük beslenme planı için 3 öğün öner: kahvaltı, öğle yemeği ve akşam yemeği.
-Toplam kalori yaklaşık ${targetCal} kcal olmalı. Yemekler sağlıklı, pratik ve Türk damak zevkine uygun olsun.
+Bir günlük beslenme planı için 4 öğün öner: kahvaltı, öğle yemeği, atıştırmalık ve akşam yemeği.
+Kalori dağılımı: kahvaltı ~%25 (${Math.round(targetCal*0.25)} kcal), öğle ~%35 (${Math.round(targetCal*0.35)} kcal), atıştırmalık ~%10 (${Math.round(targetCal*0.10)} kcal), akşam ~%30 (${Math.round(targetCal*0.30)} kcal).
+Toplam yaklaşık ${targetCal} kcal olmalı. Yemekler sağlıklı, pratik ve Türk damak zevkine uygun olsun.
 
 SADECE JSON döndür:
 {
   "breakfast": { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
   "lunch":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "snack":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
   "dinner":    { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
 }
 `
@@ -71,13 +74,15 @@ SADECE JSON döndür:
 Daily calorie target: ${targetCal} kcal.
 ${excludeClause}
 
-Suggest 3 meals for one day: breakfast, lunch, and dinner.
-Total calories should be approximately ${targetCal} kcal. Meals should be healthy, practical and balanced.
+Suggest 4 meals for one day: breakfast, lunch, snack, and dinner.
+Calorie distribution: breakfast ~25% (${Math.round(targetCal*0.25)} kcal), lunch ~35% (${Math.round(targetCal*0.35)} kcal), snack ~10% (${Math.round(targetCal*0.10)} kcal), dinner ~30% (${Math.round(targetCal*0.30)} kcal).
+Total should be approximately ${targetCal} kcal. Meals should be healthy, practical, and balanced.
 
 RETURN ONLY JSON:
 {
   "breakfast": { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
   "lunch":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "snack":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
   "dinner":    { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
 }
 `;
@@ -98,11 +103,12 @@ async function generateOneMeal({ mealType, targetCal, language = "en", excludeNa
   const mealLabel = {
     breakfast: language === "tr" ? "kahvaltı" : "breakfast",
     lunch:     language === "tr" ? "öğle yemeği" : "lunch",
+    snack:     language === "tr" ? "atıştırmalık" : "snack",
     dinner:    language === "tr" ? "akşam yemeği" : "dinner",
   }[mealType] || mealType;
 
   const excludeClause = excludeName
-    ? (language === "tr" ? `"${excludeName}" dışında farklı bir yemek öner.` : `Suggest something different from "${excludeName}".`)
+    ? (language === "tr" ? `"${excludeName}" dışında farklı bir şey öner.` : `Suggest something different from "${excludeName}".`)
     : "";
 
   const prompt = language === "tr"
@@ -132,9 +138,15 @@ RETURN ONLY JSON:
   return JSON.parse(completion.choices[0].message.content);
 }
 
+const MEAL_TYPES = ["breakfast", "lunch", "snack", "dinner"];
+
+// Öğün kalori oranları
+const MEAL_RATIOS = { breakfast: 0.25, lunch: 0.35, snack: 0.10, dinner: 0.30 };
+
 // ══════════════════════════════════════════════════════════════════════════════
 // GET /api/daily-suggestion
-// Bugünkü öneriyi getirir; yoksa AI ile üretir ve kaydeder.
+// Bugünkü öneriyi getirir; yoksa AI ile üretir.
+// Query: language, targetCal (kullanıcının manual hedefi varsa)
 // ══════════════════════════════════════════════════════════════════════════════
 router.get("/daily-suggestion", authMiddleware, async (req, res) => {
   try {
@@ -145,9 +157,12 @@ router.get("/daily-suggestion", authMiddleware, async (req, res) => {
     let doc = await DailySuggestion.findOne({ userId: req.userId, date: today });
     if (doc) return res.json({ suggestion: doc, cached: true });
 
-    // Kullanıcı profilinden TDEE hesapla
-    const user = await User.findById(req.userId);
-    const targetCal = calcTDEE(user);
+    // Kalori hedefi: frontend'den gelen manuel hedef veya TDEE hesabı
+    let targetCal = req.query.targetCal ? parseInt(req.query.targetCal, 10) : 0;
+    if (!targetCal || isNaN(targetCal)) {
+      const user = await User.findById(req.userId);
+      targetCal = calcTDEE(user);
+    }
 
     // AI ile üret
     const meals = await generateMeals({ targetCal, language });
@@ -157,8 +172,9 @@ router.get("/daily-suggestion", authMiddleware, async (req, res) => {
       date: today,
       targetCal,
       breakfast: meals.breakfast || {},
-      lunch: meals.lunch || {},
-      dinner: meals.dinner || {},
+      lunch:     meals.lunch     || {},
+      snack:     meals.snack     || {},
+      dinner:    meals.dinner    || {},
     });
 
     return res.json({ suggestion: doc, cached: false });
@@ -171,12 +187,12 @@ router.get("/daily-suggestion", authMiddleware, async (req, res) => {
 // ══════════════════════════════════════════════════════════════════════════════
 // POST /api/daily-suggestion/confirm
 // Öğünü "yedim" olarak işaretle ve meals koleksiyonuna kaydet.
-// Body: { mealType: "breakfast" | "lunch" | "dinner", image?: string }
+// Body: { mealType: "breakfast"|"lunch"|"snack"|"dinner" }
 // ══════════════════════════════════════════════════════════════════════════════
 router.post("/daily-suggestion/confirm", authMiddleware, async (req, res) => {
   try {
-    const { mealType, image = "" } = req.body;
-    if (!["breakfast", "lunch", "dinner"].includes(mealType)) {
+    const { mealType } = req.body;
+    if (!MEAL_TYPES.includes(mealType)) {
       return res.status(400).json({ error: "Geçersiz öğün tipi" });
     }
 
@@ -189,18 +205,27 @@ router.post("/daily-suggestion/confirm", authMiddleware, async (req, res) => {
       return res.json({ success: true, alreadyConfirmed: true });
     }
 
+    const todayDate = new Date().toISOString().split("T")[0];
+
     // Meals koleksiyonuna logla
     await Meal.create({
       userId: req.userId,
-      image: image || "",
-      date: new Date().toISOString(),
-      foods: [{ name: meal.name_en || meal.name_tr, calories: meal.cal, protein: meal.protein, fat: meal.fat, carbs: meal.carbs, gramage: 0 }],
+      image: "ai-suggestion",
+      date: todayDate,
+      foods: [{
+        name: meal.name_en || meal.name_tr,
+        calories: meal.cal,
+        protein: meal.protein,
+        fat: meal.fat,
+        carbs: meal.carbs,
+        gramage: 0,
+      }],
       totalCalories: meal.cal,
       totalProtein: meal.protein,
       totalFat: meal.fat,
       totalCarbs: meal.carbs,
       mealName: meal.name_en || meal.name_tr,
-      mealType: mealType === "dinner" ? "dinner" : mealType === "breakfast" ? "breakfast" : "lunch",
+      mealType,
     });
 
     // Öneriyi confirmed olarak işaretle
@@ -218,12 +243,12 @@ router.post("/daily-suggestion/confirm", authMiddleware, async (req, res) => {
 // ══════════════════════════════════════════════════════════════════════════════
 // POST /api/daily-suggestion/swap
 // Bir öğün için yeni AI önerisi üret.
-// Body: { mealType: "breakfast" | "lunch" | "dinner", language?: string }
+// Body: { mealType, language? }
 // ══════════════════════════════════════════════════════════════════════════════
 router.post("/daily-suggestion/swap", authMiddleware, async (req, res) => {
   try {
     const { mealType, language = "en" } = req.body;
-    if (!["breakfast", "lunch", "dinner"].includes(mealType)) {
+    if (!MEAL_TYPES.includes(mealType)) {
       return res.status(400).json({ error: "Geçersiz öğün tipi" });
     }
 
@@ -235,9 +260,7 @@ router.post("/daily-suggestion/swap", authMiddleware, async (req, res) => {
       return res.status(400).json({ error: "Onaylanmış öğün değiştirilemez" });
     }
 
-    // Her öğünün yaklaşık oranları
-    const ratios = { breakfast: 0.28, lunch: 0.35, dinner: 0.37 };
-    const mealTargetCal = Math.round(doc.targetCal * ratios[mealType]);
+    const mealTargetCal = Math.round(doc.targetCal * (MEAL_RATIOS[mealType] || 0.25));
     const currentName = doc[mealType]?.name_en || doc[mealType]?.name_tr || "";
 
     const newMeal = await generateOneMeal({ mealType, targetCal: mealTargetCal, language, excludeName: currentName });
@@ -255,21 +278,25 @@ router.post("/daily-suggestion/swap", authMiddleware, async (req, res) => {
 
 // ══════════════════════════════════════════════════════════════════════════════
 // POST /api/daily-suggestion/regenerate
-// Tüm günü sıfırdan yeniden üret (kullanıcı "Yenile" derse).
+// Tüm günü sıfırdan yeniden üret.
+// Body: { language?, targetCal? }
 // ══════════════════════════════════════════════════════════════════════════════
 router.post("/daily-suggestion/regenerate", authMiddleware, async (req, res) => {
   try {
     const { language = "en" } = req.body;
+    let targetCal = req.body.targetCal ? parseInt(req.body.targetCal, 10) : 0;
     const today = new Date().toISOString().split("T")[0];
 
-    const user = await User.findById(req.userId);
-    const targetCal = calcTDEE(user);
+    if (!targetCal || isNaN(targetCal)) {
+      const user = await User.findById(req.userId);
+      targetCal = calcTDEE(user);
+    }
 
-    // Önceki öneriyi al — confirmed olanlar için isimleri exclude et
+    // Önceki öneri isimlerini exclude et
     const existing = await DailySuggestion.findOne({ userId: req.userId, date: today });
     const excludeNames = [];
     if (existing) {
-      ["breakfast", "lunch", "dinner"].forEach((m) => {
+      MEAL_TYPES.forEach((m) => {
         const meal = existing[m];
         if (meal?.name_en) excludeNames.push(meal.name_en);
       });
@@ -283,6 +310,7 @@ router.post("/daily-suggestion/regenerate", authMiddleware, async (req, res) => 
         targetCal,
         breakfast: { ...meals.breakfast, confirmed: false },
         lunch:     { ...meals.lunch,     confirmed: false },
+        snack:     { ...meals.snack,     confirmed: false },
         dinner:    { ...meals.dinner,    confirmed: false },
       },
       { upsert: true, new: true }

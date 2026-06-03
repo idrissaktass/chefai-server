@@ -19,6 +19,7 @@ const dailySuggestionSchema = new mongoose.Schema({
   targetCal: { type: Number, default: 2000 },
   breakfast: { type: mealSuggestionSchema, default: () => ({}) },
   lunch:     { type: mealSuggestionSchema, default: () => ({}) },
+  snack:     { type: mealSuggestionSchema, default: () => ({}) },
   dinner:    { type: mealSuggestionSchema, default: () => ({}) },
   createdAt: { type: Date, default: Date.now },
 });
