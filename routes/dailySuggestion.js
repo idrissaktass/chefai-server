@@ -155,7 +155,17 @@ router.get("/daily-suggestion", authMiddleware, async (req, res) => {
 
     // Bugün için kayıt zaten var mı?
     let doc = await DailySuggestion.findOne({ userId: req.userId, date: today });
-    if (doc) return res.json({ suggestion: doc, cached: true });
+    if (doc) {
+      // Eski kayıt snack içermiyorsa ekle
+      if (!doc.snack || !doc.snack.name_en) {
+        const snackCal = Math.round(doc.targetCal * 0.10);
+        const snackMeal = await generateOneMeal({ mealType: "snack", targetCal: snackCal, language });
+        doc.snack = { ...snackMeal, confirmed: false };
+        doc.markModified("snack");
+        await doc.save();
+      }
+      return res.json({ suggestion: doc, cached: true });
+    }
 
     // Kalori hedefi: frontend'den gelen manuel hedef veya TDEE hesabı
     let targetCal = req.query.targetCal ? parseInt(req.query.targetCal, 10) : 0;
