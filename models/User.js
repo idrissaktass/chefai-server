@@ -29,6 +29,12 @@ authProvider: {
   default: "local",
 },
 
+language: {
+  type: String,
+  enum: ["tr", "en", "de", "fr", "es", "ar"],
+  default: "en",
+},
+
 // -----------------
 // PROFILE
 // -----------------
