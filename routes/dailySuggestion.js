@@ -47,36 +47,21 @@ async function generateMeals({ targetCal, language = "en", excludeNames = [] }) 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const excludeClause = excludeNames.length
-    ? (language === "tr"
-        ? `Bu yemeklerden KAÇIN (bugün zaten önerildi): ${excludeNames.join(", ")}.`
-        : `AVOID these (already suggested today): ${excludeNames.join(", ")}.`)
+    ? `AVOID these meals (already suggested today): ${excludeNames.join(", ")}.`
     : "";
 
-  // Dağılım: kahvaltı %25, öğle %35, atıştırmalık %10, akşam %30
-  const prompt = language === "tr"
-    ? `
-Günlük kalori hedefi: ${targetCal} kcal.
-${excludeClause}
+  const langNames = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", de: "German" };
+  const langName = langNames[language] || "English";
 
-Bir günlük beslenme planı için 4 öğün öner: kahvaltı, öğle yemeği, atıştırmalık ve akşam yemeği.
-Kalori dağılımı: kahvaltı ~%25 (${Math.round(targetCal*0.25)} kcal), öğle ~%35 (${Math.round(targetCal*0.35)} kcal), atıştırmalık ~%10 (${Math.round(targetCal*0.10)} kcal), akşam ~%30 (${Math.round(targetCal*0.30)} kcal).
-Toplam yaklaşık ${targetCal} kcal olmalı. Yemekler sağlıklı, pratik ve Türk damak zevkine uygun olsun.
-
-SADECE JSON döndür:
-{
-  "breakfast": { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "lunch":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "snack":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "dinner":    { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
-}
-`
-    : `
+  const prompt = `
 Daily calorie target: ${targetCal} kcal.
 ${excludeClause}
 
 Suggest 4 meals for one day: breakfast, lunch, snack, and dinner.
 Calorie distribution: breakfast ~25% (${Math.round(targetCal*0.25)} kcal), lunch ~35% (${Math.round(targetCal*0.35)} kcal), snack ~10% (${Math.round(targetCal*0.10)} kcal), dinner ~30% (${Math.round(targetCal*0.30)} kcal).
 Total should be approximately ${targetCal} kcal. Meals should be healthy, practical, and balanced.
+
+LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
 
 RETURN ONLY JSON:
 {
@@ -100,30 +85,16 @@ RETURN ONLY JSON:
 async function generateOneMeal({ mealType, targetCal, language = "en", excludeName = "" }) {
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-  const mealLabel = {
-    breakfast: language === "tr" ? "kahvaltı" : "breakfast",
-    lunch:     language === "tr" ? "öğle yemeği" : "lunch",
-    snack:     language === "tr" ? "atıştırmalık" : "snack",
-    dinner:    language === "tr" ? "akşam yemeği" : "dinner",
-  }[mealType] || mealType;
-
   const excludeClause = excludeName
-    ? (language === "tr" ? `"${excludeName}" dışında farklı bir şey öner.` : `Suggest something different from "${excludeName}".`)
+    ? `Suggest something different from "${excludeName}".`
     : "";
 
-  const prompt = language === "tr"
-    ? `
-${mealLabel} için yaklaşık ${targetCal} kcal'lik tek bir öğün öner.
-${excludeClause}
-Sağlıklı, pratik ve Türk mutfağına uygun olsun.
-
-SADECE JSON:
-{ "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
-`
-    : `
-Suggest a single ${mealLabel} with approximately ${targetCal} kcal.
+  const prompt = `
+Suggest a single ${mealType} meal with approximately ${targetCal} kcal.
 ${excludeClause}
 Healthy and practical.
+
+LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
 
 RETURN ONLY JSON:
 { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }

@@ -53,12 +53,14 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
+const LANG_NAMES = { en: "English", tr: "Turkish", de: "German", fr: "French", es: "Spanish" };
+
 const buildSystemPrompt = (context) => {
   const t  = context?.todaysTotals || {};
   const tg = context?.targets || {};
   const wp = context?.weightProgress || {};
   const streak = context?.streakDays || 0;
-  const lang = context?.language === "tr" ? "Turkish" : "English";
+  const lang = LANG_NAMES[context?.language] || "English";
 
   const calPct  = tg.calories ? Math.round((t.calories  / tg.calories)  * 100) : 0;
   const protPct = tg.protein  ? Math.round((t.protein   / tg.protein)   * 100) : 0;
@@ -73,7 +75,7 @@ const buildSystemPrompt = (context) => {
       : "at goal weight";
   }
 
-  return `You are a warm, knowledgeable nutrition coach having an ongoing chat with your client. Reply in with client prompt language.
+  return `You are a warm, knowledgeable nutrition coach having an ongoing chat with your client. Always respond in ${lang}. If the client writes in a different language, switch and respond in that language instead.
 
 CLIENT DATA:
 - Calories today: ${t.calories || 0} / ${tg.calories || 2000} kcal (${calPct}%)

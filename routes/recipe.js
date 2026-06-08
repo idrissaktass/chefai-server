@@ -27,37 +27,85 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-const recipePromptTR = (base) => `
+const LANG_NAMES = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", de: "German" };
+
+const buildCreativePrompt = (base, language) => {
+  const langName = LANG_NAMES[language] || "English";
+  return `
 ${base}
 
-GÖREV:
-- 2 adet modern ve iştah açıcı tarif oluştur.
-- Her tarif 1 kişiliktir.
+CREATIVITY REQUIREMENTS (VERY IMPORTANT):
+- Recipe MUST be truly creative and original, not standard or common dishes.
+- Avoid typical home-style or restaurant menu recipes.
+- Think like a modern chef creating a signature dish.
+- All recipes MUST serve 1 person.
+- Two names are MANDATORY:
+   • recipeName_en → Always in English
+   • recipeName_tr → Always in Turkish
+- Avoid artificial compound names like "X and Y" or "X + Y".
 
-İSİMLENDİRME:
-- recipeName_tr → Kullanıcıya gösterilecek doğal isim
-- recipeName_en → Global yemek ismi
-- basicName → En basit, en genel, herkesin bildiği isim (görsel arama için)
+LANGUAGE INSTRUCTION:
+- Write all "steps" and ingredient "name" fields in ${langName}.
+- recipeName_en must always be in English.
+- recipeName_tr must always be in Turkish.
 
-Örnek:
- recipeName_tr: "Ballı Soslu Izgara Tavuk"
- recipeName_en: "Honey Glazed Grilled Chicken"
- basicName: "Grilled Chicken"
+- Use realistic macros (protein, fat, carbs) and totalCalories.
+- Write step-by-step instructions in SIMPLE and DETAILED language.
+- For each ingredient: amount (grams/ml/pieces) and calories are REQUIRED.
+- ingredientsCalories object MUST be correct.
 
-KURALLAR:
-- basicName 1–3 kelime olmalı.
-- Süsleme, hayali isim, nadir yemek basicName olamaz.
-
-TEKNİK:
-- steps kısa, net, numaralı.
-- ingredients: miktar + kalori zorunlu.
-- Makrolar ve totalCalories GERÇEKÇİ olmalı.
-
-‼ SADECE JSON DÖNDÜR ‼
+‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
 
 FORMAT:
 {
- "recipes":[
+ "recipes": {
+   "recipeName_en": "",
+   "recipeName_tr": "",
+   "prepTime": 0,
+   "servings": 1,
+   "ingredients": [{ "name": "", "amount": "", "calories": 0 }],
+   "steps": [""],
+   "totalCalories": 0,
+   "totalProtein": 0,
+   "totalFat": 0,
+   "totalCarbs": 0,
+   "ingredientsCalories": {}
+ }
+}
+`;
+};
+
+const buildRecipePrompt = (base, language) => {
+  const langName = LANG_NAMES[language] || "English";
+  return `
+${base}
+
+TASK:
+- Create 2 modern and delicious recipes for 1 person.
+
+NAMING:
+- recipeName_en → Always in English (global name)
+- recipeName_tr → Always in Turkish
+- basicName → Most basic globally known name for stock photo search (always in English, 1–3 words)
+
+LANGUAGE INSTRUCTION:
+- Write all "steps" and ingredient "name" fields in ${langName}.
+- recipeName_en must always be in English.
+- recipeName_tr must always be in Turkish.
+- basicName must always be in English.
+
+TECHNICAL:
+- Write step-by-step instructions in SIMPLE and DETAILED language.
+- Each step should describe a single clear action.
+- Use short, plain sentences.
+- Macros and totalCalories must be realistic based on ingredients.
+- ingredients: amount + calories required.
+
+‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
+
+FORMAT:
+{
+ "recipes": [
    {
      "basicName": "",
      "recipeName_en": "",
@@ -65,7 +113,7 @@ FORMAT:
      "prepTime": 20,
      "servings": 1,
      "ingredients": [{ "name": "", "amount": "", "calories": 0 }],
-     "steps": ["Adım 1...", "Adım 2..."],
+     "steps": ["Step 1...", "Step 2..."],
      "totalCalories": 0,
      "totalProtein": 0,
      "totalFat": 0,
@@ -75,56 +123,7 @@ FORMAT:
  ]
 }
 `;
-
-const recipePromptEN = (base) => `
-${base}
-
-TASK:
-- Create 1 modern and delicious recipes for 1 person.
-
-NAMING:
-- recipeName_en → The simple global name.
-- recipeName_tr → Turkish translation
-- basicName → MOST BASIC globally known name for stock photo search
-
-- Example:
-   recipeName_en: "Honey Glazed Grilled Chicken"
-   basicName: "Grilled Chicken"
-
-Rules for basicName:
-- 1–3 simple words
-- globally known
-- perfect for stock photo search
-
-TECHNICAL:
-- Write step-by-step instructions in SIMPLE and DETAILED language:
-   • Each step should describe a single clear action.
-   • Use short, plain sentences.
-   • Avoid cooking jargon; if you must use it, explain it in brackets (e.g. "sauté (cook over medium heat while stirring)").
-   • Even someone who has never cooked before must be able to follow and succeed.
-- Macros and totalCalories must be realistic based on ingredients.
-
-‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
-
-FORMAT:
-{
- "recipes":
-   {
-    "basicName": "Grilled Chicken",
-     "recipeName_en": "Simple Iconic Name",
-     "recipeName_tr": "Natural Turkish Name",
-     "prepTime": 20,
-     "servings": 1,
-     "ingredients": [{ "name": "Chicken", "amount": "150g", "calories": 250 }],
-     "steps": ["Step 1...", "Step 2..."],
-     "totalCalories": 0,
-     "totalProtein": 0,
-     "totalFat": 0,
-     "totalCarbs": 0
-     "ingredientsCalories": {}
-   }
-}
-`;
+};
 
 // router.post("/recipe"
 router.post("/recipe", authMiddleware, async (req, res) => {
@@ -171,91 +170,31 @@ router.post("/recipe", authMiddleware, async (req, res) => {
 let baseIdeaText = "";
 
 if (dishName) {
-  baseIdeaText = language === "en"
-    ? `The user wants this specific dish: ${dishName}. Create recipes that clearly match this dish. Adapt according to diet type and cuisine.`
-    : `Kullanıcı özellikle şu yemeği istiyor: ${dishName}. Tarifler bu yemeğe net şekilde uymalıdır.`;
+  baseIdeaText = `The user wants this specific dish: ${dishName}. Create recipes that clearly match this dish. Adapt according to diet type and cuisine.`;
 } else if (ingredients) {
-  baseIdeaText = language === "en"
-    ? `Ingredients: ${ingredients}`
-    : `Malzemeler: ${ingredients}`;
+  baseIdeaText = `Ingredients: ${ingredients}`;
 } else {
-  baseIdeaText = language === "en"
-    ? "Create the recipe freely."
-    : "Serbest tarif oluştur.";
-}
-let quickTextEN = "";
-let quickTextTR = "";
-
-if (quickType === "movie_night") {
-  quickTextEN = "Create fun, easy, finger-food style recipes perfect for a movie night. Snack-like, shareable, indulgent.";
-  quickTextTR = "Film gecesi için eğlenceli, elde yenebilen, atıştırmalık tarzı tarifler oluştur.";
+  baseIdeaText = "Create the recipe freely.";
 }
 
-if (quickType === "date_night") {
-  quickTextEN = "Create elegant, romantic, visually appealing dinner recipes suitable for a date night.";
-  quickTextTR = "Date night için şık, romantik, sunumu güzel akşam yemeği tarifleri oluştur.";
-}
-
-if (quickType === "gym_meal") {
-  quickTextEN = "Create high-protein, fitness-oriented meals suitable for gym lifestyle.";
-  quickTextTR = "Spor yapanlar için yüksek proteinli tarifler oluştur.";
-}
-if (quickType === "comfort_food") {
-  quickTextEN = "Create comforting, warm, emotionally satisfying comfort food recipes.";
-  quickTextTR = "Rahatlatıcı, doyurucu, insanı iyi hissettiren comfort food tarifleri oluştur.";
-}
-
-if (quickType === "late_night") {
-  quickTextEN = "Create light but satisfying late night snack recipes.";
-  quickTextTR = "Gece için hafif ama tatmin edici atıştırmalık tarifler oluştur.";
-}
-
-if (quickType === "healthy_breakfast") {
-  quickTextEN = "Create healthy, energizing breakfast recipes.";
-  quickTextTR = "Sağlıklı, enerji veren kahvaltı tarifleri oluştur.";
-}
-
-if (quickType === "world_flavors") {
-  quickTextEN = "Create recipes inspired by different world cuisines.";
-  quickTextTR = "Dünya mutfaklarından ilham alan tarifler oluştur.";
-}
-
-if (quickType === "chef_special") {
-  quickTextEN = "Create visually impressive chef-style signature dishes.";
-  quickTextTR = "Şef tarzı, sunumu etkileyici imza yemekler oluştur.";
-}
-
-if (quickType === "meal_prep") {
-  quickTextEN = "Create meal prep friendly recipes suitable for batch cooking.";
-  quickTextTR = "Önceden hazırlanıp saklanabilecek meal-prep tarifleri oluştur.";
-}
-
-if (quickType === "kid_friendly") {
-  quickTextEN = "Create fun, colorful, kid-friendly recipes.";
-  quickTextTR = "Çocuklara uygun, eğlenceli tarifler oluştur.";
-}
-
-if (quickType === "spicy_food") {
-  quickTextEN = "Create bold, spicy, flavor-packed recipes.";
-  quickTextTR = "Acılı, aroması güçlü tarifler oluştur.";
-}
-
-if (quickType === "low_cal") {
-  quickTextEN = "Create low calorie, light but tasty recipes.";
-  quickTextTR = "Düşük kalorili, hafif ama lezzetli tarifler oluştur.";
-}
-if (quickType === "sweet_craving") {
-  quickTextEN = "Create sweet, indulgent dessert-style recipes. Focus on sugar cravings, chocolate, fruits, or baked treats.";
-  quickTextTR = "Tatlı isteğine yönelik, tatlı ve keyif veren tarifler oluştur. Çikolata, meyve veya fırın tatlıları olabilir.";
-}
-if (quickType === "quick_meal") {
-  quickTextEN = "Create very fast recipes that can be prepared in 10 minutes or less. Simple steps, minimal ingredients.";
-  quickTextTR = "10 dakikada hazırlanabilecek, çok pratik ve az malzemeli tarifler oluştur.";
-}
-if (quickType === "surprise") {
-  quickTextEN = "Surprise the user with unexpected, fun, creative, and varied recipes. Do not stick to a single cuisine or style.";
-  quickTextTR = "Kullanıcıyı şaşırtacak, eğlenceli, yaratıcı ve farklı tarzlarda tarifler oluştur. Tek bir mutfağa bağlı kalma.";
-}
+const quickTextMap = {
+  movie_night:       "Create fun, easy, finger-food style recipes perfect for a movie night. Snack-like, shareable, indulgent.",
+  date_night:        "Create elegant, romantic, visually appealing dinner recipes suitable for a date night.",
+  gym_meal:          "Create high-protein, fitness-oriented meals suitable for gym lifestyle.",
+  comfort_food:      "Create comforting, warm, emotionally satisfying comfort food recipes.",
+  late_night:        "Create light but satisfying late night snack recipes.",
+  healthy_breakfast: "Create healthy, energizing breakfast recipes.",
+  world_flavors:     "Create recipes inspired by different world cuisines.",
+  chef_special:      "Create visually impressive chef-style signature dishes.",
+  meal_prep:         "Create meal prep friendly recipes suitable for batch cooking.",
+  kid_friendly:      "Create fun, colorful, kid-friendly recipes.",
+  spicy_food:        "Create bold, spicy, flavor-packed recipes.",
+  low_cal:           "Create low calorie, light but tasty recipes.",
+  sweet_craving:     "Create sweet, indulgent dessert-style recipes. Focus on sugar cravings, chocolate, fruits, or baked treats.",
+  quick_meal:        "Create very fast recipes that can be prepared in 10 minutes or less. Simple steps, minimal ingredients.",
+  surprise:          "Surprise the user with unexpected, fun, creative, and varied recipes. Do not stick to a single cuisine or style.",
+};
+const quickText = quickTextMap[quickType] || "";
 
 
 const mealTypeTextEN = {
@@ -281,80 +220,36 @@ const mealTypeTextEN = {
   bakery: "This is a BAKERY style recipe. Dough-based, oven baked."
 };
 
-const mealTypeTextTR = {
-  breakfast: "Bu bir KAHVALTI tarifidir. Sabah için uygundur.",
-  lunch: "Bu bir ÖĞLE YEMEĞİ tarifidir. Dengeli ve doyurucu olmalıdır.",
-  dinner: "Bu bir AKŞAM YEMEĞİ tarifidir.",
-  dessert: "Bu bir TATLI tarifidir. Tatlı olmalıdır.",
-  snack: "Bu bir ATIŞTIRMALIK tarifidir.",
-  soup: "Bu bir ÇORBA tarifidir.",
-  shake: "Bu bir SHAKE tarifidir. İçilebilir ve blender ile hazırlanır.",
+  const cuisineText = cuisine ? `Recipes should follow ${cuisine} cuisine.` : "";
 
-  // 🔥 NEW
-  sandwich: "Bu bir SANDVİÇ tarifidir. Elde yenebilir ve katmanlı olmalıdır.",
-  pizza: "Bu bir PİZZA tarifidir. Hamur, sos ve üst malzemeler içermelidir.",
-  burger: "Bu bir BURGER tarifidir. Ekmek, köfte ve sos içermelidir.",
-  wrap: "Bu bir DÜRÜM/WRAP tarifidir. Sarılarak hazırlanmalıdır.",
-  fastfood: "Bu bir FAST FOOD tarzı tariftir. Pratik, sokak lezzeti stilinde olmalıdır.",
-  salad: "Bu bir SALATA tarifidir. Hafif, ferah ve çoğunlukla soğuk olmalıdır.",
-  pasta: "Bu bir MAKARNA tarifidir. İtalyan tarzı olmalıdır.",
-  chicken: "Bu bir TAVUK bazlı ana yemektir.",
-  seafood: "Bu bir DENİZ ÜRÜNLERİ tarifidir.",
-  streetfood: "Bu bir SOKAK LEZZETİ tarifidir. Pratik ve elde yenebilir olmalıdır.",
-  bakery: "Bu bir FIRIN / HAMUR İŞİ tarifidir. Fırında pişirilmelidir."
-};
-
-
-  const cuisineText =
-    cuisine && language === "en"
-      ? `Recipes should follow ${cuisine} cuisine.`
-      : cuisine && language === "tr"
-      ? `Tarifler ${cuisine} mutfağına uygun olmalı.`
-      : "";
-
-  const calorieTextEN =
+  const calorieText =
     calorieRange?.min && calorieRange?.max
-      ? `Total calories(Sum of ingredients calories) MUST be between ${calorieRange.min}-${calorieRange.max} kcal.`
+      ? `Total calories MUST be between ${calorieRange.min}-${calorieRange.max} kcal.`
       : "";
 
-  const calorieTextTR =
-    calorieRange?.min && calorieRange?.max
-      ? `Toplam kalori ${calorieRange.min}-${calorieRange.max} kcal arasında OLMALIDIR. Miktarları ona göre belirle (artır ya da azalt)`
-      : "";
-
-  let dietTextEN = "";
-  let dietTextTR = "";
-
+  let dietText = "";
   if (diet && diet !== "None") {
-    if (diet === "HighProtein") {
-      dietTextEN = "Recipes MUST be high-protein and macros optimized accordingly.";
-      dietTextTR = "Tarifler ZORUNLU olarak yüksek protein içermeli.";
-    } else {
-      dietTextEN = `Recipes MUST strictly follow the ${diet} diet.`;
-      dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalı.`;
-    }
+    dietText = diet === "HighProtein"
+      ? "Recipes MUST be high-protein and macros optimized accordingly."
+      : `Recipes MUST strictly follow the ${diet} diet.`;
   }
 
-  // 🚫 ALERJI / HARİÇ TUTMA
   const allergyList = Array.isArray(allergies)
     ? allergies.filter(Boolean).join(", ")
     : (typeof allergies === "string" ? allergies.trim() : "");
 
-  const allergyTextEN = allergyList
+  const allergyText = allergyList
     ? `STRICT ALLERGY/EXCLUSION: The recipe MUST NOT contain any of the following ingredients or their derivatives: ${allergyList}. This is a safety requirement.`
     : "";
-  const allergyTextTR = allergyList
-    ? `ZORUNLU ALERJI/HARİÇ TUTMA: Tarif şu malzemeleri ve türevlerini KESİNLİKLE içermemelidir: ${allergyList}. Bu bir güvenlik kuralıdır.`
-    : "";
 
-  const baseEN = `
-${quickTextEN}
+  const base = `
+${quickText}
 ${baseIdeaText}
 ${mealTypeTextEN[mealType]}
 ${cuisineText}
-${dietTextEN}
-${allergyTextEN}
-${calorieTextEN}
+${dietText}
+${allergyText}
+${calorieText}
 IMPORTANT:
 - 2 recipes
 - MUST serve 1 person
@@ -362,22 +257,7 @@ IMPORTANT:
 - basicName must be perfect for stock food photos
 `;
 
-  const baseTR = `
-${baseIdeaText}
-${mealTypeTextTR[mealType]}
-${cuisineText}
-${dietTextTR}
-${allergyTextTR}
-${calorieTextTR}ÖNEMLİ:
-- 2 tane tarif oluştur.
-- Bu tarif ZORUNLU olarak 1 kişilik olmalıdır.
-- servings alanı MUTLAKA 1 olmalı.
-`;
-
-const finalPrompt =
-  language === "en"
-    ? recipePromptEN(baseEN) // Yeni fonksiyon
-    : recipePromptTR(baseTR);
+const finalPrompt = buildRecipePrompt(base, language);
 
   /* ===============================
      OPENAI CALL
@@ -476,201 +356,56 @@ router.post("/recipe-image", async (req, res) => {
 });
 
 
-    const promptTR = (base) => `
-${base}
-
-Görev:
-- 2 adet modern, yaratıcı, şef seviyesinde tarif oluştur.
-- Tüm tarifler 1 kişilik olacak.
-- Her tarifte iki isim ZORUNLU:
-   • recipeName_en → İngilizce isim
-   • recipeName_tr → Türkçe isim
-- "X ve Y", "X + Y", "kombinasyonu", "tabağı" gibi yapay isimler YASAKTIR.
-- Tek bir birleşik yemek adı kullan:
-   Örn:
-     ❌ "ızgara tavuk göğsü ve sebzeler"
-     ✔ "sebzeli ızgara tavuk"
-- Makrolar (protein, yağ, karbonhidrat) GERÇEKÇİ olmalı.
-- totalCalories GERÇEKÇİ olmalı.
-- Hazırlanışı adım adım, BASİT ve DETAYLI yaz:
-   • Her adım tek bir işi anlatsın.
-   • Kısa ve net cümleler kullan.
-   • Teknik terim kullanırsan parantez içinde açıkla (örn: "sote etmek (kısık ateşte çevirerek pişirmek)").
-   • Yemek yapmayı bilmeyen biri bile rahatça uygulayabilmeli.
-- Sunum önerisi ekle (steps içinde olabilir).
-- ingredients listesinde:
-    • miktar (gram/ml/adet) ZORUNLU
-    • calories ZORUNLU
-- ingredientsCalories objesi ZORUNLU ve doğru hesaplanmış olmalı.
-
-‼ SADECE JSON döndür. Açıklama, markdown, metin YASAK. ‼
-
-FORMAT (ZORUNLU):
-{
- "recipes":[
-   {
-     "recipeName_en":"",
-     "recipeName_tr":"",
-     "prepTime":0,
-     "servings":1,
-     "ingredients":[
-       { "name":"", "amount":"", "calories":0 }
-     ],
-     "steps":[""],
-     "totalCalories":0,
-     "totalProtein":0,
-     "totalFat":0,
-     "totalCarbs":0,
-     "ingredientsCalories":{}
-   }
- ]
-}
-`;
-
-    const promptEN = (base) => `
-${base}
-
-Task:
-CREATIVITY REQUIREMENTS (VERY IMPORTANT):
-- Recipe MUST be truly creative and original, not standard or common dishes.
-- Avoid typical home-style or restaurant menu recipes.
-- Recipe should include at least one unexpected flavor combination, technique, or presentation idea.
-- Think like a modern chef creating a signature dish.
-- The result should feel unique, experimental, and inspiring.
-- All recipes MUST serve 1 people.
-- Two names are MANDATORY:
-   • recipeName_en → English name
-   • recipeName_tr → Turkish name
-- Avoid artificial names:
-   WRONG: "Grilled chicken and vegetables"
-   CORRECT: "Vegetable Grilled Chicken"
-- Use realistic macros (protein, fat, carbs) and totalCalories.
-- Write step-by-step instructions in SIMPLE and DETAILED language:
-   • Each step should describe a single clear action.
-   • Use short, plain sentences.
-   • Avoid cooking jargon; if you must use it, explain it in brackets (e.g. "sauté (cook over medium heat while stirring)").
-   • Even someone who has never cooked before must be able to follow and succeed.
-- Add plating suggestions (inside steps is OK).
-- For each ingredient:
-   • amount (grams/ml/pieces) is REQUIRED
-   • calories is REQUIRED
-- ingredientsCalories object MUST be correct.
-
-‼ RETURN ONLY PURE JSON. NO TEXT, NO MARKDOWN. ‼
-
-FORMAT (MANDATORY):
-{
- "recipes":
-   {
-     "recipeName_en":"",
-     "recipeName_tr":"",
-     "prepTime":0,
-     "servings":1,
-     "ingredients":[
-       { "name":"", "amount":"", "calories":0 }
-     ],
-     "steps":[""],
-     "totalCalories":0,
-     "totalProtein":0,
-     "totalFat":0,
-     "totalCarbs":0,
-     "ingredientsCalories":{}
-   }
-}
-`;
 
 // router.post("/recipe-creative"
 router.post("/recipe-creative", authMiddleware, async (req, res) => {
-  const { language = "en" } = req.body; // 👈 EKLE
-const { ingredients, cuisine, diet, mealType, dishName, allergies } = req.body;
+  const { language = "en", ingredients, cuisine, diet, mealType, dishName, allergies } = req.body;
 
-const creativeAllergyList = Array.isArray(allergies)
-  ? allergies.filter(Boolean).join(", ")
-  : (typeof allergies === "string" ? allergies.trim() : "");
+  const creativeAllergyList = Array.isArray(allergies)
+    ? allergies.filter(Boolean).join(", ")
+    : (typeof allergies === "string" ? allergies.trim() : "");
 
-const allergyTextEN = creativeAllergyList
-  ? `STRICT ALLERGY/EXCLUSION: The recipe MUST NOT contain any of the following ingredients or their derivatives: ${creativeAllergyList}. This is a safety requirement.`
-  : "";
-const allergyTextTR = creativeAllergyList
-  ? `ZORUNLU ALERJI/HARİÇ TUTMA: Tarif şu malzemeleri ve türevlerini KESİNLİKLE içermemelidir: ${creativeAllergyList}. Bu bir güvenlik kuralıdır.`
-  : "";
+  const creativeAllergyText = creativeAllergyList
+    ? `STRICT ALLERGY/EXCLUSION: The recipe MUST NOT contain any of the following ingredients or their derivatives: ${creativeAllergyList}. This is a safety requirement.`
+    : "";
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const creativeTypeEN = mealType
-  ? `This creative recipe MUST strictly follow this style: ${mealType}.`
-  : "";
+  const creativeTypeText = mealType ? `This creative recipe MUST strictly follow this style: ${mealType}.` : "";
+  const creativeCuisineText = cuisine ? `Recipe MUST follow ${cuisine} cuisine.` : "";
 
-const creativeTypeTR = mealType
-  ? `Bu yaratıcı tarif ZORUNLU olarak şu türe uymalıdır: ${mealType}.`
-  : "";
-
-const cuisineTextEN = cuisine
-  ? `Recipe MUST follow ${cuisine} cuisine.`
-  : "";
-
-const cuisineTextTR = cuisine
-  ? `Tarifler ZORUNLU olarak ${cuisine} mutfağına uygun olmalıdır.`
-  : "";
-
-let dietTextEN = "";
-let dietTextTR = "";
-
-if (diet && diet !== "None") {
-  if (diet === "HighProtein") {
-    dietTextEN = "Recipe MUST be high-protein and macros optimized accordingly.";
-    dietTextTR = "Tarifler ZORUNLU olarak yüksek proteinli olmalıdır.";
-  } else {
-    dietTextEN = `Recipe MUST strictly follow the ${diet} diet.`;
-    dietTextTR = `Tarifler ZORUNLU olarak ${diet} diyetine uygun olmalıdır.`;
+  let creativeDietText = "";
+  if (diet && diet !== "None") {
+    creativeDietText = diet === "HighProtein"
+      ? "Recipe MUST be high-protein and macros optimized accordingly."
+      : `Recipe MUST strictly follow the ${diet} diet.`;
   }
-}
-  let baseIdeaEN = "";
-  let baseIdeaTR = "";
 
+  let baseIdea = "";
   if (dishName) {
-    baseIdeaEN = `The user specifically wants this dish: "${dishName}". Create creative chef-level versions of this dish. The core identity of the dish must be clearly recognizable.Adapt according to diet type and cuisine.`;
-    baseIdeaTR = `Kullanıcı özellikle şu yemeği istiyor: "${dishName}". Bu yemeğin yaratıcı, şef seviyesinde versiyonlarını oluştur. Yemeğin ana kimliği NET şekilde korunmalı.`;
+    baseIdea = `The user specifically wants this dish: "${dishName}". Create creative chef-level versions. The core identity of the dish must be clearly recognizable. Adapt according to diet type and cuisine.`;
   } else if (ingredients) {
-    baseIdeaEN = `Ingredients: ${ingredients}`;
-    baseIdeaTR = `Malzemeler: ${ingredients}`;
+    baseIdea = `Ingredients: ${ingredients}`;
   } else {
-    baseIdeaEN = "Create free creative chef-level recipe.";
-    baseIdeaTR = "Serbest yaratıcı, şef seviyesinde tarifler oluştur.";
+    baseIdea = "Create a free creative chef-level recipe.";
   }
-const baseEN = `
-${baseIdeaEN}
-${creativeTypeEN}
-${cuisineTextEN}
-${dietTextEN}
-${allergyTextEN}
+
+  const base = `
+${baseIdea}
+${creativeTypeText}
+${creativeCuisineText}
+${creativeDietText}
+${creativeAllergyText}
 
 IMPORTANT:
-- Create 1 creative chef-level recipes.
+- Create 1 creative chef-level recipe.
 - All recipes MUST serve EXACTLY 1 person.
 - servings field MUST always be 1.
 - If a dish name is given, the result MUST clearly match that dish.
-Each creative recipe must feel "Instagrammable" and visually striking.
+- Each creative recipe must feel "Instagrammable" and visually striking.
 `;
 
-const baseTR = `
-Malzemeler: ${ingredients || "Serbest yaratıcı tarif oluştur."}
-${creativeTypeTR}
-${cuisineTextTR}
-${dietTextTR}
-${allergyTextTR}
-
-ÖNEMLİ:
-- 1 adet yaratıcı, şef seviyesinde tarif oluştur.
-- Tüm tarifler ZORUNLU olarak 1 kişilik olmalıdır.
-- servings alanı her zaman 1 olmalı.
-`;
-
-
-  const finalPrompt =
-    language === "en"
-      ? promptEN(baseEN)
-      : promptTR(baseTR);
+  const finalPrompt = buildCreativePrompt(base, language);
 
   try {
     const completion = await client.chat.completions.create({
@@ -699,8 +434,5 @@ ${allergyTextTR}
     });
   }
 });
-
-// promptTR, promptEN, router.post("/recipe-image") ve diğer yardımcı fonksiyonlar aynı kaldı.
-// Sadece `/recipe` ve `/recipe-creative` router'ları güncellendi.
 
 export const recipeRoute = router;

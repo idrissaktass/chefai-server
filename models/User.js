@@ -141,6 +141,19 @@ weightHistory: [
       type: String, // örn: "2025-01-16"
       default: "",
     },
+
+    // Partner pairing
+    pairCode: {
+      type: String,
+      default: null,
+      index: true,
+    },
+
+    partnerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
   },
   {
     timestamps: true, // createdAt / updatedAt
