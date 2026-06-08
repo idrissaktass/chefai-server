@@ -36,7 +36,7 @@ router.post("/generate-code", auth, async (req, res) => {
   }
 });
 
-// Connect with a partner using their code
+// Connect with someone using their code (adds to partnerIds array)
 router.post("/connect", auth, async (req, res) => {
   try {
     const { code } = req.body || {};
@@ -47,18 +47,13 @@ router.post("/connect", auth, async (req, res) => {
     if (partner._id.equals(req.user._id))
       return res.status(400).json({ error: "Cannot pair with yourself" });
 
-    // Unpair any previous partners on both sides
-    if (req.user.partnerId) {
-      const prev = await User.findById(req.user.partnerId);
-      if (prev) { prev.partnerId = null; await prev.save(); }
-    }
-    if (partner.partnerId) {
-      const prev = await User.findById(partner.partnerId);
-      if (prev) { prev.partnerId = null; await prev.save(); }
-    }
+    // Check not already connected
+    const alreadyConnected = req.user.partnerIds?.some((id) => id.equals(partner._id));
+    if (alreadyConnected) return res.status(400).json({ error: "Already connected" });
 
-    req.user.partnerId = partner._id;
-    partner.partnerId = req.user._id;
+    // Add each other to partnerIds
+    req.user.partnerIds = [...(req.user.partnerIds ?? []), partner._id];
+    partner.partnerIds = [...(partner.partnerIds ?? []), req.user._id];
     await Promise.all([req.user.save(), partner.save()]);
 
     res.json({ partner: { name: partner.name, id: partner._id } });
@@ -67,22 +62,46 @@ router.post("/connect", auth, async (req, res) => {
   }
 });
 
-// Get partner summary (today meals + macros + 7-day calories)
-router.get("/summary", auth, async (req, res) => {
+// List all connected partners with today's calories
+router.get("/partners", auth, async (req, res) => {
   try {
-    if (!req.user.partnerId) return res.status(404).json({ error: "NO_PARTNER" });
+    const ids = req.user.partnerIds ?? [];
+    if (ids.length === 0) return res.json({ partners: [] });
 
-    const partner = await User.findById(req.user.partnerId);
+    const today = new Date().toISOString().split("T")[0];
+    const users = await User.find({ _id: { $in: ids } });
+
+    const partners = await Promise.all(
+      users.map(async (u) => {
+        const meals = await Meal.find({ userId: String(u._id), date: today });
+        const todayCalories = Math.round(
+          meals.reduce((s, m) => s + (m.totalCalories || 0), 0)
+        );
+        return { _id: u._id, name: u.name, todayCalories };
+      })
+    );
+
+    res.json({ partners });
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
+});
+
+// Get detailed summary for a specific partner
+router.get("/summary/:partnerId", auth, async (req, res) => {
+  try {
+    const pid = req.params.partnerId;
+    const isConnected = req.user.partnerIds?.some((id) => String(id) === pid);
+    if (!isConnected) return res.status(403).json({ error: "NOT_CONNECTED" });
+
+    const partner = await User.findById(pid);
     if (!partner) {
-      req.user.partnerId = null;
+      req.user.partnerIds = req.user.partnerIds.filter((id) => String(id) !== pid);
       await req.user.save();
       return res.status(404).json({ error: "NO_PARTNER" });
     }
 
-    const pid = String(partner._id);
     const today = new Date().toISOString().split("T")[0];
-
-    // Build last-7-day date strings
     const days = Array.from({ length: 7 }, (_, i) => {
       const d = new Date();
       d.setDate(d.getDate() - (6 - i));
@@ -131,15 +150,21 @@ router.get("/summary", auth, async (req, res) => {
   }
 });
 
-// Disconnect from partner
-router.delete("/disconnect", auth, async (req, res) => {
+// Disconnect a specific partner
+router.delete("/disconnect/:partnerId", auth, async (req, res) => {
   try {
-    if (req.user.partnerId) {
-      const partner = await User.findById(req.user.partnerId);
-      if (partner) { partner.partnerId = null; await partner.save(); }
-    }
-    req.user.partnerId = null;
+    const pid = req.params.partnerId;
+    req.user.partnerIds = (req.user.partnerIds ?? []).filter((id) => String(id) !== pid);
     await req.user.save();
+
+    const partner = await User.findById(pid);
+    if (partner) {
+      partner.partnerIds = (partner.partnerIds ?? []).filter(
+        (id) => String(id) !== String(req.user._id)
+      );
+      await partner.save();
+    }
+
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: String(err) });

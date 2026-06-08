@@ -149,10 +149,9 @@ weightHistory: [
       index: true,
     },
 
-    partnerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      default: null,
+    partnerIds: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      default: [],
     },
   },
   {

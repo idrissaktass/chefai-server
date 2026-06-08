@@ -49,6 +49,14 @@ app.use("/api/openai", openaiRoute);
 app.use("/api", dailySuggestionRoute);
 app.use("/api/partner", partnerRoute);
 
+// Body-parser JSON syntax error handler
+app.use((err, req, res, next) => {
+  if (err.type === "entity.parse.failed") {
+    return res.status(400).json({ error: "Invalid JSON body" });
+  }
+  next(err);
+});
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log("Server running on port", port));
 
