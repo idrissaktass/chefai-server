@@ -72,12 +72,14 @@ Total should be approximately ${targetCal} kcal. Meals should be healthy, practi
 
 LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
 
+For "portion": write a short, human-readable portion description in English (e.g. "2 eggs + 2 slices toast + ½ avocado" or "150g chicken + 80g rice + salad"). Max 60 chars.
+
 RETURN ONLY JSON:
 {
-  "breakfast": { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "lunch":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "snack":     { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "dinner":    { "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
+  "breakfast": { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "lunch":     { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "snack":     { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "dinner":    { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
 }
 `;
 
@@ -104,9 +106,10 @@ ${excludeClause}
 Healthy and practical.
 
 LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
+For "portion": short human-readable portion in English (e.g. "150g chicken + 80g rice"). Max 60 chars.
 
 RETURN ONLY JSON:
-{ "name_tr": "", "name_en": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
+{ "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
 `;
 
   const completion = await client.chat.completions.create({

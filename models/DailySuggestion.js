@@ -4,6 +4,7 @@ const mealSuggestionSchema = new mongoose.Schema(
   {
     name_tr: { type: String, default: "" },
     name_en: { type: String, default: "" },
+    portion: { type: String, default: "" },
     cal:     { type: Number, default: 0 },
     protein: { type: Number, default: 0 },
     carbs:   { type: Number, default: 0 },
