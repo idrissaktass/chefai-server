@@ -31,11 +31,9 @@ const LANG_NAMES = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", 
 
 const buildCreativePrompt = (base, language) => {
   const langName = LANG_NAMES[language] || "English";
-  consoıle.log("Creative prompt language:", langName);
   return `
 ⚠️ OUTPUT LANGUAGE: ${langName.toUpperCase()}
-All "steps" and ingredient "name" fields MUST be written in ${langName}. This is mandatory.
-recipeName_en → always English | recipeName_tr → always Turkish
+ALL text (recipeName, steps, ingredient names) MUST be written in ${langName}. This is mandatory.
 
 ${base}
 
@@ -44,9 +42,6 @@ CREATIVITY REQUIREMENTS (VERY IMPORTANT):
 - Avoid typical home-style or restaurant menu recipes.
 - Think like a modern chef creating a signature dish.
 - All recipes MUST serve 1 person.
-- Two names are MANDATORY:
-   • recipeName_en → Always in English
-   • recipeName_tr → Always in Turkish
 - Avoid artificial compound names like "X and Y" or "X + Y".
 
 TECHNICAL:
@@ -60,8 +55,7 @@ TECHNICAL:
 FORMAT:
 {
  "recipes": {
-   "recipeName_en": "",
-   "recipeName_tr": "",
+   "recipeName": "",
    "prepTime": 0,
    "servings": 1,
    "ingredients": [{ "name": "", "amount": "", "calories": 0 }],
@@ -78,11 +72,10 @@ FORMAT:
 
 const buildRecipePrompt = (base, language) => {
   const langName = LANG_NAMES[language] || "English";
-  console.log("Recipe prompt language:", langName);
   return `
 ⚠️ OUTPUT LANGUAGE: ${langName.toUpperCase()}
-All "steps" and ingredient "name" fields MUST be written in ${langName}. This is mandatory.
-recipeName_en → always English | recipeName_tr → always Turkish | basicName → always English
+ALL text (recipeName, steps, ingredient names) MUST be written in ${langName}. This is mandatory.
+basicName → always in English (used for stock photo search only).
 
 ${base}
 
@@ -90,9 +83,8 @@ TASK:
 - Create 2 modern and delicious recipes for 1 person.
 
 NAMING:
-- recipeName_en → Always in English (global name)
-- recipeName_tr → Always in Turkish
-- basicName → Most basic globally known name for stock photo search (always in English, 1–3 words)
+- recipeName → in ${langName} (the user's language)
+- basicName → most basic globally known name for stock photo search (always in English, 1–3 words)
 
 TECHNICAL:
 - Write ALL steps in ${langName}: include exact temperatures (°C/°F), cooking times, techniques, textures, and tips per step. Each step 1–3 sentences.
@@ -107,8 +99,7 @@ FORMAT:
  "recipes": [
    {
      "basicName": "",
-     "recipeName_en": "",
-     "recipeName_tr": "",
+     "recipeName": "",
      "prepTime": 20,
      "servings": 1,
      "ingredients": [{ "name": "", "amount": "", "calories": 0 }],
