@@ -44,13 +44,14 @@ CREATIVITY REQUIREMENTS (VERY IMPORTANT):
    • recipeName_tr → Always in Turkish
 - Avoid artificial compound names like "X and Y" or "X + Y".
 
-LANGUAGE INSTRUCTION:
-- Write all "steps" and ingredient "name" fields in ${langName}.
+LANGUAGE INSTRUCTION (CRITICAL):
+- ALL "steps" MUST be written entirely in ${langName}. No other language allowed in steps.
+- ALL ingredient "name" fields MUST be written in ${langName}.
 - recipeName_en must always be in English.
 - recipeName_tr must always be in Turkish.
 
 - Use realistic macros (protein, fat, carbs) and totalCalories.
-- Write step-by-step instructions in SIMPLE and DETAILED language.
+- Write step-by-step instructions that are DETAILED and CLEAR: include exact temperatures, cooking times, techniques, textures to look for, and tips for each step. Each step should be 1–3 sentences.
 - For each ingredient: amount (grams/ml/pieces) and calories are REQUIRED.
 - ingredientsCalories object MUST be correct.
 
@@ -88,16 +89,17 @@ NAMING:
 - recipeName_tr → Always in Turkish
 - basicName → Most basic globally known name for stock photo search (always in English, 1–3 words)
 
-LANGUAGE INSTRUCTION:
-- Write all "steps" and ingredient "name" fields in ${langName}.
+LANGUAGE INSTRUCTION (CRITICAL):
+- ALL "steps" MUST be written entirely in ${langName}. No other language allowed in steps.
+- ALL ingredient "name" fields MUST be written in ${langName}.
 - recipeName_en must always be in English.
 - recipeName_tr must always be in Turkish.
 - basicName must always be in English.
 
 TECHNICAL:
-- Write step-by-step instructions in SIMPLE and DETAILED language.
-- Each step should describe a single clear action.
-- Use short, plain sentences.
+- Write step-by-step instructions that are DETAILED: include exact temperatures (°C/°F), cooking times, techniques, textures to look for, and useful tips per step.
+- Each step should be 1–3 sentences describing a single clear action with helpful context.
+- Use plain, approachable language — no jargon without explanation.
 - Macros and totalCalories must be realistic based on ingredients.
 - ingredients: amount + calories required.
 
