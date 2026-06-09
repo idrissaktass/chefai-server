@@ -73,7 +73,7 @@ router.get("/partners", auth, async (req, res) => {
 
     const partners = await Promise.all(
       users.map(async (u) => {
-        const meals = await Meal.find({ userId: String(u._id), date: today });
+        const meals = await Meal.find({ userId: String(u._id), date: { $regex: `^${today}` } });
         const todayCalories = Math.round(
           meals.reduce((s, m) => s + (m.totalCalories || 0), 0)
         );
@@ -109,8 +109,8 @@ router.get("/summary/:partnerId", auth, async (req, res) => {
     });
 
     const [todayMeals, recentMeals] = await Promise.all([
-      Meal.find({ userId: pid, date: today }),
-      Meal.find({ userId: pid, date: { $in: days } }),
+      Meal.find({ userId: pid, date: { $regex: `^${today}` } }),
+      Meal.find({ userId: pid, $or: days.map((d) => ({ date: { $regex: `^${d}` } })) }),
     ]);
 
     const todayTotals = todayMeals.reduce(
