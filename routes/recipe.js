@@ -250,7 +250,8 @@ ${dietText}
 ${allergyText}
 ${calorieText}
 IMPORTANT:
-- 2 recipes
+- 
+- 2 recipes in ${language}.
 - MUST serve 1 person
 - servings must be 1
 - basicName must be perfect for stock food photos
