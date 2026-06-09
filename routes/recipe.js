@@ -31,6 +31,7 @@ const LANG_NAMES = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", 
 
 const buildCreativePrompt = (base, language) => {
   const langName = LANG_NAMES[language] || "English";
+  consoıle.log("Creative prompt language:", langName);
   return `
 ⚠️ OUTPUT LANGUAGE: ${langName.toUpperCase()}
 All "steps" and ingredient "name" fields MUST be written in ${langName}. This is mandatory.
@@ -77,6 +78,7 @@ FORMAT:
 
 const buildRecipePrompt = (base, language) => {
   const langName = LANG_NAMES[language] || "English";
+  console.log("Recipe prompt language:", langName);
   return `
 ⚠️ OUTPUT LANGUAGE: ${langName.toUpperCase()}
 All "steps" and ingredient "name" fields MUST be written in ${langName}. This is mandatory.
