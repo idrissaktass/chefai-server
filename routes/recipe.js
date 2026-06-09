@@ -279,28 +279,50 @@ const finalPrompt = buildRecipePrompt(base, language);
 });
 
 router.post("/quick-recipe", authMiddleware, async (req, res) => {
+  const { quickType, language = "en" } = req.body;
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+  const quickTextMap = {
+    movie_night:       "Create fun, easy, finger-food style recipes perfect for a movie night. Snack-like, shareable, indulgent.",
+    date_night:        "Create elegant, romantic, visually appealing dinner recipes suitable for a date night.",
+    gym_meal:          "Create high-protein, fitness-oriented meals suitable for gym lifestyle.",
+    comfort_food:      "Create comforting, warm, emotionally satisfying comfort food recipes.",
+    late_night:        "Create light but satisfying late night snack recipes.",
+    healthy_breakfast: "Create healthy, energizing breakfast recipes.",
+    world_flavors:     "Create recipes inspired by different world cuisines.",
+    chef_special:      "Create visually impressive chef-style signature dishes.",
+    meal_prep:         "Create meal prep friendly recipes suitable for batch cooking.",
+    kid_friendly:      "Create fun, colorful, kid-friendly recipes.",
+    spicy_food:        "Create bold, spicy, flavor-packed recipes.",
+    low_cal:           "Create low calorie, light but tasty recipes.",
+    sweet_craving:     "Create sweet, indulgent dessert-style recipes. Focus on sugar cravings, chocolate, fruits, or baked treats.",
+    quick_meal:        "Create very fast recipes that can be prepared in 10 minutes or less. Simple steps, minimal ingredients.",
+    surprise:          "Surprise the user with unexpected, fun, creative, and varied recipes. Do not stick to a single cuisine or style.",
+    vegan:             "Create 100% vegan recipes with no animal products.",
+  };
+
+  const base = `
+${quickTextMap[quickType] || "Create 2 delicious recipes for 1 person."}
+IMPORTANT:
+- 2 recipes for 1 person
+- servings must be 1
+- basicName must be perfect for stock food photos (always in English, 1-3 words)
+`;
+
+  const finalPrompt = buildRecipePrompt(base, language);
+
   try {
-    const { quickType, language = "en" } = req.body;
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: finalPrompt }],
+      response_format: { type: "json_object" },
+    });
 
-    const filePath = path.join(process.cwd(), "utils", "quick.json");
-    const raw = fs.readFileSync(filePath, "utf-8");
-    const data = JSON.parse(raw);
-
-    let recipes = data.recipes;
-
-    // type filtresi
-    if (quickType) {
-      recipes = recipes.filter(r => r.type === quickType);
-    }
-
-    // random 2 tane seç
-    recipes = recipes.sort(() => 0.5 - Math.random()).slice(0, 2);
-
-    return res.json({ recipes });
-
+    const data = JSON.parse(completion.choices[0].message.content);
+    return res.json(data);
   } catch (err) {
-    console.log("quick json error:", err);
-    return res.status(500).json({ error: "Quick recipe load failed" });
+    console.error("Quick recipe AI error:", err);
+    return res.status(500).json({ error: "Quick recipe generation failed" });
   }
 });
 

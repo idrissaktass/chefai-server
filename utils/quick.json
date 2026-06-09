@@ -9,10 +9,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla chips", "amount": "40g", "calories": 200 },
-        { "name": "Cheddar cheese (grated)", "amount": "40g", "calories": 160 },
-        { "name": "Salsa sauce", "amount": "2 tbsp", "calories": 20 },
-        { "name": "Pickled jalapeños (optional)", "amount": "1 tbsp", "calories": 5 }
+        {
+          "name": "Tortilla chips",
+          "amount": "40g",
+          "calories": 200
+        },
+        {
+          "name": "Cheddar cheese (grated)",
+          "amount": "40g",
+          "calories": 160
+        },
+        {
+          "name": "Salsa sauce",
+          "amount": "2 tbsp",
+          "calories": 20
+        },
+        {
+          "name": "Pickled jalapeños (optional)",
+          "amount": "1 tbsp",
+          "calories": 5
+        }
       ],
       "steps": [
         "Place a small non-stick pan on the stove and turn the heat to LOW. This is important so the cheese does not burn.",
@@ -33,9 +49,9 @@
         "Cheddar cheese": 160,
         "Salsa sauce": 20,
         "Pickled jalapeños": 5
-      }
+      },
+      "recipeName": "Cheesy Nacho Cups"
     },
-
     {
       "basicName": "Mini Popcorn Chicken",
       "recipeName_en": "Mini Popcorn Chicken Bites",
@@ -45,12 +61,36 @@
       "prepTime": 20,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
-        { "name": "Flour", "amount": "3 tbsp", "calories": 90 },
-        { "name": "Egg", "amount": "1 small", "calories": 70 },
-        { "name": "Breadcrumbs", "amount": "3 tbsp", "calories": 60 },
-        { "name": "Oil (for shallow frying)", "amount": "1 tbsp", "calories": 120 },
-        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Chicken breast",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Flour",
+          "amount": "3 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Egg",
+          "amount": "1 small",
+          "calories": 70
+        },
+        {
+          "name": "Breadcrumbs",
+          "amount": "3 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Oil (for shallow frying)",
+          "amount": "1 tbsp",
+          "calories": 120
+        },
+        {
+          "name": "Salt & pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Place the chicken breast on a cutting board and cut it into very small bite-sized cubes.",
@@ -75,9 +115,9 @@
         "Egg": 70,
         "Breadcrumbs": 60,
         "Oil": 120
-      }
+      },
+      "recipeName": "Mini Popcorn Chicken Bites"
     },
-
     {
       "basicName": "Chocolate Banana Pops",
       "recipeName_en": "Chocolate Banana Pops",
@@ -87,9 +127,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Banana", "amount": "1 medium", "calories": 105 },
-        { "name": "Dark chocolate", "amount": "30g", "calories": 160 },
-        { "name": "Crushed nuts (optional)", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Banana",
+          "amount": "1 medium",
+          "calories": 105
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "30g",
+          "calories": 160
+        },
+        {
+          "name": "Crushed nuts (optional)",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Peel the banana and cut it into thick round slices.",
@@ -109,9 +161,9 @@
         "Banana": 105,
         "Dark chocolate": 160,
         "Crushed nuts": 50
-      }
+      },
+      "recipeName": "Chocolate Banana Pops"
     },
-
     {
       "basicName": "Pizza Toast Bites",
       "recipeName_en": "Mini Pizza Toast Bites",
@@ -121,10 +173,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Pizza sauce", "amount": "2 tbsp", "calories": 25 },
-        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
-        { "name": "Sliced sausage or pepperoni", "amount": "30g", "calories": 130 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Pizza sauce",
+          "amount": "2 tbsp",
+          "calories": 25
+        },
+        {
+          "name": "Mozzarella cheese",
+          "amount": "40g",
+          "calories": 120
+        },
+        {
+          "name": "Sliced sausage or pepperoni",
+          "amount": "30g",
+          "calories": 130
+        }
       ],
       "steps": [
         "Place the toast bread on a cutting board and cut it into small square pieces.",
@@ -144,9 +212,9 @@
         "Pizza sauce": 25,
         "Mozzarella cheese": 120,
         "Sausage or pepperoni": 130
-      }
+      },
+      "recipeName": "Mini Pizza Toast Bites"
     },
-
     {
       "type": "movie_night",
       "basicName": "Sausage Roll Ups",
@@ -156,10 +224,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Sausage", "amount": "2 small", "calories": 180 },
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Cheddar cheese", "amount": "30g", "calories": 120 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Sausage",
+          "amount": "2 small",
+          "calories": 180
+        },
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "30g",
+          "calories": 120
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Place the toast bread on a cutting board.",
@@ -179,9 +263,9 @@
         "Toast bread": 80,
         "Cheddar cheese": 120,
         "Butter": 35
-      }
+      },
+      "recipeName": "Cheesy Sausage Roll Ups"
     },
-
     {
       "type": "movie_night",
       "basicName": "Garlic Cheese Bread",
@@ -191,10 +275,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Mini bread loaf", "amount": "1 small", "calories": 140 },
-        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 }
+        {
+          "name": "Mini bread loaf",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Mozzarella cheese",
+          "amount": "40g",
+          "calories": 120
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        }
       ],
       "steps": [
         "Cut deep lines across the bread without cutting fully through.",
@@ -214,9 +314,9 @@
         "Mozzarella cheese": 120,
         "Butter": 100,
         "Garlic": 5
-      }
+      },
+      "recipeName": "Pull Apart Garlic Cheese Bread"
     },
-
     {
       "type": "movie_night",
       "basicName": "Crispy Potato Pops",
@@ -226,10 +326,26 @@
       "prepTime": 18,
       "servings": 1,
       "ingredients": [
-        { "name": "Potato", "amount": "1 medium", "calories": 150 },
-        { "name": "Breadcrumbs", "amount": "3 tbsp", "calories": 60 },
-        { "name": "Egg", "amount": "1 small", "calories": 70 },
-        { "name": "Oil", "amount": "1 tbsp", "calories": 120 }
+        {
+          "name": "Potato",
+          "amount": "1 medium",
+          "calories": 150
+        },
+        {
+          "name": "Breadcrumbs",
+          "amount": "3 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Egg",
+          "amount": "1 small",
+          "calories": 70
+        },
+        {
+          "name": "Oil",
+          "amount": "1 tbsp",
+          "calories": 120
+        }
       ],
       "steps": [
         "Peel and boil the potato until very soft.",
@@ -250,9 +366,9 @@
         "Breadcrumbs": 60,
         "Egg": 70,
         "Oil": 120
-      }
+      },
+      "recipeName": "Crispy Potato Pops"
     },
-
     {
       "type": "movie_night",
       "basicName": "Caramel Popcorn",
@@ -262,9 +378,21 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Popcorn", "amount": "25g", "calories": 95 },
-        { "name": "Sugar", "amount": "2 tbsp", "calories": 100 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 }
+        {
+          "name": "Popcorn",
+          "amount": "25g",
+          "calories": 95
+        },
+        {
+          "name": "Sugar",
+          "amount": "2 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        }
       ],
       "steps": [
         "Pop the popcorn according to package instructions.",
@@ -282,9 +410,9 @@
         "Popcorn": 95,
         "Sugar": 100,
         "Butter": 100
-      }
+      },
+      "recipeName": "Quick Caramel Popcorn"
     },
-
     {
       "type": "movie_night",
       "basicName": "Mini Quesadilla",
@@ -294,9 +422,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
-        { "name": "Cheddar cheese", "amount": "40g", "calories": 160 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Tortilla",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "40g",
+          "calories": 160
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Heat a pan on medium heat and melt butter.",
@@ -314,9 +454,9 @@
         "Tortilla": 140,
         "Cheddar cheese": 160,
         "Butter": 35
-      }
+      },
+      "recipeName": "Mini Cheese Quesadilla"
     },
-
     {
       "type": "movie_night",
       "basicName": "Apple Nachos",
@@ -326,10 +466,26 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Apple", "amount": "1 medium", "calories": 95 },
-        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
-        { "name": "Dark chocolate", "amount": "15g", "calories": 80 },
-        { "name": "Crushed nuts", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Apple",
+          "amount": "1 medium",
+          "calories": 95
+        },
+        {
+          "name": "Peanut butter",
+          "amount": "1 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "15g",
+          "calories": 80
+        },
+        {
+          "name": "Crushed nuts",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Wash the apple and cut into thin slices.",
@@ -348,7 +504,8 @@
         "Peanut butter": 90,
         "Dark chocolate": 80,
         "Crushed nuts": 50
-      }
+      },
+      "recipeName": "Sweet Apple Nachos"
     },
     {
       "type": "date_night",
@@ -359,9 +516,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Strawberries", "amount": "5 medium", "calories": 25 },
-        { "name": "Dark chocolate", "amount": "40g", "calories": 210 },
-        { "name": "Crushed nuts", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Strawberries",
+          "amount": "5 medium",
+          "calories": 25
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "40g",
+          "calories": 210
+        },
+        {
+          "name": "Crushed nuts",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Wash the strawberries thoroughly under clean water.",
@@ -381,9 +550,9 @@
         "Strawberries": 25,
         "Dark chocolate": 210,
         "Crushed nuts": 50
-      }
+      },
+      "recipeName": "Strawberry Chocolate Cups"
     },
-
     {
       "type": "date_night",
       "basicName": "Mini Caprese Skewers",
@@ -393,10 +562,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Cherry tomatoes", "amount": "5 pieces", "calories": 15 },
-        { "name": "Mini mozzarella balls", "amount": "50g", "calories": 140 },
-        { "name": "Fresh basil", "amount": "5 leaves", "calories": 2 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Cherry tomatoes",
+          "amount": "5 pieces",
+          "calories": 15
+        },
+        {
+          "name": "Mini mozzarella balls",
+          "amount": "50g",
+          "calories": 140
+        },
+        {
+          "name": "Fresh basil",
+          "amount": "5 leaves",
+          "calories": 2
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Wash the cherry tomatoes and basil leaves gently and dry them with paper towel.",
@@ -417,9 +602,9 @@
         "Mini mozzarella balls": 140,
         "Fresh basil": 2,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Mini Caprese Skewers"
     },
-
     {
       "type": "date_night",
       "basicName": "Creamy Garlic Shrimp",
@@ -429,10 +614,26 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Shrimp", "amount": "120g", "calories": 120 },
-        { "name": "Cream", "amount": "3 tbsp", "calories": 90 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 }
+        {
+          "name": "Shrimp",
+          "amount": "120g",
+          "calories": 120
+        },
+        {
+          "name": "Cream",
+          "amount": "3 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        }
       ],
       "steps": [
         "Peel and clean the shrimp if not already prepared.",
@@ -453,9 +654,9 @@
         "Cream": 90,
         "Butter": 35,
         "Garlic": 5
-      }
+      },
+      "recipeName": "Creamy Garlic Shrimp Bites"
     },
-
     {
       "type": "date_night",
       "basicName": "Heart Pancakes",
@@ -465,10 +666,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Pancake mix", "amount": "4 tbsp", "calories": 140 },
-        { "name": "Milk", "amount": "3 tbsp", "calories": 25 },
-        { "name": "Egg", "amount": "1 small", "calories": 70 },
-        { "name": "Honey", "amount": "1 tbsp", "calories": 60 }
+        {
+          "name": "Pancake mix",
+          "amount": "4 tbsp",
+          "calories": 140
+        },
+        {
+          "name": "Milk",
+          "amount": "3 tbsp",
+          "calories": 25
+        },
+        {
+          "name": "Egg",
+          "amount": "1 small",
+          "calories": 70
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tbsp",
+          "calories": 60
+        }
       ],
       "steps": [
         "Add pancake mix, milk, and egg into a bowl.",
@@ -489,9 +706,9 @@
         "Milk": 25,
         "Egg": 70,
         "Honey": 60
-      }
+      },
+      "recipeName": "Mini Heart Pancakes"
     },
-
     {
       "type": "date_night",
       "basicName": "Cheese Grape Bites",
@@ -501,8 +718,16 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Grapes", "amount": "10 pieces", "calories": 35 },
-        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 }
+        {
+          "name": "Grapes",
+          "amount": "10 pieces",
+          "calories": 35
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "50g",
+          "calories": 200
+        }
       ],
       "steps": [
         "Wash the grapes and dry them well.",
@@ -519,9 +744,9 @@
       "ingredientsCalories": {
         "Grapes": 35,
         "Cheddar cheese": 200
-      }
+      },
+      "recipeName": "Cheese & Grape Bites"
     },
-
     {
       "type": "date_night",
       "basicName": "Chocolate Fondue",
@@ -531,9 +756,21 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Dark chocolate", "amount": "50g", "calories": 260 },
-        { "name": "Cream", "amount": "2 tbsp", "calories": 60 },
-        { "name": "Banana", "amount": "1 small", "calories": 90 }
+        {
+          "name": "Dark chocolate",
+          "amount": "50g",
+          "calories": 260
+        },
+        {
+          "name": "Cream",
+          "amount": "2 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        }
       ],
       "steps": [
         "Slice the banana into round pieces and set aside.",
@@ -551,9 +788,9 @@
         "Dark chocolate": 260,
         "Cream": 60,
         "Banana": 90
-      }
+      },
+      "recipeName": "Quick Chocolate Fondue"
     },
-
     {
       "type": "date_night",
       "basicName": "Mini Bruschetta",
@@ -563,10 +800,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Tomato", "amount": "1 small", "calories": 20 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
-        { "name": "Garlic", "amount": "1/2 clove", "calories": 3 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 small",
+          "calories": 20
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        },
+        {
+          "name": "Garlic",
+          "amount": "1/2 clove",
+          "calories": 3
+        }
       ],
       "steps": [
         "Lightly toast the bread.",
@@ -585,9 +838,9 @@
         "Tomato": 20,
         "Olive oil": 40,
         "Garlic": 3
-      }
+      },
+      "recipeName": "Mini Tomato Bruschetta"
     },
-
     {
       "type": "date_night",
       "basicName": "Mini Chicken Wraps",
@@ -597,9 +850,21 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "100g", "calories": 165 },
-        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
-        { "name": "Yogurt", "amount": "2 tbsp", "calories": 30 }
+        {
+          "name": "Chicken breast",
+          "amount": "100g",
+          "calories": 165
+        },
+        {
+          "name": "Tortilla",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Yogurt",
+          "amount": "2 tbsp",
+          "calories": 30
+        }
       ],
       "steps": [
         "Cut chicken into small pieces.",
@@ -618,9 +883,9 @@
         "Chicken breast": 165,
         "Tortilla": 140,
         "Yogurt": 30
-      }
+      },
+      "recipeName": "Mini Creamy Chicken Wraps"
     },
-
     {
       "type": "date_night",
       "basicName": "Strawberry Yogurt Cups",
@@ -630,9 +895,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "120g", "calories": 90 },
-        { "name": "Strawberries", "amount": "4 pieces", "calories": 20 },
-        { "name": "Honey", "amount": "1 tbsp", "calories": 60 }
+        {
+          "name": "Greek yogurt",
+          "amount": "120g",
+          "calories": 90
+        },
+        {
+          "name": "Strawberries",
+          "amount": "4 pieces",
+          "calories": 20
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tbsp",
+          "calories": 60
+        }
       ],
       "steps": [
         "Wash and slice strawberries.",
@@ -649,9 +926,9 @@
         "Greek yogurt": 90,
         "Strawberries": 20,
         "Honey": 60
-      }
+      },
+      "recipeName": "Strawberry Yogurt Dessert Cups"
     },
-
     {
       "type": "date_night",
       "basicName": "Nutella Toast Hearts",
@@ -661,9 +938,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Nutella", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Nutella",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2 medium",
+          "calories": 45
+        }
       ],
       "steps": [
         "Use a knife or cookie cutter to cut bread into heart shapes.",
@@ -680,7 +969,8 @@
         "Toast bread": 80,
         "Nutella": 100,
         "Banana": 45
-      }
+      },
+      "recipeName": "Nutella Toast Hearts"
     },
     {
       "type": "gym_meal",
@@ -691,10 +981,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Eggs", "amount": "2 large", "calories": 140 },
-        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
-        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Eggs",
+          "amount": "2 large",
+          "calories": 140
+        },
+        {
+          "name": "Whole wheat bread",
+          "amount": "1 slice",
+          "calories": 90
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        },
+        {
+          "name": "Salt & pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Heat a non-stick pan on medium heat and add olive oil.",
@@ -713,9 +1019,9 @@
         "Eggs": 140,
         "Whole wheat bread": 90,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "High-Protein Egg Toast"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Chicken Rice Bowl",
@@ -725,10 +1031,26 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
-        { "name": "Cooked rice", "amount": "100g", "calories": 130 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
-        { "name": "Spices", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Chicken breast",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Cooked rice",
+          "amount": "100g",
+          "calories": 130
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        },
+        {
+          "name": "Spices",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Cut chicken breast into small cubes.",
@@ -747,9 +1069,9 @@
         "Chicken breast": 200,
         "Cooked rice": 130,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Lean Chicken Rice Bowl"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Tuna Protein Wrap",
@@ -759,10 +1081,26 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Canned tuna (water)", "amount": "1 can", "calories": 140 },
-        { "name": "Whole wheat tortilla", "amount": "1 small", "calories": 140 },
-        { "name": "Greek yogurt", "amount": "2 tbsp", "calories": 30 },
-        { "name": "Lettuce", "amount": "a few leaves", "calories": 5 }
+        {
+          "name": "Canned tuna (water)",
+          "amount": "1 can",
+          "calories": 140
+        },
+        {
+          "name": "Whole wheat tortilla",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Greek yogurt",
+          "amount": "2 tbsp",
+          "calories": 30
+        },
+        {
+          "name": "Lettuce",
+          "amount": "a few leaves",
+          "calories": 5
+        }
       ],
       "steps": [
         "Drain tuna completely.",
@@ -781,9 +1119,9 @@
         "Whole wheat tortilla": 140,
         "Greek yogurt": 30,
         "Lettuce": 5
-      }
+      },
+      "recipeName": "High-Protein Tuna Wrap"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Protein Yogurt Bowl",
@@ -793,9 +1131,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
-        { "name": "Protein powder", "amount": "1 scoop", "calories": 110 },
-        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+        {
+          "name": "Greek yogurt",
+          "amount": "200g",
+          "calories": 150
+        },
+        {
+          "name": "Protein powder",
+          "amount": "1 scoop",
+          "calories": 110
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2 medium",
+          "calories": 45
+        }
       ],
       "steps": [
         "Add Greek yogurt into bowl.",
@@ -812,9 +1162,9 @@
         "Greek yogurt": 150,
         "Protein powder": 110,
         "Banana": 45
-      }
+      },
+      "recipeName": "Protein Yogurt Power Bowl"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Egg White Omelette",
@@ -824,9 +1174,21 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Egg whites", "amount": "4 whites", "calories": 70 },
-        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Egg whites",
+          "amount": "4 whites",
+          "calories": 70
+        },
+        {
+          "name": "Spinach",
+          "amount": "1 handful",
+          "calories": 10
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Heat pan and add olive oil.",
@@ -843,9 +1205,9 @@
         "Egg whites": 70,
         "Spinach": 10,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Lean Egg White Omelette"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Protein Oatmeal",
@@ -855,9 +1217,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "40g", "calories": 150 },
-        { "name": "Milk", "amount": "150ml", "calories": 70 },
-        { "name": "Protein powder", "amount": "1 scoop", "calories": 110 }
+        {
+          "name": "Oats",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Milk",
+          "amount": "150ml",
+          "calories": 70
+        },
+        {
+          "name": "Protein powder",
+          "amount": "1 scoop",
+          "calories": 110
+        }
       ],
       "steps": [
         "Add oats and milk into a pot.",
@@ -874,9 +1248,9 @@
         "Oats": 150,
         "Milk": 70,
         "Protein powder": 110
-      }
+      },
+      "recipeName": "Protein Oatmeal Bowl"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Cottage Cheese Bowl",
@@ -886,9 +1260,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Cottage cheese", "amount": "200g", "calories": 160 },
-        { "name": "Tomato", "amount": "1 small", "calories": 20 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Cottage cheese",
+          "amount": "200g",
+          "calories": 160
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 small",
+          "calories": 20
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Add cottage cheese into bowl.",
@@ -904,9 +1290,9 @@
         "Cottage cheese": 160,
         "Tomato": 20,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Cottage Cheese Protein Bowl"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Protein Smoothie",
@@ -916,9 +1302,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Milk", "amount": "200ml", "calories": 90 },
-        { "name": "Protein powder", "amount": "1 scoop", "calories": 110 },
-        { "name": "Banana", "amount": "1 small", "calories": 90 }
+        {
+          "name": "Milk",
+          "amount": "200ml",
+          "calories": 90
+        },
+        {
+          "name": "Protein powder",
+          "amount": "1 scoop",
+          "calories": 110
+        },
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        }
       ],
       "steps": [
         "Add all ingredients into blender.",
@@ -933,9 +1331,9 @@
         "Milk": 90,
         "Protein powder": 110,
         "Banana": 90
-      }
+      },
+      "recipeName": "Banana Protein Smoothie"
     },
-
     {
       "type": "gym_meal",
       "basicName": "Turkey Avocado Toast",
@@ -945,9 +1343,21 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
-        { "name": "Turkey breast", "amount": "60g", "calories": 90 },
-        { "name": "Avocado", "amount": "1/4 fruit", "calories": 60 }
+        {
+          "name": "Whole wheat bread",
+          "amount": "1 slice",
+          "calories": 90
+        },
+        {
+          "name": "Turkey breast",
+          "amount": "60g",
+          "calories": 90
+        },
+        {
+          "name": "Avocado",
+          "amount": "1/4 fruit",
+          "calories": 60
+        }
       ],
       "steps": [
         "Toast the bread.",
@@ -964,7 +1374,8 @@
         "Whole wheat bread": 90,
         "Turkey breast": 90,
         "Avocado": 60
-      }
+      },
+      "recipeName": "Turkey & Avocado Protein Toast"
     },
     {
       "type": "comfort_food",
@@ -975,10 +1386,26 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Macaroni pasta", "amount": "70g", "calories": 250 },
-        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 },
-        { "name": "Milk", "amount": "100ml", "calories": 45 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Macaroni pasta",
+          "amount": "70g",
+          "calories": 250
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "50g",
+          "calories": 200
+        },
+        {
+          "name": "Milk",
+          "amount": "100ml",
+          "calories": 45
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Boil water in a pot and cook the macaroni according to package instructions.",
@@ -999,9 +1426,9 @@
         "Cheddar cheese": 200,
         "Milk": 45,
         "Butter": 35
-      }
+      },
+      "recipeName": "Creamy Comfort Mac & Cheese"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Creamy Mashed Potatoes",
@@ -1011,9 +1438,21 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Potato", "amount": "2 small", "calories": 220 },
-        { "name": "Milk", "amount": "80ml", "calories": 35 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 }
+        {
+          "name": "Potato",
+          "amount": "2 small",
+          "calories": 220
+        },
+        {
+          "name": "Milk",
+          "amount": "80ml",
+          "calories": 35
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        }
       ],
       "steps": [
         "Peel the potatoes and cut them into small cubes.",
@@ -1032,9 +1471,9 @@
         "Potato": 220,
         "Milk": 35,
         "Butter": 100
-      }
+      },
+      "recipeName": "Creamy Butter Mashed Potatoes"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Grilled Cheese Sandwich",
@@ -1044,9 +1483,21 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "2 slices", "calories": 160 },
-        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Toast bread",
+          "amount": "2 slices",
+          "calories": 160
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "50g",
+          "calories": 200
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Butter one side of each bread slice.",
@@ -1065,9 +1516,9 @@
         "Toast bread": 160,
         "Cheddar cheese": 200,
         "Butter": 35
-      }
+      },
+      "recipeName": "Classic Grilled Cheese Sandwich"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Chicken Noodle Soup",
@@ -1077,10 +1528,26 @@
       "prepTime": 20,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "100g", "calories": 165 },
-        { "name": "Noodles", "amount": "40g", "calories": 150 },
-        { "name": "Carrot", "amount": "1/2", "calories": 15 },
-        { "name": "Water or broth", "amount": "400ml", "calories": 10 }
+        {
+          "name": "Chicken breast",
+          "amount": "100g",
+          "calories": 165
+        },
+        {
+          "name": "Noodles",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Carrot",
+          "amount": "1/2",
+          "calories": 15
+        },
+        {
+          "name": "Water or broth",
+          "amount": "400ml",
+          "calories": 10
+        }
       ],
       "steps": [
         "Cut chicken into small pieces.",
@@ -1100,9 +1567,9 @@
         "Noodles": 150,
         "Carrot": 15,
         "Water or broth": 10
-      }
+      },
+      "recipeName": "Warm Chicken Noodle Soup"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Rice Pudding",
@@ -1112,9 +1579,21 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Rice", "amount": "40g", "calories": 150 },
-        { "name": "Milk", "amount": "300ml", "calories": 140 },
-        { "name": "Sugar", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Rice",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Milk",
+          "amount": "300ml",
+          "calories": 140
+        },
+        {
+          "name": "Sugar",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Boil rice in water until soft.",
@@ -1132,9 +1611,9 @@
         "Rice": 150,
         "Milk": 140,
         "Sugar": 50
-      }
+      },
+      "recipeName": "Warm Vanilla Rice Pudding"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Creamy Scrambled Eggs",
@@ -1144,9 +1623,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Eggs", "amount": "2", "calories": 140 },
-        { "name": "Milk", "amount": "2 tbsp", "calories": 20 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Eggs",
+          "amount": "2",
+          "calories": 140
+        },
+        {
+          "name": "Milk",
+          "amount": "2 tbsp",
+          "calories": 20
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Crack eggs into a bowl and add milk.",
@@ -1164,9 +1655,9 @@
         "Eggs": 140,
         "Milk": 20,
         "Butter": 35
-      }
+      },
+      "recipeName": "Soft Creamy Scrambled Eggs"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Baked Oatmeal",
@@ -1176,9 +1667,21 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "40g", "calories": 150 },
-        { "name": "Milk", "amount": "150ml", "calories": 70 },
-        { "name": "Honey", "amount": "1 tbsp", "calories": 60 }
+        {
+          "name": "Oats",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Milk",
+          "amount": "150ml",
+          "calories": 70
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tbsp",
+          "calories": 60
+        }
       ],
       "steps": [
         "Add oats and milk to a small oven-safe dish.",
@@ -1195,9 +1698,9 @@
         "Oats": 150,
         "Milk": 70,
         "Honey": 60
-      }
+      },
+      "recipeName": "Warm Comfort Baked Oatmeal"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Creamy Hot Chocolate",
@@ -1207,9 +1710,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Milk", "amount": "250ml", "calories": 120 },
-        { "name": "Dark chocolate", "amount": "30g", "calories": 160 },
-        { "name": "Sugar (optional)", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Milk",
+          "amount": "250ml",
+          "calories": 120
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "30g",
+          "calories": 160
+        },
+        {
+          "name": "Sugar (optional)",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Heat milk in a small pot on low heat.",
@@ -1226,9 +1741,9 @@
         "Milk": 120,
         "Dark chocolate": 160,
         "Sugar": 20
-      }
+      },
+      "recipeName": "Warm Creamy Hot Chocolate"
     },
-
     {
       "type": "comfort_food",
       "basicName": "Creamy Chicken Rice",
@@ -1238,9 +1753,21 @@
       "prepTime": 18,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "100g", "calories": 165 },
-        { "name": "Cooked rice", "amount": "120g", "calories": 160 },
-        { "name": "Cream", "amount": "2 tbsp", "calories": 60 }
+        {
+          "name": "Chicken breast",
+          "amount": "100g",
+          "calories": 165
+        },
+        {
+          "name": "Cooked rice",
+          "amount": "120g",
+          "calories": 160
+        },
+        {
+          "name": "Cream",
+          "amount": "2 tbsp",
+          "calories": 60
+        }
       ],
       "steps": [
         "Cook chicken in a pan until soft.",
@@ -1258,7 +1785,8 @@
         "Chicken breast": 165,
         "Cooked rice": 160,
         "Cream": 60
-      }
+      },
+      "recipeName": "Creamy Chicken Rice Bowl"
     },
     {
       "type": "late_night",
@@ -1269,9 +1797,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
-        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
-        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+        {
+          "name": "Whole wheat bread",
+          "amount": "1 slice",
+          "calories": 90
+        },
+        {
+          "name": "Peanut butter",
+          "amount": "1 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2 medium",
+          "calories": 45
+        }
       ],
       "steps": [
         "Toast the bread lightly.",
@@ -1287,9 +1827,9 @@
         "Whole wheat bread": 90,
         "Peanut butter": 90,
         "Banana": 45
-      }
+      },
+      "recipeName": "Banana Peanut Butter Toast"
     },
-
     {
       "type": "late_night",
       "basicName": "Warm Yogurt Bowl",
@@ -1299,9 +1839,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "150g", "calories": 110 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
-        { "name": "Cinnamon (optional)", "amount": "a pinch", "calories": 0 }
+        {
+          "name": "Greek yogurt",
+          "amount": "150g",
+          "calories": 110
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Cinnamon (optional)",
+          "amount": "a pinch",
+          "calories": 0
+        }
       ],
       "steps": [
         "Place yogurt into a microwave-safe bowl.",
@@ -1316,9 +1868,9 @@
       "ingredientsCalories": {
         "Greek yogurt": 110,
         "Honey": 20
-      }
+      },
+      "recipeName": "Warm Honey Yogurt Bowl"
     },
-
     {
       "type": "late_night",
       "basicName": "Cheese Crackers",
@@ -1328,8 +1880,16 @@
       "prepTime": 3,
       "servings": 1,
       "ingredients": [
-        { "name": "Crackers", "amount": "6 small", "calories": 120 },
-        { "name": "Cheddar cheese", "amount": "30g", "calories": 120 }
+        {
+          "name": "Crackers",
+          "amount": "6 small",
+          "calories": 120
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "30g",
+          "calories": 120
+        }
       ],
       "steps": [
         "Place crackers on a plate.",
@@ -1344,9 +1904,9 @@
       "ingredientsCalories": {
         "Crackers": 120,
         "Cheddar cheese": 120
-      }
+      },
+      "recipeName": "Light Cheese & Crackers"
     },
-
     {
       "type": "late_night",
       "basicName": "Egg Night Bowl",
@@ -1356,9 +1916,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Egg", "amount": "1 large", "calories": 70 },
-        { "name": "Milk", "amount": "1 tbsp", "calories": 10 },
-        { "name": "Butter", "amount": "1/2 tsp", "calories": 18 }
+        {
+          "name": "Egg",
+          "amount": "1 large",
+          "calories": 70
+        },
+        {
+          "name": "Milk",
+          "amount": "1 tbsp",
+          "calories": 10
+        },
+        {
+          "name": "Butter",
+          "amount": "1/2 tsp",
+          "calories": 18
+        }
       ],
       "steps": [
         "Crack egg into a bowl and whisk with milk.",
@@ -1375,9 +1947,9 @@
         "Egg": 70,
         "Milk": 10,
         "Butter": 18
-      }
+      },
+      "recipeName": "Soft Scrambled Egg Bowl"
     },
-
     {
       "type": "late_night",
       "basicName": "Apple Yogurt Dip",
@@ -1387,9 +1959,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Apple", "amount": "1 small", "calories": 80 },
-        { "name": "Greek yogurt", "amount": "2 tbsp", "calories": 30 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Apple",
+          "amount": "1 small",
+          "calories": 80
+        },
+        {
+          "name": "Greek yogurt",
+          "amount": "2 tbsp",
+          "calories": 30
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Wash and slice apple thinly.",
@@ -1404,9 +1988,9 @@
         "Apple": 80,
         "Greek yogurt": 30,
         "Honey": 20
-      }
+      },
+      "recipeName": "Apple Slices with Yogurt Dip"
     },
-
     {
       "type": "late_night",
       "basicName": "Mini Oat Bowl",
@@ -1416,9 +2000,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "25g", "calories": 95 },
-        { "name": "Milk", "amount": "100ml", "calories": 45 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Oats",
+          "amount": "25g",
+          "calories": 95
+        },
+        {
+          "name": "Milk",
+          "amount": "100ml",
+          "calories": 45
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Add oats and milk into a small pot or bowl.",
@@ -1434,9 +2030,9 @@
         "Oats": 95,
         "Milk": 45,
         "Honey": 20
-      }
+      },
+      "recipeName": "Warm Mini Oat Bowl"
     },
-
     {
       "type": "late_night",
       "basicName": "Avocado Crackers",
@@ -1446,8 +2042,16 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Crackers", "amount": "6 small", "calories": 120 },
-        { "name": "Avocado", "amount": "2 tbsp mashed", "calories": 60 }
+        {
+          "name": "Crackers",
+          "amount": "6 small",
+          "calories": 120
+        },
+        {
+          "name": "Avocado",
+          "amount": "2 tbsp mashed",
+          "calories": 60
+        }
       ],
       "steps": [
         "Mash avocado with a fork.",
@@ -1461,9 +2065,9 @@
       "ingredientsCalories": {
         "Crackers": 120,
         "Avocado": 60
-      }
+      },
+      "recipeName": "Avocado Crackers"
     },
-
     {
       "type": "late_night",
       "basicName": "Warm Milk Cocoa",
@@ -1473,9 +2077,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Milk", "amount": "200ml", "calories": 90 },
-        { "name": "Cocoa powder", "amount": "1 tsp", "calories": 10 },
-        { "name": "Honey (optional)", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Milk",
+          "amount": "200ml",
+          "calories": 90
+        },
+        {
+          "name": "Cocoa powder",
+          "amount": "1 tsp",
+          "calories": 10
+        },
+        {
+          "name": "Honey (optional)",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Heat milk gently in a small pot.",
@@ -1491,9 +2107,9 @@
         "Milk": 90,
         "Cocoa powder": 10,
         "Honey": 20
-      }
+      },
+      "recipeName": "Light Warm Cocoa Milk"
     },
-
     {
       "type": "late_night",
       "basicName": "Cottage Night Bowl",
@@ -1503,9 +2119,21 @@
       "prepTime": 3,
       "servings": 1,
       "ingredients": [
-        { "name": "Cottage cheese", "amount": "120g", "calories": 95 },
-        { "name": "Cucumber", "amount": "4 slices", "calories": 5 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Cottage cheese",
+          "amount": "120g",
+          "calories": 95
+        },
+        {
+          "name": "Cucumber",
+          "amount": "4 slices",
+          "calories": 5
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Place cottage cheese into bowl.",
@@ -1521,7 +2149,8 @@
         "Cottage cheese": 95,
         "Cucumber": 5,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Cottage Cheese Night Bowl"
     },
     {
       "type": "healthy_breakfast",
@@ -1532,10 +2161,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
-        { "name": "Egg", "amount": "1 large", "calories": 70 },
-        { "name": "Avocado", "amount": "1/4 fruit", "calories": 60 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Whole wheat bread",
+          "amount": "1 slice",
+          "calories": 90
+        },
+        {
+          "name": "Egg",
+          "amount": "1 large",
+          "calories": 70
+        },
+        {
+          "name": "Avocado",
+          "amount": "1/4 fruit",
+          "calories": 60
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Toast the whole wheat bread lightly until golden.",
@@ -1555,9 +2200,9 @@
         "Egg": 70,
         "Avocado": 60,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Avocado Egg Power Toast"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Berry Yogurt Bowl",
@@ -1567,10 +2212,26 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
-        { "name": "Mixed berries", "amount": "1/2 cup", "calories": 40 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
-        { "name": "Chia seeds", "amount": "1 tsp", "calories": 25 }
+        {
+          "name": "Greek yogurt",
+          "amount": "200g",
+          "calories": 150
+        },
+        {
+          "name": "Mixed berries",
+          "amount": "1/2 cup",
+          "calories": 40
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Chia seeds",
+          "amount": "1 tsp",
+          "calories": 25
+        }
       ],
       "steps": [
         "Add Greek yogurt into a bowl.",
@@ -1588,9 +2249,9 @@
         "Mixed berries": 40,
         "Honey": 20,
         "Chia seeds": 25
-      }
+      },
+      "recipeName": "Berry Greek Yogurt Bowl"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Banana Oat Pancakes",
@@ -1600,9 +2261,21 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "40g", "calories": 150 },
-        { "name": "Banana", "amount": "1 small", "calories": 90 },
-        { "name": "Egg", "amount": "1 large", "calories": 70 }
+        {
+          "name": "Oats",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        },
+        {
+          "name": "Egg",
+          "amount": "1 large",
+          "calories": 70
+        }
       ],
       "steps": [
         "Mash banana in a bowl.",
@@ -1621,9 +2294,9 @@
         "Oats": 150,
         "Banana": 90,
         "Egg": 70
-      }
+      },
+      "recipeName": "Healthy Banana Oat Pancakes"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Green Energy Smoothie",
@@ -1633,10 +2306,26 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
-        { "name": "Banana", "amount": "1 small", "calories": 90 },
-        { "name": "Milk or almond milk", "amount": "200ml", "calories": 80 },
-        { "name": "Peanut butter", "amount": "1 tsp", "calories": 30 }
+        {
+          "name": "Spinach",
+          "amount": "1 handful",
+          "calories": 10
+        },
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        },
+        {
+          "name": "Milk or almond milk",
+          "amount": "200ml",
+          "calories": 80
+        },
+        {
+          "name": "Peanut butter",
+          "amount": "1 tsp",
+          "calories": 30
+        }
       ],
       "steps": [
         "Add all ingredients into blender.",
@@ -1653,9 +2342,9 @@
         "Banana": 90,
         "Milk or almond milk": 80,
         "Peanut butter": 30
-      }
+      },
+      "recipeName": "Green Energy Smoothie"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Egg Veggie Scramble",
@@ -1665,10 +2354,26 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Eggs", "amount": "2 large", "calories": 140 },
-        { "name": "Tomato", "amount": "1 small", "calories": 20 },
-        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Eggs",
+          "amount": "2 large",
+          "calories": 140
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 small",
+          "calories": 20
+        },
+        {
+          "name": "Spinach",
+          "amount": "1 handful",
+          "calories": 10
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Chop tomato and spinach.",
@@ -1687,9 +2392,9 @@
         "Tomato": 20,
         "Spinach": 10,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Veggie Egg Scramble"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Chia Pudding",
@@ -1699,9 +2404,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Chia seeds", "amount": "2 tbsp", "calories": 120 },
-        { "name": "Milk or almond milk", "amount": "200ml", "calories": 80 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Chia seeds",
+          "amount": "2 tbsp",
+          "calories": 120
+        },
+        {
+          "name": "Milk or almond milk",
+          "amount": "200ml",
+          "calories": 80
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Add chia seeds and milk into jar.",
@@ -1717,9 +2434,9 @@
         "Chia seeds": 120,
         "Milk or almond milk": 80,
         "Honey": 20
-      }
+      },
+      "recipeName": "Overnight Chia Pudding"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Apple Peanut Oats",
@@ -1729,10 +2446,26 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "40g", "calories": 150 },
-        { "name": "Milk", "amount": "150ml", "calories": 70 },
-        { "name": "Apple", "amount": "1/2 small", "calories": 40 },
-        { "name": "Peanut butter", "amount": "1 tsp", "calories": 30 }
+        {
+          "name": "Oats",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Milk",
+          "amount": "150ml",
+          "calories": 70
+        },
+        {
+          "name": "Apple",
+          "amount": "1/2 small",
+          "calories": 40
+        },
+        {
+          "name": "Peanut butter",
+          "amount": "1 tsp",
+          "calories": 30
+        }
       ],
       "steps": [
         "Add oats and milk to pot.",
@@ -1750,9 +2483,9 @@
         "Milk": 70,
         "Apple": 40,
         "Peanut butter": 30
-      }
+      },
+      "recipeName": "Apple Peanut Butter Oatmeal"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Cottage Breakfast Bowl",
@@ -1762,9 +2495,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Cottage cheese", "amount": "150g", "calories": 120 },
-        { "name": "Cucumber", "amount": "5 slices", "calories": 5 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Cottage cheese",
+          "amount": "150g",
+          "calories": 120
+        },
+        {
+          "name": "Cucumber",
+          "amount": "5 slices",
+          "calories": 5
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Add cottage cheese into bowl.",
@@ -1780,9 +2525,9 @@
         "Cottage cheese": 120,
         "Cucumber": 5,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Cottage Cheese Breakfast Bowl"
     },
-
     {
       "type": "healthy_breakfast",
       "basicName": "Egg Muffin Cups",
@@ -1792,9 +2537,21 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Eggs", "amount": "2 large", "calories": 140 },
-        { "name": "Bell pepper", "amount": "2 tbsp chopped", "calories": 10 },
-        { "name": "Cheese", "amount": "20g", "calories": 80 }
+        {
+          "name": "Eggs",
+          "amount": "2 large",
+          "calories": 140
+        },
+        {
+          "name": "Bell pepper",
+          "amount": "2 tbsp chopped",
+          "calories": 10
+        },
+        {
+          "name": "Cheese",
+          "amount": "20g",
+          "calories": 80
+        }
       ],
       "steps": [
         "Whisk eggs in a bowl.",
@@ -1811,7 +2568,8 @@
         "Eggs": 140,
         "Bell pepper": 10,
         "Cheese": 80
-      }
+      },
+      "recipeName": "Veggie Egg Muffin Cups"
     },
     {
       "type": "world_flavors",
@@ -1822,11 +2580,31 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
-        { "name": "Garlic", "amount": "1/2 clove", "calories": 3 },
-        { "name": "Basil (optional)", "amount": "a few leaves", "calories": 2 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 medium",
+          "calories": 25
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        },
+        {
+          "name": "Garlic",
+          "amount": "1/2 clove",
+          "calories": 3
+        },
+        {
+          "name": "Basil (optional)",
+          "amount": "a few leaves",
+          "calories": 2
+        }
       ],
       "steps": [
         "Toast the bread slice lightly until golden and crispy.",
@@ -1848,9 +2626,9 @@
         "Olive oil": 40,
         "Garlic": 3,
         "Basil": 2
-      }
+      },
+      "recipeName": "Italian Tomato Bruschetta"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Japanese Egg Rice",
@@ -1860,9 +2638,21 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
-        { "name": "Egg", "amount": "1 large", "calories": 70 },
-        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 }
+        {
+          "name": "Cooked rice",
+          "amount": "150g",
+          "calories": 195
+        },
+        {
+          "name": "Egg",
+          "amount": "1 large",
+          "calories": 70
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        }
       ],
       "steps": [
         "Place hot cooked rice into a bowl.",
@@ -1880,9 +2670,9 @@
         "Cooked rice": 195,
         "Egg": 70,
         "Soy sauce": 5
-      }
+      },
+      "recipeName": "Japanese Egg Rice Bowl"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Mexican Quesadilla",
@@ -1892,9 +2682,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla", "amount": "1 medium", "calories": 150 },
-        { "name": "Cheddar cheese", "amount": "50g", "calories": 200 },
-        { "name": "Butter or oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Tortilla",
+          "amount": "1 medium",
+          "calories": 150
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "50g",
+          "calories": 200
+        },
+        {
+          "name": "Butter or oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Heat a pan on medium heat and lightly grease it.",
@@ -1913,9 +2715,9 @@
         "Tortilla": 150,
         "Cheddar cheese": 200,
         "Butter or oil": 20
-      }
+      },
+      "recipeName": "Mexican Cheese Quesadilla"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Indian Butter Chickpeas",
@@ -1925,10 +2727,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Boiled chickpeas", "amount": "120g", "calories": 200 },
-        { "name": "Cream", "amount": "2 tbsp", "calories": 60 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
-        { "name": "Curry powder", "amount": "1/2 tsp", "calories": 5 }
+        {
+          "name": "Boiled chickpeas",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Cream",
+          "amount": "2 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        },
+        {
+          "name": "Curry powder",
+          "amount": "1/2 tsp",
+          "calories": 5
+        }
       ],
       "steps": [
         "Heat a small pan on low-medium heat.",
@@ -1948,9 +2766,9 @@
         "Cream": 60,
         "Butter": 35,
         "Curry powder": 5
-      }
+      },
+      "recipeName": "Indian Butter Chickpeas"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Turkish Menemen",
@@ -1960,10 +2778,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Eggs", "amount": "2", "calories": 140 },
-        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
-        { "name": "Green pepper", "amount": "1 small", "calories": 10 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Eggs",
+          "amount": "2",
+          "calories": 140
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 medium",
+          "calories": 25
+        },
+        {
+          "name": "Green pepper",
+          "amount": "1 small",
+          "calories": 10
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Chop tomato and pepper into small pieces.",
@@ -1984,9 +2818,9 @@
         "Tomato": 25,
         "Green pepper": 10,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Turkish Menemen"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Korean Rice Bowl",
@@ -1996,10 +2830,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
-        { "name": "Egg", "amount": "1", "calories": 70 },
-        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
-        { "name": "Sesame oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Cooked rice",
+          "amount": "150g",
+          "calories": 195
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "calories": 70
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Sesame oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Place hot rice into bowl.",
@@ -2018,9 +2868,9 @@
         "Egg": 70,
         "Soy sauce": 5,
         "Sesame oil": 20
-      }
+      },
+      "recipeName": "Korean Style Rice Bowl"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Greek Yogurt Dip",
@@ -2030,9 +2880,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "150g", "calories": 110 },
-        { "name": "Garlic", "amount": "1/2 clove", "calories": 3 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Greek yogurt",
+          "amount": "150g",
+          "calories": 110
+        },
+        {
+          "name": "Garlic",
+          "amount": "1/2 clove",
+          "calories": 3
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Add yogurt into bowl.",
@@ -2049,9 +2911,9 @@
         "Greek yogurt": 110,
         "Garlic": 3,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Greek Yogurt Garlic Dip"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Chinese Garlic Noodles",
@@ -2061,10 +2923,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Noodles", "amount": "60g", "calories": 220 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Soy sauce", "amount": "1 tbsp", "calories": 10 },
-        { "name": "Oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Noodles",
+          "amount": "60g",
+          "calories": 220
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tbsp",
+          "calories": 10
+        },
+        {
+          "name": "Oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Boil noodles until soft, then drain.",
@@ -2083,9 +2961,9 @@
         "Garlic": 5,
         "Soy sauce": 10,
         "Oil": 40
-      }
+      },
+      "recipeName": "Chinese Style Garlic Noodles"
     },
-
     {
       "type": "world_flavors",
       "basicName": "French Sweet Toast",
@@ -2095,10 +2973,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Egg", "amount": "1", "calories": 70 },
-        { "name": "Milk", "amount": "2 tbsp", "calories": 20 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "calories": 70
+        },
+        {
+          "name": "Milk",
+          "amount": "2 tbsp",
+          "calories": 20
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Whisk egg and milk in a bowl.",
@@ -2116,9 +3010,9 @@
         "Egg": 70,
         "Milk": 20,
         "Honey": 20
-      }
+      },
+      "recipeName": "French Sweet Toast"
     },
-
     {
       "type": "world_flavors",
       "basicName": "Moroccan Chickpea Bowl",
@@ -2128,9 +3022,21 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Boiled chickpeas", "amount": "120g", "calories": 200 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
-        { "name": "Cumin & paprika", "amount": "1/2 tsp", "calories": 5 }
+        {
+          "name": "Boiled chickpeas",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        },
+        {
+          "name": "Cumin & paprika",
+          "amount": "1/2 tsp",
+          "calories": 5
+        }
       ],
       "steps": [
         "Heat olive oil in pan.",
@@ -2147,7 +3053,8 @@
         "Boiled chickpeas": 200,
         "Olive oil": 40,
         "Cumin & paprika": 5
-      }
+      },
+      "recipeName": "Moroccan Spiced Chickpea Bowl"
     },
     {
       "type": "chef_special",
@@ -2158,11 +3065,31 @@
       "prepTime": 25,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "150g", "calories": 250 },
-        { "name": "Cream", "amount": "3 tbsp", "calories": 90 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Chicken breast",
+          "amount": "150g",
+          "calories": 250
+        },
+        {
+          "name": "Cream",
+          "amount": "3 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Pat the chicken breast dry using paper towel. Season both sides lightly with salt and pepper.",
@@ -2187,9 +3114,9 @@
         "Butter": 35,
         "Garlic": 5,
         "Olive oil": 40
-      }
+      },
+      "recipeName": "Creamy Garlic Chicken with Herb Drizzle"
     },
-
     {
       "type": "chef_special",
       "basicName": "Salmon Glaze",
@@ -2199,10 +3126,26 @@
       "prepTime": 22,
       "servings": 1,
       "ingredients": [
-        { "name": "Salmon fillet", "amount": "150g", "calories": 280 },
-        { "name": "Honey", "amount": "1 tbsp", "calories": 60 },
-        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Salmon fillet",
+          "amount": "150g",
+          "calories": 280
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Pat salmon dry and lightly season with salt.",
@@ -2224,9 +3167,9 @@
         "Honey": 60,
         "Soy sauce": 5,
         "Butter": 35
-      }
+      },
+      "recipeName": "Honey Glazed Salmon with Pan Reduction"
     },
-
     {
       "type": "chef_special",
       "basicName": "Truffle Pasta",
@@ -2236,10 +3179,26 @@
       "prepTime": 20,
       "servings": 1,
       "ingredients": [
-        { "name": "Pasta", "amount": "70g", "calories": 250 },
-        { "name": "Cream", "amount": "3 tbsp", "calories": 90 },
-        { "name": "Parmesan cheese", "amount": "25g", "calories": 110 },
-        { "name": "Truffle oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Pasta",
+          "amount": "70g",
+          "calories": 250
+        },
+        {
+          "name": "Cream",
+          "amount": "3 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Parmesan cheese",
+          "amount": "25g",
+          "calories": 110
+        },
+        {
+          "name": "Truffle oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Boil pasta in salted water until al dente.",
@@ -2260,9 +3219,9 @@
         "Cream": 90,
         "Parmesan cheese": 110,
         "Truffle oil": 20
-      }
+      },
+      "recipeName": "Creamy Truffle Parmesan Pasta"
     },
-
     {
       "type": "chef_special",
       "basicName": "Steak Butter",
@@ -2272,9 +3231,21 @@
       "prepTime": 25,
       "servings": 1,
       "ingredients": [
-        { "name": "Beef steak", "amount": "180g", "calories": 360 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 }
+        {
+          "name": "Beef steak",
+          "amount": "180g",
+          "calories": 360
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        }
       ],
       "steps": [
         "Remove steak from fridge 15 minutes before cooking.",
@@ -2295,9 +3266,9 @@
         "Beef steak": 360,
         "Butter": 100,
         "Garlic": 5
-      }
+      },
+      "recipeName": "Pan Seared Steak with Herb Butter"
     },
-
     {
       "type": "chef_special",
       "basicName": "Stuffed Chicken",
@@ -2307,9 +3278,21 @@
       "prepTime": 30,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "160g", "calories": 260 },
-        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
-        { "name": "Cream cheese", "amount": "2 tbsp", "calories": 90 }
+        {
+          "name": "Chicken breast",
+          "amount": "160g",
+          "calories": 260
+        },
+        {
+          "name": "Spinach",
+          "amount": "1 handful",
+          "calories": 10
+        },
+        {
+          "name": "Cream cheese",
+          "amount": "2 tbsp",
+          "calories": 90
+        }
       ],
       "steps": [
         "Cut a pocket into chicken breast carefully.",
@@ -2328,9 +3311,9 @@
         "Chicken breast": 260,
         "Spinach": 10,
         "Cream cheese": 90
-      }
+      },
+      "recipeName": "Spinach Stuffed Chicken Breast"
     },
-
     {
       "type": "chef_special",
       "basicName": "Chocolate Lava",
@@ -2340,10 +3323,26 @@
       "prepTime": 18,
       "servings": 1,
       "ingredients": [
-        { "name": "Dark chocolate", "amount": "50g", "calories": 260 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Egg", "amount": "1", "calories": 70 },
-        { "name": "Sugar", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Dark chocolate",
+          "amount": "50g",
+          "calories": 260
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "calories": 70
+        },
+        {
+          "name": "Sugar",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Melt chocolate and butter together slowly.",
@@ -2362,9 +3361,9 @@
         "Butter": 100,
         "Egg": 70,
         "Sugar": 50
-      }
+      },
+      "recipeName": "Molten Chocolate Lava Cake"
     },
-
     {
       "type": "chef_special",
       "basicName": "Shrimp Risotto",
@@ -2374,10 +3373,26 @@
       "prepTime": 30,
       "servings": 1,
       "ingredients": [
-        { "name": "Arborio rice", "amount": "70g", "calories": 250 },
-        { "name": "Shrimp", "amount": "100g", "calories": 100 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 },
-        { "name": "Parmesan", "amount": "20g", "calories": 80 }
+        {
+          "name": "Arborio rice",
+          "amount": "70g",
+          "calories": 250
+        },
+        {
+          "name": "Shrimp",
+          "amount": "100g",
+          "calories": 100
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        },
+        {
+          "name": "Parmesan",
+          "amount": "20g",
+          "calories": 80
+        }
       ],
       "steps": [
         "Sauté shrimp quickly and remove.",
@@ -2397,9 +3412,9 @@
         "Shrimp": 100,
         "Butter": 35,
         "Parmesan": 80
-      }
+      },
+      "recipeName": "Creamy Shrimp Risotto"
     },
-
     {
       "type": "chef_special",
       "basicName": "Vanilla Berry Plate",
@@ -2409,9 +3424,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Cream", "amount": "4 tbsp", "calories": 120 },
-        { "name": "Vanilla sugar", "amount": "1 tsp", "calories": 20 },
-        { "name": "Mixed berries", "amount": "1/2 cup", "calories": 40 }
+        {
+          "name": "Cream",
+          "amount": "4 tbsp",
+          "calories": 120
+        },
+        {
+          "name": "Vanilla sugar",
+          "amount": "1 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Mixed berries",
+          "amount": "1/2 cup",
+          "calories": 40
+        }
       ],
       "steps": [
         "Whisk cream and vanilla until thick.",
@@ -2428,7 +3455,8 @@
         "Cream": 120,
         "Vanilla sugar": 20,
         "Mixed berries": 40
-      }
+      },
+      "recipeName": "Vanilla Cream with Fresh Berry Art Plate"
     },
     {
       "type": "meal_prep",
@@ -2439,11 +3467,31 @@
       "prepTime": 40,
       "servings": 4,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "600g", "calories": 1000 },
-        { "name": "Broccoli", "amount": "2 cups", "calories": 100 },
-        { "name": "Carrot", "amount": "2 medium", "calories": 50 },
-        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 },
-        { "name": "Spices", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Chicken breast",
+          "amount": "600g",
+          "calories": 1000
+        },
+        {
+          "name": "Broccoli",
+          "amount": "2 cups",
+          "calories": 100
+        },
+        {
+          "name": "Carrot",
+          "amount": "2 medium",
+          "calories": 50
+        },
+        {
+          "name": "Olive oil",
+          "amount": "2 tbsp",
+          "calories": 240
+        },
+        {
+          "name": "Spices",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Prepare 4 clean food containers and place them on the counter.",
@@ -2468,9 +3516,9 @@
         "Broccoli": 100,
         "Carrot": 50,
         "Olive oil": 240
-      }
+      },
+      "recipeName": "Meal Prep Chicken Veggie Boxes"
     },
-
     {
       "type": "meal_prep",
       "basicName": "Turkey Rice Prep",
@@ -2480,10 +3528,26 @@
       "prepTime": 35,
       "servings": 4,
       "ingredients": [
-        { "name": "Ground turkey", "amount": "600g", "calories": 900 },
-        { "name": "Rice (uncooked)", "amount": "1.5 cups", "calories": 900 },
-        { "name": "Onion", "amount": "1 medium", "calories": 40 },
-        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 }
+        {
+          "name": "Ground turkey",
+          "amount": "600g",
+          "calories": 900
+        },
+        {
+          "name": "Rice (uncooked)",
+          "amount": "1.5 cups",
+          "calories": 900
+        },
+        {
+          "name": "Onion",
+          "amount": "1 medium",
+          "calories": 40
+        },
+        {
+          "name": "Olive oil",
+          "amount": "2 tbsp",
+          "calories": 240
+        }
       ],
       "steps": [
         "Rinse rice thoroughly and cook in a large pot. Set aside.",
@@ -2508,9 +3572,9 @@
         "Rice": 900,
         "Onion": 40,
         "Olive oil": 240
-      }
+      },
+      "recipeName": "Ground Turkey Rice Meal Prep"
     },
-
     {
       "type": "meal_prep",
       "basicName": "Salmon Sweet Potato",
@@ -2520,10 +3584,26 @@
       "prepTime": 40,
       "servings": 3,
       "ingredients": [
-        { "name": "Salmon fillet", "amount": "450g", "calories": 840 },
-        { "name": "Sweet potato", "amount": "2 large", "calories": 360 },
-        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 },
-        { "name": "Lemon", "amount": "1", "calories": 10 }
+        {
+          "name": "Salmon fillet",
+          "amount": "450g",
+          "calories": 840
+        },
+        {
+          "name": "Sweet potato",
+          "amount": "2 large",
+          "calories": 360
+        },
+        {
+          "name": "Olive oil",
+          "amount": "2 tbsp",
+          "calories": 240
+        },
+        {
+          "name": "Lemon",
+          "amount": "1",
+          "calories": 10
+        }
       ],
       "steps": [
         "Preheat oven to 200°C (390°F).",
@@ -2546,9 +3626,9 @@
         "Sweet potato": 360,
         "Olive oil": 240,
         "Lemon": 10
-      }
+      },
+      "recipeName": "Baked Salmon Sweet Potato Prep"
     },
-
     {
       "type": "meal_prep",
       "basicName": "Egg Muffin Prep",
@@ -2558,10 +3638,26 @@
       "prepTime": 30,
       "servings": 5,
       "ingredients": [
-        { "name": "Eggs", "amount": "10 large", "calories": 700 },
-        { "name": "Bell pepper", "amount": "1 large", "calories": 40 },
-        { "name": "Spinach", "amount": "2 handfuls", "calories": 20 },
-        { "name": "Cheese", "amount": "80g", "calories": 320 }
+        {
+          "name": "Eggs",
+          "amount": "10 large",
+          "calories": 700
+        },
+        {
+          "name": "Bell pepper",
+          "amount": "1 large",
+          "calories": 40
+        },
+        {
+          "name": "Spinach",
+          "amount": "2 handfuls",
+          "calories": 20
+        },
+        {
+          "name": "Cheese",
+          "amount": "80g",
+          "calories": 320
+        }
       ],
       "steps": [
         "Preheat oven to 180°C (350°F).",
@@ -2583,9 +3679,9 @@
         "Bell pepper": 40,
         "Spinach": 20,
         "Cheese": 320
-      }
+      },
+      "recipeName": "Vegetable Egg Muffin Meal Prep"
     },
-
     {
       "type": "meal_prep",
       "basicName": "Overnight Oats",
@@ -2595,10 +3691,26 @@
       "prepTime": 10,
       "servings": 4,
       "ingredients": [
-        { "name": "Oats", "amount": "2 cups", "calories": 760 },
-        { "name": "Milk", "amount": "3 cups", "calories": 420 },
-        { "name": "Greek yogurt", "amount": "1 cup", "calories": 150 },
-        { "name": "Honey", "amount": "2 tbsp", "calories": 120 }
+        {
+          "name": "Oats",
+          "amount": "2 cups",
+          "calories": 760
+        },
+        {
+          "name": "Milk",
+          "amount": "3 cups",
+          "calories": 420
+        },
+        {
+          "name": "Greek yogurt",
+          "amount": "1 cup",
+          "calories": 150
+        },
+        {
+          "name": "Honey",
+          "amount": "2 tbsp",
+          "calories": 120
+        }
       ],
       "steps": [
         "Prepare 4 jars or containers with lids.",
@@ -2619,9 +3731,9 @@
         "Milk": 420,
         "Greek yogurt": 150,
         "Honey": 120
-      }
+      },
+      "recipeName": "High-Protein Overnight Oats"
     },
-
     {
       "type": "meal_prep",
       "basicName": "Lentil Veggie Stew",
@@ -2631,10 +3743,26 @@
       "prepTime": 45,
       "servings": 5,
       "ingredients": [
-        { "name": "Red lentils", "amount": "2 cups", "calories": 900 },
-        { "name": "Carrot", "amount": "2 large", "calories": 50 },
-        { "name": "Onion", "amount": "1 large", "calories": 40 },
-        { "name": "Olive oil", "amount": "2 tbsp", "calories": 240 }
+        {
+          "name": "Red lentils",
+          "amount": "2 cups",
+          "calories": 900
+        },
+        {
+          "name": "Carrot",
+          "amount": "2 large",
+          "calories": 50
+        },
+        {
+          "name": "Onion",
+          "amount": "1 large",
+          "calories": 40
+        },
+        {
+          "name": "Olive oil",
+          "amount": "2 tbsp",
+          "calories": 240
+        }
       ],
       "steps": [
         "Rinse lentils until water runs clear.",
@@ -2657,9 +3785,9 @@
         "Carrot": 50,
         "Onion": 40,
         "Olive oil": 240
-      }
+      },
+      "recipeName": "One-Pot Lentil Veggie Stew"
     },
-
     {
       "type": "meal_prep",
       "basicName": "Pasta Chicken Prep",
@@ -2669,10 +3797,26 @@
       "prepTime": 40,
       "servings": 4,
       "ingredients": [
-        { "name": "Pasta", "amount": "300g", "calories": 1050 },
-        { "name": "Chicken breast", "amount": "500g", "calories": 830 },
-        { "name": "Cream", "amount": "6 tbsp", "calories": 180 },
-        { "name": "Olive oil", "amount": "1 tbsp", "calories": 120 }
+        {
+          "name": "Pasta",
+          "amount": "300g",
+          "calories": 1050
+        },
+        {
+          "name": "Chicken breast",
+          "amount": "500g",
+          "calories": 830
+        },
+        {
+          "name": "Cream",
+          "amount": "6 tbsp",
+          "calories": 180
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tbsp",
+          "calories": 120
+        }
       ],
       "steps": [
         "Boil pasta in a large pot until al dente.",
@@ -2694,7 +3838,8 @@
         "Chicken breast": 830,
         "Cream": 180,
         "Olive oil": 120
-      }
+      },
+      "recipeName": "Creamy Chicken Pasta Meal Prep"
     },
     {
       "type": "kid_friendly",
@@ -2705,10 +3850,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Strawberries", "amount": "3 pieces", "calories": 15 },
-        { "name": "Banana", "amount": "1/2", "calories": 45 },
-        { "name": "Kiwi", "amount": "1", "calories": 40 },
-        { "name": "Grapes", "amount": "6", "calories": 20 }
+        {
+          "name": "Strawberries",
+          "amount": "3 pieces",
+          "calories": 15
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2",
+          "calories": 45
+        },
+        {
+          "name": "Kiwi",
+          "amount": "1",
+          "calories": 40
+        },
+        {
+          "name": "Grapes",
+          "amount": "6",
+          "calories": 20
+        }
       ],
       "steps": [
         "Wash all fruits very well under running water.",
@@ -2728,9 +3889,9 @@
         "Banana": 45,
         "Kiwi": 40,
         "Grapes": 20
-      }
+      },
+      "recipeName": "Rainbow Fruit Skewers"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Banana Pancake Bites",
@@ -2740,9 +3901,21 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Banana", "amount": "1 small", "calories": 90 },
-        { "name": "Egg", "amount": "1", "calories": 70 },
-        { "name": "Oats", "amount": "2 tbsp", "calories": 70 }
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "calories": 70
+        },
+        {
+          "name": "Oats",
+          "amount": "2 tbsp",
+          "calories": 70
+        }
       ],
       "steps": [
         "Peel banana and place into a bowl.",
@@ -2762,9 +3935,9 @@
         "Banana": 90,
         "Egg": 70,
         "Oats": 70
-      }
+      },
+      "recipeName": "Mini Banana Pancake Bites"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Cheese Stars",
@@ -2774,9 +3947,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Cheddar cheese", "amount": "30g", "calories": 120 },
-        { "name": "Butter", "amount": "1/2 tsp", "calories": 18 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Cheddar cheese",
+          "amount": "30g",
+          "calories": 120
+        },
+        {
+          "name": "Butter",
+          "amount": "1/2 tsp",
+          "calories": 18
+        }
       ],
       "steps": [
         "Use a star-shaped cutter to cut bread.",
@@ -2794,9 +3979,9 @@
         "Toast bread": 80,
         "Cheddar cheese": 120,
         "Butter": 18
-      }
+      },
+      "recipeName": "Cheesy Star Toasts"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Funny Face Sandwich",
@@ -2806,10 +3991,26 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Cream cheese", "amount": "2 tbsp", "calories": 60 },
-        { "name": "Cucumber", "amount": "4 slices", "calories": 5 },
-        { "name": "Cherry tomato", "amount": "1", "calories": 5 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Cream cheese",
+          "amount": "2 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Cucumber",
+          "amount": "4 slices",
+          "calories": 5
+        },
+        {
+          "name": "Cherry tomato",
+          "amount": "1",
+          "calories": 5
+        }
       ],
       "steps": [
         "Place bread on plate.",
@@ -2828,9 +4029,9 @@
         "Cream cheese": 60,
         "Cucumber": 5,
         "Cherry tomato": 5
-      }
+      },
+      "recipeName": "Funny Face Sandwich"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Apple Donuts",
@@ -2840,9 +4041,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Apple", "amount": "1 medium", "calories": 95 },
-        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
-        { "name": "Colorful sprinkles", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Apple",
+          "amount": "1 medium",
+          "calories": 95
+        },
+        {
+          "name": "Peanut butter",
+          "amount": "1 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Colorful sprinkles",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Wash apple well.",
@@ -2860,9 +4073,9 @@
         "Apple": 95,
         "Peanut butter": 90,
         "Colorful sprinkles": 20
-      }
+      },
+      "recipeName": "Apple Donut Rings"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Mini Pizza Faces",
@@ -2872,10 +4085,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Pizza sauce", "amount": "2 tbsp", "calories": 25 },
-        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
-        { "name": "Olives", "amount": "2", "calories": 10 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Pizza sauce",
+          "amount": "2 tbsp",
+          "calories": 25
+        },
+        {
+          "name": "Mozzarella cheese",
+          "amount": "40g",
+          "calories": 120
+        },
+        {
+          "name": "Olives",
+          "amount": "2",
+          "calories": 10
+        }
       ],
       "steps": [
         "Cut bread into small circles.",
@@ -2894,9 +4123,9 @@
         "Pizza sauce": 25,
         "Mozzarella cheese": 120,
         "Olives": 10
-      }
+      },
+      "recipeName": "Mini Pizza Faces"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Colorful Yogurt Cups",
@@ -2906,10 +4135,26 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "120g", "calories": 90 },
-        { "name": "Strawberries", "amount": "2", "calories": 10 },
-        { "name": "Blueberries", "amount": "1 tbsp", "calories": 10 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Greek yogurt",
+          "amount": "120g",
+          "calories": 90
+        },
+        {
+          "name": "Strawberries",
+          "amount": "2",
+          "calories": 10
+        },
+        {
+          "name": "Blueberries",
+          "amount": "1 tbsp",
+          "calories": 10
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Wash all fruits.",
@@ -2928,9 +4173,9 @@
         "Strawberries": 10,
         "Blueberries": 10,
         "Honey": 20
-      }
+      },
+      "recipeName": "Colorful Yogurt Rainbow Cups"
     },
-
     {
       "type": "kid_friendly",
       "basicName": "Mini Banana Boats",
@@ -2940,9 +4185,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Banana", "amount": "1 medium", "calories": 105 },
-        { "name": "Dark chocolate chips", "amount": "1 tbsp", "calories": 70 },
-        { "name": "Marshmallows", "amount": "4 mini", "calories": 40 }
+        {
+          "name": "Banana",
+          "amount": "1 medium",
+          "calories": 105
+        },
+        {
+          "name": "Dark chocolate chips",
+          "amount": "1 tbsp",
+          "calories": 70
+        },
+        {
+          "name": "Marshmallows",
+          "amount": "4 mini",
+          "calories": 40
+        }
       ],
       "steps": [
         "Peel banana and place on plate.",
@@ -2959,7 +4216,8 @@
         "Banana": 105,
         "Dark chocolate chips": 70,
         "Marshmallows": 40
-      }
+      },
+      "recipeName": "Mini Banana Boats"
     },
     {
       "type": "spicy_food",
@@ -2970,11 +4228,31 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "150g", "calories": 250 },
-        { "name": "Hot sauce", "amount": "1 tbsp", "calories": 15 },
-        { "name": "Garlic", "amount": "2 cloves", "calories": 10 },
-        { "name": "Olive oil", "amount": "1 tsp", "calories": 40 },
-        { "name": "Chili flakes", "amount": "1/2 tsp", "calories": 5 }
+        {
+          "name": "Chicken breast",
+          "amount": "150g",
+          "calories": 250
+        },
+        {
+          "name": "Hot sauce",
+          "amount": "1 tbsp",
+          "calories": 15
+        },
+        {
+          "name": "Garlic",
+          "amount": "2 cloves",
+          "calories": 10
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tsp",
+          "calories": 40
+        },
+        {
+          "name": "Chili flakes",
+          "amount": "1/2 tsp",
+          "calories": 5
+        }
       ],
       "steps": [
         "Place chicken on cutting board and cut into small bite-sized cubes.",
@@ -2999,9 +4277,9 @@
         "Garlic": 10,
         "Olive oil": 40,
         "Chili flakes": 5
-      }
+      },
+      "recipeName": "Fire Garlic Chicken Bites"
     },
-
     {
       "type": "spicy_food",
       "basicName": "Korean Fire Noodles",
@@ -3011,11 +4289,31 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Noodles", "amount": "70g", "calories": 250 },
-        { "name": "Gochujang", "amount": "1 tbsp", "calories": 35 },
-        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Sesame oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Noodles",
+          "amount": "70g",
+          "calories": 250
+        },
+        {
+          "name": "Gochujang",
+          "amount": "1 tbsp",
+          "calories": 35
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Sesame oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Boil noodles in water until soft, then drain and set aside.",
@@ -3037,9 +4335,9 @@
         "Soy sauce": 5,
         "Garlic": 5,
         "Sesame oil": 20
-      }
+      },
+      "recipeName": "Korean Spicy Fire Noodles"
     },
-
     {
       "type": "spicy_food",
       "basicName": "Volcano Shrimp",
@@ -3049,10 +4347,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Shrimp", "amount": "120g", "calories": 120 },
-        { "name": "Chili paste", "amount": "1 tbsp", "calories": 30 },
-        { "name": "Garlic", "amount": "2 cloves", "calories": 10 },
-        { "name": "Butter", "amount": "1 tsp", "calories": 35 }
+        {
+          "name": "Shrimp",
+          "amount": "120g",
+          "calories": 120
+        },
+        {
+          "name": "Chili paste",
+          "amount": "1 tbsp",
+          "calories": 30
+        },
+        {
+          "name": "Garlic",
+          "amount": "2 cloves",
+          "calories": 10
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tsp",
+          "calories": 35
+        }
       ],
       "steps": [
         "Peel and clean shrimp, pat completely dry.",
@@ -3074,9 +4388,9 @@
         "Chili paste": 30,
         "Garlic": 10,
         "Butter": 35
-      }
+      },
+      "recipeName": "Chili Garlic Volcano Shrimp"
     },
-
     {
       "type": "spicy_food",
       "basicName": "Mexican Heat Tacos",
@@ -3086,11 +4400,31 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
-        { "name": "Tortilla", "amount": "2 small", "calories": 200 },
-        { "name": "Chili powder", "amount": "1/2 tsp", "calories": 5 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Chicken breast",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Tortilla",
+          "amount": "2 small",
+          "calories": 200
+        },
+        {
+          "name": "Chili powder",
+          "amount": "1/2 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Slice chicken into thin strips.",
@@ -3112,9 +4446,9 @@
         "Chili powder": 5,
         "Garlic": 5,
         "Oil": 40
-      }
+      },
+      "recipeName": "Mexican Spicy Chicken Tacos"
     },
-
     {
       "type": "spicy_food",
       "basicName": "Red Devil Potatoes",
@@ -3124,10 +4458,26 @@
       "prepTime": 18,
       "servings": 1,
       "ingredients": [
-        { "name": "Potato", "amount": "1 large", "calories": 180 },
-        { "name": "Chili flakes", "amount": "1 tsp", "calories": 10 },
-        { "name": "Paprika", "amount": "1/2 tsp", "calories": 5 },
-        { "name": "Olive oil", "amount": "1 tbsp", "calories": 120 }
+        {
+          "name": "Potato",
+          "amount": "1 large",
+          "calories": 180
+        },
+        {
+          "name": "Chili flakes",
+          "amount": "1 tsp",
+          "calories": 10
+        },
+        {
+          "name": "Paprika",
+          "amount": "1/2 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1 tbsp",
+          "calories": 120
+        }
       ],
       "steps": [
         "Wash potato thoroughly and cut into cubes.",
@@ -3149,9 +4499,9 @@
         "Chili flakes": 10,
         "Paprika": 5,
         "Olive oil": 120
-      }
+      },
+      "recipeName": "Crispy Red Devil Potatoes"
     },
-
     {
       "type": "spicy_food",
       "basicName": "Thai Fire Rice",
@@ -3161,11 +4511,31 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
-        { "name": "Chili pepper", "amount": "1 small", "calories": 5 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
-        { "name": "Oil", "amount": "1 tsp", "calories": 40 }
+        {
+          "name": "Cooked rice",
+          "amount": "150g",
+          "calories": 195
+        },
+        {
+          "name": "Chili pepper",
+          "amount": "1 small",
+          "calories": 5
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Oil",
+          "amount": "1 tsp",
+          "calories": 40
+        }
       ],
       "steps": [
         "Chop chili and garlic very finely.",
@@ -3186,9 +4556,9 @@
         "Garlic": 5,
         "Soy sauce": 5,
         "Oil": 40
-      }
+      },
+      "recipeName": "Thai Basil Chili Rice"
     },
-
     {
       "type": "spicy_food",
       "basicName": "Dragon Eggs",
@@ -3198,10 +4568,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Boiled eggs", "amount": "2", "calories": 140 },
-        { "name": "Hot sauce", "amount": "1 tsp", "calories": 5 },
-        { "name": "Mustard", "amount": "1 tsp", "calories": 5 },
-        { "name": "Chili powder", "amount": "1/4 tsp", "calories": 3 }
+        {
+          "name": "Boiled eggs",
+          "amount": "2",
+          "calories": 140
+        },
+        {
+          "name": "Hot sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Mustard",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Chili powder",
+          "amount": "1/4 tsp",
+          "calories": 3
+        }
       ],
       "steps": [
         "Peel boiled eggs carefully.",
@@ -3223,7 +4609,8 @@
         "Hot sauce": 5,
         "Mustard": 5,
         "Chili powder": 3
-      }
+      },
+      "recipeName": "Dragon Fire Deviled Eggs"
     },
     {
       "type": "low_cal",
@@ -3234,13 +4621,41 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Chicken breast", "amount": "120g", "calories": 200 },
-        { "name": "Mixed greens", "amount": "2 cups", "calories": 20 },
-        { "name": "Cucumber", "amount": "1/2 medium", "calories": 10 },
-        { "name": "Cherry tomatoes", "amount": "6 pieces", "calories": 18 },
-        { "name": "Lemon juice", "amount": "1 tbsp", "calories": 4 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
-        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Chicken breast",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Mixed greens",
+          "amount": "2 cups",
+          "calories": 20
+        },
+        {
+          "name": "Cucumber",
+          "amount": "1/2 medium",
+          "calories": 10
+        },
+        {
+          "name": "Cherry tomatoes",
+          "amount": "6 pieces",
+          "calories": 18
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "1 tbsp",
+          "calories": 4
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Salt & pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Place the chicken breast on a plate and pat it dry with a paper towel (this helps it brown nicely).",
@@ -3265,9 +4680,9 @@
         "Cherry tomatoes": 18,
         "Lemon juice": 4,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Lemon Herb Chicken Salad"
     },
-
     {
       "type": "low_cal",
       "basicName": "Egg White Veggie Scramble",
@@ -3277,11 +4692,31 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Egg whites", "amount": "200ml (or 4 whites)", "calories": 100 },
-        { "name": "Spinach", "amount": "1 handful", "calories": 10 },
-        { "name": "Tomato", "amount": "1 small", "calories": 20 },
-        { "name": "Mushrooms", "amount": "3 pieces", "calories": 10 },
-        { "name": "Olive oil spray (optional)", "amount": "1 quick spray", "calories": 5 }
+        {
+          "name": "Egg whites",
+          "amount": "200ml (or 4 whites)",
+          "calories": 100
+        },
+        {
+          "name": "Spinach",
+          "amount": "1 handful",
+          "calories": 10
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 small",
+          "calories": 20
+        },
+        {
+          "name": "Mushrooms",
+          "amount": "3 pieces",
+          "calories": 10
+        },
+        {
+          "name": "Olive oil spray (optional)",
+          "amount": "1 quick spray",
+          "calories": 5
+        }
       ],
       "steps": [
         "Wash spinach and mushrooms. Slice mushrooms thinly and dice the tomato.",
@@ -3303,9 +4738,9 @@
         "Tomato": 20,
         "Mushrooms": 10,
         "Olive oil spray": 5
-      }
+      },
+      "recipeName": "Egg White Veggie Scramble"
     },
-
     {
       "type": "low_cal",
       "basicName": "Tuna Cucumber Boats",
@@ -3315,11 +4750,31 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Cucumber", "amount": "1 large", "calories": 20 },
-        { "name": "Tuna (in water, drained)", "amount": "100g", "calories": 120 },
-        { "name": "Greek yogurt", "amount": "2 tbsp", "calories": 30 },
-        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 },
-        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Cucumber",
+          "amount": "1 large",
+          "calories": 20
+        },
+        {
+          "name": "Tuna (in water, drained)",
+          "amount": "100g",
+          "calories": 120
+        },
+        {
+          "name": "Greek yogurt",
+          "amount": "2 tbsp",
+          "calories": 30
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "1 tsp",
+          "calories": 1
+        },
+        {
+          "name": "Salt & pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Wash the cucumber and cut it in half lengthwise.",
@@ -3339,9 +4794,9 @@
         "Tuna (in water, drained)": 120,
         "Greek yogurt": 30,
         "Lemon juice": 1
-      }
+      },
+      "recipeName": "Tuna Cucumber Boats"
     },
-
     {
       "type": "low_cal",
       "basicName": "Zucchini Noodles",
@@ -3351,10 +4806,26 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Zucchini", "amount": "1 medium", "calories": 35 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
-        { "name": "Parmesan (optional)", "amount": "10g", "calories": 40 }
+        {
+          "name": "Zucchini",
+          "amount": "1 medium",
+          "calories": 35
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Parmesan (optional)",
+          "amount": "10g",
+          "calories": 40
+        }
       ],
       "steps": [
         "Wash zucchini and cut off the ends.",
@@ -3375,9 +4846,9 @@
         "Garlic": 5,
         "Olive oil": 20,
         "Parmesan (optional)": 40
-      }
+      },
+      "recipeName": "Garlic Zucchini Noodles"
     },
-
     {
       "type": "low_cal",
       "basicName": "Tomato Basil Soup",
@@ -3387,11 +4858,31 @@
       "prepTime": 18,
       "servings": 1,
       "ingredients": [
-        { "name": "Tomatoes", "amount": "2 medium", "calories": 50 },
-        { "name": "Onion", "amount": "1/4 medium", "calories": 10 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Water or broth", "amount": "350ml", "calories": 10 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Tomatoes",
+          "amount": "2 medium",
+          "calories": 50
+        },
+        {
+          "name": "Onion",
+          "amount": "1/4 medium",
+          "calories": 10
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Water or broth",
+          "amount": "350ml",
+          "calories": 10
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Dice onion and mince garlic.",
@@ -3415,9 +4906,9 @@
         "Garlic": 5,
         "Water or broth": 10,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Light Tomato Basil Soup"
     },
-
     {
       "type": "low_cal",
       "basicName": "Greek Salad Bowl",
@@ -3427,12 +4918,36 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Cucumber", "amount": "1/2", "calories": 10 },
-        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
-        { "name": "Red onion", "amount": "2 tbsp sliced", "calories": 10 },
-        { "name": "Feta cheese", "amount": "25g", "calories": 70 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
-        { "name": "Lemon juice", "amount": "1 tbsp", "calories": 4 }
+        {
+          "name": "Cucumber",
+          "amount": "1/2",
+          "calories": 10
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 medium",
+          "calories": 25
+        },
+        {
+          "name": "Red onion",
+          "amount": "2 tbsp sliced",
+          "calories": 10
+        },
+        {
+          "name": "Feta cheese",
+          "amount": "25g",
+          "calories": 70
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "1 tbsp",
+          "calories": 4
+        }
       ],
       "steps": [
         "Wash cucumber and tomato.",
@@ -3454,9 +4969,9 @@
         "Feta cheese": 70,
         "Olive oil": 20,
         "Lemon juice": 4
-      }
+      },
+      "recipeName": "Light Greek Salad Bowl"
     },
-
     {
       "type": "low_cal",
       "basicName": "Crispy Air Fryer Chickpeas",
@@ -3466,10 +4981,26 @@
       "prepTime": 15,
       "servings": 1,
       "ingredients": [
-        { "name": "Chickpeas (cooked, drained)", "amount": "120g", "calories": 200 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
-        { "name": "Paprika", "amount": "1/2 tsp", "calories": 5 },
-        { "name": "Salt", "amount": "a pinch", "calories": 0 }
+        {
+          "name": "Chickpeas (cooked, drained)",
+          "amount": "120g",
+          "calories": 200
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Paprika",
+          "amount": "1/2 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Salt",
+          "amount": "a pinch",
+          "calories": 0
+        }
       ],
       "steps": [
         "Drain chickpeas and rinse quickly under water, then drain again.",
@@ -3489,9 +5020,9 @@
         "Chickpeas (cooked, drained)": 200,
         "Olive oil": 20,
         "Paprika": 5
-      }
+      },
+      "recipeName": "Crispy Spiced Chickpeas"
     },
-
     {
       "type": "low_cal",
       "basicName": "Cottage Cucumber Bowl",
@@ -3501,10 +5032,26 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Cottage cheese", "amount": "150g", "calories": 120 },
-        { "name": "Cucumber", "amount": "1/2 medium", "calories": 10 },
-        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 },
-        { "name": "Black pepper", "amount": "a pinch", "calories": 0 }
+        {
+          "name": "Cottage cheese",
+          "amount": "150g",
+          "calories": 120
+        },
+        {
+          "name": "Cucumber",
+          "amount": "1/2 medium",
+          "calories": 10
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "1 tsp",
+          "calories": 1
+        },
+        {
+          "name": "Black pepper",
+          "amount": "a pinch",
+          "calories": 0
+        }
       ],
       "steps": [
         "Slice cucumber into small cubes or thin half-moons.",
@@ -3522,9 +5069,9 @@
         "Cottage cheese": 120,
         "Cucumber": 10,
         "Lemon juice": 1
-      }
+      },
+      "recipeName": "Cottage Cheese Cucumber Bowl"
     },
-
     {
       "type": "low_cal",
       "basicName": "Berry Protein Smoothie",
@@ -3534,9 +5081,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Mixed berries", "amount": "1 cup", "calories": 70 },
-        { "name": "Greek yogurt", "amount": "120g", "calories": 90 },
-        { "name": "Water (or ice)", "amount": "150ml", "calories": 0 }
+        {
+          "name": "Mixed berries",
+          "amount": "1 cup",
+          "calories": 70
+        },
+        {
+          "name": "Greek yogurt",
+          "amount": "120g",
+          "calories": 90
+        },
+        {
+          "name": "Water (or ice)",
+          "amount": "150ml",
+          "calories": 0
+        }
       ],
       "steps": [
         "If using frozen berries, no need to thaw (it makes the smoothie thicker).",
@@ -3554,7 +5113,8 @@
       "ingredientsCalories": {
         "Mixed berries": 70,
         "Greek yogurt": 90
-      }
+      },
+      "recipeName": "Light Berry Protein Smoothie"
     },
     {
       "type": "sweet_craving",
@@ -3565,11 +5125,31 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Dark chocolate", "amount": "30g", "calories": 160 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Egg", "amount": "1 small", "calories": 70 },
-        { "name": "Sugar", "amount": "1 tbsp", "calories": 50 },
-        { "name": "Flour", "amount": "1 tbsp", "calories": 30 }
+        {
+          "name": "Dark chocolate",
+          "amount": "30g",
+          "calories": 160
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Egg",
+          "amount": "1 small",
+          "calories": 70
+        },
+        {
+          "name": "Sugar",
+          "amount": "1 tbsp",
+          "calories": 50
+        },
+        {
+          "name": "Flour",
+          "amount": "1 tbsp",
+          "calories": 30
+        }
       ],
       "steps": [
         "Break the chocolate into small pieces and place them into a microwave-safe mug.",
@@ -3592,9 +5172,9 @@
         "Egg": 70,
         "Sugar": 50,
         "Flour": 30
-      }
+      },
+      "recipeName": "Chocolate Lava Mug Cake"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Strawberry Chocolate Bowl",
@@ -3604,9 +5184,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Strawberries", "amount": "6 medium", "calories": 30 },
-        { "name": "Milk chocolate", "amount": "40g", "calories": 220 },
-        { "name": "Crushed biscuits", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Strawberries",
+          "amount": "6 medium",
+          "calories": 30
+        },
+        {
+          "name": "Milk chocolate",
+          "amount": "40g",
+          "calories": 220
+        },
+        {
+          "name": "Crushed biscuits",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Wash strawberries and pat them completely dry.",
@@ -3626,9 +5218,9 @@
         "Strawberries": 30,
         "Milk chocolate": 220,
         "Crushed biscuits": 50
-      }
+      },
+      "recipeName": "Chocolate Strawberry Dessert Bowl"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Banana Nutella Toast",
@@ -3638,9 +5230,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Nutella", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Banana", "amount": "1/2 medium", "calories": 45 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Nutella",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2 medium",
+          "calories": 45
+        }
       ],
       "steps": [
         "Toast bread lightly until golden.",
@@ -3658,9 +5262,9 @@
         "Toast bread": 80,
         "Nutella": 100,
         "Banana": 45
-      }
+      },
+      "recipeName": "Warm Banana Nutella Toast"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Cookie Dough Bites",
@@ -3670,10 +5274,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Flour (heat treated)", "amount": "3 tbsp", "calories": 90 },
-        { "name": "Butter", "amount": "1 tbsp", "calories": 100 },
-        { "name": "Brown sugar", "amount": "1 tbsp", "calories": 50 },
-        { "name": "Chocolate chips", "amount": "1 tbsp", "calories": 70 }
+        {
+          "name": "Flour (heat treated)",
+          "amount": "3 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Butter",
+          "amount": "1 tbsp",
+          "calories": 100
+        },
+        {
+          "name": "Brown sugar",
+          "amount": "1 tbsp",
+          "calories": 50
+        },
+        {
+          "name": "Chocolate chips",
+          "amount": "1 tbsp",
+          "calories": 70
+        }
       ],
       "steps": [
         "Place flour in microwave and heat 40 seconds to make it safe to eat.",
@@ -3692,9 +5312,9 @@
         "Butter": 100,
         "Brown sugar": 50,
         "Chocolate chips": 70
-      }
+      },
+      "recipeName": "No-Bake Cookie Dough Bites"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Apple Cinnamon Crumble",
@@ -3704,10 +5324,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Apple", "amount": "1 medium", "calories": 95 },
-        { "name": "Oats", "amount": "2 tbsp", "calories": 70 },
-        { "name": "Honey", "amount": "1 tbsp", "calories": 60 },
-        { "name": "Cinnamon", "amount": "1/2 tsp", "calories": 3 }
+        {
+          "name": "Apple",
+          "amount": "1 medium",
+          "calories": 95
+        },
+        {
+          "name": "Oats",
+          "amount": "2 tbsp",
+          "calories": 70
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tbsp",
+          "calories": 60
+        },
+        {
+          "name": "Cinnamon",
+          "amount": "1/2 tsp",
+          "calories": 3
+        }
       ],
       "steps": [
         "Wash and peel apple.",
@@ -3728,9 +5364,9 @@
         "Oats": 70,
         "Honey": 60,
         "Cinnamon": 3
-      }
+      },
+      "recipeName": "Warm Apple Cinnamon Crumble"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Choco Banana Pops",
@@ -3740,9 +5376,21 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Banana", "amount": "1 medium", "calories": 105 },
-        { "name": "Dark chocolate", "amount": "25g", "calories": 135 },
-        { "name": "Crushed nuts", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Banana",
+          "amount": "1 medium",
+          "calories": 105
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "25g",
+          "calories": 135
+        },
+        {
+          "name": "Crushed nuts",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Peel banana and cut into thick slices.",
@@ -3762,9 +5410,9 @@
         "Banana": 105,
         "Dark chocolate": 135,
         "Crushed nuts": 50
-      }
+      },
+      "recipeName": "Frozen Chocolate Banana Pops"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Berry Cream Cup",
@@ -3774,9 +5422,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Whipping cream", "amount": "4 tbsp", "calories": 140 },
-        { "name": "Strawberries", "amount": "4 pieces", "calories": 20 },
-        { "name": "Sugar", "amount": "1 tsp", "calories": 16 }
+        {
+          "name": "Whipping cream",
+          "amount": "4 tbsp",
+          "calories": 140
+        },
+        {
+          "name": "Strawberries",
+          "amount": "4 pieces",
+          "calories": 20
+        },
+        {
+          "name": "Sugar",
+          "amount": "1 tsp",
+          "calories": 16
+        }
       ],
       "steps": [
         "Pour cold cream into a bowl.",
@@ -3794,9 +5454,9 @@
         "Whipping cream": 140,
         "Strawberries": 20,
         "Sugar": 16
-      }
+      },
+      "recipeName": "Berry Cream Dessert Cup"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Brownie Mug",
@@ -3806,11 +5466,31 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Cocoa powder", "amount": "2 tbsp", "calories": 40 },
-        { "name": "Sugar", "amount": "1.5 tbsp", "calories": 75 },
-        { "name": "Milk", "amount": "2 tbsp", "calories": 20 },
-        { "name": "Oil", "amount": "1 tbsp", "calories": 120 },
-        { "name": "Flour", "amount": "2 tbsp", "calories": 60 }
+        {
+          "name": "Cocoa powder",
+          "amount": "2 tbsp",
+          "calories": 40
+        },
+        {
+          "name": "Sugar",
+          "amount": "1.5 tbsp",
+          "calories": 75
+        },
+        {
+          "name": "Milk",
+          "amount": "2 tbsp",
+          "calories": 20
+        },
+        {
+          "name": "Oil",
+          "amount": "1 tbsp",
+          "calories": 120
+        },
+        {
+          "name": "Flour",
+          "amount": "2 tbsp",
+          "calories": 60
+        }
       ],
       "steps": [
         "Add all ingredients into a microwave-safe mug.",
@@ -3830,9 +5510,9 @@
         "Milk": 20,
         "Oil": 120,
         "Flour": 60
-      }
+      },
+      "recipeName": "Fudgy Brownie Mug Cake"
     },
-
     {
       "type": "sweet_craving",
       "basicName": "Caramel Banana Wrap",
@@ -3842,9 +5522,21 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
-        { "name": "Banana", "amount": "1 small", "calories": 90 },
-        { "name": "Caramel sauce", "amount": "1 tbsp", "calories": 60 }
+        {
+          "name": "Tortilla",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        },
+        {
+          "name": "Caramel sauce",
+          "amount": "1 tbsp",
+          "calories": 60
+        }
       ],
       "steps": [
         "Warm tortilla lightly in a pan.",
@@ -3862,7 +5554,8 @@
         "Tortilla": 140,
         "Banana": 90,
         "Caramel sauce": 60
-      }
+      },
+      "recipeName": "Warm Caramel Banana Wrap"
     },
     {
       "type": "quick_meal",
@@ -3873,10 +5566,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Whole wheat bread", "amount": "1 slice", "calories": 90 },
-        { "name": "Egg", "amount": "1 large", "calories": 70 },
-        { "name": "Avocado", "amount": "1/4 fruit", "calories": 60 },
-        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Whole wheat bread",
+          "amount": "1 slice",
+          "calories": 90
+        },
+        {
+          "name": "Egg",
+          "amount": "1 large",
+          "calories": 70
+        },
+        {
+          "name": "Avocado",
+          "amount": "1/4 fruit",
+          "calories": 60
+        },
+        {
+          "name": "Salt & pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Put the bread in a toaster (or a dry pan) and toast until lightly golden.",
@@ -3897,9 +5606,9 @@
         "Whole wheat bread": 90,
         "Egg": 70,
         "Avocado": 60
-      }
+      },
+      "recipeName": "5-Min Egg & Avocado Toast"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Tuna Yogurt Bowl",
@@ -3909,10 +5618,26 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Tuna (in water, drained)", "amount": "100g", "calories": 120 },
-        { "name": "Greek yogurt", "amount": "3 tbsp", "calories": 45 },
-        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 },
-        { "name": "Salt & pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Tuna (in water, drained)",
+          "amount": "100g",
+          "calories": 120
+        },
+        {
+          "name": "Greek yogurt",
+          "amount": "3 tbsp",
+          "calories": 45
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "1 tsp",
+          "calories": 1
+        },
+        {
+          "name": "Salt & pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Open the tuna can and drain the water completely (press the lid down carefully).",
@@ -3931,9 +5656,9 @@
         "Tuna (in water, drained)": 120,
         "Greek yogurt": 45,
         "Lemon juice": 1
-      }
+      },
+      "recipeName": "3-Min Tuna Yogurt Bowl"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Cheese Quesadilla",
@@ -3943,9 +5668,21 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla", "amount": "1 medium", "calories": 150 },
-        { "name": "Cheddar cheese (grated)", "amount": "50g", "calories": 200 },
-        { "name": "Butter or oil", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Tortilla",
+          "amount": "1 medium",
+          "calories": 150
+        },
+        {
+          "name": "Cheddar cheese (grated)",
+          "amount": "50g",
+          "calories": 200
+        },
+        {
+          "name": "Butter or oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Place a pan on medium heat and let it warm up for 30 seconds.",
@@ -3966,9 +5703,9 @@
         "Tortilla": 150,
         "Cheddar cheese (grated)": 200,
         "Butter or oil": 20
-      }
+      },
+      "recipeName": "10-Min Crispy Cheese Quesadilla"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Tomato Egg Scramble",
@@ -3978,10 +5715,26 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Eggs", "amount": "2 large", "calories": 140 },
-        { "name": "Tomato", "amount": "1 medium", "calories": 25 },
-        { "name": "Olive oil", "amount": "1/2 tsp", "calories": 20 },
-        { "name": "Salt", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Eggs",
+          "amount": "2 large",
+          "calories": 140
+        },
+        {
+          "name": "Tomato",
+          "amount": "1 medium",
+          "calories": 25
+        },
+        {
+          "name": "Olive oil",
+          "amount": "1/2 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Salt",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Wash the tomato and cut it into small cubes.",
@@ -4001,9 +5754,9 @@
         "Eggs": 140,
         "Tomato": 25,
         "Olive oil": 20
-      }
+      },
+      "recipeName": "Quick Tomato Egg Scramble"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Greek Yogurt Fruit",
@@ -4013,9 +5766,21 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
-        { "name": "Banana", "amount": "1/2", "calories": 45 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Greek yogurt",
+          "amount": "200g",
+          "calories": 150
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2",
+          "calories": 45
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Add Greek yogurt to a bowl or cup.",
@@ -4032,9 +5797,9 @@
         "Greek yogurt": 150,
         "Banana": 45,
         "Honey": 20
-      }
+      },
+      "recipeName": "5-Min Honey Yogurt Fruit Cup"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Cucumber Cottage Bowl",
@@ -4044,10 +5809,26 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Cottage cheese", "amount": "150g", "calories": 120 },
-        { "name": "Cucumber", "amount": "1/2 medium", "calories": 10 },
-        { "name": "Black pepper", "amount": "a pinch", "calories": 0 },
-        { "name": "Lemon juice", "amount": "1 tsp", "calories": 1 }
+        {
+          "name": "Cottage cheese",
+          "amount": "150g",
+          "calories": 120
+        },
+        {
+          "name": "Cucumber",
+          "amount": "1/2 medium",
+          "calories": 10
+        },
+        {
+          "name": "Black pepper",
+          "amount": "a pinch",
+          "calories": 0
+        },
+        {
+          "name": "Lemon juice",
+          "amount": "1 tsp",
+          "calories": 1
+        }
       ],
       "steps": [
         "Wash the cucumber and slice it into small cubes or thin half-moons.",
@@ -4064,9 +5845,9 @@
         "Cottage cheese": 120,
         "Cucumber": 10,
         "Lemon juice": 1
-      }
+      },
+      "recipeName": "5-Min Cucumber Cottage Bowl"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Peanut Banana Wrap",
@@ -4076,9 +5857,21 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
-        { "name": "Peanut butter", "amount": "1 tbsp", "calories": 90 },
-        { "name": "Banana", "amount": "1 small", "calories": 90 }
+        {
+          "name": "Tortilla",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Peanut butter",
+          "amount": "1 tbsp",
+          "calories": 90
+        },
+        {
+          "name": "Banana",
+          "amount": "1 small",
+          "calories": 90
+        }
       ],
       "steps": [
         "Lay the tortilla flat on a plate.",
@@ -4096,9 +5889,9 @@
         "Tortilla": 140,
         "Peanut butter": 90,
         "Banana": 90
-      }
+      },
+      "recipeName": "6-Min Peanut Banana Wrap"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Quick Garlic Noodles",
@@ -4108,10 +5901,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Instant noodles (plain)", "amount": "1 pack", "calories": 300 },
-        { "name": "Garlic", "amount": "1 clove", "calories": 5 },
-        { "name": "Soy sauce", "amount": "1 tbsp", "calories": 10 },
-        { "name": "Sesame oil (optional)", "amount": "1/2 tsp", "calories": 20 }
+        {
+          "name": "Instant noodles (plain)",
+          "amount": "1 pack",
+          "calories": 300
+        },
+        {
+          "name": "Garlic",
+          "amount": "1 clove",
+          "calories": 5
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tbsp",
+          "calories": 10
+        },
+        {
+          "name": "Sesame oil (optional)",
+          "amount": "1/2 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Boil water in a pot or kettle.",
@@ -4131,9 +5940,9 @@
         "Garlic": 5,
         "Soy sauce": 10,
         "Sesame oil (optional)": 20
-      }
+      },
+      "recipeName": "10-Min Garlic Soy Noodles"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Cheesy Tomato Melt",
@@ -4143,9 +5952,21 @@
       "prepTime": 8,
       "servings": 1,
       "ingredients": [
-        { "name": "Toast bread", "amount": "1 slice", "calories": 80 },
-        { "name": "Mozzarella cheese", "amount": "40g", "calories": 120 },
-        { "name": "Tomato", "amount": "1/2 medium", "calories": 12 }
+        {
+          "name": "Toast bread",
+          "amount": "1 slice",
+          "calories": 80
+        },
+        {
+          "name": "Mozzarella cheese",
+          "amount": "40g",
+          "calories": 120
+        },
+        {
+          "name": "Tomato",
+          "amount": "1/2 medium",
+          "calories": 12
+        }
       ],
       "steps": [
         "Slice the tomato into thin rounds.",
@@ -4164,9 +5985,9 @@
         "Toast bread": 80,
         "Mozzarella cheese": 120,
         "Tomato": 12
-      }
+      },
+      "recipeName": "8-Min Cheesy Tomato Melt"
     },
-
     {
       "type": "quick_meal",
       "basicName": "Microwave Oat Bowl",
@@ -4176,9 +5997,21 @@
       "prepTime": 4,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "40g", "calories": 150 },
-        { "name": "Milk (or water)", "amount": "200ml", "calories": 80 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 }
+        {
+          "name": "Oats",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Milk (or water)",
+          "amount": "200ml",
+          "calories": 80
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        }
       ],
       "steps": [
         "Add oats to a microwave-safe bowl (use a big bowl to prevent overflow).",
@@ -4196,7 +6029,8 @@
         "Oats": 150,
         "Milk (or water)": 80,
         "Honey": 20
-      }
+      },
+      "recipeName": "3-Min Microwave Oat Bowl"
     },
     {
       "type": "surprise",
@@ -4207,12 +6041,36 @@
       "prepTime": 12,
       "servings": 1,
       "ingredients": [
-        { "name": "Cooked rice", "amount": "150g", "calories": 195 },
-        { "name": "Canned tuna (drained)", "amount": "80g", "calories": 95 },
-        { "name": "Soy sauce", "amount": "1 tbsp", "calories": 10 },
-        { "name": "Mayonnaise", "amount": "1 tsp", "calories": 35 },
-        { "name": "Nori sheet", "amount": "1", "calories": 10 },
-        { "name": "Cucumber", "amount": "6 thin slices", "calories": 5 }
+        {
+          "name": "Cooked rice",
+          "amount": "150g",
+          "calories": 195
+        },
+        {
+          "name": "Canned tuna (drained)",
+          "amount": "80g",
+          "calories": 95
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tbsp",
+          "calories": 10
+        },
+        {
+          "name": "Mayonnaise",
+          "amount": "1 tsp",
+          "calories": 35
+        },
+        {
+          "name": "Nori sheet",
+          "amount": "1",
+          "calories": 10
+        },
+        {
+          "name": "Cucumber",
+          "amount": "6 thin slices",
+          "calories": 5
+        }
       ],
       "steps": [
         "If your rice is cold, microwave it for 30–40 seconds so it becomes sticky and easy to shape.",
@@ -4236,9 +6094,9 @@
         "Mayonnaise": 35,
         "Nori sheet": 10,
         "Cucumber": 5
-      }
+      },
+      "recipeName": "Crispy Sushi Taco (No-Roll Hack)"
     },
-
     {
       "type": "surprise",
       "basicName": "Popcorn Trail Mix",
@@ -4248,11 +6106,31 @@
       "prepTime": 7,
       "servings": 1,
       "ingredients": [
-        { "name": "Popcorn (plain)", "amount": "25g", "calories": 95 },
-        { "name": "Dark chocolate", "amount": "15g", "calories": 80 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
-        { "name": "Chili flakes", "amount": "a pinch", "calories": 2 },
-        { "name": "Peanuts", "amount": "1 tbsp", "calories": 50 }
+        {
+          "name": "Popcorn (plain)",
+          "amount": "25g",
+          "calories": 95
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "15g",
+          "calories": 80
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Chili flakes",
+          "amount": "a pinch",
+          "calories": 2
+        },
+        {
+          "name": "Peanuts",
+          "amount": "1 tbsp",
+          "calories": 50
+        }
       ],
       "steps": [
         "Pop the popcorn using an air popper or a pot with a lid (avoid heavy butter to keep it light).",
@@ -4275,9 +6153,9 @@
         "Honey": 20,
         "Chili flakes": 2,
         "Peanuts": 50
-      }
+      },
+      "recipeName": "Sweet & Spicy Popcorn Trail Mix"
     },
-
     {
       "type": "surprise",
       "basicName": "Breakfast Dessert Bowl",
@@ -4287,11 +6165,31 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Greek yogurt", "amount": "200g", "calories": 150 },
-        { "name": "Cream cheese", "amount": "1 tbsp", "calories": 50 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
-        { "name": "Crushed biscuits", "amount": "1 tbsp", "calories": 50 },
-        { "name": "Strawberries", "amount": "3 medium", "calories": 15 }
+        {
+          "name": "Greek yogurt",
+          "amount": "200g",
+          "calories": 150
+        },
+        {
+          "name": "Cream cheese",
+          "amount": "1 tbsp",
+          "calories": 50
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Crushed biscuits",
+          "amount": "1 tbsp",
+          "calories": 50
+        },
+        {
+          "name": "Strawberries",
+          "amount": "3 medium",
+          "calories": 15
+        }
       ],
       "steps": [
         "Add Greek yogurt to a bowl.",
@@ -4313,9 +6211,9 @@
         "Honey": 20,
         "Crushed biscuits": 50,
         "Strawberries": 15
-      }
+      },
+      "recipeName": "Cheesecake-Style Breakfast Bowl"
     },
-
     {
       "type": "surprise",
       "basicName": "Ramen Carbonara",
@@ -4325,10 +6223,26 @@
       "prepTime": 9,
       "servings": 1,
       "ingredients": [
-        { "name": "Instant noodles", "amount": "1 pack", "calories": 300 },
-        { "name": "Egg", "amount": "1", "calories": 70 },
-        { "name": "Parmesan (or any hard cheese)", "amount": "20g", "calories": 80 },
-        { "name": "Black pepper", "amount": "to taste", "calories": 0 }
+        {
+          "name": "Instant noodles",
+          "amount": "1 pack",
+          "calories": 300
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "calories": 70
+        },
+        {
+          "name": "Parmesan (or any hard cheese)",
+          "amount": "20g",
+          "calories": 80
+        },
+        {
+          "name": "Black pepper",
+          "amount": "to taste",
+          "calories": 0
+        }
       ],
       "steps": [
         "Boil water and cook the noodles for 2–3 minutes until soft.",
@@ -4349,9 +6263,9 @@
         "Instant noodles": 300,
         "Egg": 70,
         "Parmesan (or any hard cheese)": 80
-      }
+      },
+      "recipeName": "Instant Ramen Carbonara Hack"
     },
-
     {
       "type": "surprise",
       "basicName": "Watermelon Feta Bite",
@@ -4361,10 +6275,26 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Watermelon", "amount": "1 cup cubes", "calories": 45 },
-        { "name": "Feta cheese", "amount": "25g", "calories": 70 },
-        { "name": "Lime (or lemon) juice", "amount": "1 tsp", "calories": 1 },
-        { "name": "Mint (optional)", "amount": "3 leaves", "calories": 1 }
+        {
+          "name": "Watermelon",
+          "amount": "1 cup cubes",
+          "calories": 45
+        },
+        {
+          "name": "Feta cheese",
+          "amount": "25g",
+          "calories": 70
+        },
+        {
+          "name": "Lime (or lemon) juice",
+          "amount": "1 tsp",
+          "calories": 1
+        },
+        {
+          "name": "Mint (optional)",
+          "amount": "3 leaves",
+          "calories": 1
+        }
       ],
       "steps": [
         "Cut watermelon into bite-size cubes (dry them slightly with paper towel so toppings stick).",
@@ -4385,9 +6315,9 @@
         "Feta cheese": 70,
         "Lime (or lemon) juice": 1,
         "Mint (optional)": 1
-      }
+      },
+      "recipeName": "Watermelon Feta Lime Bites"
     },
-
     {
       "type": "surprise",
       "basicName": "Hot Honey Halloumi",
@@ -4397,10 +6327,26 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Halloumi cheese", "amount": "80g", "calories": 260 },
-        { "name": "Honey", "amount": "1 tsp", "calories": 20 },
-        { "name": "Chili flakes", "amount": "a pinch", "calories": 2 },
-        { "name": "Cucumber", "amount": "6 slices", "calories": 5 }
+        {
+          "name": "Halloumi cheese",
+          "amount": "80g",
+          "calories": 260
+        },
+        {
+          "name": "Honey",
+          "amount": "1 tsp",
+          "calories": 20
+        },
+        {
+          "name": "Chili flakes",
+          "amount": "a pinch",
+          "calories": 2
+        },
+        {
+          "name": "Cucumber",
+          "amount": "6 slices",
+          "calories": 5
+        }
       ],
       "steps": [
         "Slice halloumi into 2–3 thick pieces (thick slices stay juicy).",
@@ -4422,9 +6368,9 @@
         "Honey": 20,
         "Chili flakes": 2,
         "Cucumber": 5
-      }
+      },
+      "recipeName": "Hot Honey Halloumi Sliders (No Bun)"
     },
-
     {
       "type": "surprise",
       "basicName": "Dessert Quesadilla",
@@ -4434,10 +6380,26 @@
       "prepTime": 9,
       "servings": 1,
       "ingredients": [
-        { "name": "Tortilla", "amount": "1 small", "calories": 140 },
-        { "name": "Banana", "amount": "1/2 medium", "calories": 45 },
-        { "name": "Dark chocolate", "amount": "20g", "calories": 110 },
-        { "name": "Butter (optional)", "amount": "1/2 tsp", "calories": 18 }
+        {
+          "name": "Tortilla",
+          "amount": "1 small",
+          "calories": 140
+        },
+        {
+          "name": "Banana",
+          "amount": "1/2 medium",
+          "calories": 45
+        },
+        {
+          "name": "Dark chocolate",
+          "amount": "20g",
+          "calories": 110
+        },
+        {
+          "name": "Butter (optional)",
+          "amount": "1/2 tsp",
+          "calories": 18
+        }
       ],
       "steps": [
         "Slice banana into thin rounds so it warms quickly inside the tortilla.",
@@ -4459,9 +6421,9 @@
         "Banana": 45,
         "Dark chocolate": 110,
         "Butter (optional)": 18
-      }
+      },
+      "recipeName": "Chocolate Banana Dessert Quesadilla"
     },
-
     {
       "type": "surprise",
       "basicName": "Savory Oat Bowl",
@@ -4471,11 +6433,31 @@
       "prepTime": 10,
       "servings": 1,
       "ingredients": [
-        { "name": "Oats", "amount": "40g", "calories": 150 },
-        { "name": "Water", "amount": "220ml", "calories": 0 },
-        { "name": "Egg", "amount": "1", "calories": 70 },
-        { "name": "Soy sauce", "amount": "1 tsp", "calories": 5 },
-        { "name": "Chili flakes", "amount": "a pinch", "calories": 2 }
+        {
+          "name": "Oats",
+          "amount": "40g",
+          "calories": 150
+        },
+        {
+          "name": "Water",
+          "amount": "220ml",
+          "calories": 0
+        },
+        {
+          "name": "Egg",
+          "amount": "1",
+          "calories": 70
+        },
+        {
+          "name": "Soy sauce",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Chili flakes",
+          "amount": "a pinch",
+          "calories": 2
+        }
       ],
       "steps": [
         "Add oats and water to a small pot or microwave-safe bowl.",
@@ -4497,9 +6479,9 @@
         "Egg": 70,
         "Soy sauce": 5,
         "Chili flakes": 2
-      }
+      },
+      "recipeName": "Savory Oats with Egg & Chili"
     },
-
     {
       "type": "surprise",
       "basicName": "Ice Cream Coffee",
@@ -4509,10 +6491,26 @@
       "prepTime": 5,
       "servings": 1,
       "ingredients": [
-        { "name": "Vanilla ice cream", "amount": "2 scoops", "calories": 180 },
-        { "name": "Instant coffee", "amount": "1 tsp", "calories": 5 },
-        { "name": "Hot water", "amount": "60ml", "calories": 0 },
-        { "name": "Dark chocolate (optional)", "amount": "10g", "calories": 55 }
+        {
+          "name": "Vanilla ice cream",
+          "amount": "2 scoops",
+          "calories": 180
+        },
+        {
+          "name": "Instant coffee",
+          "amount": "1 tsp",
+          "calories": 5
+        },
+        {
+          "name": "Hot water",
+          "amount": "60ml",
+          "calories": 0
+        },
+        {
+          "name": "Dark chocolate (optional)",
+          "amount": "10g",
+          "calories": 55
+        }
       ],
       "steps": [
         "Add instant coffee to a small cup.",
@@ -4531,9 +6529,9 @@
         "Instant coffee": 5,
         "Hot water": 0,
         "Dark chocolate (optional)": 55
-      }
+      },
+      "recipeName": "Affogato-Style Instant Coffee Dessert"
     },
-
     {
       "type": "surprise",
       "basicName": "Pickle Peanut Chips",
@@ -4543,10 +6541,26 @@
       "prepTime": 6,
       "servings": 1,
       "ingredients": [
-        { "name": "Potato chips", "amount": "30g", "calories": 160 },
-        { "name": "Pickles", "amount": "3 slices", "calories": 3 },
-        { "name": "Peanuts", "amount": "1 tbsp", "calories": 50 },
-        { "name": "Hot sauce (optional)", "amount": "1 tsp", "calories": 5 }
+        {
+          "name": "Potato chips",
+          "amount": "30g",
+          "calories": 160
+        },
+        {
+          "name": "Pickles",
+          "amount": "3 slices",
+          "calories": 3
+        },
+        {
+          "name": "Peanuts",
+          "amount": "1 tbsp",
+          "calories": 50
+        },
+        {
+          "name": "Hot sauce (optional)",
+          "amount": "1 tsp",
+          "calories": 5
+        }
       ],
       "steps": [
         "Place potato chips into a bowl (use a wide bowl so mixing is easy).",
@@ -4566,8 +6580,8 @@
         "Pickles": 3,
         "Peanuts": 50,
         "Hot sauce (optional)": 5
-      }
+      },
+      "recipeName": "Pickle Peanut Crunch Chips (Weirdly Good)"
     }
-
   ]
 }
