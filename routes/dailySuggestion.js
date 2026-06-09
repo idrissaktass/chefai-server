@@ -43,18 +43,27 @@ function calcTDEE(user) {
 }
 
 // ── AI ile 4 öğün üret ─────────────────────────────────────────────────────
-async function generateMeals({ targetCal, language = "en", excludeNames = [] }) {
+async function generateMeals({ targetCal, language = "en", excludeNames = [], dietMode = "normal" }) {
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const excludeClause = excludeNames.length
     ? `AVOID these meals (already suggested today): ${excludeNames.join(", ")}.`
     : "";
 
+  const dietClauses = {
+    vegan: "All meals must be 100% vegan (no meat, fish, dairy, eggs, or honey).",
+    vegetarian: "All meals must be vegetarian (no meat or fish, but dairy and eggs are allowed).",
+    keto: "All meals must be ketogenic: very low carb (under 30g total), high fat, moderate protein.",
+    normal: "",
+  };
+  const dietClause = dietClauses[dietMode] || "";
+
   const langNames = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", de: "German" };
   const langName = langNames[language] || "English";
 
   const prompt = `
 Daily calorie target: ${targetCal} kcal.
+${dietClause}
 ${excludeClause}
 
 Suggest 4 meals for one day: breakfast, lunch, snack, and dinner.
@@ -111,6 +120,27 @@ RETURN ONLY JSON:
 
 const MEAL_TYPES = ["breakfast", "lunch", "snack", "dinner"];
 
+// Son N günde önerilen öğün isimlerini toplar (tekrar önlemek için)
+async function recentMealNames(userId, excludeDate = null, days = 7) {
+  const since = new Date();
+  since.setDate(since.getDate() - days);
+  const sinceStr = since.toISOString().split("T")[0];
+
+  const docs = await DailySuggestion.find({
+    userId,
+    date: { $gte: sinceStr, ...(excludeDate ? { $ne: excludeDate } : {}) },
+  });
+
+  const names = new Set();
+  for (const doc of docs) {
+    for (const type of MEAL_TYPES) {
+      const n = doc[type]?.name_en;
+      if (n) names.add(n);
+    }
+  }
+  return [...names];
+}
+
 // Öğün kalori oranları
 const MEAL_RATIOS = { breakfast: 0.25, lunch: 0.35, snack: 0.10, dinner: 0.30 };
 
@@ -145,8 +175,11 @@ router.get("/daily-suggestion", authMiddleware, async (req, res) => {
       targetCal = calcTDEE(user);
     }
 
+    // Son 7 günün öğünlerini exclude et
+    const excludeNames = await recentMealNames(req.userId, today);
+
     // AI ile üret
-    const meals = await generateMeals({ targetCal, language });
+    const meals = await generateMeals({ targetCal, language, excludeNames });
 
     doc = await DailySuggestion.create({
       userId: req.userId,
@@ -242,9 +275,11 @@ router.post("/daily-suggestion/swap", authMiddleware, async (req, res) => {
     }
 
     const mealTargetCal = Math.round(doc.targetCal * (MEAL_RATIOS[mealType] || 0.25));
+    const recentNames = await recentMealNames(req.userId);
     const currentName = doc[mealType]?.name_en || doc[mealType]?.name_tr || "";
+    const excludeNames = [...new Set([currentName, ...recentNames])].filter(Boolean).join(", ");
 
-    const newMeal = await generateOneMeal({ mealType, targetCal: mealTargetCal, language, excludeName: currentName });
+    const newMeal = await generateOneMeal({ mealType, targetCal: mealTargetCal, language, excludeName: excludeNames });
 
     doc[mealType] = { ...newMeal, confirmed: false };
     doc.markModified(mealType);
@@ -264,7 +299,7 @@ router.post("/daily-suggestion/swap", authMiddleware, async (req, res) => {
 // ══════════════════════════════════════════════════════════════════════════════
 router.post("/daily-suggestion/regenerate", authMiddleware, async (req, res) => {
   try {
-    const { language = "en" } = req.body;
+    const { language = "en", dietMode = "normal" } = req.body;
     let targetCal = req.body.targetCal ? parseInt(req.body.targetCal, 10) : 0;
     const today = new Date().toISOString().split("T")[0];
 
@@ -273,17 +308,10 @@ router.post("/daily-suggestion/regenerate", authMiddleware, async (req, res) => 
       targetCal = calcTDEE(user);
     }
 
-    // Önceki öneri isimlerini exclude et
-    const existing = await DailySuggestion.findOne({ userId: req.userId, date: today });
-    const excludeNames = [];
-    if (existing) {
-      MEAL_TYPES.forEach((m) => {
-        const meal = existing[m];
-        if (meal?.name_en) excludeNames.push(meal.name_en);
-      });
-    }
+    // Son 7 günün öğünlerini exclude et (bugün dahil)
+    const excludeNames = await recentMealNames(req.userId);
 
-    const meals = await generateMeals({ targetCal, language, excludeNames });
+    const meals = await generateMeals({ targetCal, language, excludeNames, dietMode });
 
     const doc = await DailySuggestion.findOneAndUpdate(
       { userId: req.userId, date: today },
