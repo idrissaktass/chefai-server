@@ -4,6 +4,7 @@ import { OAuth2Client } from "google-auth-library";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
+import appleSignin from "apple-signin-auth";
 
 const router = Router();
 
@@ -307,6 +308,68 @@ router.delete("/delete-account", async (req, res) => {
   } catch (err) {
     console.error("DELETE ACCOUNT ERROR:", err);
     return res.status(401).json({ error: "INVALID_TOKEN" });
+  }
+});
+
+/* =====================================================
+   🍎 APPLE SIGN IN
+===================================================== */
+router.post("/apple", async (req, res) => {
+  try {
+    const { identityToken, user: appleUserId, email, fullName } = req.body;
+
+    if (!identityToken) {
+      return res.status(400).json({ error: "MISSING_TOKEN" });
+    }
+
+    const applePayload = await appleSignin.verifyIdToken(identityToken, {
+      audience: "com.idrisaktas.chefai",
+      ignoreExpiration: false,
+    });
+
+    const appleEmail = email || applePayload.email || `${appleUserId}@privaterelay.appleid.com`;
+    const appleName = fullName?.givenName
+      ? `${fullName.givenName} ${fullName.familyName || ""}`.trim()
+      : appleEmail.split("@")[0];
+
+    let user = await User.findOne({ appleUserId });
+
+    if (!user) {
+      user = await User.findOne({ email: appleEmail, authProvider: "apple" });
+    }
+
+    if (!user) {
+      user = await User.create({
+        email: appleEmail,
+        name: appleName,
+        appleUserId,
+        authProvider: "apple",
+        profileCompleted: false,
+        isPremium: false,
+        weightUnit: "kg",
+        heightUnit: "cm",
+      });
+    }
+
+    const token = jwt.sign(
+      { id: user._id, isPremium: user.isPremium },
+      JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    res.json({
+      token,
+      user: {
+        _id: user._id,
+        email: user.email,
+        isPremium: user.isPremium,
+        language: user.language || "en",
+        profileCompleted: user.profileCompleted,
+      },
+    });
+  } catch (err) {
+    console.error("APPLE SIGNIN ERROR:", err);
+    res.status(401).json({ error: "APPLE_AUTH_FAILED" });
   }
 });
 
