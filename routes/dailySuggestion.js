@@ -58,13 +58,10 @@ async function generateMeals({ targetCal, language = "en", excludeNames = [], di
   };
   const dietClause = dietClauses[dietMode] || "";
 
-  const langNames = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", de: "German" };
-  const langName = langNames[language] || "English";
-
-  const bkfCal  = Math.round(targetCal * 0.25);
-  const lunchCal = Math.round(targetCal * 0.35);
-  const snackCal = Math.round(targetCal * 0.10);
-  const dinnerCal= Math.round(targetCal * 0.30);
+  const bkfCal   = Math.round(targetCal * 0.25);
+  const lunchCal  = Math.round(targetCal * 0.35);
+  const snackCal  = Math.round(targetCal * 0.10);
+  const dinnerCal = Math.round(targetCal * 0.30);
 
   const prompt = `
 You are a registered dietitian creating a realistic one-day meal plan.
@@ -82,15 +79,20 @@ CRITICAL RULES — read carefully:
 4. If a meal type is naturally low-calorie, increase portions or add calorie-dense sides (nut butter, olive oil, whole grains, cheese, nuts) until the calorie target is met.
 5. "cal" field must equal what the described portion ACTUALLY contains.
 
-LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
-For "portion": short human-readable description in English showing actual amounts (e.g. "5 eggs + 30g feta + 2 toast + ½ avocado"). Max 80 chars.
+LANGUAGE RULES:
+- name_en: always in English
+- name_tr: always in Turkish
+- name_de: always in German
+- name_fr: always in French
+- name_es: always in Spanish
+- portion: short human-readable description in English showing actual amounts (e.g. "5 eggs + 30g feta + 2 toast + ½ avocado"). Max 80 chars.
 
 RETURN ONLY JSON:
 {
-  "breakfast": { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "lunch":     { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "snack":     { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
-  "dinner":    { "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
+  "breakfast": { "name_en": "", "name_tr": "", "name_de": "", "name_fr": "", "name_es": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "lunch":     { "name_en": "", "name_tr": "", "name_de": "", "name_fr": "", "name_es": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "snack":     { "name_en": "", "name_tr": "", "name_de": "", "name_fr": "", "name_es": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 },
+  "dinner":    { "name_en": "", "name_tr": "", "name_de": "", "name_fr": "", "name_es": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
 }
 `;
 
@@ -118,11 +120,16 @@ Healthy and practical.
 
 CRITICAL: Calorie count must be nutritionally accurate for the exact portion described. Adjust portion sizes (grams, extra ingredients, healthy additions) to reach the target — never inflate the calorie number beyond what the food actually contains.
 
-LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
-For "portion": short human-readable portion in English (e.g. "150g chicken + 80g rice"). Max 60 chars.
+LANGUAGE RULES:
+- name_en: always in English
+- name_tr: always in Turkish
+- name_de: always in German
+- name_fr: always in French
+- name_es: always in Spanish
+- portion: short human-readable portion in English (e.g. "150g chicken + 80g rice"). Max 60 chars.
 
 RETURN ONLY JSON:
-{ "name_tr": "", "name_en": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
+{ "name_en": "", "name_tr": "", "name_de": "", "name_fr": "", "name_es": "", "portion": "", "cal": 0, "protein": 0, "carbs": 0, "fat": 0 }
 `;
 
   const completion = await client.chat.completions.create({
