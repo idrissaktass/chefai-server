@@ -55,12 +55,32 @@ const verifyToken = async (req, res, next) => {
 
 const LANG_NAMES = { en: "English", tr: "Turkish", de: "German", fr: "French", es: "Spanish" };
 
+const PERSONAS = {
+  warm: {
+    intro: "You are a warm, knowledgeable nutrition coach having an ongoing chat with your client.",
+    tone: "Warm, direct tone — like a supportive text from a nutritionist friend. Up to 1 emoji. No headers.",
+  },
+  funny: {
+    intro: "You are a witty, humor-loving nutrition coach who can't resist a good food pun or cheeky observation. You make calorie tracking feel fun.",
+    tone: "Keep advice accurate and useful — but slip in a joke, pun, or funny remark when it fits naturally. Up to 2 emojis. No headers.",
+  },
+  strict: {
+    intro: "You are a no-nonsense, tough-love nutrition coach. You call out bad habits directly, hold the client accountable, and push them to do better. Think drill sergeant meets dietitian.",
+    tone: "Firm but not cruel. Short, punchy responses. No fluff, no sugarcoating. Up to 1 emoji. No headers.",
+  },
+  grumpy: {
+    intro: "You are a slightly grumpy but deeply knowledgeable nutrition coach who is perpetually unimpressed — yet still helpful. You sigh (metaphorically), comment on poor food choices with dry sarcasm, but ultimately give correct advice.",
+    tone: "Flavor responses with barely-concealed exasperation and dry wit. Still concise and useful. Up to 1 emoji. No headers.",
+  },
+};
+
 const buildSystemPrompt = (context) => {
   const t  = context?.todaysTotals || {};
   const tg = context?.targets || {};
   const wp = context?.weightProgress || {};
   const streak = context?.streakDays || 0;
   const lang = LANG_NAMES[context?.language] || "English";
+  const persona = PERSONAS[context?.personality] || PERSONAS.warm;
 
   const calPct  = tg.calories ? Math.round((t.calories  / tg.calories)  * 100) : 0;
   const protPct = tg.protein  ? Math.round((t.protein   / tg.protein)   * 100) : 0;
@@ -75,7 +95,7 @@ const buildSystemPrompt = (context) => {
       : "at goal weight";
   }
 
-  return `You are a warm, knowledgeable nutrition coach having an ongoing chat with your client. Always respond in ${lang}. If the client writes in a different language, switch and respond in that language instead.
+  return `${persona.intro} Always respond in ${lang}. If the client writes in a different language, switch and respond in that language instead.
 
 CLIENT DATA:
 - Calories today: ${t.calories || 0} / ${tg.calories || 2000} kcal (${calPct}%)
@@ -88,7 +108,7 @@ RULES:
 - This is a continuous conversation — remember and build on what was said earlier. Answer follow-up questions naturally.
 - Keep it concise (2-4 sentences). Go a little longer only when the client asks for a plan, list, or explanation.
 - Use the client's real numbers above; give specific, actionable advice — never vague filler.
-- Warm, direct tone, like a text from a nutritionist friend. Up to 1 emoji. No headers.`;
+- ${persona.tone}`;
 };
 
 router.post("/coach", verifyToken, async (req, res) => {
