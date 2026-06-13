@@ -385,5 +385,29 @@ router.get("/test", (req, res) => {
   res.json({ ok: true, message: "Auth route çalışıyor" });
 });
 
+// ── RevenueCat premium sync ──────────────────────────────────────────────────
+// Called by the client immediately after RevenueCat confirms a purchase.
+// Sets isPremium=true in DB and returns a fresh JWT so the coach route
+// immediately uses the premium limit.
+router.post("/sync-premium", async (req, res) => {
+  const JWT_SECRET = process.env.JWT_SECRET || "d5f721491a7b51a3c83511efd6457e87729f100ee8f2c3191e4f4384c45f373a2f880ac2fef1fb574d43a4f80e9f4181010b925059da21a0a994e895c01ba0eb";
+  try {
+    const header = req.headers.authorization;
+    if (!header) return res.status(401).json({ error: "No token" });
+    const decoded = jwt.verify(header.split(" ")[1], JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    if (!user.isPremium) {
+      user.isPremium = true;
+      await user.save();
+    }
+
+    const token = jwt.sign({ id: user._id, isPremium: true }, JWT_SECRET, { expiresIn: "7d" });
+    res.json({ success: true, token });
+  } catch (err) {
+    res.status(401).json({ error: "Sync failed" });
+  }
+});
 
 export const authRoute = router;
