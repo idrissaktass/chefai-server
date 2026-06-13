@@ -61,18 +61,29 @@ async function generateMeals({ targetCal, language = "en", excludeNames = [], di
   const langNames = { en: "English", tr: "Turkish", fr: "French", es: "Spanish", de: "German" };
   const langName = langNames[language] || "English";
 
+  const bkfCal  = Math.round(targetCal * 0.25);
+  const lunchCal = Math.round(targetCal * 0.35);
+  const snackCal = Math.round(targetCal * 0.10);
+  const dinnerCal= Math.round(targetCal * 0.30);
+
   const prompt = `
+You are a registered dietitian creating a realistic one-day meal plan.
+
 Daily calorie target: ${targetCal} kcal.
 ${dietClause}
 ${excludeClause}
 
-Suggest 4 meals for one day: breakfast, lunch, snack, and dinner.
-Calorie distribution: breakfast ~25% (${Math.round(targetCal*0.25)} kcal), lunch ~35% (${Math.round(targetCal*0.35)} kcal), snack ~10% (${Math.round(targetCal*0.10)} kcal), dinner ~30% (${Math.round(targetCal*0.30)} kcal).
-Total should be approximately ${targetCal} kcal. Meals should be healthy, practical, and balanced.
+Suggest 4 meals: breakfast (~${bkfCal} kcal), lunch (~${lunchCal} kcal), snack (~${snackCal} kcal), dinner (~${dinnerCal} kcal).
+
+CRITICAL RULES — read carefully:
+1. Calorie counts must be NUTRITIONALLY ACCURATE for the exact portion you describe. Never inflate calories to hit a target.
+2. To reach the calorie target, adjust PORTION SIZES (more grams, more ingredients, added healthy fats/complex carbs) — not the calorie number.
+3. Example of what NOT to do: "3-egg veggie omelet = 750 kcal" — that is wrong (~300 kcal). Instead write "5-egg veggie omelet with 30g cheese, 1 avocado, 2 slices whole-grain toast = 750 kcal".
+4. If a meal type is naturally low-calorie, increase portions or add calorie-dense sides (nut butter, olive oil, whole grains, cheese, nuts) until the calorie target is met.
+5. "cal" field must equal what the described portion ACTUALLY contains.
 
 LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
-
-For "portion": write a short, human-readable portion description in English (e.g. "2 eggs + 2 slices toast + ½ avocado" or "150g chicken + 80g rice + salad"). Max 60 chars.
+For "portion": short human-readable description in English showing actual amounts (e.g. "5 eggs + 30g feta + 2 toast + ½ avocado"). Max 80 chars.
 
 RETURN ONLY JSON:
 {
@@ -101,9 +112,11 @@ async function generateOneMeal({ mealType, targetCal, language = "en", excludeNa
     : "";
 
   const prompt = `
-Suggest a single ${mealType} meal with approximately ${targetCal} kcal.
+You are a registered dietitian. Suggest a single ${mealType} meal with approximately ${targetCal} kcal.
 ${excludeClause}
 Healthy and practical.
+
+CRITICAL: Calorie count must be nutritionally accurate for the exact portion described. Adjust portion sizes (grams, extra ingredients, healthy additions) to reach the target — never inflate the calorie number beyond what the food actually contains.
 
 LANGUAGE: name_en must always be in English. name_tr must always be in Turkish.
 For "portion": short human-readable portion in English (e.g. "150g chicken + 80g rice"). Max 60 chars.
