@@ -332,17 +332,25 @@ router.post("/apple", async (req, res) => {
       ? `${fullName.givenName} ${fullName.familyName || ""}`.trim()
       : appleEmail.split("@")[0];
 
-    let user = await User.findOne({ appleUserId });
+    let user = null;
+
+    if (appleUserId) {
+      user = await User.findOne({ appleUserId });
+    }
 
     if (!user) {
       user = await User.findOne({ email: appleEmail, authProvider: "apple" });
+      if (user && appleUserId && !user.appleUserId) {
+        user.appleUserId = appleUserId;
+        await user.save();
+      }
     }
 
     if (!user) {
       user = await User.create({
         email: appleEmail,
         name: appleName,
-        appleUserId,
+        appleUserId: appleUserId || null,
         authProvider: "apple",
         profileCompleted: false,
         isPremium: false,
