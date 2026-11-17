@@ -13,6 +13,7 @@ import { mealRoute } from "./routes/meals.js";
 import { openaiRoute } from "./routes/openai.js";
 import { dailySuggestionRoute } from "./routes/dailySuggestion.js";
 import { partnerRoute } from "./routes/partner.js";
+import { recipeOfTheDayRoute } from "./routes/recipeOfTheDay.js";
 
 dotenv.config();
 connectDB();
@@ -48,6 +49,7 @@ app.use("/api", mealRoute);
 app.use("/api/openai", openaiRoute);
 app.use("/api", dailySuggestionRoute);
 app.use("/api/partner", partnerRoute);
+app.use("/api", recipeOfTheDayRoute);
 
 // Body-parser JSON syntax error handler
 app.use((err, req, res, next) => {

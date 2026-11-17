@@ -327,6 +327,25 @@ IMPORTANT:
 });
 
 
+const PIXABAY_KEY = "54233466-13c9ed6a59b17c998d642b0aa";
+
+// Pixabay'den yemek görseli arar, bulamazsa null döner
+export async function searchFoodImage(query) {
+  const response = await axios.get("https://pixabay.com/api/", {
+    params: {
+      key: PIXABAY_KEY,
+      q: query + " food",
+      image_type: "photo",
+      category: "food",
+      safesearch: true,
+      per_page: 5,
+    },
+  });
+
+  const best = response.data?.hits?.[0];
+  return best ? best.largeImageURL || best.webformatURL : null;
+}
+
 router.post("/recipe-image", async (req, res) => {
   const { recipeName } = req.body;
 
@@ -335,40 +354,12 @@ router.post("/recipe-image", async (req, res) => {
   }
 
   try {
-    const PIXABAY_KEY = "54233466-13c9ed6a59b17c998d642b0aa";
-
-    const response = await axios.get(
-      "https://pixabay.com/api/",
-      {
-        params: {
-          key: PIXABAY_KEY,
-          q: recipeName + " food",
-          image_type: "photo",
-          category: "food",
-          safesearch: true,
-          per_page: 5,
-        },
-      }
-    );
-
-    const hits = response.data?.hits || [];
-
-    if (!hits.length) return res.json({ imageUrl: null });
-
-    // ⭐ en yüksek çözünürlüklü olanı al
-    const best = hits[0];
-
-    return res.json({
-      imageUrl: best.largeImageURL || best.webformatURL
-    });
-
+    return res.json({ imageUrl: await searchFoodImage(recipeName) });
   } catch (err) {
     console.log("Pixabay image error:", err);
     return res.status(500).json({ error: "Image fetch failed" });
   }
 });
-
-
 
 // router.post("/recipe-creative"
 router.post("/recipe-creative", authMiddleware, async (req, res) => {
